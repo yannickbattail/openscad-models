@@ -1,4 +1,13 @@
-include <pipe.scad>
+include <pipe1.scad>
+
+/* [Animation] */
+// Animation rotation
+animation_rotation = false;
+
+/* [Hidden] */
+$vpt = animation_rotation?[4, 3, 120]:$vpt;
+$vpr = animation_rotation?[60, 0, 365 * $t]:$vpr; // animation rotate around the object
+$vpd = animation_rotation?2000:$vpd;
 
 $fn=100;
 
@@ -28,7 +37,7 @@ module example(){
 // example paperclip
 module paperclip() {
     color("gray")
-    translate([300, 0, 60])
+    translate([100, 0, 60])
     pipe(10, 9, [
         //length,rotation,angle,radius_of_curvature 
         [    500,       0,   90,    70],

@@ -13,6 +13,7 @@ $fn=100;
 
 paperclip();
 example();
+//random_pipe();
 
 module example(){
     //   outer_radius, inner_radius, list of segments
@@ -48,4 +49,12 @@ module paperclip() {
         [    100,       0,   90,    50],
         [    360,      10,    0,    50],
     ]);
+}
+
+
+module random_pipe() {
+    //segments = [ for (a = [0 : 400]) [ 50, rands(0, 360, 1)[0], 90, 10 ] ];
+    segments = [ for (a = [0 : 400]) [ rands(40, 100, 1)[0], rands(0, 360, 1)[0], rands(30, 160, 1)[0], 0 ] ];
+    //echo(str("segments = ", segments));
+    pipe(10, 9, segments);
 }

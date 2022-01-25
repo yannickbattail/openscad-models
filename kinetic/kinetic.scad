@@ -1,7 +1,20 @@
+/*
+view -> animate
+set fps=30
+set steps=144
+*/
 
 /* [cone dimentions] */
-cone_width=3; // [0.1:0.1:10]
+form="cone"; // [cone, petal]
+cone_width=8; // [6:0.1:10]
 cone_count=8; // [1:8]
+cone_rotation=true;
+cone_curliness=4; // [1:8]
+SDIAM=90;//SDIAM=100;
+SRADI=45;//SDIAM=50
+
+flower_color="MediumVioletRed";
+base_color="orange";
 
 /* [Animation] */
 // Animation rotation
@@ -11,47 +24,59 @@ $fn=20;
 
 /* [Hidden] */
 GOLDANGLE=-137.5;
-pi=3.141592653589793;
-rad=(((cone_width * cone_count)*4)/(2*pi));
+rad=(((cone_width * cone_count)*4)/(2*PI));
 
 $vpt = animation_rotation?[0, 0, 0]:$vpt;
-$vpr = animation_rotation?[60, 0, ((144 * $t)*GOLDANGLE) % 360]:$vpr; // animation rotate around the object
-$vpd = animation_rotation?100:$vpd;//Camera Distance
+$vpr = animation_rotation?[60, 0, ((144 * -$t)*GOLDANGLE) % 360]:$vpr; // animation rotate around the object
+$vpd = animation_rotation?400:$vpd;//Camera Distance
 
-//view-animate
-//set fps=30
-//set steps=144
 
-module mkCone(x){
-    linear_extrude(
-        height = 10,
-        twist = 360,
-        scale = -10
-    )
-        rotate([0,0,x*36])
-            translate([1,0,0])
-                circle(r=cone_width);
+module mkCone(loop){
+    rot = cone_rotation?loop*36:0;
+    rotate([loop,0,(-GOLDANGLE*loop)])
+        translate([0,0,SRADI])
+            linear_extrude(height = 30, twist = 360,scale = -10)
+                rotate([0,0,rot])
+                    translate([cone_curliness,0,0])
+                        circle(r=cone_width);
 }
-module mkSpikes(){
+
+module petal(loop){
+        rotate([0,0,-(GOLDANGLE*loop)])
+            rotate([0,loop/2,0])
+                translate([0,0,SRADI])
+                    rotate([0,loop,0])
+                        // cube(10,center=true);
+                        cylinder(h=10,r1=10,r2=0,center=false);
+}
+
+module element(loop){
+    if (form == "cone") {
+        mkCone(loop);
+    } else {
+        petal(loop);
+    }
+}
+
+module elements(){
     union(){
-        sphere(
-            r = rad
-        );
-        for(x=[1:cone_count*12]){
-            rotate([x,0,(-137.5*x)])
-                translate([0,0,rad])
-                    mkCone(x);
+        for(loop=[1:cone_count*12]){
+            element(loop);
         }
     }
 }
+
 module flower() {
-    color("MediumVioletRed")
+    color(flower_color)
     difference(){
-        mkSpikes();
+        union() {
+            sphere(r = rad);
+            elements();
+        }
         translate([-25,-25,-rad])
             cube([50,50,rad]);
     };
-    color("darkgreen")
+    color(base_color)
     translate([0,0,-3])
         cylinder(
             h = 3,
@@ -59,7 +84,7 @@ module flower() {
             r2 = rad+((cone_count*12)/10)
         );
 
-    color("orange")
+    color(base_color)
     translate([0,0,-10])
         cylinder(
             h = 7,

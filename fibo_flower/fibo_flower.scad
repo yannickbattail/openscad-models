@@ -53,8 +53,10 @@ module petal(loop){
 module element(loop){
     if (form == "cone") {
         mkCone(loop);
-    } else {
+    } else if (form == "petal") {
         petal(loop);
+    } else {
+        assert(true, str("unknown form: ", form));
     }
 }
 

@@ -1,5 +1,5 @@
-yoda_color="#333333"; // MediumSeaGreen
-horn_color="red"; // DarkKhaki
+yoda_color = "#333333"; // MediumSeaGreen
+horn_color = "red"; // DarkKhaki
 
 // name of the horns (north south est west)
 //  nw  n  ne
@@ -25,7 +25,7 @@ darth_grogu(yoda_color, horn_color, horn_list);
 module darth_grogu(yoda_color, horn_color, horn_list) {
     union() {
         color(yoda_color)
-            translate([0.25,2,0]) // center z axis in the head
+            translate([0.25, 2, 0]) // center z axis in the head
                 rotate([0, 0, 75]) // allign hears with x axis
                     import("base_stl/baby_yoda.stl");
         color("red")
@@ -37,7 +37,7 @@ module darth_grogu(yoda_color, horn_color, horn_list) {
 
 module horns(horn_list) {
     union() {
-        for (i=[0:len(horn_list)-1]) {
+        for (i = [0:len(horn_list) - 1]) {
             translate(horn_list[i][1])
                 rotate(horn_list[i][2])
                     get_horn_by_name(horn_list[i][0]);
@@ -46,5 +46,5 @@ module horns(horn_list) {
 }
 
 module get_horn_by_name(horn) {
-    import(str("stl/horn_",horn,".stl"));
+    import(str("stl/horn_", horn, ".stl"));
 }

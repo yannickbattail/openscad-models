@@ -1,4 +1,3 @@
-
 // name of the horns (north south est west)
 //  nw  n  ne
 //      o
@@ -19,14 +18,14 @@ horns_list = [
 ];
 
 module all_horns() {
-    for (i=[0:len(horns_list) - 1]) {
-        translate([i*50, 0, 0])
+    for (i = [0:len(horns_list) - 1]) {
+        translate([i * 50, 0, 0])
             horn(horns_list[i][1], horns_list[i][2]);
     }
 }
 
 module horns_by_name(horn_name) {
-    for (i=[0:len(horns_list) - 1]) {
+    for (i = [0:len(horns_list) - 1]) {
         if (horn_name == horns_list[i][0]) {
             horn(horns_list[i][1], horns_list[i][2]);
         }
@@ -35,8 +34,8 @@ module horns_by_name(horn_name) {
 
 module horn(translation, cube_size) {
     if (!debug) {
-        translate([-cube_size[0]/2,-cube_size[1]/2,0]) { // center it (not on z)
-            translate(-translation) { // translate to 0,0,0
+        translate([- cube_size[0] / 2, - cube_size[1] / 2, 0]) {// center it (not on z)
+            translate(- translation) {// translate to 0,0,0
                 intersection() {
                     import("base_stl/Darth_Maul_Horns_Cosplay.stl");
                     translate(translation) {
@@ -55,7 +54,7 @@ module horn(translation, cube_size) {
 
 
 module fill_horn() {
-    for (i=[0:50]) {
-        translate([0, 0, -i]) horn_n();
+    for (i = [0:50]) {
+        translate([0, 0, - i]) horn_n();
     }
 }

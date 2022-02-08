@@ -4,7 +4,7 @@ include <horns.scad>
 
 // horns
 horn = "all"; // [all, n, o, s, w, e, nw, ne, sw, se]
-debug=false;
+debug = false;
 
 if (horn == "all") {
     all_horns();

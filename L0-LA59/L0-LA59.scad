@@ -51,6 +51,7 @@ module wingRight(height, wingWidth=2) {
         }
         wingProfileLeftRight();
     }
+    //axes();
 }
 
 module wingProfileLeft() {
@@ -150,4 +151,10 @@ module cup(cut=100) {
             cube(size, center = true);
         }
     }
+}
+
+module axes() {
+    cube([1000,1,1]);
+    cube([1,1000,1]);
+    cube([1,1,1000]);
 }

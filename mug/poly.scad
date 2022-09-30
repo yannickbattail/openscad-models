@@ -30,21 +30,20 @@ $fn = 60;
 
 /* [Hidden] */
 /* constants. Do not change them */
-IMAGE_WIDTH=0;
-IMAGE_HEIGHT=1;
-IMAGE_PIXELS=2;
-POINTS=0;
-FACES=1;
-
-
-cornerd = min(cornd, cupwd / 2); // Bad things happen if you try to round the bottom too much!
-cupht = ovrht - cornerd - cupwal * .5; // cup height adjusted for other features
+IMAGE_WIDTH = 0;
+IMAGE_HEIGHT = 1;
+IMAGE_PIXELS = 2;
+POINTS = 0;
+FACES = 1;
 
 imageData = len(inlineImage) != 0 ? inlineImage : image;
 
 s = surfaceDataf(imageData[IMAGE_PIXELS]);
 
 //points = s[POINTS];
-points = wrapAroundCylinder(s[POINTS], imageDiameter, imageAngle, imageData[IMAGE_WIDTH], imageData[IMAGE_HEIGHT], reliefMultipier);
+points = wrapAroundCylinder(s[POINTS], imageDiameter, imageAngle, imageData[IMAGE_WIDTH], imageData[IMAGE_HEIGHT],
+reliefMultipier);
+
+mug(cornd, ovrht, cupwd, cupwal, handlr);
 
 polyhedron(points = points, faces = s[FACES]);

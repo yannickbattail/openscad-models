@@ -27,9 +27,9 @@
       const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
       const data = imageData.data;
       let s = "["+ image.width+ ", "+image.height + ", [\n";
-      for (let x = 0; x < image.width-1; ++x) {
-        s += "[" 
-        for (let y = 0; y < image.height-1; ++y) {
+      for (let y = 0; y < image.height-1; ++y) {
+        s += "["
+        for (let x = 0; x < image.width-1; ++x) {
           const i = (y * image.width + x) * 4;
           let red = data[i]
           let green = data[i+1]

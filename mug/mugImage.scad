@@ -24,7 +24,13 @@ reliefMultipier = 5;
 inlineImage = []; //
 
 /* [Hidden] */
-imageData = len(inlineImage) != 0 ? inlineImage : image;
+imageData = len(inlineImage) > 0 ? inlineImage : image;
+
+if (len(inlineImage) > 0) {
+    echo("use inline image data (customizer)");
+} else {
+    echo("use image data from file");
+}
 
 mugImage(mugHeight, mugDiameter, mugThickness, imageAngle, imageRotation, reliefMultipier, imageData);
 

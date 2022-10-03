@@ -1,7 +1,7 @@
 include <coords.scad>
 
 function wrapAroundCylinder(points, imageDimention, diameter, height, imageAngle, reliefMultipier = 1)
-= [for (p = points) wrapPointAroundCylinder(p, imageDimention[0], imageDimention[1],, diameter, height, imageAngle, reliefMultipier)];
+= [for (p = points) wrapPointAroundCylinder(p, imageDimention[0], imageDimention[1], diameter, height, imageAngle, reliefMultipier)];
 
 function wrapPointAroundCylinder(point, imageWidth, imageHeight, diameter, height, imageAngle, reliefMultipier)
 = let(

@@ -20,7 +20,7 @@ module mug(height, radius, thickness, full = false) {
 }
 
 module handle(height) {
-    scale([0.5, 1.2, 0.8]) {
+    scale([0.4, 1.2, 0.65]) {
         rotate([90, 0, 0]) {
             torus(height / 2, 8);
         }

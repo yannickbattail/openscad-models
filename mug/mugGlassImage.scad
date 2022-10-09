@@ -43,27 +43,28 @@ mugImage(mugHeight, mugDiameter / 2, mugThickness, imageAngle, imageRotation, re
 module mugImage(mugHeight, mugRadius, mugThickness, imageAngle, imageRotation, reliefMultipier, imageMatrix) {
     difference() {
         render() // preview display nothing without this
-        union() {
-            mug(mugHeight, mugRadius, mugThickness, true);
-            rotate([0, 0, imageRotation]) {
-                imageMatrixOnCylinder(mugHeight, mugRadius, imageAngle, reliefMultipier, imageMatrix);
+            union() {
+                mug(mugHeight, mugRadius, mugThickness, true);
+                rotate([0, 0, imageRotation]) {
+                    imageMatrixOnCylinder(mugHeight, mugRadius, imageAngle, reliefMultipier, imageMatrix);
+                }
             }
-        }
-        translate([0,0,mugThickness])
-        #nutellaGlass2();
+        translate([0, 0, mugThickness])
+            #nutellaGlass2();
     }
 }
+
 module nutellaGlass2() {
     // total height 92
-    translate([0,0,25])
-    difference() {
-        union() {
-            cylinder(d1 = 69, d2 = 73, h = 67);
-            sphere(d = 69);
+    translate([0, 0, 25])
+        difference() {
+            union() {
+                cylinder(d1 = 69, d2 = 73, h = 67);
+                sphere(d = 69);
+            }
+            translate([0, 0, - 40 - 25])
+                cube([80, 80, 80], center = true);
         }
-        translate([0,0,-40-25])
-            cube([80,80,80], center=true);
-    }
 }
 
 module imageMatrixOnCylinder(height, radius, imageAngle, reliefMultipier, imageMatrix) {

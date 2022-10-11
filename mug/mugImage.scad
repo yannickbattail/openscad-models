@@ -8,6 +8,7 @@ include <images/cat.scad>
 //include <images/cat_face.scad>
 //include <images/redPanda.scad>
 //include <images/werefox.scad>
+
 /* [Mug] */
 // height of the nug
 mugHeight = 80; // [70:92]
@@ -18,18 +19,17 @@ mugThickness = 4;
 // make a mug compatible with nutella glass
 withNutellaGlass = true;
 
-
 /* [Image] */
 // image display angle
-imageAngle = 90; // [10:360]
+imageAngle = 360; // [10:360]
 // image rotation angle
-imageRotation = 45; // [0:360]
+imageRotation = 0; // [0:360]
 // relief multipier (by default relief is between 0 and 1)
-reliefMultipier = 2;
+reliefMultipier = 3;
 // image data from imageToMatrix.html 
 inlineImage = []; //
-// hide the image (for debug and faster preview)
-hideImage = false; //
+// show only image or mug (for debug purpose and faster preview)
+partialModel = "all"; // [all, image_only, mug_only]
 
 /* [Details] */
 $fn = 100;
@@ -45,14 +45,17 @@ if (len(inlineImage) > 0) {
 
 epsi = 0.01; // epsilon
 
-mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageData, hideImage);
+mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageData, partialModel);
 
-module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageMatrix, hideImage = false) {
+module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageMatrix, partialModel = "all") {
+
     difference() {
         render() // preview display nothing without this
             union() {
-                mug(mugHeight, mugRadius, mugThickness);
-                if (!hideImage) {
+                if (partialModel != "image_only") {
+                    mug(mugHeight, mugRadius, mugThickness);
+                }
+                if (partialModel != "mug_only") {
                     rotate([0, 0, imageRotation]) {
                         imageMatrixOnCylinder(mugHeight, mugRadius, imageAngle, reliefMultipier, imageMatrix);
                     }

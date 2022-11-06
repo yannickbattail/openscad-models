@@ -6,7 +6,7 @@
 
 fn=50
 nb_image=20
-image_size=512,512
+image_size=300,300
 delay=20 # delay between images en 100th of seconds
 
 mkdir -p ./anim/

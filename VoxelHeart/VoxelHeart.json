@@ -1,0 +1,23 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "heart1_cube": {
+            "$fn": "10",
+            "alternative_design": "false",
+            "resolution": "0.1",
+            "use_sphere": "false"
+        },
+        "heart1_sphere": {
+            "$fn": "8",
+            "alternative_design": "false",
+            "resolution": "0.1",
+            "use_sphere": "true"
+        },
+        "heart2_cube": {
+            "$fn": "10",
+            "alternative_design": "true",
+            "resolution": "0.1",
+            "use_sphere": "false"
+        }
+    }
+}

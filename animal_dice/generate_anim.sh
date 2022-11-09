@@ -6,13 +6,13 @@
 
 fn=50
 nb_image=20
-image_size=512,512
+image_size=300,300
 delay=20 # delay between images en 100th of seconds
 
 mkdir -p ./anim/
 #OPENSCAD=openscad
 OPENSCAD="openscad-nightly"
-parts_list="cat dino dragon fox panda"
+parts_list="cat dino dragon fox panda heart_gem"
 for part in $parts_list
 do
     echo generating animation images ./anim/${part}XX.png ...

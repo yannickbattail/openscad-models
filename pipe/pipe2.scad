@@ -88,7 +88,8 @@ module curved_pipe(segment) {
                                 circle(r = inner_radius_end);
                             }
                         }
-                        translate([- outer_radius_end, 0, 0]) square(size = [outer_radius_end * 2, outer_radius_end * 2], center = true);
+                        translate([- outer_radius_end, 0, 0]) square(size = [outer_radius_end * 2, outer_radius_end * 2]
+                        , center = true);
                     }
                 }
             }

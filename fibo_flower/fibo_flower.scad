@@ -13,8 +13,8 @@ cone_curliness = 4; // [1:8]
 SDIAM = 90;//SDIAM=100;
 SRADI = 45;//SDIAM=50
 
-flower_color="MediumVioletRed";
-base_color="orange";
+flower_color = "MediumVioletRed";
+base_color = "orange";
 
 /* [Animation] */
 // Animation rotation

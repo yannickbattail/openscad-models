@@ -5,11 +5,13 @@ part="example"; // [example, animation_length, animation_outer_radius_start, ani
 /* [Animation] */
 // rotating animation
 animation_rotation = false;
+// variables animation
+animation_var = false;
 
 /* for animation */
-$vpt = animation_rotation ? [0, 0, 0] : [];
-$vpr = animation_rotation ? [70, 0, 360 * $t] : [];
-$vpd = animation_rotation ? 5000 : [];
+$vpt = animation_rotation ? [0, 0, 0]         : (animation_var? [0, 0, 180] :[]);
+$vpr = animation_rotation ? [70, 0, 360 * $t] : (animation_var? [120, 0, 60]:[]);
+$vpd = animation_rotation ? 5000              : (animation_var? 1000        :[]);
 
 $fn = 100;
 
@@ -44,9 +46,6 @@ if (part == "example") {
 }
 
 module animation(length=200,outer_radius_start=50, inner_radius_start=47,outer_radius_end=20, inner_radius_end=17, rotation=0, angle=90, radius_of_curvature=20, straight_part_color="green", curved_part_color="red") {
-    $vpt = [0, 0, 0];
-    $vpr = [70, 0, 365 * $t];
-    $vpd =  5000;
     pipe([
             //length,outer_radius_start, inner_radius_start,outer_radius_end, inner_radius_end,rotation,angle,radius_of_curvature,straight_part_color,curved_part_color
             [ length,outer_radius_start, inner_radius_start,outer_radius_end, inner_radius_end,rotation,angle,radius_of_curvature,straight_part_color,curved_part_color],

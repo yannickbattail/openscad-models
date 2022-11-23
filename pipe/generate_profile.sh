@@ -39,18 +39,20 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 scad_file=$1
 
-image_dollar_fn=50
-image_size=1024,1024
+image_dollar_fn="50"
+image_size="1024,1024"
+image_mosaic_geometry="256x256+2+2" ### https://legacy.imagemagick.org/Usage/montage/
+image_mosaic_tile="2x2"
 
-anim_dollar_fn=50
-anim_size=512,512
-anim_nb_image=20
-anim_delay=20 # delay between images en 100th of seconds
+anim_dollar_fn="50"
+anim_size="512,512"
+anim_nb_image="20"
+anim_delay="20" ### delay between images en 100th of seconds
 
-stl_dollar_fn=50
-stl_format=asciistl
-#stl_format=binstl
-stl_render_option=
+stl_dollar_fn="50"
+stl_format="asciistl"
+#stl_format="binstl"
+stl_render_option=""
 #stl_render_option="--enable sort-stl" ### this is an option of openscad-nightly
 
 OPENSCAD="xvfb-run -a openscad"
@@ -71,7 +73,7 @@ fi
 scad_file_name=$(basename $scad_file .scad)
 scad_file_dir=$(dirname $scad_file)
 parameter_file=${scad_file_dir}/${scad_file_name}.json
-echo $parameter_file
+echo user parameter file: $parameter_file
 if [[ ! -f $parameter_file ]]
 then
     echo "no parameter file: $parameter_file" >&2
@@ -102,6 +104,11 @@ generate_gif() {
 generate_stl() {
       echo generating ${stl_dir}/${parameter_set}.stl ...
       $OPENSCAD -q -o ${stl_dir}/${parameter_set}.stl --p ${parameter_file} --P ${parameter_set} -D "\$fn=${stl_dollar_fn}" --export-format ${stl_format} ${stl_render_option} ${scad_file}
+}
+
+generate_mosaic() {
+    echo generating mosaic ${jpg_dir}/${scad_file_name}.jpg
+    montage -geometry ${image_mosaic_geometry} -tile ${image_mosaic_tile} ${jpg_dir}/*.png ${jpg_dir}/mosaic_${scad_file_name}.jpg
 }
 
 generate_all() {
@@ -135,7 +142,12 @@ for parameter_set in $parameter_sets ; do
     fi
 done
 
-#echo generating mosaic ${jpg_dir}/${scad_file_name}.jpg
-#montage -geometry 256x256+2+2 -tile 3x3 ${jpg_dir}/*.png ${jpg_dir}/${scad_file_name}.jpg
+if [[ $only_generate == "jpg" ]]
+then
+    generate_mosaic
+elif  [[ $only_generate == "" ]]
+then
+        generate_mosaic
+fi
 
 echo done.

@@ -7,6 +7,14 @@ config_file=""
 only_parameter_set=""
 only_generate=""
 
+usage() {
+    echo "$0 [OPTION]... [OPENSCAD_FILE]" >&2
+    echo "-c, --config-file configuration_file      specify another configuration file thant the default OPENSCAD_FILE.conf." >&2
+    echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
+    echo "-g, --generate only_generate              only_generate must be one of jpg,gif,stl. bay default it will generate all." >&2
+    echo "OPENSCAD_FILE                             path of the openscad file." >&2
+}
+
 while [[ $# -gt 0 ]]; do
   case $1 in
     -c|--config-file)
@@ -25,7 +33,7 @@ while [[ $# -gt 0 ]]; do
       shift # past value
       ;;
     -*|--*)
-      echo "Unknown option $1"
+      usage
       exit 1
       ;;
     *)
@@ -37,7 +45,7 @@ done
 
 set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
-scad_file=$1
+### default configuration
 
 image_dollar_fn="50"
 image_size="1024,1024"
@@ -58,22 +66,71 @@ stl_render_option=""
 OPENSCAD="xvfb-run -a openscad"
 #OPENSCAD="xvfb-run -a openscad-nightly"
 
-if [[ $config_file != "" ]]
+### end configuration
+
+scad_file=$1
+
+if [[ ! -f $scad_file ]]
 then
+    echo "openscad file $scad_file does not exist." >&2
+    exit 1
+fi
+
+scad_file_name=$(basename $scad_file .scad)
+scad_file_dir=$(dirname $scad_file)
+
+if [[ $config_file == "" ]]
+then
+    config_file=${scad_file_dir}/${scad_file_name}.conf
     if [[ -f "$config_file" ]]
     then
         echo "loading config file: $config_file"
         . $config_file
     else
-        echo "config file: $config_file does not exist" >&2
+        echo "creating default config file: $config_file"
+        
+cat << EOF > $config_file
+####### configuration file for $0 #######
+## it will be sourced by $0
+
+#image_dollar_fn="${image_dollar_fn}"
+#image_size="${image_size}"
+### for image_mosaic_geometry see https://legacy.imagemagick.org/Usage/montage/
+#image_mosaic_geometry="${image_mosaic_geometry}"
+#image_mosaic_tile="${image_mosaic_tile}"
+
+#anim_dollar_fn="${anim_dollar_fn}"
+#anim_size="${anim_size}"
+#anim_nb_image="${anim_nb_image}"
+### delay between images en 100th of seconds
+#anim_delay="${anim_delay}"
+
+#stl_dollar_fn="${stl_dollar_fn}"
+#stl_format="asciistl"
+#stl_format="binstl"
+#stl_render_option="${stl_render_option}"
+### this option is only available on openscad-nightly
+#stl_render_option="--enable sort-stl"
+
+#OPENSCAD="xvfb-run -a openscad"
+#OPENSCAD="xvfb-run -a openscad-nightly"
+
+EOF
+
+    fi
+else
+    if [[ -f "$config_file" ]]
+    then
+        echo "loading config file: $config_file"
+        . $config_file
+    else
+        echo "config file: $config_file does not exist." >&2
         exit 1
     fi
 fi
 
-scad_file_name=$(basename $scad_file .scad)
-scad_file_dir=$(dirname $scad_file)
 parameter_file=${scad_file_dir}/${scad_file_name}.json
-echo user parameter file: $parameter_file
+echo "use parameter file: $parameter_file"
 if [[ ! -f $parameter_file ]]
 then
     echo "no parameter file: $parameter_file" >&2
@@ -128,6 +185,7 @@ generate_all() {
       generate_stl
     else
       echo "bad usage: option -g or --generate must be one of: jpg,gif,stl" 2>&1
+      usage
       exit 1
     fi
 }

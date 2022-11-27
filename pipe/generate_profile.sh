@@ -1,6 +1,6 @@
 #!/bin/bash
 #set -x
-
+. ./colors.sh
 POSITIONAL_ARGS=()
 
 config_file=""
@@ -8,11 +8,13 @@ only_parameter_set=""
 only_generate=""
 
 usage() {
-    echo "$0 [OPTION]... [OPENSCAD_FILE]" >&2
+    echo -ne $IBlue
+    echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file thant the default OPENSCAD_FILE.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
     echo "-g, --generate only_generate              only_generate must be one of jpg,gif,stl. bay default it will generate all." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
+    echo -ne $On_Reset
 }
 
 while [[ $# -gt 0 ]]; do
@@ -70,9 +72,16 @@ OPENSCAD="xvfb-run -a openscad"
 
 scad_file=$1
 
+if [[ $scad_file == "" ]]
+then
+    echo -e "${IRed}openscad file $scad_file does not exist.${On_Reset}" >&2
+    usage
+    exit 1
+fi
+
 if [[ ! -f $scad_file ]]
 then
-    echo "openscad file $scad_file does not exist." >&2
+    echo -e "${IRed}openscad file $scad_file does not exist.${On_Reset}" >&2
     exit 1
 fi
 
@@ -84,10 +93,10 @@ then
     config_file=${scad_file_dir}/${scad_file_name}.conf
     if [[ -f "$config_file" ]]
     then
-        echo "loading config file: $config_file"
+        echo -e "${IGreen}loading config file: $config_file${On_Reset}"
         . $config_file
     else
-        echo "creating default config file: $config_file"
+        echo -e "${IGreen}creating default config file: $config_file${On_Reset}"
         
 cat << EOF > $config_file
 ####### configuration file for $0 #######
@@ -121,21 +130,21 @@ EOF
 else
     if [[ -f "$config_file" ]]
     then
-        echo "loading config file: $config_file"
+        echo -e "${IGreen}loading config file: $config_file${On_Reset}"
         . $config_file
     else
-        echo "config file: $config_file does not exist." >&2
+        echo  -e "${IRed}config file: $config_file does not exist.${On_Reset}" >&2
         exit 1
     fi
 fi
 
 parameter_file=${scad_file_dir}/${scad_file_name}.json
-echo "use parameter file: $parameter_file"
 if [[ ! -f $parameter_file ]]
 then
-    echo "no parameter file: $parameter_file" >&2
+    echo -e "${IRed}no parameter file: $parameter_file${On_Reset}" >&2
     exit 1
 fi
+echo -e "${IGreen}use parameter file: $parameter_file${On_Reset}"
 parameter_sets=$( jq -r '.parameterSets | keys[]' ${parameter_file} )
 
 jpg_dir=./${scad_file_name}/images
@@ -145,26 +154,26 @@ stl_dir=./${scad_file_name}/stl
 mkdir -p $jpg_dir $gif_dir $stl_dir
 
 generate_jpg() {
-    echo generating images ${jpg_dir}/${parameter_set}.png ...
+    echo -e "${IGreen}generating images ${jpg_dir}/${parameter_set}.png ...${On_Reset}"
     $OPENSCAD -q -o ${jpg_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${image_dollar_fn}" --imgsize ${image_size} ${scad_file}
 }
 
 generate_gif() {
-    echo generating animation images ${gif_dir}/${parameter_set}.png ...
+    echo -e "${IGreen}generating animation images ${gif_dir}/${parameter_set}.png ...${On_Reset}"
     $OPENSCAD -q -o ${gif_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate ${anim_nb_image} --imgsize ${anim_size} ${scad_file}
-    echo building animation ${gif_dir}/${parameter_set}.gif ...
+    echo -e "${IGreen}building animation ${gif_dir}/${parameter_set}.gif ...${On_Reset}"
     convert -delay ${anim_delay} -loop 0 ${gif_dir}/${parameter_set}*.png ${gif_dir}/${parameter_set}.gif
-    echo cleanup animation images ${parameter_set} ...
+    echo -e "${IGreen}cleanup animation images ${parameter_set} ...${On_Reset}"
     rm ${gif_dir}/${parameter_set}*.png
 }
 
 generate_stl() {
-      echo generating ${stl_dir}/${parameter_set}.stl ...
+      echo -e "${IGreen}generating ${stl_dir}/${parameter_set}.stl ...${On_Reset}"
       $OPENSCAD -q -o ${stl_dir}/${parameter_set}.stl --p ${parameter_file} --P ${parameter_set} -D "\$fn=${stl_dollar_fn}" --export-format ${stl_format} ${stl_render_option} ${scad_file}
 }
 
 generate_mosaic() {
-    echo generating mosaic ${jpg_dir}/${scad_file_name}.jpg
+    echo -e "${IGreen}generating mosaic ${jpg_dir}/${scad_file_name}.jpg ...${On_Reset}"
     montage -geometry ${image_mosaic_geometry} -tile ${image_mosaic_tile} ${jpg_dir}/*.png ${jpg_dir}/mosaic_${scad_file_name}.jpg
 }
 
@@ -184,7 +193,7 @@ generate_all() {
       generate_gif
       generate_stl
     else
-      echo "bad usage: option -g or --generate must be one of: jpg,gif,stl" 2>&1
+      echo -e "${IRed}bad usage: option -g or --generate must be one of: jpg,gif,stl${On_Reset}" 2>&1
       usage
       exit 1
     fi
@@ -208,4 +217,4 @@ then
         generate_mosaic
 fi
 
-echo done.
+echo -e "${IGreen}Done.${On_Reset}"

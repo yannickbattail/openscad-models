@@ -14,8 +14,31 @@ usage() {
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
     echo "-g, --generate only_generate              only_generate must be one of jpg,gif,stl. bay default it will generate all." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
+    echo "" >&2
+    echo "Requirements: command 'jq' and imagemagick for gif and mosaic generation"
     echo -ne $On_Reset
 }
+
+echo_info() {
+    echo -ne $IGreen
+    echo $@
+    echo -ne $On_Reset
+}
+
+echo_warn() {
+    echo -ne IPurple
+    echo $@
+    echo -ne $On_Reset
+}
+
+echo_error() {
+    echo -ne $IRed >&2
+    echo $@ >&2
+    usage
+    echo -ne $On_Reset >&2
+    exit 1
+}
+
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -35,8 +58,7 @@ while [[ $# -gt 0 ]]; do
       shift # past value
       ;;
     -*|--*)
-      usage
-      exit 1
+      echo_error "unknown option: $1"
       ;;
     *)
       POSITIONAL_ARGS+=("$1") # save positional arg
@@ -72,17 +94,19 @@ OPENSCAD="xvfb-run -a openscad"
 
 scad_file=$1
 
-if [[ $scad_file == "" ]]
+if ! command -v jq &> /dev/null
 then
-    echo -e "${IRed}openscad file $scad_file does not exist.${On_Reset}" >&2
-    usage
-    exit 1
+    echo_error "The command jq is not installed."
 fi
 
+if [[ $scad_file == "" ]]
+then
+    echo_error "openscad file $scad_file does not exist."
+    exit 1
+fi
 if [[ ! -f $scad_file ]]
 then
-    echo -e "${IRed}openscad file $scad_file does not exist.${On_Reset}" >&2
-    exit 1
+    echo_error "openscad file $scad_file does not exist."
 fi
 
 scad_file_name=$(basename $scad_file .scad)
@@ -93,10 +117,10 @@ then
     config_file=${scad_file_dir}/${scad_file_name}.conf
     if [[ -f "$config_file" ]]
     then
-        echo -e "${IGreen}loading config file: $config_file${On_Reset}"
+        echo_info "loading config file: $config_file"
         . $config_file
     else
-        echo -e "${IGreen}creating default config file: $config_file${On_Reset}"
+        echo_info "creating default config file: $config_file"
         
 cat << EOF > $config_file
 ####### configuration file for $0 #######
@@ -130,19 +154,17 @@ EOF
 else
     if [[ -f "$config_file" ]]
     then
-        echo -e "${IGreen}loading config file: $config_file${On_Reset}"
+        echo_info "loading config file: $config_file"
         . $config_file
     else
-        echo  -e "${IRed}config file: $config_file does not exist.${On_Reset}" >&2
-        exit 1
+        echo_error "config file: $config_file does not exist."
     fi
 fi
 
 parameter_file=${scad_file_dir}/${scad_file_name}.json
 if [[ ! -f $parameter_file ]]
 then
-    echo -e "${IRed}no parameter file: $parameter_file${On_Reset}" >&2
-    exit 1
+    echo_error "no parameter file: $parameter_file"
 fi
 echo -e "${IGreen}use parameter file: $parameter_file${On_Reset}"
 parameter_sets=$( jq -r '.parameterSets | keys[]' ${parameter_file} )
@@ -151,31 +173,68 @@ jpg_dir=./${scad_file_name}/images
 gif_dir=./${scad_file_name}/gif
 stl_dir=./${scad_file_name}/stl
 
-mkdir -p $jpg_dir $gif_dir $stl_dir
-
 generate_jpg() {
-    echo -e "${IGreen}generating images ${jpg_dir}/${parameter_set}.png ...${On_Reset}"
+    echo_info "generating images ${jpg_dir}/${parameter_set}.png ..."
     $OPENSCAD -q -o ${jpg_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${image_dollar_fn}" --imgsize ${image_size} ${scad_file}
 }
 
 generate_gif() {
-    echo -e "${IGreen}generating animation images ${gif_dir}/${parameter_set}.png ...${On_Reset}"
+    echo_info "generating animation images ${gif_dir}/${parameter_set}.png ..."
     $OPENSCAD -q -o ${gif_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate ${anim_nb_image} --imgsize ${anim_size} ${scad_file}
-    echo -e "${IGreen}building animation ${gif_dir}/${parameter_set}.gif ...${On_Reset}"
+    echo_info "building animation ${gif_dir}/${parameter_set}.gif ..."
     convert -delay ${anim_delay} -loop 0 ${gif_dir}/${parameter_set}*.png ${gif_dir}/${parameter_set}.gif
-    echo -e "${IGreen}cleanup animation images ${parameter_set} ...${On_Reset}"
+    echo_info "cleanup animation images ${parameter_set} ..."
     rm ${gif_dir}/${parameter_set}*.png
 }
 
 generate_stl() {
-      echo -e "${IGreen}generating ${stl_dir}/${parameter_set}.stl ...${On_Reset}"
+      echo_info "generating ${stl_dir}/${parameter_set}.stl ..."
       $OPENSCAD -q -o ${stl_dir}/${parameter_set}.stl --p ${parameter_file} --P ${parameter_set} -D "\$fn=${stl_dollar_fn}" --export-format ${stl_format} ${stl_render_option} ${scad_file}
 }
 
 generate_mosaic() {
-    echo -e "${IGreen}generating mosaic ${jpg_dir}/${scad_file_name}.jpg ...${On_Reset}"
+    echo_info "generating mosaic ${jpg_dir}/${scad_file_name}.jpg ..."
     montage -geometry ${image_mosaic_geometry} -tile ${image_mosaic_tile} ${jpg_dir}/*.png ${jpg_dir}/mosaic_${scad_file_name}.jpg
 }
+
+prepare_jpg() {
+    mkdir -p $jpg_dir
+    if ! command -v montage &> /dev/null
+    then
+        echo_error "the command 'montage' in not found, mosaics will not be generated, install imagemagick."
+    fi
+}
+
+prepare_gif() {
+    mkdir -p $gif_dir
+    if ! command -v convert &> /dev/null
+    then
+        echo_error "the command 'convert' in not found, gif will not be generated, install imagemagick."
+        exit 1
+    fi
+}
+
+prepare_stl() {
+    mkdir -p $stl_dir
+}
+
+if [[ $only_generate == "jpg" ]]
+then
+    prepare_jpg
+elif  [[ $only_generate == "gif" ]]
+then
+    prepare_gif
+elif  [[ $only_generate == "stl" ]]
+then
+    prepare_stl
+elif  [[ $only_generate == "" ]]
+then
+    prepare_jpg
+    prepare_gif
+    prepare_stl
+else
+  echo_error "bad usage: option -g or --generate must be one of: jpg,gif,stl"
+fi
 
 generate_all() {
     if [[ $only_generate == "jpg" ]]
@@ -192,10 +251,6 @@ generate_all() {
       generate_jpg
       generate_gif
       generate_stl
-    else
-      echo -e "${IRed}bad usage: option -g or --generate must be one of: jpg,gif,stl${On_Reset}" 2>&1
-      usage
-      exit 1
     fi
 }
 
@@ -217,4 +272,4 @@ then
         generate_mosaic
 fi
 
-echo -e "${IGreen}Done.${On_Reset}"
+echo_info "Done."

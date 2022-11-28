@@ -170,42 +170,10 @@ echo -e "${IGreen}use parameter file: $parameter_file${On_Reset}"
 parameter_sets=$( jq -r '.parameterSets | keys[]' ${parameter_file} )
 
 jpg_dir=./${scad_file_name}/images
+anim_dir=./${scad_file_name}/anim
 gif_dir=./${scad_file_name}/gif
 webp_dir=./${scad_file_name}/webp
 stl_dir=./${scad_file_name}/stl
-
-generate_jpg() {
-    echo_info "generating images ${jpg_dir}/${parameter_set}.png ..."
-    $OPENSCAD -q -o ${jpg_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${image_dollar_fn}" --imgsize ${image_size} ${scad_file}
-}
-
-generate_gif() {
-    echo_info "generating animation images ${gif_dir}/${parameter_set}.png ..."
-    $OPENSCAD -q -o ${gif_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate ${anim_nb_image} --imgsize ${anim_size} ${scad_file}
-    echo_info "building animation ${gif_dir}/${parameter_set}.gif ..."
-    convert -delay ${anim_delay} -loop 0 ${gif_dir}/${parameter_set}*.png ${gif_dir}/${parameter_set}.gif
-    echo_info "cleanup animation images ${parameter_set} ..."
-    rm ${gif_dir}/${parameter_set}*.png
-}
-
-generate_webp() {
-    echo_info "generating animation images ${webp_dir}/${parameter_set}.png ..."
-    $OPENSCAD -q -o ${webp_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate ${anim_nb_image} --imgsize ${anim_size} ${scad_file}
-    echo_info "building animation ${webp_dir}/${parameter_set}.webp ..."
-    img2webp -o ${webp_dir}/${parameter_set}.webp -d ${anim_delay}0 -loop 0 ${webp_dir}/${parameter_set}*.png 
-    echo_info "cleanup animation images ${parameter_set} ..."
-    rm ${webp_dir}/${parameter_set}*.png
-}
-
-generate_stl() {
-      echo_info "generating ${stl_dir}/${parameter_set}.stl ..."
-      $OPENSCAD -q -o ${stl_dir}/${parameter_set}.stl --p ${parameter_file} --P ${parameter_set} -D "\$fn=${stl_dollar_fn}" --export-format ${stl_format} ${stl_render_option} ${scad_file}
-}
-
-generate_mosaic() {
-    echo_info "generating mosaic ${jpg_dir}/${scad_file_name}.jpg ..."
-    montage -geometry ${image_mosaic_geometry} -tile ${image_mosaic_tile} ${jpg_dir}/*.png ${jpg_dir}/mosaic_${scad_file_name}.jpg
-}
 
 prepare_jpg() {
     mkdir -p $jpg_dir
@@ -216,7 +184,7 @@ prepare_jpg() {
 }
 
 prepare_gif() {
-    mkdir -p $gif_dir
+    mkdir -p $gif_dir $anim_dir
     if ! command -v convert &> /dev/null
     then
         echo_error "the command 'convert' in not found, gif will not be generated, install imagemagick."
@@ -225,7 +193,7 @@ prepare_gif() {
 }
 
 prepare_webp() {
-    mkdir -p $webp_dir
+    mkdir -p $webp_dir $anim_dir
     if ! command -v img2webp &> /dev/null
     then
         echo_error "the command 'img2webp' in not found, webp will not be generated, install webp."
@@ -235,6 +203,40 @@ prepare_webp() {
 
 prepare_stl() {
     mkdir -p $stl_dir
+}
+
+generate_jpg() {
+    echo_info "generating images ${jpg_dir}/${parameter_set}.png ..."
+    $OPENSCAD -q -o ${jpg_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${image_dollar_fn}" --imgsize ${image_size} ${scad_file}
+}
+
+generate_anim() {
+    echo_info "generating animation images ${anim_dir}/${parameter_set}.png ..."
+    $OPENSCAD -q -o ${anim_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate ${anim_nb_image} --imgsize ${anim_size} ${scad_file}  
+}
+clean_anim() {
+    echo_info "cleanup animation images ${parameter_set} ..."
+    rm ${anim_dir}/${parameter_set}*.png
+}
+
+generate_gif() {
+    echo_info "building animation ${gif_dir}/${parameter_set}.gif ..."
+    convert -delay ${anim_delay} -loop 0 ${anim_dir}/${parameter_set}*.png ${gif_dir}/${parameter_set}.gif
+}
+
+generate_webp() {
+    echo_info "building animation ${webp_dir}/${parameter_set}.webp ..."
+    img2webp -o ${webp_dir}/${parameter_set}.webp -d ${anim_delay}0 -loop 0 ${anim_dir}/${parameter_set}*.png 
+}
+
+generate_stl() {
+      echo_info "generating ${stl_dir}/${parameter_set}.stl ..."
+      $OPENSCAD -q -o ${stl_dir}/${parameter_set}.stl --p ${parameter_file} --P ${parameter_set} -D "\$fn=${stl_dollar_fn}" --export-format ${stl_format} ${stl_render_option} ${scad_file}
+}
+
+generate_mosaic() {
+    echo_info "generating mosaic ${jpg_dir}/${scad_file_name}.jpg ..."
+    montage -geometry ${image_mosaic_geometry} -tile ${image_mosaic_tile} ${jpg_dir}/*.png ${jpg_dir}/mosaic_${scad_file_name}.jpg
 }
 
 if [[ $only_generate == "jpg" ]]
@@ -265,18 +267,24 @@ generate_all() {
       generate_jpg
     elif  [[ $only_generate == "gif" ]]
     then
+      generate_anim
       generate_gif
+      clean_anim
     elif  [[ $only_generate == "webp" ]]
     then
+      generate_anim
       generate_webp
+      clean_anim
     elif  [[ $only_generate == "stl" ]]
     then
       generate_stl
     elif  [[ $only_generate == "" ]]
     then
       generate_jpg
+      generate_anim
       generate_gif
       generate_webp
+      clean_anim
       generate_stl
     fi
 }

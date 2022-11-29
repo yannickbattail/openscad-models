@@ -1,7 +1,31 @@
 {
     "fileFormatVersion": "1",
     "parameterSets": {
-        "pipe1": {
+        "example": {
+            "part": "example"
+        },
+        "paperclip": {
+            "part": "animation_length"
+        },
+        "animation_length": {
+            "animation_rotation": "false",
+            "animation_var": "true",
+            "part": "animation_length"
+        },
+        "animation_rotation": {
+            "animation_rotation": "false",
+            "animation_var": "true",
+            "part": "animation_rotation"
+        },
+        "animation_angle": {
+            "animation_rotation": "false",
+            "animation_var": "true",
+            "part": "animation_angle"
+        },
+        "animation_radius_of_curvature": {
+            "animation_rotation": "false",
+            "animation_var": "true",
+            "part": "animation_radius_of_curvature"
         }
     }
 }

@@ -52,8 +52,7 @@ module curved_pipe(outer_radius, inner_radius, rotation, angle, radius_of_curvat
                             circle(r = inner_radius);
                         }
                     }
-                    translate([- outer_radius, 0, 0]) square(size = [outer_radius * 2, outer_radius * 2], center = true)
-                        ;
+                    translate([- outer_radius, 0, 0]) square(size = [outer_radius * 2, outer_radius * 2], center = true);
                 }
             }
         }

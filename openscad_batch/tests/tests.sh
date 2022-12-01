@@ -32,9 +32,31 @@ compare_bin_files() {
   fi
 }
 
+file_exists() {
+  if [[ -f $1 ]]
+  then
+    echo -e "[${IGreen} OK ${IReset}] file $1 exists"
+  else
+    echo -e "[${IRed} FAIL ${IReset}] file $1 does not exist"
+    exit 1
+  fi
+}
+
+check_directory() {
+  if [[ "$(ls -A1 $1)" == "$2" ]]
+  then
+    echo -e "[${IGreen} OK ${IReset}] content of directory $1 is ok"
+  else
+    echo -e "[${IRed} FAIL ${IReset}] content of directory $1 must be $2"
+    echo "## content of $1"
+    ls -A1 $1
+    exit 1
+  fi
+}
+
 
 test1() {
-   echo -e "${IBlue} ###### test1 ${IReset}"
+  echo -e "${IBlue} ###### test1 ${IReset}"
   
   echo "       generate cube1.scad"
   ../generate_profile.sh cube1.scad > /dev/null 2>&1
@@ -51,10 +73,11 @@ test1() {
 }
 
 test2() {
-   echo -e "${IBlue} ###### test2 animations ${IReset}"
+  echo -e "${IBlue} ###### test2 animations ${IReset}"
   
-  echo "       generate cube_anim.scad"
+  echo "       generate gif cube_anim.scad"
   ../generate_profile.sh -g gif cube_anim.scad > /dev/null 2>&1
+  echo "       generate webp cube_anim.scad"
   ../generate_profile.sh -g webp cube_anim.scad > /dev/null 2>&1
   echo "       generation done"
   
@@ -64,5 +87,43 @@ test2() {
   rm -Rf ./cube_anim/
 }
 
+test3() {
+  echo -e "${IBlue} ###### test3 only_generate ${IReset}"
+  
+  echo "       generate gif cube1.scad"
+  ../generate_profile.sh -g gif cube1.scad > /dev/null 2>&1
+  echo "       generation done"
+  rm -Rf ./cube1/anim ## workaround
+  check_directory ./cube1/ "gif"
+  check_directory ./cube1/gif/ "test1.gif"
+  rm -Rf ./cube1/
+  
+  echo "       generate image cube1.scad"
+  ../generate_profile.sh -g jpg cube1.scad > /dev/null 2>&1
+  echo "       generation done"
+  rm -Rf ./cube1/anim ## workaround
+  check_directory ./cube1/ "images"
+  check_directory ./cube1/images/ 'mosaic_cube1.jpg
+test1.png'
+  rm -Rf ./cube1/
+  
+  echo "       generate webp cube1.scad"
+  ../generate_profile.sh -g webp cube1.scad > /dev/null 2>&1
+  echo "       generation done"
+  rm -Rf ./cube1/anim ## workaround
+  check_directory ./cube1/ "webp"
+  check_directory ./cube1/webp/ "test1.webp"
+  rm -Rf ./cube1/
+  
+  echo "       generate stl cube1.scad"
+  ../generate_profile.sh -g stl cube1.scad > /dev/null 2>&1
+  echo "       generation done"
+  rm -Rf ./cube1/anim ## workaround
+  check_directory ./cube1/ "stl"
+  check_directory ./cube1/stl/ "test1.stl"
+  rm -Rf ./cube1/
+}
+
 test1
 test2
+test3

@@ -1,0 +1,11 @@
+{
+    "parameterSets": {
+        "cube_30": {
+            "length": "30"
+        },
+        "cube_50": {
+            "length": "50"
+        }
+    },
+    "fileFormatVersion": "1"
+}

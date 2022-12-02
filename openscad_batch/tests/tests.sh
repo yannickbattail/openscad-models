@@ -84,7 +84,7 @@ test2() {
   compare_bin_files ./cube_anim/webp/test1.webp ./cube_anim_expected/webp/test1.webp
   compare_bin_files ./cube_anim/gif/test1.gif ./cube_anim_expected/gif/test1.gif
   
-  rm -Rf ./cube_anim/
+  rm -Rf ./cube_anim/ rm -Rf ./cube_anim.conf
 }
 
 test3() {
@@ -93,7 +93,6 @@ test3() {
   echo "       generate gif cube1.scad"
   ../generate_profile.sh -g gif cube1.scad > /dev/null 2>&1
   echo "       generation done"
-  rm -Rf ./cube1/anim ## workaround
   check_directory ./cube1/ "gif"
   check_directory ./cube1/gif/ "test1.gif"
   rm -Rf ./cube1/
@@ -101,7 +100,6 @@ test3() {
   echo "       generate image cube1.scad"
   ../generate_profile.sh -g jpg cube1.scad > /dev/null 2>&1
   echo "       generation done"
-  rm -Rf ./cube1/anim ## workaround
   check_directory ./cube1/ "images"
   check_directory ./cube1/images/ 'mosaic_cube1.jpg
 test1.png'
@@ -110,7 +108,6 @@ test1.png'
   echo "       generate webp cube1.scad"
   ../generate_profile.sh -g webp cube1.scad > /dev/null 2>&1
   echo "       generation done"
-  rm -Rf ./cube1/anim ## workaround
   check_directory ./cube1/ "webp"
   check_directory ./cube1/webp/ "test1.webp"
   rm -Rf ./cube1/
@@ -118,10 +115,9 @@ test1.png'
   echo "       generate stl cube1.scad"
   ../generate_profile.sh -g stl cube1.scad > /dev/null 2>&1
   echo "       generation done"
-  rm -Rf ./cube1/anim ## workaround
   check_directory ./cube1/ "stl"
   check_directory ./cube1/stl/ "test1.stl"
-  rm -Rf ./cube1/
+  rm -Rf ./cube1/ ./cube1.conf
 }
 
 test4() {
@@ -130,7 +126,6 @@ test4() {
   echo "       generate cube4.scad"
   ../generate_profile.sh cube4.scad > /dev/null 2>&1
   echo "       generation done"
-  rm -Rf ./cube4/anim ## workaround
   check_directory ./cube4/ "gif
 images
 stl
@@ -149,7 +144,6 @@ cube_50.webp"
   echo "       generate parameter-set cube_50 cube4.scad"
   ../generate_profile.sh -p cube_50 cube4.scad > /dev/null 2>&1
   echo "       generation done"
-  rm -Rf ./cube4/anim ## workaround
   check_directory ./cube4/ "gif
 images
 stl
@@ -159,10 +153,30 @@ webp"
 mosaic_cube4.jpg"
   check_directory ./cube4/stl/ "cube_50.stl"
   check_directory ./cube4/webp/ "cube_50.webp"
-  rm -Rf ./cube4/
+  rm -Rf ./cube4/ ./cube4.conf
+}
+
+test5() {
+  echo -e "${IBlue} ###### test5 option: anim_keep_images ${IReset}"
+  
+  echo "       generate p cube5.scad"
+  ../generate_profile.sh cube5.scad > /dev/null 2>&1
+  echo "       generation done"
+  check_directory ./cube5/ "anim
+gif
+images
+stl
+webp"
+  check_directory ./cube5/anim/ "test100000.png
+test100001.png
+test100002.png
+test100003.png
+test100004.png"
+  rm -Rf ./cube5/
 }
 
 test1
 test2
 test3
 test4
+test5

@@ -31,23 +31,29 @@ heart(resolution, hull_that) {
 }
 
 module heart(res=0.05, hull_that=false) {
-    if (hull_that) {
-        hull() fullHeart() quarterHeart(res, hull_that) children(0);
-    } else {
-        fullHeart() quarterHeart(res, hull_that) children(0);
-    }
+    fullHeart() quarterHeart(res, hull_that) children(0);
 }
 
 module fullHeart() {
-    children(0);
-    mirror([1,0,0]) {
-        children(0);
+    if (hull_that) {
+        hull() halfHeart() children(0);
+        mirror([1, 0, 0]) {
+            hull() halfHeart() children(0);
+        }
+    } else {
+        halfHeart() children(0);
+        mirror([1, 0, 0]) {
+            halfHeart() children(0);
+        }
+        
     }
+}
+
+
+module halfHeart() {
+    children(0);
     mirror([0,1,0]) {
         children(0);
-        mirror([1, 0, 0]) {
-            children(0);
-        }
     }
 }
 

@@ -10,7 +10,7 @@ You can use cube or sphere as voxels
 
 - **use_sphere:** Use sphere or cube as voxels. Using sphere takes a lot of time, check the value of $fn for better rendering time.
 
-- **hull_that:** Do a hull() on all voxels. It takes a lot of time. It looks smoother but it makes the 2 bumps of the heart disappear.
+- **hull_that:** Do a hull() on all voxels. It looks smoother but it takes a lot of time.
 
 - **alternative_design:** Another design design of the heart using the second equation.
 

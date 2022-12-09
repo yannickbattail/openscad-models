@@ -57,11 +57,15 @@ check_directory() {
 }
 
 check_return_code() {
-  "$@"
+  "$@" > test.log 2>&1
   local ret=$?
   if [[ $ret != "0" ]]
   then
     echo -e "[${IRed} FAIL ${IReset}] Excution fail, return code is $ret for command $*${IReset}" >&2
+    echo -ne "$IPurple"
+    echo poutre
+    cat test.log
+    echo -ne "$IReset"
     exit 1
   fi
 }
@@ -85,7 +89,7 @@ test1() {
   echo -e "${IBlue} ###### test1 ${IReset}"
   
   echo "       generate cube1.scad"
-  ../generate_profile.sh cube1.scad
+  check_return_code ../generate_profile.sh cube1.scad
   echo "       generation done"
   
   compare_images ./cube1/gif/test1.gif ./cube1_expected/gif/test1.gif

@@ -23,7 +23,7 @@ usage() {
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file thant the default OPENSCAD_FILE.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-    echo "-g, --generate only_generate              only_generate must be one of jpg,gif,webp,stl,conf. bay default it will generate all." >&2
+    echo "-g, --generate only_generate              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,conf. By default it will generate all except con." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
     echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
@@ -268,61 +268,69 @@ generate_conf() {
 EOF
 }
 
-if [[ $only_generate == "jpg" ]]
-then
+prepare_all() {
+  if [[ $only_generate == *"jpg"* ]]; then
     prepare_jpg
-elif  [[ $only_generate == "gif" ]]
-then
+  fi
+  if [[ $only_generate == *"gif"* ]]; then
     prepare_gif
-elif  [[ $only_generate == "webp" ]]
-then
+  fi
+  if [[ $only_generate == *"webp"* ]]; then
     prepare_webp
-elif  [[ $only_generate == "stl" ]]
-then
+  fi
+  if [[ $only_generate == *"stl"* ]]; then
     prepare_stl
-elif  [[ $only_generate == "conf" ]]
-then
+  fi
+  if [[ $only_generate == *"conf"* ]]; then
     touch "$config_file"
-elif  [[ $only_generate == "" ]]
-then
+  fi
+  if [[ $only_generate == "" ]]; then
     prepare_jpg
     prepare_gif
     prepare_webp
     prepare_stl
-else
-  echo_error "bad usage: option -g or --generate must be one of: jpg,gif,webp,stl,conf"
-fi
+  fi
+}
 
 generate_all() {
-    if [[ $only_generate == "jpg" ]]
+    if  [[ $only_generate == "" || $only_generate == *"gif"* || $only_generate == *"webp"* ]]
+    then
+      generate_anim
+    fi
+    if [[ $only_generate == *"jpg"* ]]
     then
       generate_jpg
-    elif  [[ $only_generate == "gif" ]]
+    fi
+    if  [[ $only_generate == *"gif"* ]]
     then
-      generate_anim
       generate_gif
-      clean_anim
-    elif  [[ $only_generate == "webp" ]]
+    fi
+    if  [[ $only_generate == *"webp"* ]]
     then
-      generate_anim
       generate_webp
-      clean_anim
-    elif  [[ $only_generate == "stl" ]]
+    fi
+    if  [[ $only_generate == *"stl"* ]]
     then
-      generate_stl
-    elif  [[ $only_generate == "conf" ]]
-    then
-      generate_conf
-    elif  [[ $only_generate == "" ]]
-    then
-      generate_jpg
-      generate_anim
-      generate_gif
-      generate_webp
-      clean_anim
       generate_stl
     fi
+    if  [[ $only_generate == *"conf"* ]]
+    then
+      generate_conf
+    fi
+    if  [[ $only_generate == "" ]]
+    then
+      generate_jpg
+      generate_gif
+      generate_webp
+      generate_stl
+    fi
+    if  [[  $only_generate == "" || $only_generate == *"gif"* || $only_generate == *"webp"* ]]
+    then
+      clean_anim
+    fi
 }
+
+prepare_all
 
 for parameter_set in $parameter_sets ; do
     if [[ $only_parameter_set == "" ]]
@@ -334,12 +342,12 @@ for parameter_set in $parameter_sets ; do
     fi
 done
 
-if [[ $only_generate == "jpg" ]]
+if [[ $only_generate == *"jpg"* ]]
 then
     generate_mosaic
 elif  [[ $only_generate == "" ]]
 then
-        generate_mosaic
+    generate_mosaic
 fi
 
 if [[ $anim_keep_images != "true" ]]

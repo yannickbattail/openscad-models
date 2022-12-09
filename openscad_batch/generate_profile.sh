@@ -23,7 +23,7 @@ usage() {
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file thant the default OPENSCAD_FILE.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-    echo "-g, --generate only_generate              only_generate must be one of jpg,gif,webp,stl. bay default it will generate all." >&2
+    echo "-g, --generate only_generate              only_generate must be one of jpg,gif,webp,stl,conf. bay default it will generate all." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
     echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
@@ -133,54 +133,26 @@ fi
 scad_file_name=$(basename "$scad_file" .scad)
 scad_file_dir=$(dirname "$scad_file")
 
+
+if [[ $config_file != "" ]]
+then
+    if [[ ! -f "$config_file" ]]
+    then
+        echo_error "config file: $config_file does not exist."
+    fi
+fi
+
 if [[ $config_file == "" ]]
 then
     config_file=${scad_file_dir}/${scad_file_name}.conf
-    if [[ -f "$config_file" ]]
-    then
-        echo_info "loading config file: $config_file"
-        . "$config_file"
-    else
-        echo_info "creating default config file: $config_file"
-        
-cat << EOF > "$config_file"
-####### configuration file for $0 #######
-## it will be sourced by $0
+fi
 
-#image_dollar_fn="${image_dollar_fn}"
-#image_size="${image_size}"
-### for image_mosaic_geometry see https://legacy.imagemagick.org/Usage/montage/
-#image_mosaic_geometry="${image_mosaic_geometry}"
-#image_mosaic_tile="${image_mosaic_tile}"
-
-#anim_dollar_fn="${anim_dollar_fn}"
-#anim_size="${anim_size}"
-#anim_nb_image="${anim_nb_image}"
-### delay between images en 100th of seconds
-#anim_delay="${anim_delay}"
-#anim_keep_images="true"
-
-#stl_dollar_fn="${stl_dollar_fn}"
-#stl_format="asciistl"
-#stl_format="binstl"
-#stl_render_option="${stl_render_option}"
-### this option is only available on openscad-nightly
-#stl_render_option="--enable sort-stl"
-
-#OPENSCAD="xvfb-run -a openscad"
-#OPENSCAD="xvfb-run -a openscad-nightly"
-
-EOF
-
-    fi
+if [[ -f "$config_file" ]]
+then
+    echo_info "loading config file: $config_file"
+    . "$config_file"
 else
-    if [[ -f "$config_file" ]]
-    then
-        echo_info "loading config file: $config_file"
-        . "$config_file"
-    else
-        echo_error "config file: $config_file does not exist."
-    fi
+    echo_info "no config file loaded"
 fi
 
 parameter_file=${scad_file_dir}/${scad_file_name}.json
@@ -264,6 +236,37 @@ generate_mosaic() {
     exec_check montage -geometry "${image_mosaic_geometry}" -tile "${image_mosaic_tile}" "${jpg_dir}/"*.png "${jpg_dir}/mosaic_${scad_file_name}.jpg"
 }
 
+generate_conf() {
+  echo_info "generating config file ${config_file} ..."
+  cat << EOF > "$config_file"
+####### configuration file for generate_profile.sh #######
+## it will be sourced by generate_profile.sh
+
+#image_dollar_fn="${image_dollar_fn}"
+#image_size="${image_size}"
+### for image_mosaic_geometry see https://legacy.imagemagick.org/Usage/montage/
+#image_mosaic_geometry="${image_mosaic_geometry}"
+#image_mosaic_tile="${image_mosaic_tile}"
+
+#anim_dollar_fn="${anim_dollar_fn}"
+#anim_size="${anim_size}"
+#anim_nb_image="${anim_nb_image}"
+### delay between images en 100th of seconds
+#anim_delay="${anim_delay}"
+#anim_keep_images="true"
+
+#stl_dollar_fn="${stl_dollar_fn}"
+#stl_format="asciistl"
+#stl_format="binstl"
+#stl_render_option="${stl_render_option}"
+### this option is only available on openscad-nightly
+#stl_render_option="--enable sort-stl"
+
+#OPENSCAD="xvfb-run -a openscad"
+#OPENSCAD="xvfb-run -a openscad-nightly"
+EOF
+}
+
 if [[ $only_generate == "jpg" ]]
 then
     prepare_jpg
@@ -276,6 +279,9 @@ then
 elif  [[ $only_generate == "stl" ]]
 then
     prepare_stl
+elif  [[ $only_generate == "conf" ]]
+then
+    touch "$config_file"
 elif  [[ $only_generate == "" ]]
 then
     prepare_jpg
@@ -283,7 +289,7 @@ then
     prepare_webp
     prepare_stl
 else
-  echo_error "bad usage: option -g or --generate must be one of: jpg,gif,webp,stl"
+  echo_error "bad usage: option -g or --generate must be one of: jpg,gif,webp,stl,conf"
 fi
 
 generate_all() {
@@ -303,6 +309,9 @@ generate_all() {
     elif  [[ $only_generate == "stl" ]]
     then
       generate_stl
+    elif  [[ $only_generate == "conf" ]]
+    then
+      generate_conf
     elif  [[ $only_generate == "" ]]
     then
       generate_jpg

@@ -26,7 +26,7 @@ usage() {
     echo "-g, --generate only_generate              only_generate must be one of jpg,gif,webp,stl. bay default it will generate all." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
-    echo "Requirements: command 'jq' and 'imagemagick' for gif and mosaic generation"
+    echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
     echo -ne "$IReset"
 }
 

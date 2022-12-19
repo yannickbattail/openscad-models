@@ -1,0 +1,82 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "cat_example": {
+            "imageAngle": "90",
+            "imageRotation": "45",
+            "mugDiameter": "80",
+            "mugHeight": "80",
+            "mugThickness": "4",
+            "part": "cat",
+            "partialModel": "all",
+            "reliefMultipier": "3",
+            "withNutellaGlass": "true"
+        },
+        "cat_fur": {
+            "imageAngle": "90",
+            "imageRotation": "45",
+            "mugDiameter": "80",
+            "mugHeight": "80",
+            "mugThickness": "4",
+            "part": "cat_fur",
+            "partialModel": "all",
+            "reliefMultipier": "1",
+            "withNutellaGlass": "true"
+        },
+        "cat_profile": {
+            "imageAngle": "90",
+            "imageRotation": "45",
+            "mugDiameter": "80",
+            "mugHeight": "80",
+            "mugThickness": "4",
+            "part": "cat_profile",
+            "partialModel": "all",
+            "reliefMultipier": "3",
+            "withNutellaGlass": "true"
+        },
+        "cat_face": {
+            "imageAngle": "90",
+            "imageRotation": "45",
+            "mugDiameter": "80",
+            "mugHeight": "80",
+            "mugThickness": "4",
+            "part": "cat_face",
+            "partialModel": "all",
+            "reliefMultipier": "3",
+            "withNutellaGlass": "true"
+        },
+        "red_panda": {
+            "imageAngle": "90",
+            "imageRotation": "45",
+            "mugDiameter": "80",
+            "mugHeight": "80",
+            "mugThickness": "4",
+            "part": "red_panda",
+            "partialModel": "all",
+            "reliefMultipier": "3",
+            "withNutellaGlass": "true"
+        },
+        "werefox": {
+            "imageAngle": "90",
+            "imageRotation": "45",
+            "mugDiameter": "80",
+            "mugHeight": "80",
+            "mugThickness": "4",
+            "part": "werefox",
+            "partialModel": "all",
+            "reliefMultipier": "3",
+            "withNutellaGlass": "true"
+        },
+        "mountain": {
+            "imageAngle": "360",
+            "imageRotation": "0",
+            "mugDiameter": "80",
+            "mugHeight": "80",
+            "mugThickness": "4",
+            "part": "mountain",
+            "partialModel": "all",
+            "reliefMultipier": "3",
+            "withNutellaGlass": "true"
+        }
+    }
+}

@@ -1,7 +1,7 @@
 
 module nutellaGlass() {
-    // total height 92
-    // max diameter 73.5
+    echo("nutellaGlass: total height 92");
+    echo("nutellaGlass: max diameter 73.5");
     translate([0, 0, 25])
         difference() {
             union() {

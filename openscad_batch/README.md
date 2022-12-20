@@ -51,6 +51,4 @@ sudo apt install jq imagemagick webp
 - check commands fails and exit
 - generate config file only when `-g conf`
 
-## TODO
-
-- 
+## one_file.sh

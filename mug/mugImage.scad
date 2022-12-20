@@ -1,6 +1,7 @@
 use <lib/wrapAroundCylinder.scad>
 use <lib/surfaceData.scad>
 use <lib/mug.scad>
+use <lib/nutellaGlass.scad>
 /* Images */
 include <images/cat.scad> // base example and fast rendering
 include <images/cat_fur.scad>
@@ -91,20 +92,6 @@ module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle
             }
         }
     }
-}
-
-module nutellaGlass() {
-    // total height 92
-    // max diameter 73.5
-    translate([0, 0, 25])
-        difference() {
-            union() {
-                cylinder(d1 = 69.5, d2 = 73.5, h = 67);
-                sphere(d = 69.5);
-            }
-            translate([0, 0, - 40 - 25])
-                cube([80, 80, 80], center = true);
-        }
 }
 
 module imageMatrixOnCylinder(height, radius, imageAngle, reliefMultipier, imageMatrix) {

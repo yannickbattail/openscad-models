@@ -1,8 +1,30 @@
 {
     "fileFormatVersion": "1",
     "parameterSets": {
-        "triangle": {
-            "offset": "15"
+        "square_8x8": {
+            "form": "square",
+            "offset": "15",
+            "size": "8"
+        },
+        "triangle_up_6": {
+            "form": "triangle_up",
+            "offset": "15",
+            "size": "6"
+        },
+        "triangle_down_6": {
+            "form": "triangle_down",
+            "offset": "15",
+            "size": "6"
+        },
+        "triangle_right_6": {
+            "form": "triangle_right",
+            "offset": "15",
+            "size": "6"
+        },
+        "triangle_left_6": {
+            "form": "triangle_left",
+            "offset": "15",
+            "size": "6"
         }
     }
 }

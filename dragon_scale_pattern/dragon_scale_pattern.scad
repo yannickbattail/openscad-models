@@ -1,5 +1,4 @@
-
-form = "square"; // [square, triangle_up, triangle_down, triangle_right, triangle_left, custom]
+form = "square"; // [square, triangle_up, triangle_down, triangle_right, triangle_left, customPattern]
 
 // size of the square (or triangle)
 size = 4;
@@ -7,12 +6,8 @@ size = 4;
 // distance between scales
 offset = 15; // [13:20]
 
-// custom matrix: 1=there is a scale, 0=no scale
-customMatrix = [
-        [1, 1, 0],
-        [1, 1, 1],
-        [0, 1, 1],
-    ]; // [1:2]
+// a matrix : a string of 0 and 1 with lines separated by a "|", 1=there is a scale, 0=nothing
+customPattern = "110|111|011";
 
 /* [Animation] */
 // rotating animation
@@ -24,14 +19,21 @@ $vpt = is_animated?[0, 0, 0]:$vpt;
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr; // animation rotate around the object
 $vpd = is_animated?800:$vpd;
 
-function constructMatrix(form, size) = (form == "custom") ? customMatrix : constructTriangleMatrix(form, size);
+function constructMatrix(form, size) = (form == "customPattern") ? split_str(customPattern, "|") : constructTriangleMatrix(form, size);
 
-function constructTriangleMatrix(form, size) = [for (x = [0 : size - 1]) [for (y = [0 : size - 1]) triangleValue(form, size, x, y)]];
+function constructTriangleMatrix(form, size) =
+    [
+        for (x = [0 : size - 1])
+        [
+            for (y = [0 : size - 1]) 
+                triangleValue(form, size, x, y)
+        ]
+    ];
 
 function triangleValue(form, size, x, y) =
     (form == "triangle_up") ? triangleValueUp(x, y, size)
     : (form == "triangle_down") ? triangleValueDown(x, y, size)
-    : (form == "triangle_right") ? triangleValueRight(x, y, size)
+        : (form == "triangle_right") ? triangleValueRight(x, y, size)
             : (form == "triangle_left") ? triangleValueLeft(x, y, size)
                     : 1;
 
@@ -45,7 +47,7 @@ matrixPattern(constructMatrix(form, size), offset);
 module matrixPattern(mat, offset) {
     for (x = [0:len(mat) - 1]) {
         for (y = [0:len(mat[x]) - 1]) {
-            if (mat[x][y]) {
+            if (mat[x][y] == 1 || mat[x][y] == "1") {
                 translate([x * offset, y * offset, 0])
                     scaleModel();
             }
@@ -72,22 +74,22 @@ module scaleModel() {
 *
 * @see https://openhome.cc/eGossip/OpenSCAD/lib3x-sub_str.html
 *
-**/
+*/
 
 function sub_str(t, begin, end) =
     let(
         ed = is_undef(end) ? len(t) : end,
         cum = [
-            for(i = begin, s = t[i], is_continue = i < ed;
-                is_continue;
-                i = i + 1, is_continue = i < ed, s = is_continue ? str(s, t[i]) : undef) s
+            for (i = begin, s = t[i], is_continue = i < ed;
+            is_continue;
+            i = i + 1, is_continue = i < ed, s = is_continue ? str(s, t[i]) : undef) s
         ]
     )
     cum[len(cum) - 1];
 
 function _split_t_by(idxs, t) =
     let(leng = len(idxs))
-    [sub_str(t, 0, idxs[0]), each [for(i = 0; i < leng; i = i + 1) sub_str(t, idxs[i] + 1, idxs[i + 1])]];
+    [sub_str(t, 0, idxs[0]), each [for (i = 0; i < leng; i = i + 1) sub_str(t, idxs[i] + 1, idxs[i + 1])]];
 
 function split_str(t, delimiter) = len(search(delimiter, t)) == 0 ? [t] : _split_t_by(search(delimiter, t, 0)[0], t);
 

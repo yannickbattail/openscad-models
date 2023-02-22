@@ -24,18 +24,18 @@ X X X X
 ```
 display (X = scale, . = nothing)
 
-# credit
+## credit
 
 The scale is from https://www.thingiverse.com/thing:3470986 and I simplified the number of faces
 
-# Sources
+## Sources
 
 https://github.com/yannickbattail/openscad-models/tree/main/dragon_scale_pattern
 
-# release note
+## release note
 
 - custom pattern as a string to be editable in the customizer and in thingiverse
 
-# TODO
+## TODO
 
 - offset on X and Y

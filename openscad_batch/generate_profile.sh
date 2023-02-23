@@ -26,6 +26,7 @@ only_generate=""
 
 usage() {
     echo -ne "$IBlue"
+    echo "Script for generating 3D files, images and animations from an openscad file and a parameter file." >&2
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file than the default \${OPENSCAD_FILE}.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2

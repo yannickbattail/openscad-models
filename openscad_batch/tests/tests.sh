@@ -97,6 +97,8 @@ test1() {
   compare_images ./cube1/gif/test1.gif ./cube1_expected/gif/test1.gif
   compare_bin_files ./cube1/webp/test1.webp ./cube1_expected/webp/test1.webp
   compare_bin_files ./cube1/stl/test1.stl ./cube1_expected/stl/test1.stl
+  ## find a way to compare 3mf files, because they contains a UUID different at every generation.
+  #compare_bin_files ./cube1/stl/test1.3mf ./cube1_expected/stl/test1.3mf
   
   rm -Rf ./cube1/ ./cube1.conf
 }
@@ -155,7 +157,8 @@ test4() {
   echo "       generate cube4.scad"
   check_return_code ../generate_profile.sh cube4.scad
   echo "       generation done"
-  check_directory ./cube4/ "gif
+  check_directory ./cube4/ "3mf
+gif
 images
 stl
 webp"
@@ -173,7 +176,8 @@ cube_50.webp"
   echo "       generate parameter-set cube_50 cube4.scad"
   check_return_code ../generate_profile.sh -p cube_50 cube4.scad
   echo "       generation done"
-  check_directory ./cube4/ "gif
+  check_directory ./cube4/ "3mf
+gif
 images
 stl
 webp"
@@ -191,7 +195,8 @@ test5() {
   echo "       generate p cube5.scad"
   check_return_code ../generate_profile.sh cube5.scad
   echo "       generation done"
-  check_directory ./cube5/ "anim
+  check_directory ./cube5/ "3mf
+anim
 gif
 images
 stl

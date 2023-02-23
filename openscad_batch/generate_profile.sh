@@ -1,6 +1,12 @@
 #!/bin/bash
 #set -x
 
+################################################################################
+# License: GPL-3.0
+# source and doc:
+# https://github.com/yannickbattail/openscad-models/tree/main/openscad_batch
+################################################################################
+
 # colors
 IBlack='\033[0;90m'       # Black
 IRed='\033[0;91m'         # Red
@@ -21,9 +27,9 @@ only_generate=""
 usage() {
     echo -ne "$IBlue"
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
-    echo "-c, --config-file configuration_file      specify another configuration file thant the default OPENSCAD_FILE.conf." >&2
+    echo "-c, --config-file configuration_file      specify another configuration file than the default \${OPENSCAD_FILE}.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-    echo "-g, --generate only_generate              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,3mf,conf. By default it will generate all except con." >&2
+    echo "-g, --generate only_generate              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,3mf,conf. By default it will generate all except conf." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
     echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
@@ -93,24 +99,20 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 
 image_dollar_fn="50"
 image_size="1024,1024"
-image_mosaic_geometry="256x256+2+2" ### https://legacy.imagemagick.org/Usage/montage/
+image_mosaic_geometry="256x256+2+2"
 image_mosaic_tile="2x2"
 
 anim_dollar_fn="50"
 anim_size="512,512"
 anim_nb_image="20"
-anim_delay="20" ### delay between images en 100th of seconds
+anim_delay="20"
 anim_keep_images="false"
 
 stl_dollar_fn="50"
 stl_format="asciistl"
-#stl_format="binstl"
 stl_render_option=""
-#stl_render_option="--enable sort-stl" ### this is an option of openscad-nightly
 
 OPENSCAD="openscad"
-#OPENSCAD="xvfb-run -a openscad"
-#OPENSCAD="openscad-nightly"
 
 ### end configuration
 
@@ -253,28 +255,46 @@ generate_conf() {
 ####### configuration file for generate_profile.sh #######
 ## it will be sourced by generate_profile.sh
 
+#### image generation ####
+## value of the \$fn variable (3d model resolution) for image generation 
 #image_dollar_fn="${image_dollar_fn}"
+## image size
 #image_size="${image_size}"
-### for image_mosaic_geometry see https://legacy.imagemagick.org/Usage/montage/
+### tile image dimension and border. see https://legacy.imagemagick.org/Usage/montage/
 #image_mosaic_geometry="${image_mosaic_geometry}"
+## mosaic disposition : number of tile its composition. if it 2x2, and you have 5 images, an other mosaic will be created.
 #image_mosaic_tile="${image_mosaic_tile}"
 
+#### animation (gif or webp) generation ####
+## value of the \$fn variable (3d model resolution) for animation generation 
 #anim_dollar_fn="${anim_dollar_fn}"
+## animation image size
 #anim_size="${anim_size}"
+## number of images in the animation
 #anim_nb_image="${anim_nb_image}"
 ### delay between images en 100th of seconds
 #anim_delay="${anim_delay}"
+## keep of images in the animation in the folder "anim"
 #anim_keep_images="true"
 
+#### 3D model generation (stl or 3mf) ####
+## value of the \$fn variable (3d model resolution) for 3D model generation 
 #stl_dollar_fn="${stl_dollar_fn}"
+## stl_format can be asciistl or binstl
 #stl_format="asciistl"
 #stl_format="binstl"
+## 3D rendering options
 #stl_render_option="${stl_render_option}"
-### this option is only available on openscad-nightly
+## this option is only available on openscad-nightly.
 #stl_render_option="--enable sort-stl"
+## For a diffable stl, use stl_format="asciistl" and stl_render_option="--enable sort-stl"
 
+#### the openscad command ####
+## use headless X server, for running the script in a machine without X server (ex: CI scripts)  
 #OPENSCAD="xvfb-run -a openscad"
+## use nightly build
 #OPENSCAD="openscad-nightly"
+
 EOF
 }
 

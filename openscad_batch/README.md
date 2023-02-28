@@ -1,6 +1,9 @@
 # generate_profile.sh
 
+Script for generating 3D files, images and animations from an openscad file and a parameter file.
+
 ## Usage
+
 Usage: `generate_profile.sh [OPTION]... OPENSCAD_FILE`
 
 Options:
@@ -24,16 +27,18 @@ generate_profile.sh my_model.scad
 generate_profile.sh -p dice_20sides my_model.scad
 ```
 
-### Generate only 3D models
-
-```bash
-generate_profile.sh -g 3mf,stl my_model.scad
-```
-
-### Generate only smaller and modern format
+### Generate only modern format with smaller size
 
 ```bash
 generate_profile.sh -g jpg,webp,3mf my_model.scad
+```
+
+### Generate files for Thingiverse
+
+Thingiverse only support gif, not webp and stl files are more common and a preview is possible.
+
+```bash
+generate_profile.sh -g jpg,gif,stl my_model.scad
 ```
 
 ### Generate only the stl of one part (parameter set)
@@ -171,3 +176,12 @@ If you activate `anim_keep_images="true"` in the configuration file it will add 
 
 - 2023-02-23 add documentation
 - 2023-02-09 add .3mf files generation
+
+## TODO
+
+- add an option to disable mosaic generation (with `-g` option or config file. To be decided)
+- by default (without `-g` option) generate only one type of 3D files and animation
+- set in the configuration file the default format of 3D files and animation
+- generate 3D format: off, wrl and amf. and 2D format: svg, dfx (and pdf)
+- generate 2 or more specified parameter sets
+- check if `-g` option contains a possible value

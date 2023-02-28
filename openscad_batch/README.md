@@ -9,7 +9,7 @@ Usage: `generate_profile.sh [OPTION]... OPENSCAD_FILE`
 Options:
 - `-c`, `--config-file` `configuration_file`      specify another configuration file than the default *OPENSCAD_FILE*.conf.
 - `-p`, `--only-parameter-set` `parameter-set`    parameter-set is one the parameter-set name present in the file.
-- `-g`, `--generate` `only_generate`              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,3mf,conf. By default it will generate all except conf.
+- `-g`, `--generate` `only_generate`              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl.
 
 Important Note: if there is no parameter file (.json file) for your OPENSCAD_FILE, it will not work. See paragraph : [Code best practices](#Code best practices)
 
@@ -47,13 +47,21 @@ generate_profile.sh -g jpg,gif,stl my_model.scad
 generate_profile.sh -p dice_20sides -g stl my_model.scad
 ```
 
+### Generate images for all .scad files in the folder
+
+```bash
+for OPENSCAD_FILE in *.scad ; do
+  generate_profile.sh -g jpg,gif $OPENSCAD_FILE
+done
+```
+
 ### Generate the configuration file for advanced configuration
 
 ```bash
 generate_profile.sh -g conf my_model.scad
 ```
 
-Edit the file `my_model.conf` rerun the script without the `-g conf`
+Edit the file `my_model.conf` amd re-run the script without the `-g conf`
 
 ## Requirements
 
@@ -97,23 +105,25 @@ sudo apt install jq imagemagick webp
 ## keep of images in the animation in the folder "anim"
 #anim_keep_images="true"
 
-#### 3D model generation (stl or 3mf) ####
-## value of the $fn variable (3d model resolution) for 3D model generation 
-#stl_dollar_fn="50"
+#### model3D  generation (stl, obj, 3mf, off, wrl or amf) ####
+## value of the \$fn variable (3d model resolution) for 3D model generation 
+#m3D_dollar_fn="50"
+## 3D rendering options
+#m3D_render_option=""
+## this option is only available on openscad-nightly.
+#m3D_render_option="--enable sort-stl"
+
+## For a diffable stl, use stl_format="asciistl" and stl_render_option="--enable sort-stl"
 ## stl_format can be asciistl or binstl
 #stl_format="asciistl"
 #stl_format="binstl"
-## 3D rendering options
-#stl_render_option=""
-## this option is only available on openscad-nightly.
-#stl_render_option="--enable sort-stl"
-## For a diffable stl, use stl_format="asciistl" and stl_render_option="--enable sort-stl"
 
 #### the openscad command ####
 ## use headless X server, for running the script in a machine without X server (ex: CI scripts)  
 #OPENSCAD="xvfb-run -a openscad"
 ## use nightly build
 #OPENSCAD="openscad-nightly"
+
 ```
 
 ## Code best practices
@@ -174,14 +184,15 @@ If you activate `anim_keep_images="true"` in the configuration file it will add 
 
 ## Changelog
 
+- 2023-02-28 generate 3D format: stl,obj,3mf,wrl,off,amf
+- 2023-02-28 by default (without `-g` option) generate only one type of 3D files and animation (stl and gif)
 - 2023-02-23 add documentation
 - 2023-02-09 add .3mf files generation
 
 ## TODO
 
 - add an option to disable mosaic generation (with `-g` option or config file. To be decided)
-- by default (without `-g` option) generate only one type of 3D files and animation
 - set in the configuration file the default format of 3D files and animation
-- generate 3D format: off, wrl and amf. and 2D format: svg, dfx (and pdf)
+- generate 2D format: svg, dfx (and pdf)
 - generate 2 or more specified parameter sets
 - check if `-g` option contains a possible value

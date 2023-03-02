@@ -165,19 +165,22 @@ For a file named `cube1.scad` and one parameter-set `test1` it will generate thi
 
 ```
 .
-├── cube1
-│   ├── 3mf
-│   │   └── test1.3mf
-│   ├── cube1.conf
-│   ├── gif
-│   │   └── test1.gif
-│   ├── images
-│   │   ├── mosaic_cube1.jpg
-│   │   └── test1.png
-│   ├── stl
-│   │   └── test1.stl
-│   └── webp
-│       └── test1.webp
+cube1.conf
+cube1
+├── 3D
+│   ├── test1.3mf
+│   ├── test1.amf
+│   ├── test1.obj
+│   ├── test1.off
+│   ├── test1.stl
+│   └── test1.wrl
+├── gif
+│   └── test1.gif
+├── images
+│   ├── mosaic_cube1.jpg
+│   └── test1.png
+└── webp
+    └── test1.webp
 ```
 
 If you activate `anim_keep_images="true"` in the configuration file it will add a folder `anim` next to `images` that contains every frame of the animation.

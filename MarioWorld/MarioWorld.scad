@@ -12,6 +12,10 @@ use <tube_bottom.scad>
 use <tube_top.scad>
 use <wall.scad>
 
+
+// a list of theses caracters: mgkpB12e?wx0ftuTU
+worldLine8 = " ";
+worldLine7 = " ";
 worldLine6 = " ";
 worldLine5 = " ";
 worldLine4 = " ";
@@ -20,6 +24,8 @@ worldLine2 = "mgkpB ftT";
 worldLine1 = "12e?wx0uU";
 
 world = [
+    worldLine8,
+    worldLine7,
     worldLine6,
     worldLine5,
     worldLine4,

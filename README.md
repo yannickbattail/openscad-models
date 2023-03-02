@@ -10,6 +10,7 @@ Several models made with openSCAD.
 - [wall-art arrow stencil](arrow/README.md)
 - [Dices](dice/README.md)
 - [VoxelHeart and EasiestHeart](VoxelHeart/README.md)
+- [MarioWorld](MarioWorld/README.md)
 
 ## Libraries
 

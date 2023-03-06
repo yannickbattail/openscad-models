@@ -28,6 +28,10 @@ world = [
     worldLine1
 ];
 
+$vpt=[80,0,10];
+$vpr=[70,0,320];
+$vpd=400; 
+
 MarioWorld(world);
 
 module MarioWorld(world) {
@@ -43,7 +47,6 @@ module worldLine(line) {
         tile(line[i]);
   }
 }
-
 
 module tile(tileType) {
   if (tileType == "m") { mario(); }

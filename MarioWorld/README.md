@@ -24,8 +24,7 @@ List of the tiles:
 - `1`: floor1
 - `2`: floor2
 - `e`: empty
-- `q`: question
-- `?`: question
+- `q` or `?`: question
 - `w`: wall
 - `x`: tileFull (full cube)
 - `0`: tileHollow (hollow cube)

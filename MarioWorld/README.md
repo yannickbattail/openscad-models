@@ -4,13 +4,13 @@
 
 Each worldLine is a list of characters, each character is a tile.
 
-worldLine1 is the floor and worldLine1 si the top of the sky.
+worldLine1 is the floor and worldLine12 is the top of the sky.
 
 ## Tiles
 
 List of the tiles:
 
-- `m`: mario: character
+- `M`: mario: character
 - `g`: gumba: character
 - `k`: koopa: character
 - `p`: piranha plant: character
@@ -25,12 +25,16 @@ List of the tiles:
 - `2`: floor2
 - `e`: empty
 - `q` or `?`: question
+- `c`: coin
+- `F`: flower
+- `s`: star
+- `m`: mushroom
 - `w`: wall
 - `x`: tileFull (full cube)
 - `0`: tileHollow (hollow cube)
 
-Letter in upper case are 2 tiles long.
+## Example
 
-Tiles are from : https://www.thingiverse.com/thing:2762854
+See preset file `MarioWorld.json` for example, there is the full level1 of super mario.
 
 Sources: https://github.com/yannickbattail/openscad-models/tree/main/MarioWorld

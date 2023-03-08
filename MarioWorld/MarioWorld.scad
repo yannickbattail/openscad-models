@@ -1,4 +1,4 @@
-// a list of theses caracters: mgkpB12e?wx0ftuTU
+// a list of theses caracters: MgkpcFms12e?wTUtufBCx
 worldLine12 = " ";
 worldLine11 = " ";
 worldLine10 = " ";
@@ -9,8 +9,16 @@ worldLine6 = " ";
 worldLine5 = "cFm C";
 worldLine4 = "eee";
 worldLine3 = " ";
-worldLine2 = "MgkpB ftT";
-worldLine1 = "12e?wx0uU";
+worldLine2 = "MgkpB fT t";
+worldLine1 = "12e?wx0U u";
+
+background=false;
+backgroundThickness=1; // [1:32]
+backgroundHeight=12; // [1:12]
+
+$vpt=[80,0,10];
+$vpr=[70,0,320];
+$vpd=400;
 
 world = [
     worldLine12,
@@ -27,17 +35,27 @@ world = [
     worldLine1
 ];
 
-//$vpt=[80,0,10];
-//$vpr=[70,0,320];
-//$vpd=400; 
+MarioWorld(world, background, backgroundThickness, backgroundHeight);
 
-MarioWorld(world);
+module MarioWorld(world, background, backgroundThickness, backgroundHeight) {
+    if (background) {
+        difference() {
+            MarioLevel(world);
+            cube([len(worldLine1)*16, 17, 12*16]);
+        }
+        translate([0,-1,0])
+            color("SkyBlue")
+                cube([len(worldLine1)*16, backgroundThickness, backgroundHeight*16]);
+    } else {
+        MarioLevel(world);
+    }
+}
 
-module MarioWorld(world) {
-  for (j = [0:len(world) - 1]) {
-    translate([0, 0, 16 * (len(world) -1 - j)])
-        worldLine(world[j]);
-  }
+module MarioLevel(world) {
+    for (j = [0:len(world) - 1]) {
+        translate([0, 0, 16 * (len(world) -1 - j)])
+            worldLine(world[j]);
+    }
 }
 
 module worldLine(line) {
@@ -48,27 +66,33 @@ module worldLine(line) {
 }
 
 module tile(tileType) {
+  // Characters
   if (tileType == "M") { mario(); }
+  // Enemies
   else if (tileType == "g") { gumba(); }
   else if (tileType == "k") { koopa(); }
   else if (tileType == "p") { piranha_plant(); }
-  else if (tileType == "B") { bush(); }
-  else if (tileType == "C") { cloud(); }
-  else if (tileType == "T") { big_tube_top(); }
-  else if (tileType == "U") { big_tube_bottom(); }
-  else if (tileType == "t") { tube_top(); }
-  else if (tileType == "u") { tube_bottom(); }
-  else if (tileType == "f") { fence(); }
-  else if (tileType == "1") { floor1(); }
-  else if (tileType == "2") { floor2(); }
-  else if (tileType == "e") { empty(); }
-  else if (tileType == "q") { question(); }
-  else if (tileType == "?") { question(); }
-  else if (tileType == "w") { wall(); }
+  // items
   else if (tileType == "c") { coin(); }
   else if (tileType == "F") { flower(); }
   else if (tileType == "m") { mushroom(); }
   else if (tileType == "s") { star(); }
+  // blocks
+  else if (tileType == "1") { floor1(); }
+  else if (tileType == "2") { floor2(); }
+  else if (tileType == "e") { empty(); }
+  else if (tileType == "?") { question(); }
+  else if (tileType == "w") { wall(); }
+  // tubes
+  else if (tileType == "T") { big_tube_top(); }
+  else if (tileType == "U") { big_tube_bottom(); }
+  else if (tileType == "t") { tube_top(); }
+  else if (tileType == "u") { tube_bottom(); }
+  // decor
+  else if (tileType == "f") { fence(); }
+  else if (tileType == "B") { bush(); }
+  else if (tileType == "C") { cloud(); }
+  // debug
   else if (tileType == "x") { tileFull(); }
   else if (tileType == "0") { tileHollow(); }
 }
@@ -110,7 +134,7 @@ module tileHollow() {
 
 module coin() {
     color("yellow")
-        translate([8,-8,8]) {
+        translate([8,-4,8]) {
             cube([8, 6, 8], center = true);
             cube([6, 6, 12], center = true);
             cube([4, 6, 14], center = true);
@@ -120,7 +144,7 @@ module coin() {
 }
 
 module flower() {
-    translate([8,-8,12]) {
+    translate([8,-4,12]) {
         color("white") {
             cube([8, 6, 8], center = true);
             cube([12, 6, 6], center = true);

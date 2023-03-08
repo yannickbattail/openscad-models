@@ -10,28 +10,42 @@ worldLine1 is the floor and worldLine12 is the top of the sky.
 
 List of the tiles:
 
-- `M`: mario: character
-- `g`: gumba: character
-- `k`: koopa: character
-- `p`: piranha plant: character
-- `B`: bush (2 tiles wide)
-- `C`: Cloud (2 tiles wide)
-- `T`: tube top (2 tiles wide)
-- `U`: tube bottom (2 tiles wide)
-- `t`: small tube top (50% size of the original)
-- `u`: small tube bottom (50% size of the original)
-- `f`: fence
+Characters
+- `M`: mario
+
+Enemies
+- `g`: gumba
+- `k`: koopa
+- `p`: piranha_plant
+
+Items
+- `c`: coin
+- `F`: flower
+- `m`: mushroom
+- `s`: star
+
+Blocks
 - `1`: floor1
 - `2`: floor2
 - `e`: empty
-- `q` or `?`: question
-- `c`: coin
-- `F`: flower
-- `s`: star
-- `m`: mushroom
+- `q`: question
+- `?`: question
 - `w`: wall
-- `x`: tileFull (full cube)
-- `0`: tileHollow (hollow cube)
+
+Tubes
+- `T`: big_tube_top
+- `U`: big_tube_bottom
+- `t`: tube_top
+- `u`: tube_bottom
+
+Decor
+- `f`: fence
+- `B`: bush
+- `C`: cloud
+
+Debug
+- `x`: tileFull
+- `0`: tileHollow
 
 ## Example
 

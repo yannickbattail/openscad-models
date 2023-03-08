@@ -9,8 +9,12 @@ worldLine6 = " ";
 worldLine5 = "cFm C";
 worldLine4 = "eee";
 worldLine3 = " ";
-worldLine2 = "MgkpB ftT";
-worldLine1 = "12e?wx0uU";
+worldLine2 = "MgkpB fT t";
+worldLine1 = "12e?wx0U u";
+
+background=false;
+backgroundThickness=1; // [1:32]
+backgroundHeight=12; // [1:12]
 
 $vpt=[80,0,10];
 $vpr=[70,0,320];
@@ -31,13 +35,27 @@ world = [
     worldLine1
 ];
 
-MarioWorld(world);
+MarioWorld(world, background, backgroundThickness, backgroundHeight);
 
-module MarioWorld(world) {
-  for (j = [0:len(world) - 1]) {
-    translate([0, 0, 16 * (len(world) -1 - j)])
-        worldLine(world[j]);
-  }
+module MarioWorld(world, background, backgroundThickness, backgroundHeight) {
+    if (background) {
+        difference() {
+            MarioLevel(world);
+            cube([len(worldLine1)*16, 17, 12*16]);
+        }
+        translate([0,-1,0])
+            color("SkyBlue")
+                cube([len(worldLine1)*16, backgroundThickness, backgroundHeight*16]);
+    } else {
+        MarioLevel(world);
+    }
+}
+
+module MarioLevel(world) {
+    for (j = [0:len(world) - 1]) {
+        translate([0, 0, 16 * (len(world) -1 - j)])
+            worldLine(world[j]);
+    }
 }
 
 module worldLine(line) {
@@ -116,7 +134,7 @@ module tileHollow() {
 
 module coin() {
     color("yellow")
-        translate([8,-8,8]) {
+        translate([8,-4,8]) {
             cube([8, 6, 8], center = true);
             cube([6, 6, 12], center = true);
             cube([4, 6, 14], center = true);
@@ -126,7 +144,7 @@ module coin() {
 }
 
 module flower() {
-    translate([8,-8,12]) {
+    translate([8,-4,12]) {
         color("white") {
             cube([8, 6, 8], center = true);
             cube([12, 6, 6], center = true);

@@ -12,6 +12,7 @@ Several models made with openSCAD.
 - [VoxelHeart and EasiestHeart](VoxelHeart/README.md)
 - [MarioWorld](MarioWorld/README.md)
 - [CD solar oven](CD_solar_oven/README.md)
+- [Ahsoka's TV show ball map](ahsoka_ball_map/README.md)
 
 ## Libraries
 

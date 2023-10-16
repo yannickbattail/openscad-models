@@ -11,6 +11,9 @@ include <images/red_panda.scad>
 include <images/werefox.scad>
 include <images/mountain.scad>
 include <images/moon.scad>
+include <images/jedi_sith.scad>
+include <images/solo_carbonite.scad>
+include <images/yoda.scad>
 
 /* [Mug] */
 // height of the nug
@@ -34,7 +37,7 @@ inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
 partialModel = "all"; // [all, image_only, mug_only]
 
-part="cat"; // [cat, cat_fur, cat_profile, cat_face, redPanda, werefox, mountain, moon]
+part="cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda]
 
 /* [Animation] */
 // rotating animation
@@ -56,7 +59,10 @@ function selectImage() =
                     (part == "red_panda")?image_red_panda:
                         (part == "werefox")?image_werefox:
                             (part == "mountain")?image_mountain:
-                                (part == "moon")?image_moon:[];
+                                (part == "moon")?image_moon:
+                                    (part == "jedi_sith")?image_jedi_sith:
+                                        (part == "solo_carbonite")?image_solo_carbonite:
+                                           (part == "yoda")?image_yoda:[];
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 

@@ -110,6 +110,17 @@
             "partialModel": "all",
             "reliefMultipier": "3",
             "withNutellaGlass": "true"
+        },
+        "solo_carbonite": {
+            "imageAngle": "40",
+            "imageRotation": "160",
+            "mugDiameter": "80",
+            "mugHeight": "80",
+            "mugThickness": "4",
+            "part": "solo_carbonite",
+            "partialModel": "all",
+            "reliefMultipier": "5",
+            "withNutellaGlass": "true"
         }
     }
 }

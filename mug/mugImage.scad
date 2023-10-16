@@ -37,7 +37,7 @@ inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
 partialModel = "all"; // [all, image_only, mug_only]
 
-part="cat"; // [cat, cat_fur, cat_profile, cat_face, redPanda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda]
+part="cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda]
 
 /* [Animation] */
 // rotating animation

@@ -5,8 +5,9 @@ Pumpkin mug that uses nutella glass (200g size).
 Pumpkin slices are randomized to make it more realistic (you can disable this by setting seed=0)
 
 ## customizable variables
+
 - `slices`: number of Pumpkin slice (lobe)
-- `PumpkinOnHandle`: put a litte Pumpkin on the handle
+- `PumpkinOnHandle`: put a little Pumpkin on the handle
 - `seed`:  random seed, if you set seed=0 the slice are not randomized
 - `debug`: cut a quarter in the mug and display the nutella glass
 

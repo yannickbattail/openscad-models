@@ -1,19 +1,19 @@
 {
   "fileFormatVersion": "1",
   "parameterSets": {
-    "withoutPumpkin": {
+    "pumpkinMugWithoutTinyPumpkin": {
       "PumpkinOnHandle": "false",
       "PumpkinFaceOrientation": 270,
       "seed": "1",
       "slices": "10"
     },
-    "withPumpkin": {
+    "pumpkinMugWithTinyPumpkin": {
       "PumpkinOnHandle": "true",
       "PumpkinFaceOrientation": 0,
       "seed": "1",
       "slices": "12"
     },
-    "noRandom": {
+    "pumpkinMugRegular": {
       "PumpkinOnHandle": "true",
       "PumpkinFaceOrientation": 0,
       "seed": "0",

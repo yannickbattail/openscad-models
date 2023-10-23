@@ -3,7 +3,7 @@ slices = 10; // [6 : 12]
 // put a little Pumpkin on the handle
 PumpkinOnHandle = true;
 // on which side of the mug the face of the pumpkin is
-PumpkinFaceOrientation=0; // [0:right, 270:front, 180:left]
+PumpkinFaceOrientation = 0; // [0:right, 270:front, 180:left]
 // random seed, if seed=0 no random slice
 seed = 1; // [0: 255]
 
@@ -56,11 +56,11 @@ module PumpkinMug(slices, PumpkinOnHandle, PumpkinFaceOrientation, seed) {
 
 module handle(height) {
     color("orange")
-    scale([0.4, 1.2, 0.65]) {
-        rotate([90, 0, 0]) {
-            torus(height / 2, 8);
+        scale([0.4, 1.2, 0.65]) {
+            rotate([90, 0, 0]) {
+                torus(height / 2, 8);
+            }
         }
-    }
 }
 
 module torus(radius, thickness) {
@@ -84,11 +84,11 @@ module PumpkinBody(slices, PumpkinFaceOrientation, seed) {
     difference() {
         PumpkinBase();
         color("yellow")
-        translate([0,0,-70])
-            rotate([90,0, PumpkinFaceOrientation])
-                scale([4,4,4])
-                    linear_extrude(50)
-                        PumpkinFace();
+            translate([0, 0, - 70])
+                rotate([90, 0, PumpkinFaceOrientation])
+                    scale([4, 4, 4])
+                        linear_extrude(50)
+                            PumpkinFace();
     }
 }
 
@@ -124,7 +124,7 @@ module PumpkinBottom() {
 
 module PumpkinFace() {
     PumpkinHalfFace();
-    mirror(v= [1,0,0]) {
+    mirror(v = [1, 0, 0]) {
         PumpkinHalfFace();
     }
 }
@@ -138,17 +138,17 @@ module PumpkinHalfFace() {
             [16, 13],
             [20, 13],
             [23, 14],
-            [24, 12-4],
-            [20, 13-5],
-            [16, 9-5],
-            [12, 11-6],
-            [8, 7-6],
-            [4, 8-6],
+            [24, 12 - 4],
+            [20, 13 - 5],
+            [16, 9 - 5],
+            [12, 11 - 6],
+            [8, 7 - 6],
+            [4, 8 - 6],
         ]);
     polygon([
             [12, 32],
             [20, 24],
-            [ 4, 24],
+            [4, 24],
         ]);
 }
 

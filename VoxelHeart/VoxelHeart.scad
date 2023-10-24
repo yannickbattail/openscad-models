@@ -1,4 +1,4 @@
-// Size of a voxel and so then number of voxels. It takes an exponential time to process. Look at the console for "Number of voxel". (value lower than 0.03 will cause an error)
+// Size of a voxel and so then number of voxels. It takes an exponential time to process. Look at the console for "Number of voxel". (value lower than 0.03 will cause an error, 0.02 will work with manifold enabled)
 resolution=0.05; // [0.02:0.01:0.1]
 
 // Use sphere or cube as voxels. Using sphere takes a lot of time, check the value of $fn for better rendering time.
@@ -31,10 +31,10 @@ heart(resolution, hull_that) {
 }
 
 module heart(res=0.05, hull_that=false) {
-    fullHeart() quarterHeart(res, hull_that) children(0);
+    fullHeart(hull_that) quarterHeart(res) children(0);
 }
 
-module fullHeart() {
+module fullHeart(hull_that) {
     if (hull_that) {
         hull() halfHeart() children(0);
         mirror([1, 0, 0]) {
@@ -57,7 +57,7 @@ module halfHeart() {
     }
 }
 
-module quarterHeart(res, hull_that) {
+module quarterHeart(res) {
     // equations from https://mathworld.wolfram.com/HeartSurface.html
     function heart1(x, y, z) = (x^2 + 9/4*y^2 + z^2-1)^3 - x^2*z^3 - 9/80*y^2*z^3;
     function heart2(x, y, z) = (2*x^2 + 2*y^2 + z^2-1)^3 - 1/10*x^2*z^3 - y^2*z^3;

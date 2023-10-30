@@ -127,14 +127,18 @@ test3() {
   echo "       generate gif cube1.scad"
   check_return_code ../generate_profile.sh -g gif cube1.scad
   echo "       generation done"
-  check_directory ./cube1/ "gif"
+  check_directory ./cube1/ "3D
+gif"
+  check_directory ./cube1/3D/ ""
   check_directory ./cube1/gif/ "test1.gif"
   rm -Rf ./cube1/
   
   echo "       generate image cube1.scad"
   check_return_code ../generate_profile.sh -g jpg cube1.scad
   echo "       generation done"
-  check_directory ./cube1/ "images"
+  check_directory ./cube1/ "3D
+images"
+  check_directory ./cube1/3D/ ""
   check_directory ./cube1/images/ 'mosaic_cube1.jpg
 test1.png'
   rm -Rf ./cube1/
@@ -142,7 +146,9 @@ test1.png'
   echo "       generate webp cube1.scad"
   check_return_code ../generate_profile.sh -g webp cube1.scad
   echo "       generation done"
-  check_directory ./cube1/ "webp"
+  check_directory ./cube1/ "3D
+webp"
+  check_directory ./cube1/3D/ ""
   check_directory ./cube1/webp/ "test1.webp"
   rm -Rf ./cube1/
   
@@ -197,8 +203,7 @@ test4() {
   echo "       generation done"
   check_directory ./cube4/ "3D
 gif
-images
-webp"
+images"
   check_directory ./cube4/gif/ "cube_30.gif
 cube_50.gif"
   check_directory ./cube4/images/ "cube_30.png
@@ -213,8 +218,7 @@ cube_50.stl"
   echo "       generation done"
   check_directory ./cube4/ "3D
 gif
-images
-webp"
+images"
   check_directory ./cube4/gif/ "cube_50.gif"
   check_directory ./cube4/images/ "cube_50.png
 mosaic_cube4.jpg"
@@ -231,8 +235,7 @@ test5() {
   check_directory ./cube5/ "3D
 anim
 gif
-images
-webp"
+images"
   check_directory ./cube5/anim/ "test100000.png
 test100001.png
 test100002.png
@@ -267,8 +270,25 @@ test8() {
   echo "       generate gif,jpg cube1.scad"
   check_return_code ../generate_profile.sh -g gif,jpg cube1.scad
   echo "       generation done"
-  check_directory ./cube1/ "gif
+  check_directory ./cube1/ "3D
+gif
 images"
+  check_directory ./cube1/gif/ "test1.gif"
+  check_directory ./cube1/images/ 'mosaic_cube1.jpg
+test1.png'
+  rm -Rf ./cube1/
+}
+
+test9() {
+  echo -e "${IBlue} ###### test8 generate with f3d ${IReset}"
+  
+  echo "       generate gif,jpg cube1.scad"
+  check_return_code ../generate_profile.sh -g gif,webp,jpg --f3d cube1.scad
+  echo "       generation done"
+  check_directory ./cube1/ "3D
+gif
+images
+webp"
   check_directory ./cube1/gif/ "test1.gif"
   check_directory ./cube1/images/ 'mosaic_cube1.jpg
 test1.png'
@@ -283,6 +303,7 @@ test5
 test6
 test7
 test8
+test9
 
 echo -e "${IWhite}[${IGreen} OK ${IWhite}] All tests are successful!${IReset}"
 

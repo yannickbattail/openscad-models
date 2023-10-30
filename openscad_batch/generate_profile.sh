@@ -23,6 +23,7 @@ POSITIONAL_ARGS=()
 config_file=""
 only_parameter_set=""
 only_generate=""
+use_f3d="false"
 
 usage() {
     echo -ne "$IBlue"
@@ -31,6 +32,7 @@ usage() {
     echo "-c, --config-file configuration_file      specify another configuration file than the default \${OPENSCAD_FILE}.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
     echo "-g, --generate only_generate              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl." >&2
+    echo "--f3d                                     use f3d for images generation" >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
     echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
@@ -85,6 +87,10 @@ while [[ $# -gt 0 ]]; do
       shift # past argument
       shift # past value
       ;;
+    --f3d)
+      use_f3d="true"
+      shift # past argument
+      ;;
     -*|--*)
       echo_error "unknown option: $1"
       ;;
@@ -114,6 +120,11 @@ m3D_dollar_fn="50"
 stl_format="asciistl"
 m3D_render_option=""
 
+f3d_colors="--bg-color 0.9,0.8,1 --color 0.3,0.3,1"
+f3d_material="--roughness=0.5 --metallic=1"
+#f3d_hdri="--hdri-skybox --hdri-ambient --hdri-file=./tests/sky.jpg" # -u
+f3d_hdri=""
+
 OPENSCAD="openscad"
 
 ### end configuration
@@ -125,9 +136,14 @@ then
     echo_error "The command jq is not installed."
 fi
 
+if [[ $use_f3d == "true" ]] && ! command -v f3d &> /dev/null
+then
+    echo_error "The command f3d is not installed."
+fi
+
 if [[ $scad_file == "" ]]
 then
-    echo_error "openscad file $scad_file does not exist."
+    echo_error "no openscad file specified."
     exit 1
 fi
 if [[ ! -f $scad_file ]]
@@ -206,12 +222,28 @@ prepare_m3D() {
 
 generate_jpg() {
     echo_info "generating images ${jpg_dir}/${parameter_set}.png ..."
-    exec_check $OPENSCAD -q -o "${jpg_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${image_dollar_fn}" --imgsize "${image_size}" ${m3D_render_option} "${scad_file}"
+    if [[ $use_f3d == "true" ]]
+    then 
+        exec_check f3d --quiet --resolution ${image_size} ${f3d_colors} -q -a -t --axis=false --grid=false --filename=false ${f3d_material} ${f3d_hdri} --output "${jpg_dir}/${parameter_set}.png" "${m3D_dir}/${parameter_set}.stl"
+    else
+        exec_check $OPENSCAD -q -o "${jpg_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${image_dollar_fn}" --imgsize "${image_size}" ${m3D_render_option} "${scad_file}"
+    fi
 }
 
 generate_anim() {
-    echo_info "generating animation images ${anim_dir}/${parameter_set}.png ..."
-    exec_check $OPENSCAD -q -o "${anim_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate "${anim_nb_image}" --imgsize "${anim_size}" ${m3D_render_option} "${scad_file}"  
+    echo_info "generating animation images ${anim_dir}/${parameter_set}.png "
+    if [[ $use_f3d == "true" ]]
+    then 
+        imageEveryXDegree=$((360 / anim_nb_image))
+        for i in $(seq -f "%03g" 1 $imageEveryXDegree 359);
+        do
+            exec_check f3d --quiet --resolution ${anim_size}  ${f3d_colors} -q -a -t --axis=false --grid=false --filename=false --camera-azimuth-angle=$i ${f3d_material} ${f3d_hdri} --output "${anim_dir}/${parameter_set}_${i}.png" "${m3D_dir}/${parameter_set}.stl"
+            echo -n .
+        done
+        echo
+    else
+        exec_check $OPENSCAD -q -o "${anim_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate "${anim_nb_image}" --imgsize "${anim_size}" ${m3D_render_option} "${scad_file}"  
+    fi
 }
 clean_anim() {
     echo_info "cleanup animation images ${parameter_set} ..."
@@ -299,12 +331,15 @@ EOF
 prepare_all() {
   if [[ $only_generate == *"jpg"* ]]; then
     prepare_jpg
+    prepare_m3D
   fi
   if [[ $only_generate == *"gif"* ]]; then
     prepare_gif
+    prepare_m3D
   fi
   if [[ $only_generate == *"webp"* ]]; then
     prepare_webp
+    prepare_m3D
   fi
   if [[ $only_generate == *"stl"* ]]; then
     prepare_m3D
@@ -330,12 +365,12 @@ prepare_all() {
   if [[ $only_generate == "" ]]; then
     prepare_jpg
     prepare_gif
-    prepare_webp
+#     prepare_webp
     prepare_m3D
   fi
 }
 
-generate_all() {
+generate_all_scad() {
     if  [[ $only_generate == "" || $only_generate == *"gif"* || $only_generate == *"webp"* ]]
     then
       generate_anim
@@ -382,8 +417,6 @@ generate_all() {
     fi
     if  [[ $only_generate == "" ]]
     then
-      generate_jpg
-      generate_gif
 #       generate_webp
       generate_m3D stl
 #       generate_m3D obj
@@ -391,10 +424,84 @@ generate_all() {
 #       generate_m3D wrl
 #       generate_m3D off
 #       generate_m3D amf
+      generate_jpg
+      generate_gif
     fi
     if  [[  $only_generate == "" || $only_generate == *"gif"* || $only_generate == *"webp"* ]]
     then
       clean_anim
+    fi
+}
+
+generate_all_f3d() {
+    if  [[ $only_generate == *"stl"* ||  $only_generate == *"jpg"* || $only_generate == *"gif"* || $only_generate == *"webp"* ]]
+    then
+      generate_m3D stl
+    fi
+    if  [[ $only_generate == *"obj"* ]]
+    then
+      generate_m3D obj
+    fi
+    if  [[ $only_generate == *"3mf"* ]]
+    then
+      generate_m3D 3mf
+    fi
+    if  [[ $only_generate == *"wrl"* ]]
+    then
+      generate_m3D wrl
+    fi
+    if  [[ $only_generate == *"off"* ]]
+    then
+      generate_m3D off
+    fi
+    if  [[ $only_generate == *"amf"* ]]
+    then
+      generate_m3D amf
+    fi
+    if  [[ $only_generate == "" || $only_generate == *"gif"* || $only_generate == *"webp"* ]]
+    then
+      generate_anim
+    fi
+    if [[ $only_generate == *"jpg"* ]]
+    then
+      generate_jpg
+    fi
+    if  [[ $only_generate == *"gif"* ]]
+    then
+      generate_gif
+    fi
+    if  [[ $only_generate == *"webp"* ]]
+    then
+      generate_webp
+    fi
+    if  [[ $only_generate == *"conf"* ]]
+    then
+      generate_conf
+    fi
+    if  [[ $only_generate == "" ]]
+    then
+#       generate_webp
+      generate_m3D stl
+#       generate_m3D obj
+#       generate_m3D 3mf
+#       generate_m3D wrl
+#       generate_m3D off
+#       generate_m3D amf
+      generate_jpg
+      generate_gif
+    fi
+    if  [[  $only_generate == "" || $only_generate == *"gif"* || $only_generate == *"webp"* ]]
+    then
+      clean_anim
+    fi
+}
+
+generate_all() {
+    if [[ $use_f3d == "true" ]]
+    then
+        generate_all_f3d
+    else
+        generate_all_scad
     fi
 }
 

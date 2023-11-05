@@ -1,0 +1,22 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "templateNutellaGlass": {
+            "debug": "false",
+            "part": "nutellaGlass"
+        },
+        "templateNutellaGlassHighRes": {
+            "$fn": "200",
+            "debug": "false",
+            "part": "nutellaGlass"
+        },
+        "emptyNutellaGlass": {
+            "debug": "false",
+            "part": "emptyNutellaGlass"
+        },
+        "debugEmptyNutellaGlass": {
+            "debug": "true",
+            "part": "emptyNutellaGlass"
+        }
+    }
+}

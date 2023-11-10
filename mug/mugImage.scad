@@ -37,7 +37,8 @@ inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
 partialModel = "all"; // [all, image_only, mug_only]
 
-part="cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda]
+part = "cat";
+// [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda]
 
 /* [Animation] */
 // rotating animation
@@ -51,18 +52,19 @@ $vpt = is_animated?[0, 0, 0]:[];
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
 $vpd = is_animated?500:[];
 
-function selectImage() = 
+function selectImage() =
     (part == "cat")?image_cat:
-        (part == "cat_fur")?image_cat_fur:
-            (part == "cat_profile")?image_cat_profile:
-                (part == "cat_face")?image_cat_face:
-                    (part == "red_panda")?image_red_panda:
-                        (part == "werefox")?image_werefox:
-                            (part == "mountain")?image_mountain:
-                                (part == "moon")?image_moon:
-                                    (part == "jedi_sith")?image_jedi_sith:
-                                        (part == "solo_carbonite")?image_solo_carbonite:
-                                           (part == "yoda")?image_yoda:[];
+            (part == "cat_fur")?image_cat_fur:
+                    (part == "cat_profile")?image_cat_profile:
+                            (part == "cat_face")?image_cat_face:
+                                    (part == "red_panda")?image_red_panda:
+                                            (part == "werefox")?image_werefox:
+                                                    (part == "mountain")?image_mountain:
+                                                            (part == "moon")?image_moon:
+                                                                    (part == "jedi_sith")?image_jedi_sith:
+                                                                            (part == "solo_carbonite")?
+                                                                            image_solo_carbonite:
+                                                                                    (part == "yoda")?image_yoda:[];
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 
@@ -74,9 +76,11 @@ if (len(inlineImage) > 0) {
 
 epsi = 0.01; // epsilon
 
-rotate([0,0,180]) mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageData, partialModel);
+rotate([0, 0, 180]) mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation,
+reliefMultipier, imageData, partialModel);
 
-module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageMatrix, partialModel = "all") {
+module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier,
+imageMatrix, partialModel = "all") {
     difference() {
         render() // preview display nothing without this
             union() {
@@ -94,7 +98,8 @@ module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle
                 nutellaGlass();
         } else {
             translate([0, 0, mugThickness]) {
-                cylinder(h = mugHeight - mugThickness + epsi, r = mugRadius - mugThickness); // + epsi to prevent display bug
+                cylinder(h = mugHeight - mugThickness + epsi, r = mugRadius - mugThickness);
+                // + epsi to prevent display bug
             }
         }
     }

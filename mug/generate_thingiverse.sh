@@ -16,5 +16,6 @@ mkdir -p ./thingiverse/
 
 generate mugImage
 generate mugC3po
+generate mugR2d2
 generate mugGrogu
 generate nutellaGlass

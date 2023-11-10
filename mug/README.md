@@ -5,13 +5,15 @@ Download and open [imageToMatrix.html](imageToMatrix.html)
 Select your image
 
 copy the code and replace
+
 ```
 image = [ 
 ...
 ... 
 ];
 ```
-in file `mugImage_in_one_file.scad` or  in file `images/cat.scad`
+
+in file `mugImage_in_one_file.scad` or in file `images/cat.scad`
 
 sources: https://github.com/yannickbattail/openscad-models/tree/main/mug
 
@@ -46,7 +48,40 @@ licence GPL
 
 ## keywords
 
-mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, c3po, droid, nutella
+mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, c3po, droid,
+nutella
+
+# R2D2 mug, upcycling nutella glass
+
+R2D2 mug that uses nutella glass (200g size).
+
+## UPDATE
+
+- ...
+
+## customizable variables
+
+- `nutellaGlassScale`: nutella glass scale: grow nutella glass to better fit in
+- `debug`: cut the mug in quarter and display the nutella glass
+
+## nutella glass
+
+It uses a nutella 200g.
+
+If you pour hot beverage in the glass when it cools down it may be stuck in the mug, so put hot water in it to detach it
+
+## Sources
+
+R2D2 head: https://www.thingiverse.com/thing:5413008
+
+here: https://github.com/yannickbattail/openscad-models/tree/main/mug
+
+licence GPL
+
+## keywords
+
+mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, R2D2, droid,
+nutella
 
 # Grogu (baby yoda) mug, upcycling nutella glass
 
@@ -77,15 +112,17 @@ licence GPL
 
 ## keywords
 
-mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, baby yoda, grogu, nutella
+mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, baby yoda, grogu,
+nutella
 
 # nutella glass
 
 Template of nutella glass (200g size).
 
-If you want to make a cup, mug, glass compatible with nutella glass. 
+If you want to make a cup, mug, glass compatible with nutella glass.
 
 see example of use:
+
 - [C3PO mug](https://www.thingiverse.com/thing:6296440)
 - [pumpkin mug](https://www.thingiverse.com/thing:6274402)
 - [your image on a mug](https://www.thingiverse.com/thing:5560224)

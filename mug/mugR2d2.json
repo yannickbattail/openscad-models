@@ -1,0 +1,13 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "r2d2_mug": {
+      "debug": "false",
+      "nutellaGlassScale": "1.01"
+    },
+    "debug_mug": {
+      "debug": "true",
+      "nutellaGlassScale": "1.01"
+    }
+  }
+}

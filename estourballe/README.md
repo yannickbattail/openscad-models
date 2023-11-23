@@ -1,4 +1,4 @@
-# Estourballe, pokeball holy hand grenade of Antioch, split in part
+# Estourballe and Super Estourballe, pokeball holy hand grenade of Antioch, split in part
 
 L'estourballe est une Pokéball médiévale tirée
 du [Pochon Dextre](https://simondethuillieres.com/product/le-pochon-dextre/) de
@@ -8,6 +8,7 @@ a été aussi reprise dans le jeu [worms](https://worms.fandom.com/wiki/Holy_Han
 
 ## UPDATE
 
+- v4 super estourballe: split the 2 red bands so they can be printed in another color
 - v3 super estourballe https://www.thingiverse.com/thing:6323047
 - v2 split in part by color https://www.thingiverse.com/thing:6321493
 - v1 estourballe https://www.thingiverse.com/thing:6318891

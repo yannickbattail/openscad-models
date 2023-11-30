@@ -16,3 +16,4 @@ mkdir -p ./thingiverse/
 
 generate estourballe
 generate superEstourballe
+generate hyperEstourballe

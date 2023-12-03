@@ -36,7 +36,7 @@ module estourballePieces(part) {
         button(ballDiameter);
     } else if (part == "bande1") {
         bande1(ballDiameter, thickness);
-    }  else if (part == "bande2") {
+    } else if (part == "bande2") {
         bande2(ballDiameter, thickness);
     } else if (part == "croix") {
         crossTop();
@@ -89,30 +89,30 @@ module bande1(ballDiameter, thickness) {
     difference() {
         union() {
             color("gold")
-            sphere(d = ballDiameter + 2);
+                sphere(d = ballDiameter + 2);
             nailsBande(ballDiameter);
         }
-        sphere(d = ballDiameter+0.1);
+        sphere(d = ballDiameter + 0.1);
         translate([0, 0, - (ballDiameter + 10) / 2 + 5.5])
-            cube(ballDiameter+10, center = true);
+            cube(ballDiameter + 10, center = true);
         translate([0, - (ballDiameter + 10) / 2 - 22, 0])
-            cube(ballDiameter+10, center = true);
-//            translate([0, (ballDiameter + 10) / 2 + 22, 0])
-//                #cube(ballDiameter+10, center = true);
+            cube(ballDiameter + 10, center = true);
+        // translate([0, (ballDiameter + 10) / 2 + 22, 0])
+        //     #cube(ballDiameter+10, center = true);
         translate([22, 0, 0])
-            cube([32,28,ballDiameter+10], center = true);
-        translate([-22, 0, 0])
-            cube([32,28,ballDiameter+10], center = true);
-        cube([10,10,100], center = true);
-        cube([8,20,100], center = true);
-        translate([-(ballDiameter + 10)/2, 0, 0]) {
+            cube([32, 28, ballDiameter + 10], center = true);
+        translate([- 22, 0, 0])
+            cube([32, 28, ballDiameter + 10], center = true);
+        cube([10, 10, 100], center = true);
+        cube([8, 20, 100], center = true);
+        translate([- (ballDiameter + 10) / 2, 0, 0]) {
             cube(ballDiameter + 10);
         }
     }
 }
 
 module bande2(ballDiameter, thickness) {
-    mirror([0,1,0]) {
+    mirror([0, 1, 0]) {
         bande1(ballDiameter, thickness);
     }
 }
@@ -121,7 +121,7 @@ module nailsBande(ballDiameter) {
     color("white")
         for (i = [1:5]) {
             rotate([0, i * 360 / 12 - 90, 0])
-                translate([0, -18, 30])
+                translate([0, - 18, 30])
                     sphere(d = 5);
         }
 }
@@ -145,7 +145,6 @@ module ringBlack(ballDiameter, thickness) {
     difference() {
         color("SlateGray")
             cylinder(d = ballDiameter + 3, h = 11, center = true);
-        
         button(ballDiameter);
         translate([0, 0, 1])
             cylinder(d = ballDiameter, h = ballDiameter);

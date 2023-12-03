@@ -1,9 +1,11 @@
 # Estourballe, Super Estourballe and Hyper Estourballe, pokeball holy hand grenade of Antioch, split in part
 
 L'estourballe est une Pokéball médiévale tirée
-du [Pochon Dextre](https://simondethuillieres.com/product/le-pochon-dextre/) de [Martin Foret](https://twitter.com/MartinForet) et [la_chocoline](https://instagram.com/la_chocoline/)
-inspirée par l'enlumineur [Simon de Thuillières](https://www.instagram.com/simondethuillieres/), 
-la [Sainte Grenade d'Antioche](https://fr.wikipedia.org/wiki/Sainte_Grenade_d%27Antioche) des Monty Python ou du jeu [worms](https://worms.fandom.com/wiki/Holy_Hand_Grenade).
+du [Pochon Dextre](https://simondethuillieres.com/product/le-pochon-dextre/)
+de [Martin Foret](https://twitter.com/MartinForet) et [la_chocoline](https://instagram.com/la_chocoline/)
+inspirée par l'enlumineur [Simon de Thuillières](https://www.instagram.com/simondethuillieres/),
+la [Sainte Grenade d'Antioche](https://fr.wikipedia.org/wiki/Sainte_Grenade_d%27Antioche) des Monty Python ou du
+jeu [worms](https://worms.fandom.com/wiki/Holy_Hand_Grenade).
 
 ## UPDATE
 
@@ -28,7 +30,8 @@ here: https://github.com/yannickbattail/openscad-models/tree/main/estourballe
 
 licence GPL
 
-Le design (dessin) original de l'estourballe appartient à [Martin Foret](https://twitter.com/MartinForet) et [la_chocoline](https://instagram.com/la_chocoline/)
+Le design (dessin) original de l'estourballe appartient à [Martin Foret](https://twitter.com/MartinForet)
+et [la_chocoline](https://instagram.com/la_chocoline/)
 
 ## keywords
 

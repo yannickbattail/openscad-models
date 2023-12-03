@@ -1,29 +1,29 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "estourballeEntiere": {
-            "part": "estourballeEntiere"
-        },
-        "demiSphereBas": {
-            "part": "demiSphereBas"
-        },
-        "demiSpherehaut": {
-            "part": "demiSpherehaut"
-        },
-        "anneau": {
-            "part": "anneau"
-        },
-        "bouton": {
-            "part": "bouton"
-        },
-        "bande1": {
-            "part": "bande1"
-        },
-        "bande2": {
-            "part": "bande2"
-        },
-        "croix": {
-            "part": "croix"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "estourballeEntiere": {
+      "part": "estourballeEntiere"
+    },
+    "demiSphereBas": {
+      "part": "demiSphereBas"
+    },
+    "demiSpherehaut": {
+      "part": "demiSpherehaut"
+    },
+    "anneau": {
+      "part": "anneau"
+    },
+    "bouton": {
+      "part": "bouton"
+    },
+    "bande1": {
+      "part": "bande1"
+    },
+    "bande2": {
+      "part": "bande2"
+    },
+    "croix": {
+      "part": "croix"
     }
+  }
 }

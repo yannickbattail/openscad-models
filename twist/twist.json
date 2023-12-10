@@ -1,0 +1,93 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "animArms": {
+      "ArmRadius": "10",
+      "Bottom": "true",
+      "DistFromBorder": "30",
+      "Height": "200",
+      "InsideCone": "false",
+      "NbArms": "5",
+      "TopCone_percentHeight": "85",
+      "TopHook": "true",
+      "animArmRadius": "false",
+      "animArms": "true",
+      "animHeight": "false",
+      "animTopCone_percentHeight": "false"
+    },
+    "animHeight": {
+      "Bottom": "true",
+      "DistFromBorder": "30",
+      "Height": "200",
+      "InsideCone": "false",
+      "NbArms": "5",
+      "TopCone_percentHeight": "85",
+      "TopHook": "true",
+      "animArmRadius": "false",
+      "animArms": "false",
+      "animDistFromBorder": "false",
+      "animHeight": "true",
+      "animTopCone_percentHeight": "false"
+    },
+    "animDistFromBorder": {
+      "ArmRadius": "10",
+      "Bottom": "true",
+      "DistFromBorder": "30",
+      "Height": "200",
+      "InsideCone": "false",
+      "NbArms": "5",
+      "TopCone_percentHeight": "85",
+      "TopHook": "true",
+      "animArmRadius": "false",
+      "animArms": "false",
+      "animDistFromBorder": "true",
+      "animHeight": "false",
+      "animTopCone_percentHeight": "false"
+    },
+    "animArmRadius": {
+      "ArmRadius": "10",
+      "Bottom": "true",
+      "DistFromBorder": "30",
+      "Height": "200",
+      "InsideCone": "false",
+      "NbArms": "5",
+      "TopCone_percentHeight": "85",
+      "TopHook": "true",
+      "animArmRadius": "true",
+      "animArms": "false",
+      "animDistFromBorder": "false",
+      "animHeight": "false",
+      "animTopCone_percentHeight": "false"
+    },
+    "animTopCone_percentHeight": {
+      "ArmRadius": "10",
+      "Bottom": "true",
+      "DistFromBorder": "30",
+      "Height": "200",
+      "InsideCone": "false",
+      "NbArms": "5",
+      "TopCone_percentHeight": "85",
+      "TopHook": "false",
+      "animArmRadius": "false",
+      "animArms": "false",
+      "animDistFromBorder": "false",
+      "animHeight": "false",
+      "animTopCone_percentHeight": "true"
+    },
+    "twist": {
+      "ArmRadius": "10",
+      "Bottom": "true",
+      "DistFromBorder": "30",
+      "Height": "200",
+      "InsideCone": "false",
+      "NbArms": "5",
+      "TopCone_percentHeight": "85",
+      "TopHook": "false",
+      "animArmRadius": "false",
+      "animArms": "false",
+      "animDistFromBorder": "false",
+      "animHeight": "false",
+      "animTopCone_percentHeight": "false"
+    }
+  }
+}

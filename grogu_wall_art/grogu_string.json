@@ -1,0 +1,23 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "with_base": {
+            "thickness": "1",
+            "thicknessBase": "1"
+        },
+        "without_base": {
+            "thickness": "1",
+            "thicknessBase": "0"
+        },
+        "bothSides": {
+            "bothSides": true,
+            "thickness": "1",
+            "thicknessBase": "1"
+        },
+        "tiny_grogu": {
+            "width": 50,
+            "thickness": "1",
+            "thicknessBase": "1"
+        }
+    }
+}

@@ -1,18 +1,31 @@
+bothSides = false;
 
 thickness = 1; // [1:0.1:10]
 
 thicknessBase = 1; // [0:0.1:10]
 
-color("yellow") {
-    linear_extrude(thicknessBase) {
-        import("svg/path_base.svg");
-    }
-}
+bouk(thickness, thicknessBase, bothSides);
 
-color("blue") {
-    translate([0, 0, thicknessBase]) {
-        linear_extrude(thickness) {
-            bouk2D();
+module bouk(thickness, thicknessBase, bothSides = false) {
+    color("yellow") {
+        linear_extrude(thicknessBase) {
+            import("svg/path_base.svg");
+        }
+    }
+    color("blue") {
+        translate([0, 0, thicknessBase]) {
+            linear_extrude(thickness) {
+                bouk2D();
+            }
+        }
+    }
+    if (bothSides) {
+        color("blue") {
+            translate([0, 0, - thickness]) {
+                linear_extrude(thickness) {
+                    bouk2D();
+                }
+            }
         }
     }
 }

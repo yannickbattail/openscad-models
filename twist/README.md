@@ -1,11 +1,10 @@
-# Twist: customizable christmas decoration
+# Twist, customizable Christmas decoration
 
-Twist customizable christmas decoration
+Twist, customizable Christmas decoration
 
 ## UPDATE
 
-- v2 grogu string: grogu with hook up and down
-- v1 grogu
+- v1 Twist
 
 ## customizable variables
 
@@ -22,8 +21,10 @@ Twist customizable christmas decoration
 
 here: https://github.com/yannickbattail/openscad-models/tree/main/twist
 
-licence GPL
+licence CC0
+
+Author: Yannick Battail
 
 ## keywords
 
-customizable, christmas decoration, openscad
+Twisted, customizable, Christmas_decoration, Christmas_ornament, Christmas, openscad

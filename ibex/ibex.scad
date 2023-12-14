@@ -4,9 +4,9 @@ thickness = 1; // [1:0.1:10]
 
 thicknessBase = 1; // [0:0.1:10]
 
-bouk(thickness, thicknessBase, bothSides);
+ibex(thickness, thicknessBase, bothSides);
 
-module bouk(thickness, thicknessBase, bothSides = false) {
+module ibex(thickness, thicknessBase, bothSides = false) {
     color("yellow") {
         linear_extrude(thicknessBase) {
             import("svg/path_base.svg");
@@ -15,7 +15,7 @@ module bouk(thickness, thicknessBase, bothSides = false) {
     color("blue") {
         translate([0, 0, thicknessBase]) {
             linear_extrude(thickness) {
-                bouk2D();
+                ibex2D();
             }
         }
     }
@@ -23,14 +23,14 @@ module bouk(thickness, thicknessBase, bothSides = false) {
         color("blue") {
             translate([0, 0, - thickness]) {
                 linear_extrude(thickness) {
-                    bouk2D();
+                    ibex2D();
                 }
             }
         }
     }
 }
 
-module bouk2D() {
+module ibex2D() {
     import("svg/splited_svg_path/path_0.svg");
     import("svg/splited_svg_path/path_1.svg");
     import("svg/splited_svg_path/path_2.svg");

@@ -14,4 +14,4 @@ generate() {
 
 mkdir -p ./thingiverse/
 
-generate bouk
+generate ibex

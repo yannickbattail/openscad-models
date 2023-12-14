@@ -1,3 +1,8 @@
+/**
+* licence CC0
+* Author: Yannick Battail
+*/
+
 NbArms = 5; // [2:1:20]
 Height = 200; // [1:1:200]
 DistFromBorder = 30; // [1:1:200]

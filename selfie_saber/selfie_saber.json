@@ -16,6 +16,16 @@
             "displaySaber": "false",
             "phoneAngle": "0"
         },
+        "screw1": {
+            "part": "screw1",
+            "displaySaber": "false",
+            "saberDiameterInch": "1"
+        },
+        "screw2": {
+            "part": "screw2",
+            "displaySaber": "false",
+            "saberDiameterInch": "1"
+        },
         "all_with_saber": {
             "part": "all",
             "displaySaber": "true"

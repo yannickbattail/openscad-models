@@ -82,9 +82,8 @@ module hook(saberDiameter, tolerance) {
         translate([saberDiameter / 2 + 10, 0, 0])
             cylinder(d = 5 + 1, h = 100);
         translate([saberDiameter / 2 + 10, 0, -50])
-            trapezoidal_threaded_rod(d=5 + tolerance, l=100, pitch=2, thread_angle=15, internal=true);
+            threaded_rod(d=5 + tolerance, l=100, pitch=2, internal=true);
     }
-    screw1(saberDiameter);
     fix(saberDiameter);
 }
 
@@ -103,7 +102,7 @@ module screw2() {
 
 module screw(length) {
     //cylinder(d = 5, h = length, center = true);
-    trapezoidal_threaded_rod(d=5, l=length, pitch=2, thread_angle=15);
+    threaded_rod(d=5, l=length, pitch=2);
 
     translate([0, 0, length / 2])
         cylinder(d = 10, h = 5, $fn = 6);
@@ -124,7 +123,7 @@ module fix(saberDiameter) {
             translate([0, 0, 30])
                 rotate([0, 90, 0]) {
                     //cylinder(d = 5 + tolerance, h = 100, center = true);
-                    trapezoidal_threaded_rod(d=5 + tolerance, l=20, pitch=2, thread_angle=15, internal=true);
+                    threaded_rod(d=5 + tolerance, l=20, pitch=2, internal=true);
                 }
         }
     }

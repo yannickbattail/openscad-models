@@ -1,7 +1,5 @@
-include <../BOSL/constants.scad>
-use <../BOSL/threading.scad>
-//include <BOSL/constants.scad>
-//use <BOSL/threading.scad>
+include <BOSL/constants.scad>
+use <BOSL/threading.scad>
 
 part="all"; // [all, phoneHolder, hook, screw1, screw2, serratedWasher]
 
@@ -24,11 +22,18 @@ phoneThickness = 10; // [5:1:20]
 /* [display] */
 // show the saber
 displaySaber = true;
-// phone holder andgle
+// phone holder angle
 phoneAngle = 30; // [0:90]
 
+/* [Animation] */
+// rotating animation
+animation_rotation = false;
+
 /* [Hidden] */
-$fn = 50;
+is_animated = animation_rotation;
+$vpt = is_animated?[0, 0, 0]:[];
+$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
+$vpd = is_animated?500:[];
 
 phone = [phoneWidth, phoneThickness, phoneHeight];
 // constant: 1 inch in mm

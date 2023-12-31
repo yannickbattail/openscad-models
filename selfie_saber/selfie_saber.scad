@@ -6,12 +6,6 @@ part="all"; // [all, phoneHolder, hook, screw1, screw2, serratedWasher]
 // saber blade diameter in inch
 saberDiameterInch = 1; // [0.5:0.025:2]
 
-// lenth of the hook (part around the saber)
-hookLength = 40; // [10:50]
-// tolerance
-tolerance = 0.5; // [0.1:0.1:1]
-
-/* [phone] */
 // phone height, when in lanscape mode
 phoneHeight = 80; // [50:1:200]
 // phone width, when in lanscape mode
@@ -19,9 +13,15 @@ phoneWidth = 180; // [120:1:300]
 // phone thickness
 phoneThickness = 10; // [5:1:20]
 
+/* [other parameter] */
+// lenth of the hook (part around the saber)
+hookLength = 40; // [10:50]
+// tolerance
+tolerance = 0.5; // [0.1:0.1:1]
+
 /* [display] */
 // show the saber
-displaySaber = true;
+displaySaber = false;
 // phone holder angle
 phoneAngle = 30; // [0:90]
 

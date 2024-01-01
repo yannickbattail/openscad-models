@@ -4,6 +4,7 @@ Cute Grogu wall art
 
 ## UPDATE
 
+- v4 bigger hook
 - v3 grogu string: customizable hook position
 - v2 grogu string: grogu with hook up and down
 - v1 grogu

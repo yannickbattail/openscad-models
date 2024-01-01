@@ -23,7 +23,7 @@ $vpd = is_animated?2000:[];
 grogu(thickness, thicknessBase, bothSides);
 
 if (hookPosition == "both" || hookPosition == "top")
-    translate([490, 602, 0])
+    translate([490, 585, 0])
         hook();
 
 if (hookPosition == "both" || hookPosition == "bottom")
@@ -35,10 +35,10 @@ module hook() {
     color("DarkGreen")
         linear_extrude(thickness + thicknessBase)
             difference() {
-                circle(r = 100);
-                circle(r = 50);
-                translate([0, -110])
-                    square([220, 220], center = true);
+                circle(r = 140);
+                circle(r = 90);
+                translate([0, -140])
+                    square([280, 280], center = true);
             }
 }
 

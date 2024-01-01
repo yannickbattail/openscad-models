@@ -15,4 +15,3 @@ generate() {
 mkdir -p ./thingiverse/
 
 generate grogu
-generate grogu_string

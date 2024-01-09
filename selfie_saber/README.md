@@ -16,16 +16,19 @@ Use you lightsaber as a selfie stick.
 - `phoneThickness` : phone thickness
 
 other parameter
+
 - `hookLength` : default 40 [10:50] length of the hook (part around the saber)
 - `phoneHolderThickness`: default 4; // [1:1:10] Thickness of the phone Holder
 - `tolerance` : default 0.5 [0.1:0.1:1]
 
 display
+
 - `displaySaber` default false, show the saber
 - `displayPhone` default false, show the phone
 - `phoneAngle` default 30 [0:90] phone holder angle
 
 Animation
+
 - `animation_rotation` : default false rotating animation
 
 ## Sources

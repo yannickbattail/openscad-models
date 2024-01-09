@@ -9,7 +9,7 @@ generate() {
     mv ./${file}/images/mosaic_*.jpg ./thingiverse/
     cp ./${file}.json ./thingiverse/
     
-    ../openscad_batch/one_file.sh ./${file}.scad > ./thingiverse/${file}.scad
+    #../openscad_batch/one_file.sh ./${file}.scad > ./thingiverse/${file}.scad
 }
 
 mkdir -p ./thingiverse/

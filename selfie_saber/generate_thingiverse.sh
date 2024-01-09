@@ -2,10 +2,10 @@
 
 generate() {
     file=$1
-    time ../openscad_batch/generate_profile.sh -g jpg,gif,stl ./${file}.scad
+    time ../openscad_batch/generate_profile.sh -g jpg,webp,stl ./${file}.scad
     
     mv ./${file}/3D/*.stl ./thingiverse/
-    mv ./${file}/gif/*.gif ./thingiverse/
+    mv ./${file}/webp/*.webp ./thingiverse/
     mv ./${file}/images/mosaic_*.jpg ./thingiverse/
     cp ./${file}.json ./thingiverse/
     

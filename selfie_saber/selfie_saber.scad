@@ -1,5 +1,5 @@
-include <../BOSL/constants.scad>
-use <../BOSL/threading.scad>
+include <BOSL/constants.scad>
+use <BOSL/threading.scad>
 
 part="all"; // [all, phoneHolder, hook, screw1, screw2, serratedWasher]
 
@@ -7,11 +7,11 @@ part="all"; // [all, phoneHolder, hook, screw1, screw2, serratedWasher]
 saberDiameterInch = 1; // [0.5:0.025:2]
 
 // phone height, when in lanscape mode
-phoneHeight = 80; // [50:1:200]
+phoneHeight = 74; // [50:1:200]
 // phone width, when in lanscape mode
-phoneWidth = 180; // [120:1:300]
+phoneWidth = 164; // [120:1:300]
 // phone thickness
-phoneThickness = 10; // [5:1:20]
+phoneThickness = 9; // [5:1:20]
 
 /* [other parameter] */
 // lenth of the hook (part around the saber)
@@ -24,7 +24,7 @@ tolerance = 0.5; // [0.1:0.1:1]
 /* [display] */
 // show the saber
 displaySaber = false;
-// show the saber
+// show the phone
 displayPhone = false;
 // phone holder angle
 phoneAngle = 30; // [0:90]

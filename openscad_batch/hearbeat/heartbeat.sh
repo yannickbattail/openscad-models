@@ -1,15 +1,15 @@
 #!/bin/bash
 #set -x
 
-# hartbeat.sh
-# Usage: hartbeat.sh cmd
+# heartbeat.sh
+# Usage: heartbeat.sh cmd
 # stop it with ctrl+c
 # ex:
-# hartbeat.sh ping -w 1 -c 1 192.168.1.1
-# hartbeat.sh ping -w 1 -c 1 perdu.com
-# hartbeat.sh httping -t 1 -c 1 http://perdu.com
-# hartbeat.sh head -c 0 somefile
-# hartbeat.sh ps -p $PID
+# heartbeat.sh ping -w 1 -c 1 192.168.1.1
+# heartbeat.sh ping -w 1 -c 1 perdu.com
+# heartbeat.sh httping -t 1 -c 1 http://perdu.com
+# heartbeat.sh head -c 0 somefile
+# heartbeat.sh ps -p $PID
 
 # colors
 IBlack='\033[0;90m'       # Black
@@ -25,16 +25,24 @@ IReset='\e[0m'            # Reset colors
 POSITIONAL_ARGS=()
 usage() {
   echo -ne "$IBlue"
-  echo "Script for generating 3D files, images and animations from an openscad file and a parameter file." >&2
-  echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
-  echo "-c, --config-file configuration_file      specify another configuration file than the default \${OPENSCAD_FILE}.conf." >&2
-  echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-  echo "-g, --generate only_generate              only_generate must be one or multiple separated by ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl." >&2
-  echo "--f3d                                     use f3d for images generation" >&2
-  echo "--debug what_to_debug                     debug mode: what_to_debug must be one or multiple separated by ',' of these values: CMD,OUT" >&2
-  echo "OPENSCAD_FILE                             path of the openscad file." >&2
+  echo "Script that play a heartbeat like an electrocardiogram when command success or fail" >&2
+  echo "Usage: $0 [OPTION] COMMAND" >&2
+  echo "-l, --log-file log_file                   log file for the output of the command." >&2
+  echo "-f, --frequency_note frequency            frequency of the bip in Hz" >&2
+  echo "-v, --volume bip_volume                   volume of the bip between 0 and 1" >&2
+  echo "--ok bip|beeeep|noop                      action to do when the command is successful: bip (plays a short bip, beeeep (plays a long beep), noop or else (do nothing)" >&2
+  echo "--fail bip|beeeep|noop                      action to do when the command fails: bip (plays a short bip, beeeep (plays a long beep), noop or else (do nothing)" >&2
+  echo "COMMAND                                   command to be executed, if the command return 0 (success) short bip is played else long beeeep is played" >&2
   echo "" >&2
-  echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
+  echo "Requirements: command 'play' from package 'sox'" >&2
+  echo "" >&2
+  echo "ex:" >&2
+  echo "heartbeat.sh ping -w 1 -c 1 192.168.1.1" >&2
+  echo "heartbeat.sh ping -w 1 -c 1 perdu.com" >&2
+  echo "heartbeat.sh httping -t 1 -c 1 http://perdu.com" >&2
+  echo "heartbeat.sh head -c 0 somefile" >&2
+  echo "heartbeat.sh ps -p \$PID" >&2
+  echo "stop it with ctrl+c" >&2
   echo -ne "$IReset"
 }
 
@@ -66,12 +74,14 @@ echo_error() {
 
 shortBeep() {
   echo -n ep be
-  ./beep.sh 0.2 $volume &
+  ./beep.sh 0.2 $frequency_note $volume &
 }
+
 longBeep() {
   echo -n e
-  ./beep.sh 1 $volume &
+  ./beep.sh 1 $frequency_note $volume &
 }
+
 playBeep() {
   if [[ $1 == "bip" ]]
   then
@@ -98,6 +108,7 @@ then
 fi
 
 volume=0.9
+frequency_note=440
 
 logFile=/dev/null
 actOk=bip
@@ -106,8 +117,17 @@ cmd="$@"
 
 while [[ $# -gt 0 ]]; do
   case $1 in
+    -h|--help)
+      usage
+      exit 0
+      ;;
     -l|--log-file)
       logFile="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    -f|--frequency_note)
+      frequency_note="$2"
       shift # past argument
       shift # past value
       ;;
@@ -138,6 +158,11 @@ while [[ $# -gt 0 ]]; do
 done
 
 set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
+
+if [[ $cmd == "" ]]
+then
+    echo_error "no command specified"
+fi
 
 echo -n be
 while true

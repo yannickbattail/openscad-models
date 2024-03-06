@@ -1,23 +1,20 @@
 #!/bin/bash
 #set -x
 
-# hartbeat_process.sh
-# Usage: hartbeat_process.sh process_id
+# heartbeat_ping.sh
+# Usage: heartbeat_ping.sh IP_or_HOSTNAME_to_ping
 # stop it with ctrl+c
 # ex:
-# hartbeat_process.sh 666
-# ex:
-# sleep 10 & ### or other cmp with a & at the end
-# pid=$!
-# hartbeat_process.sh $pid 
+# heartbeat_ping.sh perdu.com
+# heartbeat_ping.sh 192.168.1.1
 
-hartbeatOpt=""
+heartbeatOpt=""
 cmdOpt=""
 
 while [[ $# -gt 0 ]]; do
   case $1 in
     -*|--*)
-      hartbeatOpt="${hartbeatOpt} $1 $2"
+      heartbeatOpt="${heartbeatOpt} $1 $2"
       shift # past argument
       shift # past value
       ;;
@@ -38,7 +35,7 @@ then
   exit 1
 fi
 
-cmd="ps -p $cmdOpt"
+cmd="ping -t 1 -c 1 $cmdOpt"
 
-echo ./hartbeat.sh $hartbeatOpt $cmd
-./hartbeat.sh $hartbeatOpt $cmd
+echo ./heartbeat.sh $heartbeatOpt $cmd
+./heartbeat.sh $heartbeatOpt $cmd

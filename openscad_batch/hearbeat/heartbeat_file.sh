@@ -1,20 +1,20 @@
 #!/bin/bash
 #set -x
 
-# hartbeat_ping.sh
-# Usage: hartbeat_ping.sh URI
+# heartbeat_file.sh
+# Usage: heartbeat_file.sh file
 # stop it with ctrl+c
 # ex:
-# hartbeat_ping.sh http://perdu.com
-# hartbeat_ping.sh https://192.168.1.1:8080
+# heartbeat_file.sh service.lock
+# heartbeat_file.sh file.log
 
-hartbeatOpt=""
+heartbeatOpt=""
 cmdOpt=""
 
 while [[ $# -gt 0 ]]; do
   case $1 in
     -*|--*)
-      hartbeatOpt="${hartbeatOpt} $1 $2"
+      heartbeatOpt="${heartbeatOpt} $1 $2"
       shift # past argument
       shift # past value
       ;;
@@ -31,11 +31,11 @@ set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
 if [ "$#" -ne 1 ]
 then
   echo "Error: $0 take 1 parameter" >&2
-  echo "Usage: $0 IP_or_HOSTNAME_to_ping" >&2
+  echo "Usage: $0 file" >&2
   exit 1
 fi
 
-cmd="ping -t 1 -c 1 $cmdOpt"
+cmd="head -c 0 $cmdOpt"
 
-echo ./hartbeat.sh $hartbeatOpt $cmd
-./hartbeat.sh $hartbeatOpt $cmd
+echo ./heartbeat.sh $heartbeatOpt $cmd
+./heartbeat.sh $heartbeatOpt $cmd

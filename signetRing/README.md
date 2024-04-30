@@ -8,7 +8,8 @@ see: https://en.wikipedia.org/wiki/Ring_size
 
 ## UPDATE
 
-- v1 1st design
+- v2: multiline text, adjust text position and orientation
+- v1: 1st design
 
 ## customizable variables
 
@@ -17,6 +18,8 @@ see: https://en.wikipedia.org/wiki/Ring_size
 - `border_size`: border thickness around the text
 - `text_height`: text height
 - `ring_text`: text on the top of the ring
+- `text_position_x`: adjust text position on X
+- `text_position_y`: 0adjust text position on Y
 
 Font details
 

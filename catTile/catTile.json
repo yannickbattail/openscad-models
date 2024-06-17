@@ -1,0 +1,29 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "more_rounded_tile": {
+      "height": "1",
+      "part": "tile",
+      "rounding": "0.3",
+      "tolerence": "0.1"
+    },
+    "exact": {
+      "height": "1",
+      "part": "tile",
+      "rounding": "0",
+      "tolerence": "0"
+    },
+    "rounded_tile": {
+      "height": "1",
+      "part": "tile",
+      "rounding": "0.2",
+      "tolerence": "0.05"
+    },
+    "paving": {
+      "height": "1",
+      "part": "paving",
+      "rounding": "0.2",
+      "tolerence": "0.05"
+    }
+  }
+}

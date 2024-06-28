@@ -15,7 +15,7 @@ IReset='\e[0m'            # Reset colors
 compare_images() {
   if [ $(compare -metric rmse $1 $2 null: 2>&1 | cut -d\  -f1) -eq 0 ]
   then
-    echo -e "[${IGreen} OK ${IReset}] identical images $1 $2 are different"
+    echo -e "[${IGreen} OK ${IReset}] images $1 $2 are identical"
   else
     echo -e "[${IRed} FAIL ${IReset}] images $1 $2 are different"
     exit 1
@@ -25,7 +25,7 @@ compare_images() {
 compare_bin_files() {
   if cmp $1 $2
   then
-    echo -e "[${IGreen} OK ${IReset}] identical images $1 $2 are different"
+    echo -e "[${IGreen} OK ${IReset}] images $1 $2 are identical"
   else
     echo -e "[${IRed} FAIL ${IReset}] files $1 $2 are different"
     exit 1
@@ -88,8 +88,7 @@ test1() {
   echo -e "${IBlue} ###### test1 all ${IReset}"
   
   echo "       generate cube1.scad"
-  echo 'OPENSCAD="openscad-nightly"' > cube1.conf
-  check_return_code ../generate_profile.sh -g jpg,gif,webp,stl,obj,3mf,wrl,off,amf cube1.scad
+  check_return_code generate_profile.sh -g jpg,gif,webp,stl,obj,3mf,wrl,off,amf cube1.scad
   echo "       generation done"
   
   compare_images ./cube1/gif/test1.gif ./cube1_expected/gif/test1.gif
@@ -110,9 +109,9 @@ test2() {
   echo -e "${IBlue} ###### test2 animations ${IReset}"
   
   echo "       generate gif cube_anim.scad"
-  check_return_code ../generate_profile.sh -g gif cube_anim.scad
+  check_return_code generate_profile.sh -g gif cube_anim.scad
   echo "       generate webp cube_anim.scad"
-  check_return_code ../generate_profile.sh -g webp cube_anim.scad
+  check_return_code generate_profile.sh -g webp cube_anim.scad
   echo "       generation done"
   
   compare_bin_files ./cube_anim/webp/test1.webp ./cube_anim_expected/webp/test1.webp
@@ -125,7 +124,7 @@ test3() {
   echo -e "${IBlue} ###### test3 only_generate ${IReset}"
   
   echo "       generate gif cube1.scad"
-  check_return_code ../generate_profile.sh -g gif cube1.scad
+  check_return_code generate_profile.sh -g gif cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D
 gif"
@@ -134,7 +133,7 @@ gif"
   rm -Rf ./cube1/
   
   echo "       generate image cube1.scad"
-  check_return_code ../generate_profile.sh -g jpg cube1.scad
+  check_return_code generate_profile.sh -g jpg cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D
 images"
@@ -144,7 +143,7 @@ test1.png'
   rm -Rf ./cube1/
   
   echo "       generate webp cube1.scad"
-  check_return_code ../generate_profile.sh -g webp cube1.scad
+  check_return_code generate_profile.sh -g webp cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D
 webp"
@@ -153,42 +152,42 @@ webp"
   rm -Rf ./cube1/
   
   echo "       generate stl cube1.scad"
-  check_return_code ../generate_profile.sh -g stl cube1.scad
+  check_return_code generate_profile.sh -g stl cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D"
   check_directory ./cube1/3D/ "test1.stl"
   rm -Rf ./cube1/
   
   echo "       generate stl cube1.scad"
-  check_return_code ../generate_profile.sh -g obj cube1.scad
+  check_return_code generate_profile.sh -g obj cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D"
   check_directory ./cube1/3D/ "test1.obj"
   rm -Rf ./cube1/
   
   echo "       generate stl cube1.scad"
-  check_return_code ../generate_profile.sh -g 3mf cube1.scad
+  check_return_code generate_profile.sh -g 3mf cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D"
   check_directory ./cube1/3D/ "test1.3mf"
   rm -Rf ./cube1/
   
   echo "       generate stl cube1.scad"
-  check_return_code ../generate_profile.sh -g wrl cube1.scad
+  check_return_code generate_profile.sh -g wrl cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D"
   check_directory ./cube1/3D/ "test1.wrl"
   rm -Rf ./cube1/
   
   echo "       generate stl cube1.scad"
-  check_return_code ../generate_profile.sh -g off cube1.scad
+  check_return_code generate_profile.sh -g off cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D"
   check_directory ./cube1/3D/ "test1.off"
   rm -Rf ./cube1/
   
   echo "       generate stl cube1.scad"
-  check_return_code ../generate_profile.sh -g amf cube1.scad
+  check_return_code generate_profile.sh -g amf cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D"
   check_directory ./cube1/3D/ "test1.amf"
@@ -199,7 +198,7 @@ test4() {
   echo -e "${IBlue} ###### test4 parameter-set ${IReset}"
   
   echo "       generate cube4.scad"
-  check_return_code ../generate_profile.sh cube4.scad
+  check_return_code generate_profile.sh cube4.scad
   echo "       generation done"
   check_directory ./cube4/ "3D
 gif
@@ -214,7 +213,7 @@ cube_50.stl"
   rm -Rf ./cube4/
   
   echo "       generate parameter-set cube_50 cube4.scad"
-  check_return_code ../generate_profile.sh -p cube_50 cube4.scad
+  check_return_code generate_profile.sh -p cube_50 cube4.scad
   echo "       generation done"
   check_directory ./cube4/ "3D
 gif
@@ -230,7 +229,7 @@ test5() {
   echo -e "${IBlue} ###### test5 option: anim_keep_images ${IReset}"
   
   echo "       generate p cube5.scad"
-  check_return_code ../generate_profile.sh cube5.scad
+  check_return_code generate_profile.sh cube5.scad
   echo "       generation done"
   check_directory ./cube5/ "3D
 anim
@@ -248,7 +247,7 @@ test6() {
   echo -e "${IBlue} ###### test6 check commands return code${IReset}"
   
   echo "       generate cube6.scad"
-  check_return_code_fails ../generate_profile.sh cube6.scad
+  check_return_code_fails generate_profile.sh cube6.scad
   
   rm -Rf ./cube6/ ./cube6.conf
 }
@@ -257,7 +256,7 @@ test7() {
   echo -e "${IBlue} ###### test7 check config file generation${IReset}"
   
   echo "       generate cube4.scad"
-  check_return_code ../generate_profile.sh -g conf cube4.scad
+  check_return_code generate_profile.sh -g conf cube4.scad
   echo "       generate cube4.scad"
   compare_bin_files ./cube4.conf ./cube1_expected/cube1.conf
   
@@ -268,7 +267,7 @@ test8() {
   echo -e "${IBlue} ###### test8 only_generate multiple values ${IReset}"
   
   echo "       generate gif,jpg cube1.scad"
-  check_return_code ../generate_profile.sh -g gif,jpg cube1.scad
+  check_return_code generate_profile.sh -g gif,jpg cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D
 gif
@@ -283,7 +282,7 @@ test9() {
   echo -e "${IBlue} ###### test8 generate with f3d ${IReset}"
   
   echo "       generate gif,jpg cube1.scad"
-  check_return_code ../generate_profile.sh -g gif,webp,jpg --f3d cube1.scad
+  check_return_code generate_profile.sh -g gif,webp,jpg --f3d cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "3D
 gif
@@ -294,6 +293,9 @@ webp"
 test1.png'
   rm -Rf ./cube1/
 }
+
+## cd in script directory
+cd "$(dirname "$0")"
 
 test1
 test2

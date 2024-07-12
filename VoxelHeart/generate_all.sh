@@ -1,6 +1,14 @@
 #!/bin/bash
 
-rm -Rf ./EasiestHeart ./VoxelHeart
+run_in_docker() {
+   docker run -it -v ./:/work openscad-tools $@
+}
 
-time ../openscad_batch/generate_profile.sh -g jpg,webp,3mf ./EasiestHeart.scad
-time ../openscad_batch/generate_profile.sh -g jpg,webp,3mf  ./VoxelHeart.scad
+if [[ $1 == "thingiverse" ]]
+then
+  run_in_docker generate_for_thingiverse.sh VoxelHeart
+  run_in_docker generate_for_thingiverse.sh EasiestHeart
+else
+  run_in_docker generate_profile.sh -g jpg,webp,3mf ./VoxelHeart.scad
+  run_in_docker generate_profile.sh -g jpg,webp,3mf ./EasiestHeart.scad
+fi

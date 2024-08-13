@@ -77,7 +77,7 @@ exec_check () {
   local ret=$?
   if [[ $ret != "0" ]]
   then
-      echo -e "${IRed}Excution fail, return code is $ret for command: $*${IReset}" >&2
+      echo -e "${IRed}Execution fail, return code is $ret for command: $*${IReset}" >&2
       exit $ret
   fi
 }
@@ -210,13 +210,13 @@ echo -e "${IGreen}use parameter file: $parameter_file${IReset}"
 parameter_sets=$( jq -r '.parameterSets | keys[]' "${parameter_file}" )
 
 openscad_debug="-q"
-f3d_debug="--quiet"
+f3d_debug="--verbose=error"
 imagemagick_debug=""
 img2webp_debug=""
 if [[ $debug == *"OUT"* ]]
 then
     openscad_debug=""
-    f3d_debug="--verbose" 
+    f3d_debug="--verbose=info" # {debug, info, warning, error, quiet}
     imagemagick_debug="-verbose" 
     img2webp_debug="-v"
 fi
@@ -268,9 +268,9 @@ generate_jpg() {
 }
 
 generate_anim() {
-    echo_info "generating animation images ${anim_dir}/${parameter_set}.png "
     if [[ $use_f3d == "true" ]]
-    then 
+    then
+        echo_info "generating animation images ${anim_dir}/${parameter_set}.png with f3d"
         imageEveryXDegree=$((360 / anim_nb_image))
         for i in $(seq -f "%03g" 1 $imageEveryXDegree 359);
         do
@@ -279,6 +279,7 @@ generate_anim() {
         done
         echo
     else
+      echo_info "generating animation images ${anim_dir}/${parameter_set}.png"
         exec_check $OPENSCAD ${openscad_debug} -o "${anim_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate "${anim_nb_image}" --imgsize "${anim_size}" ${m3D_render_option} "${scad_file}"  
     fi
 }

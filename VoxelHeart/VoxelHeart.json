@@ -24,7 +24,7 @@
         },
         "VoxelHeart1_hull": {
             "$fn": "10",
-            "resolution": "0.1",
+            "resolution": "0.01",
             "alternative_design": "false",
             "hull_that": "true",
             "use_sphere": "false"

@@ -6,6 +6,7 @@ run_in_docker() {
 
 if [[ $1 == "thingiverse" ]]
 then
+  echo "generate for thingiverse"
   run_in_docker generate_for_thingiverse.sh VoxelHeart
   run_in_docker generate_for_thingiverse.sh EasiestHeart
 else

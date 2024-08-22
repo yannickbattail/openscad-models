@@ -15,8 +15,9 @@ include <images/jedi_sith.scad>
 include <images/solo_carbonite.scad>
 include <images/yoda.scad>
 include <images/mountain_lake.scad>
+include <images/denver.scad>
 
-part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake]
+part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver]
 
 /* [Mug] */
 // height of the mug
@@ -70,7 +71,9 @@ function selectImage() =
                                                                             image_solo_carbonite:
                                                                                     (part == "yoda")?image_yoda:
                                                                                             (part == "mountain_lake")?
-                                                                                            image_mountain_lake:[];
+                                                                                            image_mountain_lake:
+                                                                                                (part == "denver")?
+                                                                                                image_denver:[];
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 

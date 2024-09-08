@@ -15,6 +15,9 @@ include <images/jedi_sith.scad>
 include <images/solo_carbonite.scad>
 include <images/yoda.scad>
 include <images/mountain_lake.scad>
+include <images/denver.scad>
+
+part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver]
 
 /* [Mug] */
 // height of the mug
@@ -22,9 +25,13 @@ mugHeight = 80; // [70:92]
 // external radius of the mug
 mugDiameter = 80; // [75:100]
 // mug thickness (Width of the wall)
-mugThickness = 4;
+mugThickness = 4; // [1:1:10]
+// mug with big handle that can be printed without supports
+hasBigHandle = true;
 // make a mug compatible with nutella glass
 withNutellaGlass = true;
+// Number of block
+numberOfBlock = 0; // [0:none, 3:3, 4:4, 5:5, 6:6]
 
 /* [Image] */
 // image display angle
@@ -32,13 +39,11 @@ imageAngle = 90; // [10:360]
 // image rotation angle
 imageRotation = 45; // [0:360]
 // relief multipier (by default relief is between 0 and 1)
-reliefMultipier = 2;
+reliefMultipier = 2; // [0.5:0.5:10]
 // image data from imageToMatrix.html 
 inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
 partialModel = "all"; // [all, image_only, mug_only]
-
-part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake]
 
 /* [Animation] */
 // rotating animation
@@ -62,9 +67,13 @@ function selectImage() =
                                                     (part == "mountain")?image_mountain:
                                                             (part == "moon")?image_moon:
                                                                     (part == "jedi_sith")?image_jedi_sith:
-                                                                            (part == "solo_carbonite")?image_solo_carbonite:
-                                                                                (part == "yoda")?image_yoda:
-                                                                                    (part == "mountain_lake")?image_mountain_lake:[];
+                                                                            (part == "solo_carbonite")?
+                                                                            image_solo_carbonite:
+                                                                                    (part == "yoda")?image_yoda:
+                                                                                            (part == "mountain_lake")?
+                                                                                            image_mountain_lake:
+                                                                                                (part == "denver")?
+                                                                                                image_denver:[];
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 
@@ -77,15 +86,15 @@ if (len(inlineImage) > 0) {
 epsi = 0.01; // epsilon
 
 rotate([0, 0, 180]) mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation,
-reliefMultipier, imageData, partialModel);
+reliefMultipier, imageData, partialModel, numberOfBlock, hasBigHandle);
 
 module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier,
-imageMatrix, partialModel = "all") {
+imageMatrix, partialModel = "all", numberOfBlock, hasBigHandle) {
     difference() {
         render() // preview display nothing without this
             union() {
                 if (partialModel != "image_only") {
-                    mug(mugHeight, mugRadius, mugThickness);
+                    mug(mugHeight, mugRadius, mugThickness, hasBigHandle);
                 }
                 if (partialModel != "mug_only") {
                     rotate([0, 0, imageRotation]) {
@@ -95,7 +104,7 @@ imageMatrix, partialModel = "all") {
             }
         if (withNutellaGlass) {
             translate([0, 0, mugThickness])
-                nutellaGlass();
+                nutellaGlass(plain = true, nbBlock = numberOfBlock);
         } else {
             translate([0, 0, mugThickness]) {
                 cylinder(h = mugHeight - mugThickness + epsi, r = mugRadius - mugThickness);

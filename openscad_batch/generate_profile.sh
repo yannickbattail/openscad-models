@@ -25,6 +25,7 @@ config_file=""
 only_parameter_set=""
 only_generate=""
 debug="0"
+init_project="false"
 use_f3d="false"
 
 usage() {
@@ -34,6 +35,7 @@ usage() {
     echo "-c, --config-file configuration_file      specify another configuration file than the default \${OPENSCAD_FILE}.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
     echo "-g, --generate only_generate              only_generate must be one or multiple separated by ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl." >&2
+    echo "--init                                    Initialize files for a new project" >&2
     echo "--f3d                                     use f3d for images generation" >&2
     echo "--debug what_to_debug                     debug mode: what_to_debug must be one or multiple separated by ',' of these values: CMD,OUT" >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
@@ -81,151 +83,6 @@ exec_check () {
       exit $ret
   fi
 }
-
-while [[ $# -gt 0 ]]; do
-  case $1 in
-    -c|--config-file)
-      config_file="$2"
-      shift # past argument
-      shift # past value
-      ;;
-    -p|--only-parameter-set)
-      only_parameter_set="$2"
-      shift # past argument
-      shift # past value
-      ;;
-    -g|--generate)
-      only_generate="$2"
-      shift # past argument
-      shift # past value
-      ;;
-    --f3d)
-      use_f3d="true"
-      shift # past argument
-      ;;
-    --debug)
-      debug="$2"
-      shift # past argument
-      shift # past value
-      ;;
-    -*|--*)
-      echo_error "unknown option: $1"
-      ;;
-    *)
-      POSITIONAL_ARGS+=("$1") # save positional arg
-      shift # past argument
-      ;;
-  esac
-done
-
-set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
-
-### default configuration
-
-image_dollar_fn="50"
-image_size="1024,1024"
-image_mosaic_geometry="256x256+2+2"
-image_mosaic_tile="2x2"
-
-anim_dollar_fn="50"
-anim_size="512,512"
-anim_nb_image="20"
-anim_delay="20"
-anim_keep_images="false"
-
-m3D_dollar_fn="50"
-stl_format="asciistl"
-m3D_render_option=""
-
-f3d_colors="--bg-color 0.9,0.8,1 --color 0.3,0.3,1"
-f3d_material="--roughness=0.5 --metallic=1"
-#f3d_hdri="--hdri-skybox --hdri-ambient --hdri-file=./tests/sky.jpg" # -u
-f3d_hdri=""
-
-OPENSCAD="openscad"
-
-### end configuration
-
-scad_file=$1
-
-if ! command -v jq &> /dev/null
-then
-    echo_error "The command jq is not installed."
-fi
-
-if [[ $use_f3d == "true" ]] && ! command -v f3d &> /dev/null
-then
-    echo_error "The command f3d is not installed."
-fi
-
-if [[ $scad_file == "" ]]
-then
-    echo_error "no openscad file specified."
-    exit 1
-fi
-if [[ ! -f $scad_file ]]
-then
-    echo_error "openscad file $scad_file does not exist."
-fi
-
-scad_file_name=$(basename "$scad_file" .scad)
-scad_file_dir=$(dirname "$scad_file")
-
-
-if [[ $config_file != "" ]]
-then
-    if [[ ! -f "$config_file" ]]
-    then
-        echo_error "config file: $config_file does not exist."
-    fi
-fi
-
-if [[ $config_file == "" ]]
-then
-    config_file=${scad_file_dir}/${scad_file_name}.conf
-fi
-
-if [[ -f "$HOME/.config/generate_profile.conf" ]]
-then
-    echo_info "loading user config file: $HOME/.config/generate_profile.conf"
-    source "$HOME/.config/generate_profile.conf"
-else
-    echo_info "no user config file: $HOME/.config/generate_profile.conf"
-fi
-
-if [[ -f "$config_file" ]]
-then
-    echo_info "loading config file: $config_file"
-    source "$config_file"
-else
-    echo_info "no config file loaded"
-fi
-
-parameter_file=${scad_file_dir}/${scad_file_name}.json
-if [[ ! -f $parameter_file ]]
-then
-    echo_error "no parameter file: $parameter_file"
-fi
-echo -e "${IGreen}use parameter file: $parameter_file${IReset}"
-parameter_sets=$( jq -r '.parameterSets | keys[]' "${parameter_file}" )
-
-openscad_debug="-q"
-f3d_debug="--verbose=error"
-imagemagick_debug=""
-img2webp_debug=""
-if [[ $debug == *"OUT"* ]]
-then
-    openscad_debug=""
-    f3d_debug="--verbose=info" # {debug, info, warning, error, quiet}
-    imagemagick_debug="-verbose" 
-    img2webp_debug="-v"
-fi
-
-jpg_dir=./${scad_file_name}/images
-anim_dir=./${scad_file_name}/anim
-gif_dir=./${scad_file_name}/gif
-webp_dir=./${scad_file_name}/webp
-m3D_dir=./${scad_file_name}/3D
 
 prepare_jpg() {
     mkdir -p "$jpg_dir"
@@ -316,8 +173,83 @@ generate_mosaic() {
     exec_check montage ${imagemagick_debug} -geometry "${image_mosaic_geometry}" -tile "${image_mosaic_tile}" "${jpg_dir}/"*.png "${jpg_dir}/mosaic_${scad_file_name}.jpg"
 }
 
+generate_sample_scad() {
+  if [[ -f "$scad_file" ]]
+  then
+    echo_error "Cannot create new project file: ${scad_file}, file already exists."
+  else
+    cat << EOF > "$scad_file"
+
+// part to generate
+part = "ball"; // [all, ball, stick]
+
+// size of the model
+size=50; // [10:5:100]
+
+/* [Animation] */
+// resolution
+\$fn=10;
+
+/* [Animation] */
+// rotating animation
+animation_rotation = false;
+
+/* [Hidden] */
+is_animated = animation_rotation;
+\$vpt = is_animated?[0, 0, 0]:\$vpt;
+\$vpr = is_animated?[60, 0, animation_rotation?(365 * \$t):45]:\$vpr;  // animation rotate around the object
+\$vpd = is_animated?200:\$vpd;
+
+if (part == "ball") {
+    ball(size);
+} else if (part == "stick") {
+    stick(size);
+} else {
+    ball(size);
+    stick(size);
+}
+
+module stick(size) {
+    color("green") rotate([0, 90, 0]) cylinder(d=size/2, h=size * 1.25, center=true);
+}
+
+module ball(size) {
+    difference() {
+        sphere(d=size);
+        cylinder(d=size/2, h=size * 1.25, center=true);
+        #rotate([90, 0, 0]) cylinder(d=size/2, h=size * 1.25, center=true);
+        stick(size);
+    }
+}
+EOF
+  echo_info "file $scad_file generated"
+  fi
+}
+
+generate_sample_preset() {
+  cat << EOF > "$parameter_file"
+{
+    "parameterSets": {
+        "all_20": {
+            "part": "all",
+            "size": "20"
+        },
+        "ball_50": {
+            "part": "ball",
+            "size": "50"
+        },
+        "stick_50": {
+            "part": "stick",
+            "size": "50"
+        }
+    },
+    "fileFormatVersion": "1"
+}
+EOF
+  echo_info "file $parameter_file generated"
+}
+
 generate_conf() {
-  echo_info "generating config file ${config_file} ..."
   cat << EOF > "$config_file"
 ####### configuration file for generate_profile.sh #######
 ## it will be sourced by generate_profile.sh
@@ -364,6 +296,7 @@ generate_conf() {
 #OPENSCAD="openscad-nightly"
 
 EOF
+  echo_info "file $config_file generated"
 }
 
 prepare_all() {
@@ -543,6 +476,173 @@ generate_all() {
     fi
 }
 
+generate_project() {
+  scad_file_name=$(basename "$scad_file" .scad)
+  scad_file_dir=$(dirname "$scad_file")
+  generate_sample_scad
+  parameter_file=${scad_file_dir}/${scad_file_name}.json
+  generate_sample_preset
+  config_file=${scad_file_dir}/${scad_file_name}.conf
+  generate_conf
+}
+
+
+while [[ $# -gt 0 ]]; do
+  case $1 in
+    -c|--config-file)
+      config_file="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    -p|--only-parameter-set)
+      only_parameter_set="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    -g|--generate)
+      only_generate="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    --init)
+      init_project="true"
+      shift # past argument
+      ;;
+    --f3d)
+      use_f3d="true"
+      shift # past argument
+      ;;
+    --debug)
+      debug="$2"
+      shift # past argument
+      shift # past value
+      ;;
+    -*|--*)
+      echo_error "unknown option: $1"
+      ;;
+    *)
+      POSITIONAL_ARGS+=("$1") # save positional arg
+      shift # past argument
+      ;;
+  esac
+done
+
+set -- "${POSITIONAL_ARGS[@]}" # restore positional parameters
+
+### default configuration
+
+image_dollar_fn="50"
+image_size="1024,1024"
+image_mosaic_geometry="256x256+2+2"
+image_mosaic_tile="2x2"
+
+anim_dollar_fn="50"
+anim_size="512,512"
+anim_nb_image="20"
+anim_delay="20"
+anim_keep_images="false"
+
+m3D_dollar_fn="50"
+stl_format="asciistl"
+m3D_render_option=""
+
+f3d_colors="--bg-color 0.9,0.8,1 --color 0.3,0.3,1"
+f3d_material="--roughness=0.5 --metallic=1"
+#f3d_hdri="--hdri-skybox --hdri-ambient --hdri-file=./tests/sky.jpg" # -u
+f3d_hdri=""
+
+OPENSCAD="openscad"
+
+### end configuration
+
+scad_file=$1
+
+if ! command -v jq &> /dev/null
+then
+    echo_error "The command jq is not installed."
+fi
+
+if [[ $use_f3d == "true" ]] && ! command -v f3d &> /dev/null
+then
+    echo_error "The command f3d is not installed."
+fi
+
+if [[ $init_project == "true" ]]
+then
+  generate_project
+  echo_info "Done."
+  exit 0
+fi
+
+if [[ $scad_file == "" ]]
+then
+    echo_error "no openscad file specified."
+    exit 1
+fi
+if [[ ! -f $scad_file ]]
+then
+    echo_error "openscad file $scad_file does not exist."
+fi
+
+scad_file_name=$(basename "$scad_file" .scad)
+scad_file_dir=$(dirname "$scad_file")
+
+
+if [[ $config_file != "" ]]
+then
+    if [[ ! -f "$config_file" ]]
+    then
+        echo_error "config file: $config_file does not exist."
+    fi
+fi
+
+if [[ $config_file == "" ]]
+then
+    config_file=${scad_file_dir}/${scad_file_name}.conf
+fi
+
+if [[ -f "$HOME/.config/generate_profile.conf" ]]
+then
+    echo_info "loading user config file: $HOME/.config/generate_profile.conf"
+    source "$HOME/.config/generate_profile.conf"
+else
+    echo_info "no user config file: $HOME/.config/generate_profile.conf"
+fi
+
+if [[ -f "$config_file" ]]
+then
+    echo_info "loading config file: $config_file"
+    source "$config_file"
+else
+    echo_info "no config file loaded"
+fi
+
+parameter_file=${scad_file_dir}/${scad_file_name}.json
+if [[ ! -f $parameter_file ]]
+then
+    echo_error "no parameter file: $parameter_file"
+fi
+echo -e "${IGreen}use parameter file: $parameter_file${IReset}"
+parameter_sets=$( jq -r '.parameterSets | keys[]' "${parameter_file}" )
+
+openscad_debug="-q"
+f3d_debug="--verbose=error"
+imagemagick_debug=""
+img2webp_debug=""
+if [[ $debug == *"OUT"* ]]
+then
+    openscad_debug=""
+    f3d_debug="--verbose=info" # {debug, info, warning, error, quiet}
+    imagemagick_debug="-verbose"
+    img2webp_debug="-v"
+fi
+
+jpg_dir=./${scad_file_name}/images
+anim_dir=./${scad_file_name}/anim
+gif_dir=./${scad_file_name}/gif
+webp_dir=./${scad_file_name}/webp
+m3D_dir=./${scad_file_name}/3D
+
 prepare_all
 
 for parameter_set in $parameter_sets ; do
@@ -565,7 +665,6 @@ fi
 
 if [[ $anim_keep_images != "true" ]]
 then
-    rm -Rf "$anim_dir" 
+    rm -Rf "$anim_dir"
 fi
-
 echo_info "Done."

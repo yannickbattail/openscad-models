@@ -1,0 +1,26 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "fox": {
+      "part": "fox"
+    },
+    "dino": {
+      "part": "dino"
+    },
+    "dragon": {
+      "part": "dragon"
+    },
+    "cat": {
+      "part": "cat"
+    },
+    "panda": {
+      "part": "panda"
+    },
+    "heart_gem": {
+      "part": "heart_gem"
+    },
+    "VoxelHeart": {
+      "part": "VoxelHeart"
+    }
+  }
+}

@@ -21,6 +21,9 @@
     },
     "VoxelHeart": {
       "part": "VoxelHeart"
+    },
+    "vader": {
+      "part": "vader"
     }
   }
 }

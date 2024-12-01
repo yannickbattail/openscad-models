@@ -34,7 +34,33 @@ $vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
 $vpd = animation_rotation ? 300 : [];
 
-dice(part, fixation_diameter, faces, font_type, font_size);
+//dice(part, fixation_diameter, faces, font_type, font_size);
+dicePart(part, fixation_diameter, faces, font_type, font_size);
+
+module dicePart(animalName, fixation_diameter, faces, font_type, font_size) {
+    intersection() {
+        difference() {
+            color("yellow")
+                sphere(d = 100);
+            r = 32;
+            cylinder(r = r, h = 200, center = true);
+            rotate([0, 90, 0])
+                cylinder(r = r, h = 200, center = true);
+            rotate([90, 0, 0])
+                cylinder(r = r, h = 200, center = true);
+            numberFaces(faces, font_type, font_size);
+            fixation(fixation_diameter);
+
+        }
+        rotate([45, 0, 0])
+            translate([-50, 0, 0])
+                cube(100);
+        rotate([0, 0, -45])
+            translate([0, 0, -50])
+                cube(100);
+
+    }
+}
 
 module dice(animalName, fixation_diameter, faces, font_type, font_size) {
     difference() {
@@ -65,7 +91,7 @@ module numberFaces(numberText, font_type, font_size) {
 module numbers(number, font_type, font_size) {
     for (i = [0:4]) {
         rotate([46, 0, 45 + 90 * i])
-            translate([0, 0, 49])
+            translate([0, 0, 49.5])
                 number(number, font_type, font_size);
     }
 }
@@ -78,7 +104,8 @@ module number(number, font_type, font_size) {
 module fixation(fixation_diameter) {
     color("blue") {
         for (i = [0:4]) {
-            rotate([55, 0, 45 + 90 * i]) cylinder(h = 100, d = fixation_diameter, center = true);
+            rotate([55, 0, 45 + 90 * i])
+                cylinder(h = 95, d = fixation_diameter, center = true);
         }
     }
 }

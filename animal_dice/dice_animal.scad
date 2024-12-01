@@ -1,5 +1,5 @@
 // animal
-part = "fox"; // [fox, dino, dragon, cat, panda, heart_gem, VoxelHeart]
+part = "fox"; // [fox, dino, dragon, cat, panda, heart_gem, VoxelHeart, vader]
 // fixation bars diameter 
 fixation_diameter = 4;
 // font type
@@ -132,6 +132,8 @@ module animal(animalName) {
     } else if (animalName == "VoxelHeart") {
         animalModel(file = "animals/VoxelHeart1_hull.stl", scalePercent = 25, centerOfGravity = [-1.78855650e-09,
             1.70348953e-10, 2.82393421e-01]);
+    } else if (animalName == "vader") {
+        animalModel(file = "animals/vader.stl", scalePercent = 0.75, centerOfGravity =   [-0.22242166,  0.61748402, 43.68599404]);
     } else {
         assert(true, str("wrong animalname", animalName));
     }

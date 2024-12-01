@@ -28,6 +28,8 @@ Copy model to `animals/heart_gem.stl`
 Install numpy-stl if needed
 
 ```shell
+python3 -m venv .
+. ./bin/activate
 pip install numpy-stl
 ```
 

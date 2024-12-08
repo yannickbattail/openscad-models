@@ -145,6 +145,18 @@
       "partialModel": "all",
       "reliefMultipier": "3",
       "withNutellaGlass": "true"
+    },
+    "christmas": {
+      "imageAngle": "200",
+      "imageRotation": "80",
+      "mugDiameter": "76",
+      "mugHeight": "80",
+      "mugThickness": "2",
+      "numberOfBlock": "4",
+      "part": "christmas",
+      "partialModel": "all",
+      "reliefMultipier": "2",
+      "withNutellaGlass": "true"
     }
   }
 }

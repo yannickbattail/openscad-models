@@ -1,6 +1,8 @@
-// animal
-part = "fox"; // [fox, dino, dragon, cat, panda, heart_gem, VoxelHeart, vader]
-// fixation bars diameter 
+// animal model
+model = "fox"; // [fox, dino, dragon, cat, panda, heart_gem, VoxelHeart, vader]
+// part
+part = "whole"; // [whole, edge1_3]
+// fixation bars diameter
 fixation_diameter = 4;
 // font type
 font_type = "Arial";
@@ -34,24 +36,12 @@ $vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
 $vpd = animation_rotation ? 300 : [];
 
-//dice(part, fixation_diameter, faces, font_type, font_size);
-dicePart(part, fixation_diameter, faces, font_type, font_size);
+//full_dice(model, fixation_diameter, faces, font_type, font_size);
+dicePart(model, fixation_diameter, faces, font_type, font_size);
 
 module dicePart(animalName, fixation_diameter, faces, font_type, font_size) {
     intersection() {
-        difference() {
-            color("yellow")
-                sphere(d = 100);
-            r = 32;
-            cylinder(r = r, h = 200, center = true);
-            rotate([0, 90, 0])
-                cylinder(r = r, h = 200, center = true);
-            rotate([90, 0, 0])
-                cylinder(r = r, h = 200, center = true);
-            numberFaces(faces, font_type, font_size);
-            fixation(fixation_diameter);
-
-        }
+        dice(faces, font_type, font_size);
         rotate([45, 0, 0])
             translate([-50, 0, 0])
                 cube(100);
@@ -62,7 +52,15 @@ module dicePart(animalName, fixation_diameter, faces, font_type, font_size) {
     }
 }
 
-module dice(animalName, fixation_diameter, faces, font_type, font_size) {
+module full_dice(animalName, fixation_diameter, faces, font_type, font_size) {
+    dice(animalName, fixation_diameter, faces, font_type, font_size);
+    fixation(fixation_diameter);
+    color("red")
+        animal(animalName);
+    // cube(77, center=true); // containing cube
+}
+
+module dice(faces, font_type, font_size) {
     difference() {
         color("yellow")
             sphere(d = 100);

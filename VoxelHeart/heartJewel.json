@@ -1,17 +1,41 @@
 {
     "fileFormatVersion": "1",
     "parameterSets": {
-        "all": {
+        "jewelCatHeartLowRez": {
             "part": "all",
-            "resolution": 0.1
+            "resolution": 0.1,
+            "voxelHeart": false,
+            "cat": true
         },
-        "heartLeft": {
+        "jewelCatHeartLeft": {
             "part": "heartLeft",
-            "resolution": 0.01
+            "resolution": 0.01,
+            "voxelHeart": true,
+            "cat": true
         },
-        "heartRight": {
+        "jewelCatHeartRight": {
             "part": "heartRight",
-            "resolution": 0.01
+            "resolution": 0.01,
+            "voxelHeart": true,
+            "cat": true
+        },
+        "jewelHeartLowRez": {
+            "part": "all",
+            "resolution": 0.1,
+            "voxelHeart": false,
+            "cat": false
+        },
+        "jewelHeartLeft": {
+            "part": "heartLeft",
+            "resolution": 0.01,
+            "voxelHeart": true,
+            "cat": false
+        },
+        "jewelHeartRight": {
+            "part": "heartRight",
+            "resolution": 0.01,
+            "voxelHeart": true,
+            "cat": false
         }
     }
 }

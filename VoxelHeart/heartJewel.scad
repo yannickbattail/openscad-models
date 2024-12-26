@@ -1,16 +1,11 @@
-// ######################################################################################
-// #  use<EasiestHeart.scad>;  #
-// ######################################################################################
-// ######################################################################################
-// #  use<VoxelHeart.scad>;  #
-// ######################################################################################
-// ######################################################################################
-// #  ./heartJewel.scad  #
-// ######################################################################################
 // part to generate
 part = "all"; // [all, heartLeft, heartRight]
 
-voxelHeart = true;
+// add the cat on the heart
+cat = true;
+
+// voxelHeart or easiest_heart
+voxelHeart = false;
 
 // Size of a voxel and so then number of voxels. It takes an exponential time to process. Look at the console for "Number of voxel".
 resolution = 0.05; // [0.02:0.01:0.1]
@@ -34,6 +29,7 @@ $vpd = is_animated?300:$vpd;
 
 use<EasiestHeart.scad>;
 use<VoxelHeart.scad>;
+use<cat/cat.scad>;
 
 if (part == "heartLeft") {
     heartLeft();
@@ -41,18 +37,27 @@ if (part == "heartLeft") {
     heartRight();
 } else {
     scale(1.01)
-    heartLeft();
+        heartLeft();
     heartRight();
 }
 
 module baseHeart() {
-    if (voxelHeart) {
-        scale(24)
-            heart(resolution, hull_that)
+    difference() {
+        if (voxelHeart) {
+            scale(24)
+                heart(resolution, hull_that)
                 cube(resolution * 1.0001, center = true);
-        // * 1.0001 this is juste to make sure the cubes realy touch each other
-    } else {
-        easiest_heart();
+            // * 1.0001 this is juste to make sure the cubes realy touch each other
+        } else {
+            easiest_heart();
+        }
+        if (cat) {
+            translate([0, -9, 4.5])
+                rotate([90, 0, 0])
+                    linear_extrude(6)
+                        scale(0.04)
+                            cat_svg();
+        }
     }
 }
 
@@ -65,7 +70,7 @@ module heartLeft() {
                     rotate([90, 0, 0])
                         linear_extrude(200, center = true)
                             puzzleConnection(0)
-                            baseHeart();
+                            easiest_heart();
             }
         translate([25, 0, 25])
             rotate([90, 0, 0])

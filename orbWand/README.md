@@ -14,7 +14,6 @@ on [thingiverse](https://www.thingiverse.com/thing:3606120).
 
 ## changelog
 
-
 ## keywords
 
 septer, wand, orb, plasma, plasma lamp,

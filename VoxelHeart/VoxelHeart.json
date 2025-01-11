@@ -1,33 +1,33 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "VoxelHeart1_cube": {
-            "$fn": "10",
-            "resolution": "0.1",
-            "alternative_design": "false",
-            "hull_that": "false",
-            "use_sphere": "false"
-        },
-        "VoxelHeart1_sphere": {
-            "$fn": "8",
-            "resolution": "0.1",
-            "alternative_design": "false",
-            "hull_that": "false",
-            "use_sphere": "true"
-        },
-        "VoxelHeart2_cube": {
-            "$fn": "10",
-            "resolution": "0.1",
-            "alternative_design": "true",
-            "hull_that": "false",
-            "use_sphere": "false"
-        },
-        "VoxelHeart1_hull": {
-            "$fn": "10",
-            "resolution": "0.01",
-            "alternative_design": "false",
-            "hull_that": "true",
-            "use_sphere": "false"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "VoxelHeart1_cube": {
+      "$fn": "10",
+      "resolution": "0.1",
+      "alternative_design": "false",
+      "hull_that": "false",
+      "use_sphere": "false"
+    },
+    "VoxelHeart1_sphere": {
+      "$fn": "8",
+      "resolution": "0.1",
+      "alternative_design": "false",
+      "hull_that": "false",
+      "use_sphere": "true"
+    },
+    "VoxelHeart2_cube": {
+      "$fn": "10",
+      "resolution": "0.1",
+      "alternative_design": "true",
+      "hull_that": "false",
+      "use_sphere": "false"
+    },
+    "VoxelHeart1_hull": {
+      "$fn": "10",
+      "resolution": "0.01",
+      "alternative_design": "false",
+      "hull_that": "true",
+      "use_sphere": "false"
     }
+  }
 }

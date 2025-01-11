@@ -7,6 +7,8 @@ cat = true;
 // voxelHeart or easiest_heart
 voxelHeart = false;
 
+/* [voxelHeart configuration] */
+
 // Size of a voxel and so then number of voxels. It takes an exponential time to process. Look at the console for "Number of voxel".
 resolution = 0.05; // [0.02:0.01:0.1]
 
@@ -31,28 +33,29 @@ use<EasiestHeart.scad>;
 use<VoxelHeart.scad>;
 use<cat/cat.scad>;
 
-if (part == "heartLeft") {
-    heartLeft();
-} else if (part == "heartRight") {
-    heartRight();
-} else {
-    scale(1.01)
+rotate([-90, 0, 0]) {
+    if (part == "heartLeft") {
         heartLeft();
-    heartRight();
+    } else if (part == "heartRight") {
+        heartRight();
+    } else {
+        scale(1.01)
+            heartLeft();
+        heartRight();
+    }
 }
-
 module baseHeart() {
     difference() {
         if (voxelHeart) {
             scale(24)
-                heart(resolution, hull_that)
-                cube(resolution * 1.0001, center = true);
-            // * 1.0001 this is juste to make sure the cubes realy touch each other
+                import("./VoxelHeart/3D/VoxelHeart1_hull.stl");
+            //    heart(resolution, hull_that)
+            //        cube(resolution * 1.0001, center = true); // * 1.0001 this is juste to make sure the cubes realy touch each other
         } else {
             easiest_heart();
         }
         if (cat) {
-            translate([0, -9, 4.5])
+            translate([0, -12, 4.5])
                 rotate([90, 0, 0])
                     linear_extrude(6)
                         scale(0.04)
@@ -111,7 +114,7 @@ module puzzleConnection(offsetPuzzle) {
 }
 
 module torus(radius, thickness) {
-    rotate_extrude() {
-        translate([radius, 0]) circle(r = thickness);
-    }
+    rotate_extrude()
+        translate([radius, 0])
+            circle(r = thickness);
 }

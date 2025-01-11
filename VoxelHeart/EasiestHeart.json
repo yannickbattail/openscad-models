@@ -1,10 +1,10 @@
 {
-    "parameterSets": {
-        "EasiestHeart": {
-            "scale_x": "1",
-            "scale_y": "0.7",
-            "scale_z": "1.7"
-        }
-    },
-    "fileFormatVersion": "1"
+  "parameterSets": {
+    "EasiestHeart": {
+      "scale_x": "1",
+      "scale_y": "0.7",
+      "scale_z": "1.7"
+    }
+  },
+  "fileFormatVersion": "1"
 }

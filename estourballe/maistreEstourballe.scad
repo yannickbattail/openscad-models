@@ -1,4 +1,4 @@
-part = "estourballeEntiere"; // [estourballeEntiere, demiSphereBas, demiSpherehaut, anneau, bouton, bande1, bande2, croix]
+part = "estourballeEntiere"; // [estourballeEntiere, demiSphereBas, demiSpherehaut, anneau, bouton, croix]
 
 /* [Animation] */
 // rotating animation
@@ -34,10 +34,6 @@ module estourballePieces(part) {
         ringBlack(ballDiameter, thickness);
     } else if (part == "bouton") {
         button(ballDiameter);
-    } else if (part == "bande1") {
-        bande1(ballDiameter, thickness);
-    } else if (part == "bande2") {
-        bande2(ballDiameter, thickness);
     } else if (part == "croix") {
         crossTop();
     } else {
@@ -69,8 +65,25 @@ module halfSphereTop(ballDiameter, thickness) {
     translate([0, 0, 0.01]) {
         difference() {
             union() {
-                color("DarkSlateGray")
+                color("DarkViolet")
                     sphere(d = ballDiameter);
+                color("Magenta") {
+                    mmirror([0,0,1])
+                        rotate([45, 0, 0])
+                            scale([0.9, 0.8, 1.1])
+                               sphere(d = ballDiameter);
+                }
+                color("white") {
+                    rotate([0,-55,0])
+                        translate([ballDiameter / 2-1, 0, 0])
+                            sphere(d = 5);
+                    rotate([0,-40,0])
+                        translate([ballDiameter / 2-1, 0, 0])
+                            sphere(d = 4);
+                    rotate([0,-30,0])
+                        translate([ballDiameter / 2-1, 0, 0])
+                            sphere(d = 3);
+                }
             }
             translate([0, 0, - ballDiameter / 2 - 1])
                 cube(ballDiameter, center = true);
@@ -85,66 +98,19 @@ module bandes(ballDiameter, thickness) {
     bande2(ballDiameter, thickness);
 }
 
-module bande1(ballDiameter, thickness) {
-    difference() {
-        union() {
-            color("gold")
-                sphere(d = ballDiameter + 2);
-            nailsBande(ballDiameter);
-        }
-        sphere(d = ballDiameter + 0.1);
-        translate([0, 0, - (ballDiameter + 10) / 2 + 5.5])
-            cube(ballDiameter + 10, center = true);
-        translate([0, - (ballDiameter + 10) / 2 - 22, 0])
-            cube(ballDiameter + 10, center = true);
-        // translate([0, (ballDiameter + 10) / 2 + 22, 0])
-        //     #cube(ballDiameter+10, center = true);
-        translate([22, 0, 0])
-            cube([32, 28, ballDiameter + 10], center = true);
-        translate([- 22, 0, 0])
-            cube([32, 28, ballDiameter + 10], center = true);
-        cube([10, 10, 100], center = true);
-        cube([8, 20, 100], center = true);
-        translate([- (ballDiameter + 10) / 2, 0, 0]) {
-            cube(ballDiameter + 10);
-        }
-    }
-}
-
-module bande2(ballDiameter, thickness) {
-    mirror([0, 1, 0]) {
-        bande1(ballDiameter, thickness);
-    }
-}
-
-module nailsBande(ballDiameter) {
-    color("white")
-        for (i = [1:5]) {
-            rotate([0, i * 360 / 12 - 90, 0])
-                translate([0, - 18, 30])
-                    sphere(d = 5);
-        }
-}
-
 module nails(ballDiameter) {
-    color("white") {
-        for (i = [0:2]) {
-            rotate([0, 0, (i - 1) * 40])
-                translate([0, ballDiameter / 2 + 1, 0])
-                    sphere(d = 5);
-        }
-        for (i = [0:2]) {
-            rotate([0, 0, (i - 1) * 40 + 180])
-                translate([0, ballDiameter / 2 + 1, 0])
-                    sphere(d = 5);
-        }
+    color("white")
+    for (i = [0:16]) {
+        rotate([0, 0, i * 360 / 16])
+            translate([0, ballDiameter / 2, 0])
+                sphere(d = 4);
     }
 }
 
 module ringBlack(ballDiameter, thickness) {
     difference() {
         color("SlateGray")
-            cylinder(d = ballDiameter + 3, h = 11, center = true);
+            cylinder(d = ballDiameter + 3, h = 7, center = true);
         button(ballDiameter);
         translate([0, 0, 1])
             cylinder(d = ballDiameter, h = ballDiameter);
@@ -174,55 +140,89 @@ module crossTop() {
             arm();
         crossBase();
 
-        color("white")
-            scale([0.8, 0.5, 1])
-                sphere(8);
+        mmirror([0, 0, 1])
+        mmirror([1, 0, 0])
+        mmirror([0, 1, 0]) {
+            crosMidle();
+        }
+    }
+}
+
+module crosMidle() {
+    color("white")
+    translate([5.001,0,0])
+    difference() {
+        cube(15);
+        translate([18.5,13,11])
+           sphere(23);
     }
 }
 
 module crossBase() {
-    translate([0, 0, - 35 / 2])
-        color("gold") {
+    translate([0, 0, - 35 / 2]) {
+        color("DarkViolet") {
             cube([10, 10, 35], center = true);
-            translate([4, 0, 0])
-                rotate([0, - 90, 0])
-                    linear_extrude(8) {
-                        crossFoot();
-                        mirror([0, 1]) {
+            translate([5, 0, 0])
+                rotate([0, -90, 0])
+                    linear_extrude(10) {
+                        mmirror([0, 1]) {
                             crossFoot();
                         }
                     }
         }
+        color("white") {
+            translate([5, 0, -8])
+                sphere(d = 3);
+            translate([-5, 0, -8])
+                sphere(d = 3);
+        }
+    }
 }
 
 module crossFoot() {
-    polygon([[- 14, 5], [- 15, 10], [- 8, 7], [- 5, 9], [- 3, 5]]);
+    polygon([[- 14, 5],
+            [- 15, 8],
+            [- 12, 8],
+            [- 7, 5]]);
 }
 
 module arm() {
     translate([5, 0, 0])
         rotate([90, 0, 0])
             rotate([0, - 90, 0]) {
-                color("gold") {
+                color("DarkViolet") {
                     linear_extrude(10) {
-                        halfArm();
-                        mirror([1, 0]) {
+                        mmirror([1, 0]) {
                             halfArm();
                         }
                     }
                 }
                 color("white") {
-                    translate([0, 10, 1])
-                        sphere(d = 4);
-                    translate([0, 10, 9])
-                        sphere(d = 4);
-                    translate([0, 30, 5])
-                        scale([0.8, 0.5, 1])
-                            sphere(7);
+                    translate([0, 28, 1])
+                        sphere(d = 3);
+                    translate([0, 28, 9])
+                        sphere(d = 3);
                 }
             }
 }
 
 module halfArm() {
-    polygon([[0, 0], [0, 37], [7, 30], [6, 25], [5, 20], [5, 0]]);
+    polygon([[0, 0],
+            [0, 35],
+            [2, 35],
+            [2.5, 33],
+            [4, 31],
+            [7, 30],
+            [5, 26],
+            [5, 8],
+            [8, 0]]);
+}
+
+/*
+same as mirror but duplicate children
+*/
+module mmirror(mat) {
+    children();
+    mirror(mat)
+        children();
 }

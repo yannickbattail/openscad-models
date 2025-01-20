@@ -1,6 +1,6 @@
-# Estourballe, Super Estourballe and Hyper Estourballe, pokeball holy hand grenade of Antioch, split in part
+# Estourballe, Super Estourballe, Hyper Estourballe and Maistre Estourballe, pokeball holy hand grenade of Antioch, split in part
 
-L'estourballe est une Pokéball médiévale tirée
+L'estourballe est une Pokéball médiévale ou un [Orbe crucigère](https://fr.wikipedia.org/wiki/Orbe_crucig%C3%A8re) tirée
 du [Pochon Dextre](https://simondethuillieres.com/product/le-pochon-dextre/)
 de [Martin Foret](https://twitter.com/MartinForet) et [la_chocoline](https://instagram.com/la_chocoline/)
 inspirée par l'enlumineur [Simon de Thuillières](https://www.instagram.com/simondethuillieres/),
@@ -9,6 +9,7 @@ jeu [worms](https://worms.fandom.com/wiki/Holy_Hand_Grenade).
 
 ## UPDATE
 
+- v6 maistre estourballe 
 - v5 hyper estourballe https://www.thingiverse.com/thing:6343804
 - v4 super estourballe: split the 2 red bands so they can be printed in another color
 - v3 super estourballe https://www.thingiverse.com/thing:6323047

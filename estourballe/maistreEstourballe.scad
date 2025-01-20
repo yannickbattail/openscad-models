@@ -1,4 +1,9 @@
+use<geodesic_sphere.scad>;
+
 part = "estourballeEntiere"; // [estourballeEntiere, demiSphereBas, demiSpherehaut, anneau, bouton, croix]
+
+// use geodesic_sphere or normal sphere
+use_geodesic_sphere=true;
 
 /* [Animation] */
 // rotating animation
@@ -54,7 +59,11 @@ module halfSphereBottom(ballDiameter, thickness) {
     color("white")
         translate([0, 0, - 0.01])
             difference() {
-                sphere(d = ballDiameter);
+                if (use_geodesic_sphere) {
+                    geodesic_sphere(d = ballDiameter, $fn = 12);
+                } else {
+                    sphere(d = ballDiameter);
+                }
                 translate([0, 0, ballDiameter / 2 + 1])
                     cube(ballDiameter, center = true);
                 sphere(d = ballDiameter - thickness);

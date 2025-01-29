@@ -157,6 +157,18 @@
       "partialModel": "all",
       "reliefMultipier": "2",
       "withNutellaGlass": "true"
+    },
+    "bicicletta": {
+      "imageAngle": "120",
+      "imageRotation": "120",
+      "mugDiameter": "76",
+      "mugHeight": "80",
+      "mugThickness": "2",
+      "numberOfBlock": "4",
+      "part": "bicicletta",
+      "partialModel": "all",
+      "reliefMultipier": "2",
+      "withNutellaGlass": "true"
     }
   }
 }

@@ -9,7 +9,8 @@ jeu [worms](https://worms.fandom.com/wiki/Holy_Hand_Grenade).
 
 ## UPDATE
 
-- v6 maistre estourballe 
+- v7 support pour estourballes https://www.thingiverse.com/thing:6931751
+- v6 maistre estourballe https://www.thingiverse.com/thing:6920415
 - v5 hyper estourballe https://www.thingiverse.com/thing:6343804
 - v4 super estourballe: split the 2 red bands so they can be printed in another color
 - v3 super estourballe https://www.thingiverse.com/thing:6323047
@@ -19,7 +20,14 @@ jeu [worms](https://worms.fandom.com/wiki/Holy_Hand_Grenade).
 ## customizable variables
 
 - `part` : estourballeEntiere, demiSphereBas, demiSpherehaut, anneau, bouton, bande1, bande2, croix
-- `use_geodesic_sphere` : use geodesic_sphere` or normal sphere for demiSphereBas
+- `use_geodesic_sphere` : use geodesic_sphere` or normal sphere for demiSphereBas for maistre estourballe
+
+## customizable variables for support 
+
+- `part` : all, base, cup
+- `height` : hauteur des coupes
+- `octo` : gemme octogone sur la coupe
+- `withEstourballe` : affiche les estourballe
 
 Hidden variables
 

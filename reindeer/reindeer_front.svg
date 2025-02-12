@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+        xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+        xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+        version="1.0"
+        width="118.2pt"
+        height="692.03888pt"
+        viewBox="0 0 118.2 692.03888"
+        preserveAspectRatio="xMidYMid meet"
+        id="svg6"
+        sodipodi:docname="reindeer_front.svg"
+        inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+        xmlns="http://www.w3.org/2000/svg"
+>
+    <defs
+            id="defs10"/>
+    <sodipodi:namedview
+            id="namedview8"
+            pagecolor="#ffffff"
+            bordercolor="#666666"
+            borderopacity="1.0"
+            inkscape:pageshadow="2"
+            inkscape:pageopacity="0.0"
+            inkscape:pagecheckerboard="0"
+            inkscape:document-units="pt"
+            showgrid="false"
+            inkscape:zoom="0.34898844"
+            inkscape:cx="-381.10145"
+            inkscape:cy="323.79296"
+            inkscape:window-width="1196"
+            inkscape:window-height="762"
+            inkscape:window-x="2385"
+            inkscape:window-y="243"
+            inkscape:window-maximized="0"
+            inkscape:current-layer="svg6"
+            fit-margin-top="0"
+            fit-margin-left="0"
+            fit-margin-right="0"
+            fit-margin-bottom="0"/>
+    <g
+            transform="matrix(0.1,0,0,-0.1,-11.8,692.03888)"
+            fill="#000000"
+            stroke="none"
+            id="g4">
+        <path
+                d="m 356,6836 -66,-84 -35,-146 c -31,-130 -35,-162 -35,-282 0,-134 1,-139 51,-310 41,-142 62,-195 115,-291 36,-64 76,-149 90,-189 l 26,-73 -55,-88 c -82,-132 -89,-148 -97,-247 -15,-182 43,-386 161,-569 l 70,-108 -3,-672 -3,-672 -40,-70 C 513,2997 454,2916 403,2855 353,2795 284,2700 252,2645 l -60,-100 -37,-207 -37,-208 4,-247 4,-248 51,-180 c 46,-158 56,-211 83,-435 L 291,765 280,488 C 269,220 268,208 239,130 223,86 210,38 210,25 V 0 h 105 105 v 378 c 1,337 4,422 35,802 37,471 49,534 126,694 39,80 40,81 82,86 23,3 62,3 86,1 l 43,-3 43,-92 c 79,-169 90,-236 130,-756 30,-396 35,-513 35,-787 V 0 h 100 100 v 29 c 0,17 -13,67 -29,113 -29,80 -30,92 -39,353 l -9,270 33,265 c 28,226 40,290 82,440 l 50,175 6,230 6,230 -41,225 -41,225 -56,93 c -31,52 -98,143 -149,203 -50,60 -111,144 -135,186 l -43,78 -3,663 -3,663 71,112 c 120,186 177,384 164,567 -7,105 -15,125 -100,257 l -54,83 27,73 c 14,39 56,128 93,197 56,103 76,154 114,287 46,161 46,163 46,315 -1,139 -4,165 -34,286 -32,130 -35,136 -97,218 -36,47 -72,83 -81,84 -19,0 -20,22 7,-265 7,-82 11,-208 8,-305 -5,-161 -6,-168 -51,-315 -52,-172 -95,-245 -165,-282 -53,-28 -85,-28 -139,-2 -67,33 -111,104 -165,271 l -46,143 -4,190 c -3,129 0,244 11,356 9,92 16,176 16,188 0,40 -29,21 -94,-63 z"
+                id="path2"/>
+    </g>
+</svg>

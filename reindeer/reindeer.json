@@ -1,0 +1,15 @@
+{
+  "parameterSets": {
+    "reindeer": {
+      "smooth": "false"
+    },
+    "reindeer_smooth": {
+      "smooth": "true"
+    },
+    "reindeer_smoother": {
+      "smooth": "true",
+      "smoothRez": "10"
+    }
+  },
+  "fileFormatVersion": "1"
+}

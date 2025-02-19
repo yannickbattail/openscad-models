@@ -1,16 +1,13 @@
 {
     "parameterSets": {
-        "all_20": {
-            "part": "all",
-            "size": "20"
+        "all": {
+            "part": "all"
         },
-        "ball_50": {
-            "part": "ball",
-            "size": "50"
+        "holder": {
+            "part": "holder"
         },
-        "stick_50": {
-            "part": "stick",
-            "size": "50"
+        "saber": {
+            "part": "saber"
         }
     },
     "fileFormatVersion": "1"

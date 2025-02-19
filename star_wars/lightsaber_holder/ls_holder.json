@@ -1,0 +1,14 @@
+{
+    "parameterSets": {
+        "all": {
+            "part": "all"
+        },
+        "holder": {
+            "part": "holder"
+        },
+        "saber": {
+            "part": "saber"
+        }
+    },
+    "fileFormatVersion": "1"
+}

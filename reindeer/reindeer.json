@@ -1,15 +1,23 @@
 {
-  "parameterSets": {
-    "reindeer": {
-      "smooth": "false"
-    },
-    "reindeer_smooth": {
-      "smooth": "true"
-    },
-    "reindeer_smoother": {
-      "smooth": "true",
-      "smoothRez": "10"
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "reindeer": {
+            "smooth": "false"
+        },
+        "reindeer_smooth": {
+            "smooth": "true"
+        },
+        "reindeer_smoother": {
+            "smooth": "true",
+            "smoothRez": "10"
+        },
+        "New set 1": {
+            "$fn": "5",
+            "animation_rotation": "false",
+            "modelName": "0",
+            "smooth": "false",
+            "smoothRez": "5",
+            "smoothSize": "3"
+        }
     }
-  },
-  "fileFormatVersion": "1"
 }

@@ -1,4 +1,4 @@
-FROM openscad/openscad:dev.2024-12-23
+FROM openscad/openscad:dev
 
 ARG F3D_URL="https://github.com/f3d-app/f3d/releases/download/v2.5.0/F3D-2.5.0-Linux-x86_64-headless.deb"
 ARG SCADFORMAT_URL="https://github.com/hugheaves/scadformat/releases/download/v0.6/linux.zip"

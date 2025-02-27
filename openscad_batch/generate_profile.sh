@@ -35,7 +35,7 @@ usage() {
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file than the default \${OPENSCAD_FILE}.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-    echo "-g, --generate only_generate              only_generate must be one or multiple separated by ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl." >&2
+    echo "-g, --generate only_generate              only_generate must be one or multiple separated by ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf,param. By default it will generate jpg,gif,stl." >&2
     echo "--init                                    Initialize files for a new project" >&2
     echo "--f3d                                     use f3d for images generation" >&2
     echo "--debug what_to_debug                     debug mode: what_to_debug must be one or multiple separated by ',' of these values: CMD,OUT" >&2
@@ -298,6 +298,12 @@ EOF
   echo_info "file $config_file generated"
 }
 
+generate_param() {
+  param_file="${scad_file_dir}/${scad_file_name}_param.json"
+  echo_info "building param file ${param_file} ..."
+  exec_check $OPENSCAD ${openscad_debug} --export-format param -o "${param_file}" "${scad_file}"
+}
+
 prepare_all() {
   if [[ $only_generate == *"jpg"* ]]; then
     prepare_jpg
@@ -385,6 +391,10 @@ generate_all_scad() {
     then
       generate_conf
     fi
+    if  [[ $only_generate == *"param"* ]]
+    then
+      generate_param
+    fi
     if  [[ $only_generate == "" ]]
     then
 #       generate_webp
@@ -447,6 +457,10 @@ generate_all_f3d() {
     if  [[ $only_generate == *"conf"* ]]
     then
       generate_conf
+    fi
+    if  [[ $only_generate == *"param"* ]]
+    then
+      generate_param
     fi
     if  [[ $only_generate == "" ]]
     then

@@ -5,8 +5,19 @@
             "diameter": "10",
             "height": "6",
             "hole_diameter": "3.05",
-            "hole_height": "3.2",
-            "animation_rotation": "false"
+            "hole_height": "3.2"
+        },
+        "embase_D15": {
+            "diameter": "15",
+            "height": "6",
+            "hole_diameter": "3.05",
+            "hole_height": "3.2"
+        },
+        "embase_D20": {
+            "diameter": "20",
+            "height": "6",
+            "hole_diameter": "3.05",
+            "hole_height": "3.2"
         }
     }
 }

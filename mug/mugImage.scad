@@ -41,8 +41,8 @@ numberOfBlock = 0; // [0:none, 3:3, 4:4, 5:5, 6:6]
 imageAngle = 90; // [10:360]
 // image rotation angle
 imageRotation = 45; // [0:360]
-// relief multipier (by default relief is between 0 and 1)
-reliefMultipier = 2; // [0.5:0.5:10]
+// relief multiplier (by default relief is between 0 and 1)
+reliefMultiplier = 2; // [0.5:0.5:10]
 // image data from imageToMatrix.html 
 inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
@@ -90,9 +90,9 @@ if (len(inlineImage) > 0) {
 epsi = 0.01; // epsilon
 
 rotate([0, 0, 180]) mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation,
-reliefMultipier, imageData, partialModel, numberOfBlock, hasBigHandle);
+reliefMultiplier, imageData, partialModel, numberOfBlock, hasBigHandle);
 
-module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier,
+module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultiplier,
 imageMatrix, partialModel = "all", numberOfBlock, hasBigHandle) {
     difference() {
         render() // preview display nothing without this
@@ -102,7 +102,7 @@ imageMatrix, partialModel = "all", numberOfBlock, hasBigHandle) {
                 }
                 if (partialModel != "mug_only") {
                     rotate([0, 0, imageRotation]) {
-                        imageMatrixOnCylinder(mugHeight, mugRadius, imageAngle, reliefMultipier, imageMatrix);
+                        imageMatrixOnCylinder(mugHeight, mugRadius, imageAngle, reliefMultiplier, imageMatrix);
                     }
                 }
             }
@@ -118,7 +118,7 @@ imageMatrix, partialModel = "all", numberOfBlock, hasBigHandle) {
     }
 }
 
-module imageMatrixOnCylinder(height, radius, imageAngle, reliefMultipier, imageMatrix) {
+module imageMatrixOnCylinder(height, radius, imageAngle, reliefMultiplier, imageMatrix) {
     /* constants. Do not change them */
     POINTS = 0;
     FACES = 1;
@@ -127,7 +127,7 @@ module imageMatrixOnCylinder(height, radius, imageAngle, reliefMultipier, imageM
 
     //points = polygonSurface[POINTS];
     points = wrapAroundCylinder(polygonSurface[POINTS], [len(imageMatrix[0]), len(imageMatrix)], radius,
-    height, imageAngle, reliefMultipier);
+    height, imageAngle, reliefMultiplier);
 
     polyhedron(points = points, faces = polygonSurface[FACES]);
 }

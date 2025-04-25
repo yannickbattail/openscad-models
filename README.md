@@ -29,6 +29,7 @@ Several models made with openSCAD.
 - [MarioWorld](MarioWorld/README.md)
 - [CD solar oven](CD_solar_oven/README.md)
 - [Ahsoka's TV show ball map](ahsoka_ball_map/README.md)
+- [light saber blocker](saber_blocker/README.md)
 - [cube orné de nouilles](cubeOrnéDeNouilles/README.md)
 
 ## Libraries

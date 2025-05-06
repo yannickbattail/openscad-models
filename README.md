@@ -27,6 +27,7 @@ Several models made with openSCAD.
 - [VoxelHeart and EasiestHeart](VoxelHeart/README.md)
 - [Jewel cat heart pendant - puzzle piece](VoxelHeart/README.md)
 - [MarioWorld](MarioWorld/README.md)
+- [sideImageExtrude](sideImageExtrude/README.md)
 - [CD solar oven](CD_solar_oven/README.md)
 - [Ahsoka's TV show ball map](ahsoka_ball_map/README.md)
 - [light saber blocker](saber_blocker/README.md)

@@ -1,5 +1,5 @@
 // animal
-part = "fox"; // [fox, dino, dragon, cat, panda, heart_gem]
+part = "fox"; // [fox, dino, dragon, cat, panda, heart_gem, duckVader]
 // fixation bars diameter 
 fixation_diameter = 4;
 // font type
@@ -96,10 +96,13 @@ module animal(animalName) {
         animalModel(file = "animals/foxLowPoly.stl", scalePercent = 0.25, centerOfGravity = [- 14.18385003, 4.57492739, 75.20926315]);
     } else if (animalName == "heart_gem") {
         animalModel(file = "animals/heart_gem.stl", scalePercent = 0.7, centerOfGravity = [3.84325029e-03, 1.01203855e+00, 1.12715415e+01], rotation = [180, 0, 0]);
+    } else if (animalName == "duckVader") {
+        animalModel(file = "animals/duckVader.stl", scalePercent = 0.92, centerOfGravity = [28.58639167, 25.69586227, 21.3260776 ], rotation = [0, 0, 0]);
     } else {
         assert(true, str("wrong animalname", animalName));
     }
 }
+
 
 module animalModel(file, scalePercent, centerOfGravity, rotation = [0, 0, 0]) {
     scale([scalePercent, scalePercent, scalePercent])

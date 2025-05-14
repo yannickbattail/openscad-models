@@ -20,6 +20,7 @@ Don't forget to post a make.
 - dino https://www.thingiverse.com/thing:913069
 - panda: https://www.thingiverse.com/thing:182239
 - heart gem: https://www.thingiverse.com/thing:2452845
+- duck vador
 
 ## how I made them
 
@@ -28,8 +29,8 @@ Copy model to `animals/heart_gem.stl`
 Install numpy-stl if needed
 
 ```shell
-python3 -m venv .
-. ./bin/activate
+python3 -m venv venv
+. ./venv/bin/activate
 pip install numpy-stl
 ```
 

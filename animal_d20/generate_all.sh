@@ -7,12 +7,13 @@ run_in_docker() {
      openscad-nightly-tools $@
 }
 
-for file in *.scad; do
-  if [[ $1 == "thingiverse" ]]
-  then
-    echo "generate for thingiverse"
-    run_in_docker generate_for_thingiverse.sh "$(basename ${file} .scad)"
-  else
-    run_in_docker generate_profile.sh -g jpg,webp,3mf "${file}"
-  fi
-done
+file=animal_d20.scad
+
+if [[ $1 == "thingiverse" ]]
+then
+  echo "generate for thingiverse"
+  run_in_docker generate_for_thingiverse.sh "$(basename ${file} .scad)"
+else
+#  run_in_docker generate_profile.sh -g jpg,webp,3mf "${file}"
+  run_in_docker generate_profile.sh -g jpg,webp,3mf --debug CMD,OUT "${file}" # debug
+fi

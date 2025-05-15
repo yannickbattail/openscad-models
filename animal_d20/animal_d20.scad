@@ -59,10 +59,16 @@ animals = import("animals_center_of_gravity.json");
 
 dice_animal(part, fixation_diameter, faces, font_params);
 
+function toInt(str) =
+    let(d = [for (s = str) ord(s) - 48], l = len(d) - 1)
+        [for (i = 0, a = d[i];i <= l;i = i + 1, a = 10 * a + d[i]) a][l];
+
 module dice_animal(animalNumber = 0, fixation_diameter, faces, font_params) {
     dice();
-    animalConfig = animals[animalNumber];
-    echo("animalConfig ", animalNumber, animalConfig);
+    animalInt = is_string(animalNumber) ? toInt(animalNumber) : animalNumber;
+    animalConfig = animals[animalInt];
+    //echo("animalConfig ", animalInt, animalConfig);
+    assert(!is_undef(animalConfig), "animalConfig is null");
     color("red")
         animalModel(animalConfig);
 }

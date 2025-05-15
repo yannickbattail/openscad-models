@@ -15,14 +15,17 @@ Don't forget to post a make.
 ## models
 
 - heart : https://github.com/yannickbattail/openscad-models/tree/main/VoxelHeart
+- D&D Damagetypes: https://www.thingiverse.com/thing:6847860
 
 ## how I made them
 
-Copy model to `animals/heart_gem.stl`
+Copy model to `animals/` folder
 
 Install numpy-stl if needed
 
 ```shell
+python3 -m venv venv
+. ./venv/bin/activate
 pip install numpy-stl
 ```
 

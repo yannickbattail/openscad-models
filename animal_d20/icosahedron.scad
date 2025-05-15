@@ -124,8 +124,8 @@ module show_edges(verts, edges) {
 module underlined_text(text = "abc", text_size = 0.2) {
     scale(text_size)
         text(text, font = polyhedraEnumeratedFont, size = text_size, valign = "center", halign = "center");
-//    translate([0, -text_size * 0.3])
-//        square(size = [text_size * 0.3 * len(text), text_size / 20], center = true);
+    // translate([0, -text_size * 0.3])
+    //     square(size = [text_size * 0.3 * len(text), text_size / 20], center = true);
 }
 
 /*
@@ -160,9 +160,9 @@ module sample_face(i, n, r = 3, h = 0.1, t = 0.1) {
                 }
         }
     } else if (polyhedraDisplayMode == "wireframe") {
-        translate([0,-0.24,0])
-        linear_extrude(height = h) {
-            underlined_text(str(i), text_size = fontSize);
-        }
+        translate([0, -0.24, 0])
+            linear_extrude(height = h) {
+                underlined_text(str(i), text_size = fontSize);
+            }
     }
 }

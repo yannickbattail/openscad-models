@@ -1,0 +1,198 @@
+[
+  {
+    "filename": "animals/Damagetypes-Acit.stl",
+    "center_of_gravity": [
+      3.9983494790384997,
+      -5.6407233160236165e-06,
+      0.004735658323755045
+    ],
+    "scale": 15,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Bludgeoning.stl",
+    "center_of_gravity": [
+      -12.000564103325638,
+      0.020842282419611148,
+      -0.00433098772337623
+    ],
+    "scale": 15,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Cold.stl",
+    "center_of_gravity": [
+      8.00000350511813,
+      6.320187521120684e-07,
+      -1.3613934072139211e-07
+    ],
+    "scale": 15,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Fire.stl",
+    "center_of_gravity": [
+      12.000166405914072,
+      0.015921865673956977,
+      -7.116062134004539e-07
+    ],
+    "scale": 10,
+    "rotation": [
+      27,
+      3,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Force.stl",
+    "center_of_gravity": [
+      -406.0507022336867,
+      1.6872609963606227,
+      52.646642722313175
+    ],
+    "scale": 0.5,
+    "rotation": [
+      2,
+      -36,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Lightning.stl",
+    "center_of_gravity": [
+      -4.0162247572965075,
+      0.32078657727954124,
+      -0.025141380867874506
+    ],
+    "scale": 10,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Necrotic.stl",
+    "center_of_gravity": [
+      -7.99996593939049,
+      1.8337658507880887,
+      -6.5502268262557075e-06
+    ],
+    "scale": 12,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Piercing.stl",
+    "center_of_gravity": [
+      -20.130323472713552,
+      0,
+      0.5
+    ],
+    "scale": 16,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Poison.stl",
+    "center_of_gravity": [
+      -0.02528045440326107,
+      -0.07003415038030744,
+      51.715924211625406
+    ],
+    "scale": 0.45,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Psychic.stl",
+    "center_of_gravity": [
+      -23.99995156653579,
+      0.6414349560880546,
+      1.9783818602642707e-07
+    ],
+    "scale": 15,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Radiant.stl",
+    "center_of_gravity": [
+      -28.000064776366013,
+      -4.756601298744464e-08,
+      -0.15587201118944502
+    ],
+    "scale": 10,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Slashing.stl",
+    "center_of_gravity": [
+      -320.0022032073824,
+      -0.012337242986761346,
+      46.11398419272186
+    ],
+    "scale": 0.55,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/Damagetypes-Thunder.stl",
+    "center_of_gravity": [
+      -36.00010729001867,
+      0.08667013368201086,
+      3.9594556157183775e-07
+    ],
+    "scale": 14,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/VoxelHeart1_hull.stl",
+    "center_of_gravity": [
+      -1.7237771978008079e-07,
+      1.1529314548059244e-08,
+      0.2823936852116267
+    ],
+    "scale": 25,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  }
+]

@@ -1,12 +1,12 @@
 include<polyhedra.scad>;
 
 // RGB colors for examples
-polyhedraEdgeColor = "green";
-polyhedraVertexColor = "green";
-polyhedraFixColor = "blue";
-polyhedraFaceColor1 = [178, 223, 138] / 255;
-polyhedraFaceColor2 = [251, 154, 153] / 255;
-polyhedraFaceColor3 = [166, 206, 227] / 255;
+polyhedraEdgeColor = "blue";
+polyhedraVertexColor = "blue";
+polyhedraFixColor = "darkblue";
+polyhedraFaceColor1 = "yellow";
+polyhedraFaceColor2 = "yellow";
+polyhedraFaceColor3 = "yellow";
 polyhedraSolidColor = [253, 191, 111] / 255;
 
 // This font is used in the enumerated examples for edges, vertices and faces. If you don't have this font installed, choose a font from the Font List in the OpenSCAD Help menu.
@@ -46,8 +46,8 @@ module show_polyhedron(vertices, edges, adjacentVertices, facesArray) {
         show_edges(vertices, edges);
 
     for (i = [0:min(len(faceColorArray), len(facesArray)) - 1])
-    color(faceColorArray[i])
-        show_faces(vertices, facesArray[i]);
+        color(faceColorArray[i])
+            show_faces(vertices, facesArray[i]);
 
     if (polyhedraDisplayMode == "enumerated") {
         r = norm(vertices[0]);

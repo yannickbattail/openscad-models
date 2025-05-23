@@ -1,0 +1,42 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "reindeer": {
+            "part": 0,
+            "smooth": "false"
+        },
+        "reindeer_smooth": {
+            "part": 0,
+            "smooth": "true"
+        },
+        "reindeer_smoother": {
+            "part": 0,
+            "smooth": "true",
+            "smoothRez": "10"
+        },
+        "t-rex": {
+            "part": 1,
+            "smooth": "false"
+        },
+        "t-rex_smooth": {
+            "part": 1,
+            "smooth": "true"
+        },
+        "rabbit1": {
+            "part": 2,
+            "smooth": "false"
+        },
+        "rabbit1_smooth": {
+            "part": 2,
+            "smooth": "true"
+        },
+        "rabbit2": {
+            "part": 3,
+            "smooth": "false"
+        },
+        "rabbit2_smooth": {
+            "part": 3,
+            "smooth": "true"
+        }
+    }
+}

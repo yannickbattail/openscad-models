@@ -11,6 +11,9 @@ Several models made with openSCAD.
     - [R2D2 mug](mug/README.md#r2d2-mug-upcycling-nutella-glass)
     - [Customizable pumpkin mug, upcycling nutella glass](pumpkin/README.md)
     - [nutella glass template](mug/README.md#nutella-glass)
+- Star Wars
+    - [Star wars crate box](star_wars/crate/sw-crate.md)
+    - [Medical_emblem](star_wars/Medical_emblem/README.md)
 - [Animal (or figurine) in a dice](animal_dice/README.md)
 - [Animal (or figurine) in a d20](animal_d20/README.md)
 - [Estourballe](estourballe/README.md) L'estourballe est une Pokéball médiévale tirée du [Pochon Dextre](https://simondethuillieres.com/product/le-pochon-dextre/)

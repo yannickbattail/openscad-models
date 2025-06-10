@@ -1,0 +1,17 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "full": {
+      "part": "full"
+    },
+    "all": {
+      "part": "all"
+    },
+    "top": {
+      "part": "top"
+    },
+    "bottom": {
+      "part": "bottom"
+    }
+  }
+}

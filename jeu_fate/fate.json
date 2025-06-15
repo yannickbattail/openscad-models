@@ -1,0 +1,18 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "rond": {
+      "part": "rond"
+    },
+    "carre": {
+      "part": "carre"
+    },
+    "ocatogonal": {
+      "part": "octogonal"
+    },
+    "jeton": {
+      "part": "jeton",
+        "element": "white"
+    }
+  }
+}

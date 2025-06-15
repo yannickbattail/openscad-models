@@ -1,0 +1,73 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "rond": {
+      "part": "rond",
+      "element": "gray"
+    },
+    "rond_feu": {
+      "part": "rond",
+      "element": "red"
+    },
+    "rond_air": {
+      "part": "rond",
+      "element": "yellow"
+    },
+    "rond_terre": {
+      "part": "rond",
+      "element": "green"
+    },
+    "rond_eau": {
+      "part": "rond",
+      "element": "blue"
+    },
+    "carre": {
+      "part": "carre",
+      "element": "gray"
+    },
+    "carre_feu": {
+      "part": "carre",
+      "element": "red"
+    },
+    "carre_air": {
+      "part": "carre",
+      "element": "yellow"
+    },
+    "carre_terre": {
+      "part": "carre",
+      "element": "green"
+    },
+    "carre_eau": {
+      "part": "carre",
+      "element": "blue"
+    },
+    "octogonal": {
+      "part": "octogonal",
+      "element": "gray"
+    },
+    "octogonal_feu": {
+      "part": "octogonal",
+      "element": "red"
+    },
+    "octogonal_air": {
+      "part": "octogonal",
+      "element": "yellow"
+    },
+    "octogonal_terre": {
+      "part": "octogonal",
+      "element": "green"
+    },
+    "octogonal_eau": {
+      "part": "octogonal",
+      "element": "blue"
+    },
+    "jeton": {
+      "part": "jeton",
+      "element": "white"
+    },
+    "corner": {
+      "part": "corner",
+      "element": "gray"
+    }
+  }
+}

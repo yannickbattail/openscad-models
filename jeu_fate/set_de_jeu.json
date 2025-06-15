@@ -1,0 +1,52 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "tout": {
+      "part": "tout"
+    },
+    "feu": {
+      "part": "par_element",
+      "element": "red"
+    },
+    "air": {
+      "part": "par_element",
+      "element": "yellow"
+    },
+    "terre": {
+      "part": "par_element",
+      "element": "green"
+    },
+    "eau": {
+      "part": "par_element",
+      "element": "blue"
+    },
+    "jetons_noirs": {
+      "part": "par_element",
+      "element": "DarkSlateGray"
+    },
+    "jetons_blancs": {
+      "part": "par_element",
+      "element": "white"
+    },
+    "ronds": {
+      "part": "par_forme",
+      "forme": "rond"
+    },
+    "carres": {
+      "part": "par_forme",
+      "forme": "carre"
+    },
+    "octogonals": {
+      "part": "par_forme",
+      "forme": "octogonal"
+    },
+    "jetons": {
+      "part": "par_forme",
+      "forme": "jeton"
+    },
+    "corners": {
+      "part": "par_forme",
+      "forme": "corner"
+    }
+  }
+}

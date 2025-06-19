@@ -2,11 +2,20 @@
 part = "octogonal"; // [rond, carre, octogonal, jeton]
 element = "red"; // [red:feu, yellow:air, green:terre, blue:eau, DarkSlateGray:noir, white:blanc]
 
-// size of the model
-thickness = 3; // [1:1:10]
+// width
+width = 24 ; // [20:1:30]
 
-//tolerence
-tolerence = 0.2; // [0.05:0.05:2]
+// size of the model
+thickness = 5; // [3:1:10]
+
+// tolerence
+tolerence = 0.4; // [0.05:0.05:2]
+
+// cavity
+cavity = 17 ; // [1:1:25]
+
+// epsilon
+epsi = 0.1; // [0.05:0.05:0.25]
 
 // resolution
 $fn = 100;
@@ -20,7 +29,7 @@ is_animated = animation_rotation;
 $vpt = is_animated?[0, 0, 0]:$vpt;
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr;  // animation rotate around the object
 $vpd = is_animated?200:$vpd;
-epsi = 0.001;
+
 
 color(element) {
     if (part == "rond") {
@@ -38,36 +47,37 @@ color(element) {
 
 module rond(thickness, tolerence) {
     difference() {
-        cylinder(d = 30, h = thickness, center = true);
-        holes(thickness, tolerence);
+        cylinder(d = width, h = thickness, center = true);
+        holes(thickness);
     }
 }
 
 module carre(thickness, tolerence) {
     difference() {
-        cube([30, 30, thickness], center = true);
-        holes(thickness, tolerence);
+        cube([width, width, thickness], center = true);
+        holes(thickness);
     }
 }
 
 module octogonal(thickness, tolerence) {
     difference() {
         intersection() {
-            cube([30, 30, thickness], center = true);
+            cube([width, width, thickness], center = true);
             rotate([0, 0, 45])
-                cube([30, 30, thickness], center = true);
+                cube([width, width, thickness], center = true);
         }
-        holes(thickness, tolerence);
+        holes(thickness);
     }
 }
 
 module jeton(thickness, tolerence) {
-    cylinder(d = 10, h = thickness * 2 / 3, center = true);
+    cylinder(d = cavity - tolerence, h = thickness * 4 / 5 - tolerence, center = true);
 }
 
-module holes(thickness, tolerence) {
-    translate([0, 0, thickness / 6])
-        cylinder(d = 10 + tolerence, h = thickness / 3 + epsi);
-    translate([0, 0, -thickness * 3 / 6 - epsi])
-        cylinder(d = 10 + tolerence, h = thickness / 3 + epsi);
+module holes(thickness) {
+    cavity_depth = 2/5 * thickness;
+    translate([0, 0, (thickness - cavity_depth)/2 + epsi] )
+        cylinder(d = cavity, h = cavity_depth + 2 * epsi, center=true);
+    translate([0, 0, -(thickness - cavity_depth)/2 - epsi] )
+        cylinder(d = cavity, h = cavity_depth + 2 * epsi, center=true);
 }

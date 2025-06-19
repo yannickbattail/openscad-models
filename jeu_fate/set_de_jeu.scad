@@ -3,14 +3,24 @@ part = "tout"; // [tout, par_element, par_forme]
 element = "red"; // [red:feu, yellow:air, green:terre, blue:eau, DarkSlateGray:noir, white:blanc]
 forme = "octogonal"; // [rond, carre, octogonal, jeton]
 
-// size of the model
-thickness = 3; // [1:1:10]
+// width
+width = 24 ; // [20:1:30]
 
-//tolerence
-tolerence = 0.2; // [0.05:0.05:2]
+// size of the model
+thickness = 5; // [3:1:10]
+
+// tolerence
+tolerence = 0.4; // [0.05:0.05:2]
+
+// cavity
+cavity = 17 ; // [1:1:25]
+
+// epsilon
+epsi = 0.1; // [0.05:0.05:0.25]
 
 // resolution
 $fn = 100;
+
 
 /* [Animation] */
 // rotating animation
@@ -53,12 +63,12 @@ module tout(thickness, tolerence) {
 module par_element(thickness, tolerence, element) {
     color(element) {
         if (element == "white" || element == "DarkSlateGray") {
-            espacement = 10 + 2; // 10 is the size of the piece, 2 is the space between pieces
+            espacement = cavity + 2; // 10 is the size of the piece, 2 is the space between pieces
             colonne(espacement, 7)
                 ligne(espacement, 5)
                     jeton(thickness, tolerence);
         } else {
-            espacement = 30 + 2; // 30 is the size of the piece, 2 is the space between pieces
+            espacement = width + 2; // 30 is the size of the piece, 2 is the space between pieces
             translate([0, 0 * espacement, 0])
                 ligne(espacement, 4)
                     rond(thickness, tolerence);
@@ -78,22 +88,22 @@ module par_element(thickness, tolerence, element) {
 module par_forme(thickness, tolerence, forme) {
     elementColors = ["red", "yellow", "green", "blue", "DarkSlateGray", "white"];
     if (forme == "rond") {
-        espacement = 30 + 2; // 30 is the size of the piece, 2 is the space between pieces
+        espacement = width + 2; // 30 is the size of the piece, 2 is the space between pieces
         colonneColor(espacement, 4, elementColors)
             ligne(espacement, 4)
                 rond(thickness, tolerence);
     } else if (forme == "carre") {
-        espacement = 30 + 2; // 30 is the size of the piece, 2 is the space between pieces
+        espacement = width + 2; // 30 is the size of the piece, 2 is the space between pieces
         colonneColor(espacement, 4, elementColors)
             ligne(espacement, 4)
                 carre(thickness, tolerence);
     } else if (forme == "octogonal") {
-        espacement = 30 + 2; // 30 is the size of the piece, 2 is the space between pieces
+        espacement = width + 2; // 30 is the size of the piece, 2 is the space between pieces
         colonneColor(espacement, 4, elementColors)
             ligne(espacement, 8)
                 octogonal(thickness, tolerence);
     } else if (forme == "jeton") {
-        espacement = 10 + 2; // 10 is the size of the piece, 2 is the space between pieces
+        espacement = cavity + 2; // 10 is the size of the piece, 2 is the space between pieces
         color("DarkSlateGray")
         colonne(espacement, 7)
             ligne(espacement, 5)

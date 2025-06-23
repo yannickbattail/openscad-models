@@ -23,8 +23,8 @@
       "border": 2
     },
     "tiles": {
-      "width": 3,
-      "height": 2
+      "width": 5,
+      "height": 4
     }
   },
   "openScadOptions": {

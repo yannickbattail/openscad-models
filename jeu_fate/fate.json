@@ -13,6 +13,10 @@
     "jeton": {
       "part": "jeton",
       "element": "white"
+    },
+    "corner": {
+      "part": "corner",
+      "element": "gray"
     }
   }
 }

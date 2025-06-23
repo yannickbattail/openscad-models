@@ -50,6 +50,7 @@ module rond(width, thickness, tolerence, cavity) {
     cylinder(d = width, h = thickness, center = true);
     holes(thickness);
     deplacementRond(width, thickness, tolerence, cavity);
+    elementIcon(width, thickness, tolerence, cavity);
   }
 }
 
@@ -73,6 +74,7 @@ module carre(width, thickness, tolerence, cavity) {
     cube([width, width, thickness], center = true);
     holes(thickness);
     deplacementCarre(width, thickness, tolerence, cavity);
+    elementIcon(width, thickness, tolerence, cavity);
   }
 }
 
@@ -101,6 +103,7 @@ module octogonal(width, thickness, tolerence, cavity) {
     holes(thickness);
     deplacementCarre(width, thickness, tolerence, cavity);
     deplacementRond(width, thickness, tolerence, cavity);
+    elementIcon(width, thickness, tolerence, cavity);
   }
 }
 
@@ -122,4 +125,32 @@ module holes(thickness) {
     cylinder(d = cavity, h = cavity_depth + 2 * EPSI, center = true);
   translate([0, 0, -(thickness - cavity_depth) / 2 - EPSI])
     cylinder(d = cavity, h = cavity_depth + 2 * EPSI, center = true);
+}
+
+module elementIcon(width, thickness, tolerence, cavity) {
+  remainingSpace = (width - cavity) / 2;
+  margingPercent = 0.1; // 10% of the remaining space
+  size = remainingSpace - remainingSpace * margingPercent * 2;
+  iconDepth = thickness * 0.05;
+  translate([-cavity / 2 - remainingSpace / 2, 0, thickness / 2 - iconDepth + EPSI]) {
+    linear_extrude(iconDepth) {
+      elementImage(element, size);
+    }
+  }
+}
+
+module elementImage(element, size) {
+  scale(size/256) {
+    if (element == "red") {
+      import("./icons/feu.svg", center = true);
+    } else if (element == "yellow") {
+      import("./icons/air.svg", center = true);
+    } else if (element == "green") {
+      import("./icons/terre.svg", center = true);
+    } else if (element == "blue") {
+      import("./icons/eau.svg", center = true);
+    } else {
+      square(0);
+    }
+  }
 }

@@ -16,6 +16,8 @@ fate le jeu
 
 [here](https://github.com/yannickbattail/openscad-models/tree/main/jeu_fate)
 
+Icons are from [game-icons.net](https://game-icons.net/)
+
 ## Generate
 
 Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets

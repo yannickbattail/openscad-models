@@ -43,6 +43,10 @@
     "jetons": {
       "part": "par_forme",
       "forme": "jeton"
+    },
+    "corners": {
+      "part": "par_forme",
+      "forme": "corner"
     }
   }
 }

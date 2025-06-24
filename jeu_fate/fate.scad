@@ -27,7 +27,7 @@ $vpt = is_animated?[0, 0, 0]:$vpt;
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr;  // animation rotate around the object
 $vpd = is_animated?200:$vpd;
 // constant epsilon
-EPSI = 0.1;
+EPSI = 0.001;
 
 color(element) {
   if (part == "rond") {
@@ -135,6 +135,23 @@ module elementIcon(width, thickness, tolerence, cavity) {
   translate([-cavity / 2 - remainingSpace / 2, 0, thickness / 2 - iconDepth + EPSI]) {
     linear_extrude(iconDepth) {
       elementImage(element, size);
+    }
+  }
+  elementIconEdge(width, thickness, tolerence, cavity);
+}
+
+module elementIconEdge(width, thickness, tolerence, cavity) {
+  iconDepth = thickness * 0.05;
+  for (i = [0:3]) {
+    angle = i * 90;
+    rotate([0, 0, angle]) {
+      translate([0, width / 2 + EPSI, 0]) {
+        rotate([90, 0, 0]) {
+          linear_extrude(iconDepth) {
+            elementImage(element, thickness);
+          }
+        }
+      }
     }
   }
 }

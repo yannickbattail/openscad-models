@@ -12,7 +12,7 @@ thickness = 5; // [3:1:10]
 tolerence = 0.4; // [0.05:0.05:2]
 
 // size of jeton
-cavity = 1 ; // [1:1:25]
+cavity = 17; // [1:1:25]
 
 // resolution
 $fn = 100;
@@ -48,7 +48,7 @@ color(part) {
 module fig_feu(width, thickness, tolerence, cavity) {
   union() {
     difference() {
-      import("figurines_stl/feu.stl");
+      import("orig_stl/feu.stl");
       translate([0, 0, -2 + 0.125])
         cube([4, 4, 4], center = true);
     }
@@ -57,13 +57,40 @@ module fig_feu(width, thickness, tolerence, cavity) {
 }
 
 module fig_air(width, thickness, tolerence, cavity) {
-    cube(40);
+  union() {
+    difference() {
+      translate([0, 0, 1])
+      scale(0.001)
+        import("orig_stl/air.stl");
+      translate([0, 0, -2 + 0.125])
+        cube([4, 4, 4], center = true);
+    }
+    cylinder(d = 1, h = 0.125);
+  }
 }
 
 module fig_terre(width, thickness, tolerence, cavity) {
-  cube(40);
+  union() {
+    difference() {
+      translate([0, 0, 1 - 0.06])
+        scale(0.001)
+          import("orig_stl/terre.stl");
+      translate([0, 0, -2 + 0.125])
+        cube([4, 4, 4], center = true);
+    }
+    cylinder(d = 1, h = 0.125);
+  }
 }
 
 module fig_eau(width, thickness, tolerence, cavity) {
-  cube(40);
+  union() {
+    difference() {
+      translate([0, 0, 1-0.03])
+        scale(0.001)
+          import("orig_stl/eau.stl");
+      translate([0, 0, -2 + 0.125])
+        cube([4, 4, 4], center = true);
+    }
+    cylinder(d = 1, h = 0.125);
+  }
 }

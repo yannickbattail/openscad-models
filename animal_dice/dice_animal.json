@@ -1,32 +1,32 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "fox": {
-            "part": "fox"
-        },
-        "dino": {
-            "part": "dino"
-        },
-        "dragon": {
-            "part": "dragon"
-        },
-        "cat": {
-            "part": "cat"
-        },
-        "panda": {
-            "part": "panda"
-        },
-      "heart_gem": {
-        "part": "heart_gem"
-        },
-        "duckVader": {
-            "part": "duckVader"
-        },
-        "VoxelHeart": {
-            "part": "VoxelHeart"
-        },
-        "vader": {
-            "part": "vader"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "fox": {
+      "part": "fox"
+    },
+    "dino": {
+      "part": "dino"
+    },
+    "dragon": {
+      "part": "dragon"
+    },
+    "cat": {
+      "part": "cat"
+    },
+    "panda": {
+      "part": "panda"
+    },
+    "heart_gem": {
+      "part": "heart_gem"
+    },
+    "duckVader": {
+      "part": "duckVader"
+    },
+    "VoxelHeart": {
+      "part": "VoxelHeart"
+    },
+    "vader": {
+      "part": "vader"
     }
+  }
 }

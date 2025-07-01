@@ -36,6 +36,7 @@ $vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
 $vpd = animation_rotation ? 300 : [];
 
+animals = import("animals_center_of_gravity.json");
 //full_dice(model, fixation_diameter, faces, font_type, font_size);
 dicePart(model, fixation_diameter, faces, font_type, font_size);
 

@@ -24,7 +24,7 @@ Command to generate for all the presets: png image, webp animation, 3mf 3D model
 ic of all the presets
 
 ```bash
-npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile a.json5 ./a.scad
+npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile a.yaml ./a.scad
 npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile fate.config.json ./fate.scad
 npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 3,4 --configFile set_de_jeu.config.json ./set_de_jeu.scad
 ```

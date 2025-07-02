@@ -1,0 +1,17 @@
+{
+  "parameterSets": {
+    "feu": {
+      "part": "red"
+    },
+    "air": {
+      "part": "yellow"
+    },
+    "terre": {
+      "part": "green"
+    },
+    "eau": {
+      "part": "blue"
+    }
+  },
+  "fileFormatVersion": "1"
+}

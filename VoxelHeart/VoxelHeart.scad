@@ -26,7 +26,7 @@ animation_rotation = false;
 /* for animation */
 $vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
-$vpd = animation_rotation ? 30 : [];
+$vpd = animation_rotation ? 15 : [];
 
 heart(resolution, hull_that) {
     if (use_sphere) {

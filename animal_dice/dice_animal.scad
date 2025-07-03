@@ -1,5 +1,6 @@
 // animal model
-animalNumber = 0; // [0:Platypus_Barbarian, 1:VoxelHeart1_hull, 2:catLowPoly, 3:dino, 4:dragonLED, 5:duckVader, 6:foxLowPoly, 7:heart_gem, 8:panda, 9:vader]
+animalNumber = 0;
+// [0:Platypus_Barbarian, 1:VoxelHeart1_hull, 2:catLowPoly, 3:dino, 4:dragonLED, 5:duckVader, 6:foxLowPoly, 7:heart_gem, 8:panda, 9:vader]
 // part
 part = "whole"; // [whole, edge1_3]
 // fixation bars diameter

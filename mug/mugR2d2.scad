@@ -4,7 +4,10 @@ use <nutellaGlass.scad>
 /* [Mug] */
 // nutella glass scale: grow nutella glass to better fit in
 nutellaGlassScale = 1.01; // [0.99:1.05]
-showNutellaGlass = false;
+
+// Number of block
+numberOfBlock = 6; // [0:none, 3:3, 4:4, 5:5, 6:6]
+
 /* [Animation] */
 // rotating animation
 animation_rotation = false;
@@ -36,15 +39,13 @@ module r2d2Mug() {
             r2d2();
             translate([58, 0, 100])
                 handle(120);
-            if (showNutellaGlass) {
-                color("Blue", 0.5);
-                translate([0, 0, 65]) nutellaGlass(true);
-            }
         }
-        if (debug) {
-            translate([0, 0, 65]) #nutellaGlass();
-        } else {
-            translate([0, 0, 65]) nutellaGlass();
+        translate([0, 0, 65]) {
+            if (debug) {
+                #nutellaGlass(plain = true, nbBlock = numberOfBlock);
+            } else {
+                nutellaGlass(plain = true, nbBlock = numberOfBlock);
+            }
         }
         translate([0, 0, 203 + 50])
             cube(200, center = true);

@@ -1,13 +1,11 @@
 {
   "fileFormatVersion": "1",
   "parameterSets": {
-    "c3po_mug": {
-      "debug": "false",
-      "nutellaGlassScale": "1.01"
+    "noBlock": {
+      "numberOfBlock": 0
     },
-    "debug_mug": {
-      "debug": "true",
-      "nutellaGlassScale": "1.01"
+    "6blocks": {
+      "numberOfBlock": 6
     }
   }
 }

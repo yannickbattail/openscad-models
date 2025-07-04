@@ -5,6 +5,9 @@ use <nutellaGlass.scad>
 // nutella glass scale: grow nutella glass to better fit in
 nutellaGlassScale = 1.01; // [0.99:1.05]
 
+// Number of block
+numberOfBlock = 6; // [0:none, 3:3, 4:4, 5:5, 6:6]
+
 /* [Animation] */
 // rotating animation
 animation_rotation = false;
@@ -39,9 +42,9 @@ module mugGrogu() {
         translate([0, 0, 5]) {
             scale(1.01) {
                 if (debug) {
-                    #nutellaGlass();
+                    #nutellaGlass(plain = true, nbBlock = numberOfBlock);
                 } else {
-                    nutellaGlass();
+                    nutellaGlass(plain = true, nbBlock = numberOfBlock);
                 }
             }
         }

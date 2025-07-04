@@ -23,14 +23,14 @@
     const GREEN = 1;
     const BLUE = 2;
     const ALPHA = 3;
-    
+
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext('2d');
     const canvas2 = document.getElementById("canvas2");
     const ctx2 = canvas2.getContext('2d');
-    
+
     addEventListeners();
-    
+
     function addEventListeners() {
         document.getElementById('imageLoader').addEventListener('change', handleImage, false);
         document.getElementById('greyLevel').addEventListener('change', convertImage, false);

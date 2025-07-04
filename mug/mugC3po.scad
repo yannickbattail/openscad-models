@@ -26,7 +26,7 @@ $vpd = is_animated?500:[];
 if (debug) {
     difference() {
         c3po_mug();
-        translate([- 10, - 200, 0]) cube(200);
+        translate([-10, -200, 0]) cube(200);
     }
 } else {
     c3po_mug();
@@ -55,7 +55,7 @@ module c3po_mug() {
 
 module c3po() {
     translate([10, 0, 0])
-        rotate([0, 0, - 90])
+        rotate([0, 0, -90])
             scale(9.8)
                 import("resources/C3PO_fixed_hi-res.stl");
 }

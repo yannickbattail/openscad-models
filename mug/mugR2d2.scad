@@ -26,7 +26,7 @@ $vpd = is_animated?500:[];
 if (debug) {
     difference() {
         r2d2Mug();
-        translate([- 10, - 200, 0]) cube(200);
+        translate([-10, -200, 0]) cube(200);
     }
 } else {
     r2d2Mug();
@@ -55,7 +55,7 @@ module r2d2Mug() {
 module r2d2() {
     scale(nutellaGlassScale)
         translate([0, 0, 90])
-            rotate([0, 0, - 90])
+            rotate([0, 0, -90])
                 scale(80)
                     import("resources/r2d2.3mf"); // https://www.thingiverse.com/thing:5413008
 }

@@ -33,8 +33,8 @@ module bigHandle(height) {
                 torus(height / 2, 8);
             }
         }
-        translate([0, 0, -50 -height / 2])
-            cube(100, center=true);
+        translate([0, 0, -50 - height / 2])
+            cube(100, center = true);
     }
 }
 

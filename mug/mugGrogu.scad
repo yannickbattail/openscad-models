@@ -26,7 +26,7 @@ $vpd = is_animated?500:[];
 if (debug) {
     difference() {
         mugGrogu();
-        translate([- 10, - 200, 0]) cube(200);
+        translate([-10, -200, 0]) cube(200);
     }
 } else {
     mugGrogu();
@@ -53,7 +53,7 @@ module mugGrogu() {
 
 module grogu() {
     translate([10, 8, 0])
-        rotate([0, 0, - 93])
+        rotate([0, 0, -93])
             scale(1.9)
                 import("resources/groguHead.3mf");
 }

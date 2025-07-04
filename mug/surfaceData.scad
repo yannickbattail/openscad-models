@@ -5,8 +5,8 @@ function surfaceDataf(M, center = false) = let(
     n = len(M),
     m = len(M[0]),
     miz = min([for (Mi = M) min(Mi)]),
-    minz = miz < 0? miz - 1 : - 1,
-    ctr = center ? [- (m - 1) / 2, - (n - 1) / 2, 0]: [0, 0, 0],
+    minz = miz < 0? miz - 1 : -1,
+    ctr = center ? [-(m - 1) / 2, -(n - 1) / 2, 0]: [0, 0, 0],
     points = [// original data points
         for (i = [0:n - 1])for (j = [0:m - 1]) [j, i, M[i][j]] + ctr,
                 [0, 0, minz] + ctr,
@@ -29,8 +29,8 @@ function surfaceDataf(M, center = false) = let(
                 [j + m + 1, j + 1, j + n * m + 4]],
         // lateral and bottom faces
             [for (i = [0:m - 1])           i, n * m + 1, n * m],
-            [for (i = [m - 1:- 1:0]) - m + i + n * m, n * m + 3, n * m + 2],
-            [for (i = [n - 1:- 1:0])      i * m, n * m, n * m + 3],
+            [for (i = [m - 1:-1:0]) -m + i + n * m, n * m + 3, n * m + 2],
+            [for (i = [n - 1:-1:0])      i * m, n * m, n * m + 3],
             [for (i = [0:n - 1])     i * m + m - 1, n * m + 2, n * m + 1],
             [n * m, n * m + 1, n * m + 2, n * m + 3]
         ]

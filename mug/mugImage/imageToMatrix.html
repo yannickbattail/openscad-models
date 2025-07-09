@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <meta charset="utf-8">
+    <title>Image to matrix for openSCAD</title>
+</head>
+<body>
+<label for="imageLoader">Image File: </label><input accept="image/*" id="imageLoader" type="file"/><br/>
+
+<input type="checkbox" id="greyLevel" checked="checked"/><label for="greyLevel"> Grey level, else all colors (value will be an array of red, green, blue, alpha)</label><br/>
+<input type="checkbox" id="luminance" checked="checked"/><label for="luminance"> Merge colors using luminance, else average </label><br/>
+<input type="checkbox" id="fullOpacityTo0" checked="checked"/><label for="fullOpacityTo0"> set value to 0 if full opacity</label><br/>
+<input type="checkbox" id="invert" /><label for="invert"> Invert color (relief)</label><br/>
+<input type="checkbox" id="zeroToOne" checked="checked"/><label for="zeroToOne"> value between 0 to 1, else 0 to 255</label><br/>
+<input type="checkbox" id="codeExample"/><label for="codeExample"> With code example</label><br/>
+
+<label for="textarea">Data: </label><br/><textarea id="textarea"></textarea><br/>
+<canvas id="canvas"></canvas>
+<canvas id="canvas2"></canvas>
+<script>
+
+    const RED = 0;
+    const GREEN = 1;
+    const BLUE = 2;
+    const ALPHA = 3;
+
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext('2d');
+    const canvas2 = document.getElementById("canvas2");
+    const ctx2 = canvas2.getContext('2d');
+
+    addEventListeners();
+
+    function addEventListeners() {
+        document.getElementById('imageLoader').addEventListener('change', handleImage, false);
+        document.getElementById('greyLevel').addEventListener('change', convertImage, false);
+        document.getElementById('luminance').addEventListener('change', convertImage, false);
+        document.getElementById('fullOpacityTo0').addEventListener('change', convertImage, false);
+        document.getElementById('invert').addEventListener('change', convertImage, false);
+        document.getElementById('zeroToOne').addEventListener('change', convertImage, false);
+        document.getElementById('codeExample').addEventListener('change', convertImage, false);
+    }
+
+    function loadConfig() {
+        return {
+            greyLevel: document.getElementById('greyLevel').checked,
+            luminance: document.getElementById('luminance').checked,
+            fullOpacityTo0: document.getElementById('fullOpacityTo0').checked,
+            invert: document.getElementById('invert').checked,
+            zeroToOne: document.getElementById('zeroToOne').checked,
+            codeExample: document.getElementById('codeExample').checked,
+        };
+    }
+
+    function convertImage() {
+        const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        const data = imageData.data;
+        const config = loadConfig();
+        let s = "[\n";
+        for (let y = 0; y < canvas.height - 1; ++y) {
+            s += "["
+            for (let x = 0; x < canvas.width - 1; ++x) {
+                const i = (y * canvas.width + x) * 4;
+                let v = convertFunction(data[i + RED], data[i + GREEN], data[i + BLUE], data[i + ALPHA], config);
+                setValueToNewCanvas(data, i, v[RED], v[GREEN], v[BLUE], v[ALPHA]);
+                if (config.zeroToOne) {
+                    v[RED] = v[RED] / 256;
+                    v[GREEN] = v[GREEN] / 256;
+                    v[BLUE] = v[BLUE] / 256;
+                    v[ALPHA] = v[ALPHA] / 256;
+                }
+                if (config.greyLevel) {
+                    s += v[0] + ",";
+                } else {
+                    s += "[" + v[RED] + "," + v[GREEN] + "," + v[BLUE] + "," + v[ALPHA] + "],";
+                }
+            }
+            s += "],\n";
+        }
+        s += "]\n";
+        if (config.codeExample) {
+            s = "image = " + s + ";\n\n";
+
+            s += "polygonSurface = surfaceData(image);\n";
+            s += "polyhedron(points = polygonSurface[0], faces = polygonSurface[1]);\n\n";
+            s += openScadModules;
+        }
+        ctx2.putImageData(imageData, 0, 0);
+        document.getElementById("textarea").value = s;
+    }
+
+    function handleImage(e) {
+        const reader = new FileReader();
+        reader.onload = function (event) {
+            const image = new Image();
+            image.onload = function () {
+                canvas.width = image.width;
+                canvas.height = image.height;
+                canvas2.width = image.width;
+                canvas2.height = image.height;
+                ctx.drawImage(image, 0, 0);
+                convertImage();
+            }
+            image.src = event.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);
+    }
+
+    function setValueToNewCanvas(data, i, red, green, blue, alpha) {
+        data[i + RED] = red;
+        data[i + GREEN] = green;
+        data[i + BLUE] = blue;
+        data[i + ALPHA] = alpha;
+    }
+
+    function convertFunction(red, green, blue, alpha, config) {
+        if (config.fullOpacityTo0 && alpha === 0) {
+            return [0, 0, 0, 0];
+        }
+        if (config.invert) {
+            red = 255 - red;
+            green = 255 - green;
+            blue = 255 - blue;
+        }
+        let black;
+        if (config.luminance) {
+            black = lumColors(red, green, blue);
+        } else {
+            black = avgColors(red, green, blue);
+        }
+        black = Math.min(Math.max(Math.round(black), 0), 255);
+        return config.greyLevel ? [black, black, black, alpha] : [red, green, blue, alpha];
+    }
+
+    function avgColors(red, green, blue) {
+        return (red + green + blue) / 3;
+    }
+
+    function lumColors(red, green, blue) {
+        return (0.2126 * red + 0.7152 * green + 0.0722 * blue);
+    }
+
+    const openScadModules = `
+// source https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Tips_and_Tricks
+// operate like the builtin module surface() but
+// from a matrix of floats instead of a text file
+function surfaceDataf(M, center = false) = let(
+    n = len(M),
+    m = len(M[0]),
+    miz = min([for (Mi = M) min(Mi)]),
+    minz = miz < 0? miz - 1 : - 1,
+    ctr = center ? [- (m - 1) / 2, - (n - 1) / 2, 0]: [0, 0, 0],
+    points = [// original data points
+        for (i = [0:n - 1])for (j = [0:m - 1]) [j, i, M[i][j]] + ctr,
+                [0, 0, minz] + ctr,
+                [m - 1, 0, minz] + ctr,
+                [m - 1, n - 1, minz] + ctr,
+                [0, n - 1, minz] + ctr,
+        // additional interpolated points at the center of the quads
+        // the points bellow with \`med\` set to 0 are not used by faces
+        for (i = [0:n - 1])for (j = [0:m - 1])
+        let(med = i == n - 1 || j == m - 1 ? 0:
+                    (M[i][j] + M[i + 1][j] + M[i + 1][j + 1] + M[i][j + 1]) / 4)
+                [j + 0.5, i + 0.5, med] + ctr
+        ],
+    faces = [// faces connecting data points to interpolated ones
+        for (i = [0:n - 2])
+        for (j = [i * m:i * m + m - 2])
+            each [[j + 1, j, j + n * m + 4],
+                [j, j + m, j + n * m + 4],
+                [j + m, j + m + 1, j + n * m + 4],
+                [j + m + 1, j + 1, j + n * m + 4]],
+        // lateral and bottom faces
+            [for (i = [0:m - 1])           i, n * m + 1, n * m],
+            [for (i = [m - 1:- 1:0]) - m + i + n * m, n * m + 3, n * m + 2],
+            [for (i = [n - 1:- 1:0])      i * m, n * m, n * m + 3],
+            [for (i = [0:n - 1])     i * m + m - 1, n * m + 2, n * m + 1],
+            [n * m, n * m + 1, n * m + 2, n * m + 3]
+        ]
+) [points, faces];
+
+module surfaceData(M, center = false, convexity = 10) {
+    a = surfaceDataf(M, center);
+    polyhedron(a[0], a[1], convexity = convexity);
+}
+    `;
+</script>
+</body>
+</html>

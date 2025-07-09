@@ -1,5 +1,5 @@
-use <mug.scad>
-use <nutellaGlass.scad>
+use <../common/mug.scad>
+use <../nutellaGlass/nutellaGlass.scad>
 
 /* [Mug] */
 // nutella glass scale: grow nutella glass to better fit in
@@ -56,5 +56,5 @@ module c3po_mug() {
 module c3po() {
     scale([1, 1, 0.84])
         translate([-127, -127, 0]) // center the model
-            import("resources/cupbarrel.stl");
+            import("cupbarrel.stl");
 }

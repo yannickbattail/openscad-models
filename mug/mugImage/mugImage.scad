@@ -1,7 +1,7 @@
-use <wrapAroundCylinder.scad>
-use <surfaceData.scad>
-use <mug.scad>
-use <nutellaGlass.scad>
+use <../common/wrapAroundCylinder.scad>
+use <../common/surfaceData.scad>
+use <../common/mug.scad>
+use <../nutellaGlass/nutellaGlass.scad>
 /* Images */
 include <images/cat.scad>
 include <images/cat_fur.scad>

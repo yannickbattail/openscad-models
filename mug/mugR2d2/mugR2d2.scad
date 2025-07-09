@@ -1,5 +1,5 @@
-use <mug.scad>
-use <nutellaGlass.scad>
+use <../common/mug.scad>
+use <../nutellaGlass/nutellaGlass.scad>
 
 /* [Mug] */
 // nutella glass scale: grow nutella glass to better fit in
@@ -57,5 +57,5 @@ module r2d2() {
         translate([0, 0, 90])
             rotate([0, 0, -90])
                 scale(80)
-                    import("resources/r2d2.3mf"); // https://www.thingiverse.com/thing:5413008
+                    import("R2D2.3mf"); // https://www.thingiverse.com/thing:5413008
 }

@@ -30,7 +30,7 @@ openScadOptions:
   hardwarnings: false
   debug: null
   imageOptions:
-    colorscheme: Cornfield # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
+    colorscheme: Starnight # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
     imgsize:
       height: 1024
       width: 1024
@@ -42,11 +42,11 @@ openScadOptions:
   animOptions:
     animDelay: 50 # delay in milliseconds between frames
     animate: 20 # number of frames
-    colorscheme: Cornfield # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
+    colorscheme: Starnight # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
     imgsize:
       height: 256
       width: 256
-    render: null # for full geometry evaluation when exporting png
+    render: true # for full geometry evaluation when exporting png
     preview: null # [=throwntogether] -for ThrownTogether preview png
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"

@@ -3,7 +3,7 @@
 set -e # Exit on error
 
 parallelJobs=1
-outFormats=png #,webp,3mf
+outFormats=png,webp,3mf
 
 cd nutellaGlass ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 3,3 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./nutellaGlass.scad ; cd ..
 cd mugC3po ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugC3po.scad ; cd ..

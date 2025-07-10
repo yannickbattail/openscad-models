@@ -1,4 +1,3 @@
-
 # nutella glass
 
 Template of nutella glass (200g size).
@@ -12,7 +11,6 @@ see example of use:
 - mug tonneau
 - [pumpkin mug](https://www.thingiverse.com/thing:6274402)
 - [your image on a mug](https://www.thingiverse.com/thing:5560224)
-
 
 ## UPDATE
 
@@ -37,7 +35,8 @@ Command to generate for all the presets: png image, webp animation, 3mf 3D model
 npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 3,3 --configFile ../globalConfig.yaml ./nutellaGlass.scad
 ```
 
-You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
+number of cores minus 1)
 
 Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 

@@ -8,6 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/animal_dice/venv" />
       <excludeFolder url="file://$MODULE_DIR$/VoxelHeart/gen" />
       <excludeFolder url="file://$MODULE_DIR$/mug/gen" />
+      <excludeFolder url="file://$MODULE_DIR$/animal_dice/gen" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -137,7 +137,7 @@ module cutEdge(edge) {
     intersection() {
       rotate([45, 0, 0])
         translate([-50, 0, 0])
-          cube(100);
+                cube(100);
       rotate([0, 0, -45])
         translate([0, 0, -50])
           cube(100);

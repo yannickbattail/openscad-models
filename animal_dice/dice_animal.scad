@@ -1,5 +1,5 @@
 // animal model
-animalNumber = 0; // [0:Platypus_Barbarian, 1:VoxelHeart1_hull, 2:catLowPoly, 3:dino, 4:dragonLED, 5:duckVader, 6:foxLowPoly, 7:heart_gem, 8:panda, 9:vader]
+animalNumber = 0; // [0:Mimic_Chest, 1:Platypus_Barbarian, 2:VoxelHeart1_hull, 3:catLowPoly, 4:dino, 5:dragonLED, 6:duckVader, 7:foxLowPoly, 8:heart_gem, 9:panda, 10:vader ]
 // part
 part = "whole"; // [whole, model, fixation, all_edges, edge1_2, edge1_3, edge1_4, edge1_5 , edge6_2, edge6_3, edge6_4, edge6_5 , edge2_3, edge2_4, edge3_5, edge4_5]
 // fixation bars diameter
@@ -69,11 +69,12 @@ if (part == "whole") {
     fixation(fixation_diameter + fixation_tolerence);
   }
 } else if (part == "all_edges") {
-  edges = ["edge1_2", "edge1_3", "edge1_4", "edge1_5", "edge6_2", "edge6_3", "edge6_4", "edge6_5", "edge2_3", "edge2_4", "edge3_5", "edge4_5"];
+  edges = ["edge1_2", "edge1_3", "edge1_4", "edge1_5", "edge6_2", "edge6_3", "edge6_4", "edge6_5", "edge2_3", "edge2_4",
+    "edge3_5", "edge4_5"];
   for (i = [0: len(edges)]) {
-    diceEdge(fixation_diameter + fixation_tolerence, faces, font_params, getEdge(edges[i]), hsv(i/len(edges)));
+    diceEdge(fixation_diameter + fixation_tolerence, faces, font_params, getEdge(edges[i]), hsv(i / len(edges)));
   }
-} else { // edge
+} else {// edgeX_X
   diceEdge(fixation_diameter + fixation_tolerence, faces, font_params, getEdge(part), "yellow");
 }
 
@@ -105,31 +106,31 @@ module animalModel(animalConfig) {
 }
 
 function getEdge(edgeName) =
-    (edgeName == "edge1_3") ? [0, 0, 0]:
-      (edgeName == "edge1_5") ? [0, 0, 90]:
-        (edgeName == "edge1_4") ? [0, 0, 180]:
-          (edgeName == "edge1_2") ? [0, 0, 270]:
+  (edgeName == "edge1_3") ? [0, 0, 0]:
+    (edgeName == "edge1_5") ? [0, 0, 90]:
+      (edgeName == "edge1_4") ? [0, 0, 180]:
+        (edgeName == "edge1_2") ? [0, 0, 270]:
 
-            (edgeName == "edge6_3") ? [0, 90, 0]:
-              (edgeName == "edge6_5") ? [0, 90, 90]:
-                (edgeName == "edge6_4") ? [0, 90, 180]:
-                  (edgeName == "edge6_2") ? [0, 90, 270]:
+          (edgeName == "edge6_3") ? [0, 90, 0]:
+            (edgeName == "edge6_5") ? [0, 90, 90]:
+              (edgeName == "edge6_4") ? [0, 90, 180]:
+                (edgeName == "edge6_2") ? [0, 90, 270]:
 
-                    (edgeName == "edge2_3") ? [90, 0, 0]:
-                      (edgeName == "edge3_5") ? [90, 0, 90]:
-                        (edgeName == "edge4_5") ? [90, 0, 180]:
-                          (edgeName == "edge2_4") ? [90, 0, 270]:
-                            [];
+                  (edgeName == "edge2_3") ? [90, 0, 0]:
+                    (edgeName == "edge3_5") ? [90, 0, 90]:
+                      (edgeName == "edge4_5") ? [90, 0, 180]:
+                        (edgeName == "edge2_4") ? [90, 0, 270]:
+                          [];
 
 module diceEdge(fixation_diameter, faces, font_params, edge, color) {
   color(color)
-  intersection() {
-    difference() {
-      dice(faces, font_params);
-      fixation(fixation_diameter);
+    intersection() {
+      difference() {
+        dice(faces, font_params);
+        fixation(fixation_diameter);
+      }
+      cutEdge(edge);
     }
-    cutEdge(edge);
-  }
 }
 
 module cutEdge(edge) {
@@ -137,7 +138,7 @@ module cutEdge(edge) {
     intersection() {
       rotate([45, 0, 0])
         translate([-50, 0, 0])
-                cube(100);
+          cube(100);
       rotate([0, 0, -45])
         translate([0, 0, -50])
           cube(100);
@@ -148,7 +149,7 @@ module cutEdge(edge) {
 
 module dice(faces, font_params) {
   difference() {
-      sphere(d = 100);
+    sphere(d = 100);
     r = 32;
     cylinder(r = r, h = 200, center = true);
     rotate([0, 90, 0])

@@ -1,4 +1,4 @@
-# Figurine in a dice
+# Figurine in dice
 
 Dices are balanced, figurine's center of gravity is put in the center of the dice.
 
@@ -8,23 +8,27 @@ Don't forget to post a make.
 
 ## models
 
-- dragon https://www.thingiverse.com/thing:1291987
-- fox https://www.thingiverse.com/thing:1736162
-- cat https://www.thingiverse.com/thing:5035825
-- dino https://www.thingiverse.com/thing:913069
-- panda: https://www.thingiverse.com/thing:182239
-- heart gem: https://www.thingiverse.com/thing:2452845
-- duck vador
-- Platypus_Barbarian https://cults3d.com/en/3d-model/game/platypus-minis-so-far-mz4250
+- [dragon](https://www.thingiverse.com/thing:1291987)
+- [fox](https://www.thingiverse.com/thing:1736162)
+- [cat](https://www.thingiverse.com/thing:5035825)
+- [dino](https://www.thingiverse.com/thing:913069)
+- [panda](https://www.thingiverse.com/thing:182239)
+- [heart gem](https://www.thingiverse.com/thing:2452845)
+- [voxel heart](https://www.thingiverse.com/thing:5635344)
+- duck Darth Vader
+- [Platypus Barbarian](https://cults3d.com/en/3d-model/game/platypus-minis-so-far-mz4250)
+- [mimic chest](https://www.thingiverse.com/thing:2843119)
 
 ## UPDATE
 
+- v3: split edges, fixation and model, so it can be printed in multiple colors
 - v2: generate from `animals_center_of_gravity.json` and use `openscad-generate`
 - v1: 1st design
 
 ## Customizable variables
 
-- `part`: default "all", part to generate: all, ball, stick
+- `part`: whole, model, fixation, all_edges, edge1_2, edge1_3, edge1_4, edge1_5 , edge6_2, edge6_3, edge6_4, edge6_5 , edge2_3, edge2_4, edge3_5, edge4_5
+- `animalNumber`: 0:Mimic_Chest, 1:Platypus_Barbarian, 2:VoxelHeart1_hull, 3:catLowPoly, 4:dino, 5:dragonLED, 6:duckVader, 7:foxLowPoly, 8:heart_gem, 9:panda, 10:vader
 - `size`: default 50, size of the model
 - `$fn`: resolution
 

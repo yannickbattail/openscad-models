@@ -1,0 +1,11 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "mug_tonneau_noBlock": {
+      "numberOfBlock": "0"
+    },
+    "mug_tonneau_6blocks": {
+      "numberOfBlock": "6"
+    }
+  }
+}

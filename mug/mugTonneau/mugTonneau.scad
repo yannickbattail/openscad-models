@@ -25,17 +25,17 @@ $vpd = is_animated?500:[];
 
 if (debug) {
     difference() {
-        c3po_mug();
+        tonneau_mug();
         translate([-10, -200, 0]) cube(200);
     }
 } else {
-    c3po_mug();
+    tonneau_mug();
 }
 
-module c3po_mug() {
+module tonneau_mug() {
     difference() {
         union() {
-            c3po();
+            tonneau();
             translate([50, 0, 40])
                 bigHandle(80);
         }
@@ -53,7 +53,7 @@ module c3po_mug() {
     }
 }
 
-module c3po() {
+module tonneau() {
     scale([1, 1, 0.84])
         translate([-127, -127, 0]) // center the model
             import("cupbarrel.stl");

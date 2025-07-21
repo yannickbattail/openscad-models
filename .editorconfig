@@ -3,3 +3,37 @@ root = true
 indent_style = space
 indent_size = 2
 end_of_line = lf
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+max_line_length = 150
+
+[*.md]
+indent_size = 4
+
+[*.json]
+indent_size = 2
+
+[*.yml]
+indent_size = 2
+
+[*.yaml]
+indent_size = 2
+
+[*scad]
+indent_size = 2
+
+[*.sh]
+indent_size = 2
+
+[*.py]
+indent_size = 4
+
+[*.html]
+indent_size = 2
+
+[*.xml]
+indent_size = 2
+
+[*.svg]
+indent_size = 2

@@ -1,5 +1,11 @@
 {
   "parameterSets": {
+    "all": {
+      "part": "all"
+    },
+    "fundation": {
+      "part": "fundation"
+    },
     "opinel": {
       "part": "opinel"
     }

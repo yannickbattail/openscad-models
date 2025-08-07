@@ -16,6 +16,8 @@ opinel-lightsaber sample openscad model inspired from the openscad logo.
 
 here: https://github.com/.../...
 
+opinel https://www.thingiverse.com/thing:2762852
+
 ## Generate
 
 Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets

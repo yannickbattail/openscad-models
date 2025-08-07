@@ -37,5 +37,5 @@ fi
 
 cmd="ping -t 1 -c 1 $cmdOpt"
 
-echo ./heartbeat.sh $heartbeatOpt $cmd
+#echo ./heartbeat.sh $heartbeatOpt $cmd
 ./heartbeat.sh $heartbeatOpt $cmd

@@ -1,5 +1,6 @@
 // part to generate
-part = "opinel"; // [all, opinel, fundation]
+part = "all"; // [all, opinel, fundationAndVirole]
+///fundation, virole,
 
 // looseCoef
 looseCoef = 0.6; // [0.1:0.1:2]
@@ -18,13 +19,19 @@ $vpt = is_animated?[0, 0, 0]:$vpt;
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr;  // animation rotate around the object
 $vpd = is_animated?200:$vpd;
 
+EPSI = 0.01; // constant epsilon for the difference operation
+
 if (part == "opinel") {
   opinel_saber();
 } else if (part == "fundation") {
   fundation();
+} else if (part == "virole") {
+  virole();
+} else if (part == "fundationAndVirole") {
+  fundation_virole();
 } else {
   opinel_saber();
-  fundation();
+  fundation_virole();
 }
 
 module opinel_saber() {
@@ -43,6 +50,21 @@ module opinel() {
         import("opinel.stl");
 }
 
+module fundation_virole() {
+  union() {
+    fundation();
+    radius = 15.7;
+    height = 52;
+    thinkness = 6;
+    virole(radius, height, thinkness);
+    color("DarkGray")
+      difference() {
+        cylinder(h = thinkness, r = radius + thinkness);
+        translate([0, 0, -EPSI])
+          cylinder(h = thinkness + 2 * EPSI, d = 25);
+      }
+  }
+}
 
 module fundation() {
   color("blue")
@@ -61,6 +83,30 @@ module fundationHole(fundation = false) {
 
 module bladeHole() {
   cylinder(h = 206, d1 = 25, d2 = 25);
-  translate([0, 0, -206])
-    cylinder(h = 206, d1 = 26.16, d2 = 25);
+  translate([0, 0, -206 - EPSI])
+    cylinder(h = 206 + 2 * EPSI, d1 = 26.16, d2 = 25);
+}
+
+module virole(radius = 15.7, height = 52, thinkness = 6) {
+  angleOpening = 20;
+  di = 10;
+  color("silver") {
+    translate([0, 0, -height])
+      rotate_extrude(start = angleOpening / 2 + 180, angle = 360 - angleOpening) {
+        rotate([0, 0, 90])
+          difference() {
+            union() {
+              square([height, radius + thinkness]);
+              translate([height / 2, radius])
+                circle(r = di);
+            }
+            union() {
+              translate([-EPSI, -EPSI])
+                square([height + 2 * EPSI, radius]);
+              translate([height / 2, radius])
+                circle(r = di - thinkness);
+            }
+          }
+      }
+  }
 }

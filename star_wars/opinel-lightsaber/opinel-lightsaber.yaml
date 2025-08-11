@@ -34,7 +34,7 @@ openScadOptions:
     imgsize:
       height: 1024
       width: 1024
-    render: null # for full geometry evaluation when exporting png
+    render: true # for full geometry evaluation when exporting png
     preview: null # [=throwntogether] -for ThrownTogether preview png
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"
@@ -44,9 +44,9 @@ openScadOptions:
     animate: 20 # number of frames
     colorscheme: Starnight # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
     imgsize:
-      height: 100
-      width: 100
-    render: null # for full geometry evaluation when exporting png
+      height: 500
+      width: 500
+    render: true # for full geometry evaluation when exporting png
     preview: null # [=throwntogether] -for ThrownTogether preview png
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"

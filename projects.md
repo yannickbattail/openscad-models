@@ -41,7 +41,7 @@
 | star_wars/Medical_emblem    | openscad-generate old json5 | ok                   |
 | star_wars/saber_blocker     | generate_profile.sh         | ok                   |
 | star_wars/selfie_saber      | generate_profile.sh         | no                   |
-| star_wars/opinel-lightsaber | *openscad-generate*         | no                   |
+| star_wars/opinel-lightsaber | *openscad-generate*         | ok                   |
 | time_steps                  | generate_profile.sh         | no                   |
 | twist                       | generate_profile.sh         | ok                   |
 | VoxelHeart                  | *openscad-generate!*        | ok                   |

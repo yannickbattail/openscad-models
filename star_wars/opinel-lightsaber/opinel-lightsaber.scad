@@ -1,5 +1,5 @@
 // part to generate
-part = "all"; // [all, opinel, fundationAndVirole]
+part = "all"; // [all, opinel, fundationAndVirole, DEBUGall]
 ///fundation, virole,
 
 // looseCoef
@@ -23,12 +23,10 @@ EPSI = 0.01; // constant epsilon for the difference operation
 
 if (part == "opinel") {
   opinel_saber();
-} else if (part == "fundation") {
-  fundation();
-} else if (part == "virole") {
-  virole();
 } else if (part == "fundationAndVirole") {
   fundation_virole();
+} else if (part == "DEBUGall") {
+  fundation_virole(true);
 } else {
   opinel_saber();
   fundation_virole();
@@ -50,19 +48,13 @@ module opinel() {
         import("opinel.stl");
 }
 
-module fundation_virole() {
+module fundation_virole(debug = false) {
+  radius = 15.7;
+  height = 52;
+  thinkness = 6;
   union() {
     fundation();
-    radius = 15.7;
-    height = 52;
-    thinkness = 6;
     virole(radius, height, thinkness);
-    color("DarkGray")
-      difference() {
-        cylinder(h = thinkness, r = radius + thinkness);
-        translate([0, 0, -EPSI])
-          cylinder(h = thinkness + 2 * EPSI, d = 25);
-      }
   }
 }
 
@@ -108,5 +100,12 @@ module virole(radius = 15.7, height = 52, thinkness = 6) {
             }
           }
       }
+  }
+  color("DarkGray") {
+    difference() {
+      cylinder(h = thinkness, r = radius + thinkness);
+      translate([0, 0, -EPSI])
+        cylinder(h = thinkness + 2 * EPSI, d = 25);
+    }
   }
 }

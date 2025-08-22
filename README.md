@@ -21,6 +21,7 @@ Several models made with openSCAD.
     - [Medical_emblem](star_wars/Medical_emblem/README.md)
     - [lightsaber as selfie stick](star_wars/selfie_saber/README.md)
     - [light saber blocker](star_wars/saber_blocker/README.md)
+    - [Opinel Lightsaber](star_wars/opinel-lightsaber/README.md)
 - [Animal (or figurine) in a dice](animal_dice/README.md)
 - [Animal (or figurine) in a d20](animal_d20/README.md)
 - [Estourballe](estourballe/README.md) L'estourballe est une Pokéball médiévale tirée

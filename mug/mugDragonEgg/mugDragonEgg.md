@@ -1,6 +1,6 @@
-# Tonneau mug, upcycling nutella glass
+# Dragon egg mug, upcycling nutella glass
 
-Tonneau mug that uses nutella glass (200g size).
+Dragon egg mug that uses nutella glass (200g size).
 
 If you pour hot beverage in the glass when it cools down it may be stuck in the mug, so put hot water in it to detach it
 
@@ -18,14 +18,14 @@ If you pour hot beverage in the glass when it cools down it may be stuck in the 
 
 dragon egg: https://www.thingiverse.com/thing:5357142
 
-here: https://github.com/yannickbattail/openscad-models/tree/main/mug/ugTonneau.
+here: https://github.com/yannickbattail/openscad-models/tree/main/mug/mugDragonEgg.
 
 ## Generate
 
 Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
 
 ```bash
-npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,1 --configFile ../globalConfig.yaml ./mugTonneau.scad
+npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,1 --configFile ../globalConfig.yaml ./mugDragonEgg.scad
 ```
 
 You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
@@ -41,4 +41,4 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## keywords
 
-mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, tonneau, barrel, nutella, openscad, customizable, customizer
+mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, dragon, dragon egg, nutella, openscad, customizable, customizer

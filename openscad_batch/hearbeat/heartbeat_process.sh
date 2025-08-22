@@ -9,7 +9,7 @@
 # ex:
 # sleep 10 & ### or other cmd with a & at the end
 # pid=$!
-# heartbeat_process.sh $pid 
+# heartbeat_process.sh $pid
 
 heartbeatOpt=""
 cmdOpt=""
@@ -40,5 +40,5 @@ fi
 
 cmd="ps -p $cmdOpt"
 
-echo ./heartbeat.sh $heartbeatOpt $cmd
+#echo ./heartbeat.sh $heartbeatOpt $cmd
 ./heartbeat.sh $heartbeatOpt $cmd

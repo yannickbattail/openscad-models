@@ -8,4 +8,4 @@ if [ ! -f "cthulhu-wand_manche_fixed.stl" ] || [ ! -f "cthulhu-wand_partie1_fixe
   exit 1
 fi
 
-npx openscad-generate@latest generate --outFormats 3mf --parallelJobs $parallelJobs --configFile cthulhu-wand.yaml ./cthulhu-wand.scad
+npx openscad-generate@latest generate --outFormats 3mf --parallelJobs $parallelJobs --configFile cthulhu-wand.yaml ./cthulhu-wand_3mf.scad

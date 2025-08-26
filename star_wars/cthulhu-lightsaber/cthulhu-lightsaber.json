@@ -1,17 +1,14 @@
 {
   "parameterSets": {
-  "all_20": {
-    "part": "all",
-      "size": "20"
+    "all": {
+      "part": "all"
+    },
+    "handle": {
+      "part": "handle"
+    },
+    "fundation": {
+      "part": "fundation"
+    }
   },
-  "ball_50": {
-    "part": "ball",
-      "size": "50"
-  },
-  "stick_50": {
-    "part": "stick",
-      "size": "50"
-  }
-},
   "fileFormatVersion": "1"
 }

@@ -181,6 +181,18 @@
       "partialModel": "all",
       "reliefMultiplier": "1",
       "withNutellaGlass": "true"
+    },
+    "savoie": {
+      "imageAngle": "360",
+      "imageRotation": "0",
+      "mugDiameter": "76",
+      "mugHeight": "80",
+      "mugThickness": "2",
+      "numberOfBlock": "6",
+      "part": "savoie",
+      "partialModel": "all",
+      "reliefMultiplier": "6",
+      "withNutellaGlass": "true"
     }
   }
 }

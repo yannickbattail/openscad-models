@@ -12,6 +12,6 @@ cd mugTonneau   ; npx openscad-generate@latest generate --outFormats ${outFormat
 cd mugD20       ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugD20.scad       ; cd ..
 cd mugDragonEgg ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugDragonEgg.scad ; cd ..
 ### it takes a loooong time (and cpu, and memory) to generate
-#cd mugImage     ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 4,4 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugImage.scad     ; cd ..
+#cd mugImage    ; generate_all.sh ; cd ..
 # not working (for now)
 #cd mugR2d2      ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugR2d2.scad      ; cd ..

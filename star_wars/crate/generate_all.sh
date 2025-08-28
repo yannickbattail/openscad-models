@@ -1,3 +1,6 @@
 #!/bin/bash
 
-npx openscad-generate generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile sw-crate.config.json5 ./sw-crate.scad
+parallelJobs=10
+outFormats=png,webp,3mf
+
+npx openscad-generate@latest generate --outFormats $outFormats --mosaicFormat 2,2  --parallelJobs $parallelJobs --configFile sw-crate.yaml ./sw-crate.scad

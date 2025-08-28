@@ -1,0 +1,9 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "with_horns": {
+      "horn_color": "red",
+      "yoda_color": "#333333"
+    }
+  }
+}

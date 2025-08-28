@@ -2,9 +2,20 @@
 
 Star wars crate box
 
-## UPDATE
+## Update
 
 - v1: 1st design
+
+## How to print it
+
+Material: *what you want*
+
+Color: grey
+
+Parts:
+- `full`: support Yes, rotate 180°
+- `top`: support Yes, rotate 180°
+- `bottom`: support Yes, rotate 0°
 
 ## Customizable variables
 
@@ -18,22 +29,19 @@ Sources available [here](https://github.com/yannickbattail/openscad-models/tree/
 
 ## Generate
 
-Command to generate for all the presets:
-
-- png image
-- webp animation
-- 3mf 3D model
-- mosaic of all the presets
+Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
 
 ```bash
-npx openscad-generate generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile sw-crate.config.json5 ./sw-crate.scad
+npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile sw-crate.yaml ./sw-crate.scad
 ```
 
-More formats can be use: stl,asciistl,binstl,off,wrl,amf,3mf,pov,dxf,svg,pdf,png,gif,webp
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
 
-You can use the option `--parallelJobs 7` to generate in parallel. (optimal number is your CPU cores minus 1)
+Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
-You need nodejs, imagemagick, webp and of course openscad-nightly installed.
+## Other interesting designs
+
+- [Jedi holocron box multi material](https://www.thingiverse.com/thing:6782529)
 
 ## License
 

@@ -2,7 +2,7 @@
 
 Lightsaber with the handle of an Opinel knife.
 
-## UPDATE
+## Updates
 
 - v1: 1st design
 

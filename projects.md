@@ -33,12 +33,12 @@
 | rubberDuckDebugging         | generate_profile.sh         | ok                   |
 | sideImageExtrude            | generate_profile.sh         | no                   |
 | signetRing                  | generate_profile.sh         | ok                   |
-| star_wars/ahsoka_ball_map   | generate_profile.sh         | ok                   |
+| star_wars/ahsoka_ball_map   | *openscad-generate*         | ok                   |
 | star_wars/crate             | openscad-generate old json5 | ok                   |
 | star_wars/darth_grogu       | manual                      | ok                   |
 | star_wars/grogu_wall_art    | generate_profile.sh         | ok                   |
 | star_wars/holocron          | generate_profile.sh         | ok                   |
-| star_wars/Medical_emblem    | openscad-generate old json5 | ok                   |
+| star_wars/Medical_emblem    | *openscad-generate*         | ok                   |
 | star_wars/saber_blocker     | generate_profile.sh         | ok                   |
 | star_wars/selfie_saber      | generate_profile.sh         | no                   |
 | star_wars/opinel-lightsaber | *openscad-generate*         | ok                   |

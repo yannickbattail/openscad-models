@@ -20,7 +20,7 @@ Several models made with openSCAD.
     - [holocron](star_wars/holocron/holocron_box.md)
     - [Medical_emblem](star_wars/Medical_emblem/README.md)
     - [lightsaber as selfie stick](star_wars/selfie_saber/README.md)
-    - [light saber blocker](star_wars/saber_blocker/README.md)
+    - [light saber blocker](star_wars/saber_blocker/saber_blocker.md)
     - [Opinel Lightsaber](star_wars/opinel-lightsaber/README.md)
 - [Animal (or figurine) in a dice](animal_dice/README.md)
 - [Animal (or figurine) in a d20](animal_d20/README.md)

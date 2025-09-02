@@ -1,19 +1,19 @@
 outputDir: ./gen
 outFormats:
-  # - png
-  # - webp
-  # - gif
-  # - pdf
-  # - svg
-  # - dxf
-  # - 3mf
-  # - stl
-  # - asciistl
-  # - binstl
-  # - off
-  # - wrl
-  # - amf
-  # - pov
+# - png
+# - webp
+# - gif
+# - pdf
+# - svg
+# - dxf
+# - 3mf
+# - stl
+# - asciistl
+# - binstl
+# - off
+# - wrl
+# - amf
+# - pov
 #mosaicOptions:
 #  geometry:
 #    width: 256

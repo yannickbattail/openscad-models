@@ -1,3 +1,6 @@
 #!/bin/bash
 
-time ../openscad_batch/generate_profile.sh -g jpg,webp,3mf ./grogu.scad
+parallelJobs=14
+outFormats=png,webp,3mf
+
+npx openscad-generate@latest generate --outFormats $outFormats --mosaicFormat 3,2  --parallelJobs $parallelJobs --configFile grogu.yaml ./grogu.scad

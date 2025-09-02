@@ -1,3 +1,3 @@
 #!/bin/bash
 
-time ../openscad_batch/generate_profile.sh ./ball_map.scad
+npx openscad-generate@latest generate --outFormats png,webp,3mf --configFile ball_map.yaml ./ball_map.scad

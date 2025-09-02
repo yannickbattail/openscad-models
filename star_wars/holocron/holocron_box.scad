@@ -19,134 +19,137 @@ epsi = 0.01;
 thickness = 8; // [10:5:100]
 
 if (part == "face") {
-    face(thickness);
+  face(thickness);
 } else if (part == "face_side") {
-    face_side(thickness);
+  face_side(thickness);
 } else if (part == "all_faces") {
-    all_faces(thickness);
+  all_faces(thickness);
 } else if (part == "box_top") {
-    box_top(box_thickness);
+  box_top(box_thickness);
 } else if (part == "box_bottom") {
-    box_bottom(box_thickness);
+  box_bottom(box_thickness);
 } else {
-    all_faces(thickness);
-    box_top(box_thickness);
-    box_bottom(box_thickness);
+  all_faces(thickness);
+  box_top(box_thickness);
+  box_bottom(box_thickness);
 }
 
 module box_top(box_thickness) {
-    color("blue")
-        difference() {
-            box(box_thickness);
-            translate([0, 0, -25])
-                cube(100 + epsi, center = true);
-        }
-}
-
-module box_bottom(box_thickness) {
-    color("blue")
-        difference() {
-            box(box_thickness);
-            translate([0, 0, 75])
-                cube(100 + epsi, center = true);
-        }
-}
-module box(box_thickness) {
-    box_size = 100 - 0.1;
+  color("blue")
     difference() {
-        cube(box_size, center = true);
-        cube(box_size - box_thickness * 2, center = true);
+      box(box_thickness);
+      translate([0, 0, -25])
+        cube(100 + epsi, center = true);
     }
 }
 
-module all_faces(thickness) {
-    // top
-    translate([0, 0, 50])
-        face(thickness);
-    // bottom
-    translate([0, 0, -50])
-        rotate([180, 0, 0])
-            face(thickness);
+module box_bottom(box_thickness) {
+  color("blue")
+    difference() {
+      box(box_thickness);
+      translate([0, 0, 75])
+        cube(100 + epsi, center = true);
+    }
+}
+module box(box_thickness) {
+  box_size = 100 - 0.1;
+  difference() {
+    cube(box_size, center = true);
+    cube(box_size - box_thickness * 2, center = true);
+  }
+}
 
-    // front
-    rotate([90, 0, 0])
-        translate([0, 0, 50])
-            face_side(thickness);
-    // back
-    rotate([90, 0, 180])
-        translate([0, 0, 50])
-            face_side(thickness);
-    // right
-    rotate([90, 0, 90])
-        translate([0, 0, 50])
-            face_side(thickness);
-    // left
-    rotate([90, 0, -90])
-        translate([0, 0, 50])
-            face_side(thickness);
+module all_faces(thickness) {
+  // top
+  translate([0, 0, 50])
+    face(thickness);
+  // bottom
+  translate([0, 0, -50])
+    rotate([180, 0, 0])
+      face(thickness);
+
+  // front
+  rotate([90, 0, 0])
+    translate([0, 0, 50])
+      face_side(thickness);
+  // back
+  rotate([90, 0, 180])
+    translate([0, 0, 50])
+      face_side(thickness);
+  // right
+  rotate([90, 0, 90])
+    translate([0, 0, 50])
+      face_side(thickness);
+  // left
+  rotate([90, 0, -90])
+    translate([0, 0, 50])
+      face_side(thickness);
 }
 
 module face_side(thickness) {
+  color("yellow")
     difference() {
-        face(thickness);
-        translate([100, 0, 0])
-            cube([100, 100 + thickness, 100] * (1 + epsi), center = true);
-        translate([0, 100, 0])
-            cube([100 + thickness, 100, 100] * (1 + epsi), center = true);
-        translate([0, -100, 0])
-            cube([100 + thickness, 100, 100] * (1 + epsi), center = true);
+      face(thickness);
+      translate([100, 0, 0])
+        cube([100, 100 + thickness, 100] * (1 + epsi), center = true);
+      translate([0, 100, 0])
+        cube([100 + thickness, 100, 100] * (1 + epsi), center = true);
+      translate([0, -100, 0])
+        cube([100 + thickness, 100, 100] * (1 + epsi), center = true);
     }
 }
 
 module face(thickness) {
+  color("yellow")
     linear_extrude(thickness / 2)
-        holocronFace2D_1(thickness);
+      holocronFace2D_1(thickness);
+  color("yellow")
     linear_extrude(thickness / 4)
-        holocronFace2D_2(thickness);
-    color("red")
-        linear_extrude(1)
-            holocronFace2D_holder(thickness);
+      holocronFace2D_2(thickness);
+  color("red")
+    linear_extrude(1)
+      holocronFace2D_holder(thickness);
 }
 
 module holocronFace2D_1(thickness) {
+  difference() {
+    square([100 + thickness, 100 + thickness], center = true);
+    square([100, 100], center = true);
+  }
+  hypo = (100 + thickness) / 2 * sqrt(2);
+  rotate([0, 0, 45]) {
     difference() {
-        square([100 + thickness, 100 + thickness], center = true);
-        square([100, 100], center = true);
+      square([hypo, hypo], center = true);
+      square([hypo - thickness, hypo - thickness], center = true);
     }
-    hypo = (100 + thickness) / 2 * sqrt(2);
-    rotate([0, 0, 45]) {
-        difference() {
-            square([hypo, hypo], center = true);
-            square([hypo - thickness, hypo - thickness], center = true);
-        }
-    }
+  }
 }
 
 module holocronFace2D_2(thickness) {
+  difference() {
+    circle(d = 100 + thickness / 2 - 2);
+    circle(d = 100 - 2);
+  }
+  hypo = (100 + thickness) / 2 * sqrt(2);
+  rotate([0, 0, 45]) {
     difference() {
-        circle(d = 100 + thickness / 2 - 2);
-        circle(d = 100 - 2);
+      square([50 + thickness / 2, 50 + thickness / 2], center = true);
+      square([50 - 1, 50 - 1], center = true);
     }
-    hypo = (100 + thickness) / 2 * sqrt(2);
-    rotate([0, 0, 45]) {
-        difference() {
-            square([50 + thickness / 2, 50 + thickness / 2], center = true);
-            square([50 - 1, 50 - 1], center = true);
-        }
-    }
-    difference() {
-        circle(d = 50);
-        circle(d = 50 - thickness / 2);
-    }
+  }
+  difference() {
+    circle(d = 50);
+    circle(d = 50 - thickness / 2);
+  }
 }
 
 module holocronFace2D_holder(thickness) {
-    difference() {
-        union() {
-            square([1, 100], center = true);
-            square([100, 1], center = true);
-        }
-        rotate([0, 0, 45])
-            square([50 + thickness / 2, 50 + thickness / 2], center = true);
+  difference() {
+    union() {
+      square([1, 100], center = true);
+      square([100, 1], center = true);
     }
+    rotate([0, 0, 45])
+      square([50 + thickness / 2, 50 + thickness / 2], center = true);
+  }
 }

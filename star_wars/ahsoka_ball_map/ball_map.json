@@ -1,9 +1,9 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "Ahsoka_ball_map": {
-            "circlesDepth": "55",
-            "circlesRadius": "80"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "Ahsoka_ball_map": {
+      "circlesDepth": "55",
+      "circlesRadius": "80"
     }
+  }
 }

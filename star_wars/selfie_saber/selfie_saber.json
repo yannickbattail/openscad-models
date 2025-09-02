@@ -14,18 +14,20 @@
       "phoneAngle": "0"
     },
     "screw1": {
-      "part": "screw1"
+      "part": "screw1",
+      "saberDiameterInch": "1"
     },
     "screw2": {
-      "part": "screw2"
+      "part": "screw2",
+      "saberDiameterInch": "1"
     },
     "serrated_washer": {
       "part": "serratedWasher"
     },
     "all_with_saber": {
+      "part": "all",
       "displayPhone": "true",
-      "displaySaber": "true",
-      "part": "all"
+      "displaySaber": "true"
     }
   }
 }

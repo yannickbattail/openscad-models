@@ -17,7 +17,7 @@ Several models made with openSCAD.
     - [darth_grogu](star_wars/darth_grogu/README.md)
     - [Star wars crate box](star_wars/crate/sw-crate.md)
     - [Grogu wall art](star_wars/grogu_wall_art/README.md)
-    - [holocron](star_wars/holocron/README.md)
+    - [holocron](star_wars/holocron/holocron_box.md)
     - [Medical_emblem](star_wars/Medical_emblem/README.md)
     - [lightsaber as selfie stick](star_wars/selfie_saber/README.md)
     - [light saber blocker](star_wars/saber_blocker/README.md)

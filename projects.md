@@ -37,7 +37,7 @@
 | star_wars/crate             | *openscad-generate*  | ok                   |
 | star_wars/darth_grogu       | *openscad-generate*  | not updated          |
 | star_wars/grogu_wall_art    | *openscad-generate*  | ok                   |
-| star_wars/holocron          | generate_profile.sh  | ok                   |
+| star_wars/holocron          | *openscad-generate*  | ok                   |
 | star_wars/Medical_emblem    | *openscad-generate*  | ok                   |
 | star_wars/saber_blocker     | generate_profile.sh  | ok                   |
 | star_wars/selfie_saber      | generate_profile.sh  | no                   |

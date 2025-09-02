@@ -14,7 +14,7 @@ Several models made with openSCAD.
     - [Your Image on a Mug](mug/mugImage/mugImage.md)
 - Star Wars
     - [Ahsoka's TV show ball map](star_wars/ahsoka_ball_map/README.md)
-    - [darth_grogu](star_wars/darth_grogu/README.md)
+    - [darth_grogu](star_wars/darth_grogu/darth_grogu.md)
     - [Star wars crate box](star_wars/crate/sw-crate.md)
     - [Grogu wall art](star_wars/grogu_wall_art/README.md)
     - [holocron](star_wars/holocron/holocron_box.md)

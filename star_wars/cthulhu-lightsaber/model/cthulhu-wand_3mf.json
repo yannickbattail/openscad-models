@@ -1,6 +1,20 @@
 {
   "parameterSets": {
-    "all": {}
+    "all": {
+      "part": "all"
+    },
+    "manche": {
+      "part": "manche"
+    },
+    "partie1": {
+      "part": "partie1"
+    },
+    "partie2": {
+      "part": "partie2"
+    },
+    "partie3": {
+      "part": "partie3"
+    }
   },
   "fileFormatVersion": "1"
 }

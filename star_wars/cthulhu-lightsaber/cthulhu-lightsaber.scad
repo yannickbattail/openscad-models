@@ -1,10 +1,9 @@
 // part to generate
-part = "all"; // [all, handle, fundation]
+part = "all"; // [all, handle, pomel, fundation]
 
 // looseCoef
 looseCoef = 0.6; // [0.1:0.1:2]
 
-/* [Animation] */
 // resolution
 $fn = 100;
 
@@ -22,10 +21,13 @@ EPSI = 0.01; // constant epsilon for the difference operation
 
 if (part == "handle") {
   handle();
+} else if (part == "pomel") {
+  pomel();
 } else if (part == "fundation") {
   fundation();
 } else {
   handle();
+  pomel();
   fundation();
   saberBlade();
 }
@@ -36,6 +38,14 @@ module handle() {
       wand();
       fundationHole();
       saberBlade();
+    }
+}
+
+module pomel() {
+  color("Green")
+    difference() {
+      wandPommel();
+      fundationHole();
     }
 }
 
@@ -50,13 +60,26 @@ module saberBlade() {
 }
 
 module wand() {
-  translate([0, 0, -100])
-    scale(30)
+  difference() {
+    translate([0, -5, -100]) {
+      scale(1.3) {
+        rotate([180, 0, 0]) {
+          import("model/gen/cthulhu-wand_3mf_partie1.3mf");
+          import("model/gen/cthulhu-wand_3mf_partie2.3mf");
+          import("model/gen/cthulhu-wand_3mf_partie3.3mf");
+        }
+      }
+    }
+    translate([0,0,323+50])
+      cube(100, center=true);
+  }
+}
+
+module wandPommel() {
+  translate([0, -5, -100])
+    scale(1.3)
       rotate([180, 0, 0]) {
-        import("./model/gen/cthulhu-wand_manche.3mf");
-        import("./model/gen/cthulhu-wand_partie1.3mf");
-        import("./model/gen/cthulhu-wand_partie2.3mf");
-        import("./model/gen/cthulhu-wand_partie3.3mf");
+        import("model/gen/cthulhu-wand_3mf_manche.3mf");
       }
 }
 

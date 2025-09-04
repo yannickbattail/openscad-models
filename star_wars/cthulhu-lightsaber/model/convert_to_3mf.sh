@@ -1,6 +1,7 @@
 #!/bin/bash
 
-parallelJobs=4
+parallelJobs=14
+outFormats=png,webp,3mf
 
 # Check required OBJ files are present (single if, no loop)
 if [ ! -f "cthulhu-wand_manche_fixed.stl" ] || [ ! -f "cthulhu-wand_partie1_fixed.stl" ] || [ ! -f "cthulhu-wand_partie2_fixed.stl" ] || [ ! -f "cthulhu-wand_partie3_fixed.stl" ]; then
@@ -8,4 +9,4 @@ if [ ! -f "cthulhu-wand_manche_fixed.stl" ] || [ ! -f "cthulhu-wand_partie1_fixe
   exit 1
 fi
 
-npx openscad-generate@latest generate --outFormats 3mf --parallelJobs $parallelJobs --configFile cthulhu-wand.yaml ./cthulhu-wand_3mf.scad
+npx openscad-generate@latest generate --outFormats $outFormats --parallelJobs $parallelJobs --configFile cthulhu-wand.yaml ./cthulhu-wand_3mf.scad

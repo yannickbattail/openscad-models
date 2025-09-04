@@ -46,7 +46,7 @@ openScadOptions:
     imgsize:
       height: 256
       width: 256
-    render: null # for full geometry evaluation when exporting png
+    render: true # for full geometry evaluation when exporting png
     preview: null # [=throwntogether] -for ThrownTogether preview png
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"

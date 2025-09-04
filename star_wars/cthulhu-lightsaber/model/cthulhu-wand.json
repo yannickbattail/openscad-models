@@ -1,5 +1,8 @@
 {
   "parameterSets": {
+    "all": {
+      "part": "all"
+    },
     "manche": {
       "part": "manche"
     },

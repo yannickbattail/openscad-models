@@ -1,0 +1,13 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "with_base": {
+            "thickness": "1",
+            "thicknessBase": "1"
+        },
+        "without_base": {
+            "thickness": "1",
+            "thicknessBase": "0"
+        }
+    }
+}

@@ -1,4 +1,4 @@
-// a list of theses caracters: mgkpB12e?wx0ftuTU
+// a list of theses caracters: MgkpcFms12e?wTUtufBCx
 worldLine12 = " ";
 worldLine11 = " ";
 worldLine10 = " ";
@@ -11,6 +11,10 @@ worldLine4 = "eee";
 worldLine3 = " ";
 worldLine2 = "MgkpB ftT";
 worldLine1 = "12e?wx0uU";
+
+$vpt=[80,0,10];
+$vpr=[70,0,320];
+$vpd=400;
 
 world = [
     worldLine12,
@@ -26,10 +30,6 @@ world = [
     worldLine2,
     worldLine1
 ];
-
-//$vpt=[80,0,10];
-//$vpr=[70,0,320];
-//$vpd=400; 
 
 MarioWorld(world);
 
@@ -48,27 +48,33 @@ module worldLine(line) {
 }
 
 module tile(tileType) {
+  // Characters
   if (tileType == "M") { mario(); }
+  // Enemies
   else if (tileType == "g") { gumba(); }
   else if (tileType == "k") { koopa(); }
   else if (tileType == "p") { piranha_plant(); }
-  else if (tileType == "B") { bush(); }
-  else if (tileType == "C") { cloud(); }
-  else if (tileType == "T") { big_tube_top(); }
-  else if (tileType == "U") { big_tube_bottom(); }
-  else if (tileType == "t") { tube_top(); }
-  else if (tileType == "u") { tube_bottom(); }
-  else if (tileType == "f") { fence(); }
-  else if (tileType == "1") { floor1(); }
-  else if (tileType == "2") { floor2(); }
-  else if (tileType == "e") { empty(); }
-  else if (tileType == "q") { question(); }
-  else if (tileType == "?") { question(); }
-  else if (tileType == "w") { wall(); }
+  // items
   else if (tileType == "c") { coin(); }
   else if (tileType == "F") { flower(); }
   else if (tileType == "m") { mushroom(); }
   else if (tileType == "s") { star(); }
+  // blocks
+  else if (tileType == "1") { floor1(); }
+  else if (tileType == "2") { floor2(); }
+  else if (tileType == "e") { empty(); }
+  else if (tileType == "?") { question(); }
+  else if (tileType == "w") { wall(); }
+  // tubes
+  else if (tileType == "T") { big_tube_top(); }
+  else if (tileType == "U") { big_tube_bottom(); }
+  else if (tileType == "t") { tube_top(); }
+  else if (tileType == "u") { tube_bottom(); }
+  // decor
+  else if (tileType == "f") { fence(); }
+  else if (tileType == "B") { bush(); }
+  else if (tileType == "C") { cloud(); }
+  // debug
   else if (tileType == "x") { tileFull(); }
   else if (tileType == "0") { tileHollow(); }
 }

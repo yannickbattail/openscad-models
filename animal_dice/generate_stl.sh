@@ -6,7 +6,7 @@ fn=50
 mkdir -p ./stl/
 #OPENSCAD=xvfb-run -a openscad
 OPENSCAD="xvfb-run -a openscad-nightly"
-parts_list="cat dino dragon fox panda"
+parts_list="cat dino dragon fox panda heart_gem"
 for part in $parts_list
 do
     echo generating ./stl/${part}.stl ...

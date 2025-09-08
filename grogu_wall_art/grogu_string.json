@@ -2,22 +2,39 @@
     "fileFormatVersion": "1",
     "parameterSets": {
         "with_base": {
+            "hookPosition": "both",
             "thickness": "1",
             "thicknessBase": "1"
         },
         "without_base": {
+            "hookPosition": "none",
             "thickness": "1",
             "thicknessBase": "0"
         },
-        "bothSides": {
-            "bothSides": true,
+        "both_sides": {
+            "bothSides": "true",
             "thickness": "1",
             "thicknessBase": "1"
         },
-        "tiny_grogu": {
-            "width": 50,
+        "tiny_no_hook": {
+            "hookPosition": "none",
             "thickness": "1",
-            "thicknessBase": "1"
+            "thicknessBase": "1",
+            "width": "50"
+        },
+        "hook_top": {
+            "bothSides": "false",
+            "hookPosition": "top",
+            "thickness": "1",
+            "thicknessBase": "1",
+            "width": "100"
+        },
+        "hook_bottom": {
+            "bothSides": "false",
+            "hookPosition": "bottom",
+            "thickness": "1",
+            "thicknessBase": "1",
+            "width": "100"
         }
     }
 }

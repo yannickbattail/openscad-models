@@ -8,14 +8,19 @@ thicknessBase = 1; // [0:0.1:10]
 
 width = 100;
 
+hookPosition = "both"; // [both, top, bottom, none]
+
 resize([width, width / 1.62833738, thickness + thicknessBase])
     grogu(thickness, thicknessBase, bothSides);
 
-translate([49, 59.6, 0])
-    hook();
-translate([49, 1, 0])
-    rotate([0, 0, 180])
+if (hookPosition == "both" || hookPosition == "top")
+    translate([49, 59.6, 0])
         hook();
+
+if (hookPosition == "both" || hookPosition == "bottom")
+    translate([49, 1, 0])
+        rotate([0, 0, 180])
+            hook();
 
 module hook() {
     //color("blue")

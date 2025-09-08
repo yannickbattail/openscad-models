@@ -1,21 +1,15 @@
 #!/bin/bash
 
-run_in_docker() {
-   docker run -it --user $UID -v ./:/work openscad-tools $@
-}
+set -e # Exit on error
 
-if [[ $1 == "thingiverse" ]]
-then
-  echo "Generate for thingiverse"
-  run_in_docker generate_for_thingiverse.sh mugImage
-  run_in_docker generate_for_thingiverse.sh mugC3po
-  run_in_docker generate_for_thingiverse.sh mugR2d2
-  run_in_docker generate_for_thingiverse.sh mugGrogu
-  run_in_docker generate_for_thingiverse.sh nutellaGlass
-else
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./mugImage.scad
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./mugC3po.scad
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./mugR2d2.scad
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./mugGrogu.scad
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./nutellaGlass.scad
-fi
+parallelJobs=1
+outFormats=png #,webp,3mf
+
+cd nutellaGlass ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 3,3 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./nutellaGlass.scad ; cd ..
+cd mugC3po ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugC3po.scad ; cd ..
+cd mugGrogu ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugGrogu.scad ; cd ..
+cd mugTonneau ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugTonneau.scad ; cd ..
+### it takes a loooong time (and cpu, and memory) to generate
+cd mugImage ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 4,4 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugImage.scad ; cd ..
+# not working (for now)
+## cd mugR2d2 ; npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile ../globalConfig.yaml ./mugR2d2.scad ; cd ..

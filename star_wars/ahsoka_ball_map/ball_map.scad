@@ -1,7 +1,7 @@
 circlesRadius = 80; // [60:100]
 circlesDepth = 55; // [40:70]
 // resolution
-$fn = 50; // [10:5:100]
+$fn = 200; // [10:5:100]
 
 /* [Animation] */
 // rotating animation
@@ -16,36 +16,36 @@ $vpd = is_animated?1000:$vpd;
 ballMap(circlesRadius, circlesDepth);
 
 module ballMap(circlesRadius, circlesDepth) {
-    difference() {
-        sphere(r = 100);
-        ringTrace(circlesRadius, circlesDepth);
-        rotate([180, 0, 0])
-            ringTrace(circlesRadius, circlesDepth);
-        for (i = [0:4]) {
-            rotate([0, 0, 72 * i]) {
-                rotate([116.565, 0, 0]) {
-                    ringTrace(circlesRadius, circlesDepth);
-                }
-            }
-            rotate([0, 0, 72 * (i + 0.5)]) {
-                rotate([180 - 116.565, 0, 0]) {
-                    ringTrace(circlesRadius, circlesDepth);
-                }
-            }
+  difference() {
+    sphere(r = 100);
+    ringTrace(circlesRadius, circlesDepth);
+    rotate([180, 0, 0])
+      ringTrace(circlesRadius, circlesDepth);
+    for (i = [0:4]) {
+      rotate([0, 0, 72 * i]) {
+        rotate([116.565, 0, 0]) {
+          ringTrace(circlesRadius, circlesDepth);
         }
+      }
+      rotate([0, 0, 72 * (i + 0.5)]) {
+        rotate([180 - 116.565, 0, 0]) {
+          ringTrace(circlesRadius, circlesDepth);
+        }
+      }
     }
+  }
 }
 
 
 module ringTrace(circlesRadius, circlesDepth) {
-    translate([0, 0, circlesDepth])
-        pipe(circlesRadius, 10, 10);
+  translate([0, 0, circlesDepth])
+    pipe(circlesRadius, 10, 10);
 }
 
 module pipe(innerRadius, thickness, height) {
-    difference() {
-        cylinder(r = innerRadius + thickness * 2, h = height);
-        cylinder(r = innerRadius, h = height);
-    }
+  difference() {
+    cylinder(r = innerRadius + thickness * 2, h = height);
+    cylinder(r = innerRadius, h = height);
+  }
 }
 

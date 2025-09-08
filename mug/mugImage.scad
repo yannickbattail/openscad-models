@@ -16,6 +16,8 @@ include <images/solo_carbonite.scad>
 include <images/yoda.scad>
 include <images/mountain_lake.scad>
 
+part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake]
+
 /* [Mug] */
 // height of the mug
 mugHeight = 80; // [70:92]
@@ -25,6 +27,8 @@ mugDiameter = 80; // [75:100]
 mugThickness = 4;
 // make a mug compatible with nutella glass
 withNutellaGlass = true;
+// Number of block
+numberOfBlock = 0; // [0:none, 3:3, 4:4, 5:5, 6:6]
 
 /* [Image] */
 // image display angle
@@ -37,8 +41,6 @@ reliefMultipier = 2;
 inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
 partialModel = "all"; // [all, image_only, mug_only]
-
-part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake]
 
 /* [Animation] */
 // rotating animation
@@ -62,9 +64,11 @@ function selectImage() =
                                                     (part == "mountain")?image_mountain:
                                                             (part == "moon")?image_moon:
                                                                     (part == "jedi_sith")?image_jedi_sith:
-                                                                            (part == "solo_carbonite")?image_solo_carbonite:
-                                                                                (part == "yoda")?image_yoda:
-                                                                                    (part == "mountain_lake")?image_mountain_lake:[];
+                                                                            (part == "solo_carbonite")?
+                                                                            image_solo_carbonite:
+                                                                                    (part == "yoda")?image_yoda:
+                                                                                            (part == "mountain_lake")?
+                                                                                            image_mountain_lake:[];
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 
@@ -77,10 +81,10 @@ if (len(inlineImage) > 0) {
 epsi = 0.01; // epsilon
 
 rotate([0, 0, 180]) mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation,
-reliefMultipier, imageData, partialModel);
+reliefMultipier, imageData, partialModel, numberOfBlock);
 
 module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier,
-imageMatrix, partialModel = "all") {
+imageMatrix, partialModel = "all", numberOfBlock) {
     difference() {
         render() // preview display nothing without this
             union() {
@@ -95,7 +99,7 @@ imageMatrix, partialModel = "all") {
             }
         if (withNutellaGlass) {
             translate([0, 0, mugThickness])
-                nutellaGlass();
+                nutellaGlass(plain = true, nbBlock = numberOfBlock);
         } else {
             translate([0, 0, mugThickness]) {
                 cylinder(h = mugHeight - mugThickness + epsi, r = mugRadius - mugThickness);

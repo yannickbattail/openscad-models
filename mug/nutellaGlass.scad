@@ -31,7 +31,7 @@ if (debug) {
     nutellaGlass(plain, numberOfBlock, thickness);
 }
 
-module nutellaGlass(plain = false, nbBlock = 0, thickness = 1.8) {
+module nutellaGlass(plain = false, nbBlock = 0, thickness = 2) {
     echo("nutellaGlass: total height 92");
     echo("nutellaGlass: max diameter 73.5");
     if (plain) {
@@ -41,7 +41,7 @@ module nutellaGlass(plain = false, nbBlock = 0, thickness = 1.8) {
     }
 }
 
-module emptyNutellaGlass(nbBlock, thickness) {
+module emptyNutellaGlass(nbBlock = 0, thickness = 2) {
     difference() {
         plainNutellaGlassWithBlock(nbBlock);
         scaleInside = (73.5-thickness*2)/73.5;
@@ -63,7 +63,7 @@ module plainNutellaGlass() {
         }
 }
 
-module plainNutellaGlassWithBlock(nbBlock) {
+module plainNutellaGlassWithBlock(nbBlock = 0) {
     scale1 = (73.5-1)/73.5;
     scale([scale1,scale1,]) plainNutellaGlass();
     angle = 360/nbBlock;

@@ -5,12 +5,10 @@
     <title>Image to matrix for openSCAD</title>
 </head>
 <body>
-<label>Image File:</label><br/>
-<input accept="image/*" id="imageLoader" name="imageLoader" type="file"/>
-<br>
+<label for="imageLoader">Image File: </label><input accept="image/*" id="imageLoader" type="file"/><br />
+<input id="invert" type="checkbox"/><label for="invert"> Invert color (relief)</label><br />
+<label for="textarea">Data: </label><br /><textarea id="textarea"></textarea><br />
 <canvas id="canvas"></canvas>
-<br>
-<textarea id="textarea"></textarea>
 <script>
     let imageLoader = document.getElementById('imageLoader');
     imageLoader.addEventListener('change', handleImage, false);
@@ -27,27 +25,58 @@
                 ctx.drawImage(image, 0, 0);
                 const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
                 const data = imageData.data;
+                const convertFct = getConvertFunction();
                 let s = "image = [\n";
                 for (let y = 0; y < image.height - 1; ++y) {
                     s += "["
                     for (let x = 0; x < image.width - 1; ++x) {
                         const i = (y * image.width + x) * 4;
-                        let red = data[i]
-                        let green = data[i + 1]
-                        let blue = data[i + 2]
-                        let alpha = data[i + 3]
-                        const v = alpha !== 0 ? (red + green + blue) / (256 * 3) : 0;
+                        const v = convertFct(data[i], data[i + 1], data[i + 2], data[i + 3]);
                         s += v + ",";
+                        setValue(data, i, v);
                     }
                     s += "],\n";
                 }
                 s += "];\n";
                 s += "// surfaceData(image);";
+                ctx.putImageData(imageData, 0, 0);
                 document.getElementById("textarea").value = s;
             }
             image.src = event.target.result;
         }
         reader.readAsDataURL(e.target.files[0]);
+    }
+    function setValue(data, i, v) {
+        const a = Math.floor(v * 256);
+        data[i] = a;
+        data[i + 1] = a;
+        data[i + 2] = a;
+        data[i + 3] = 255;
+    }
+    
+    function getConvertFunction() {
+        if (document.getElementById('invert').checked) {
+            return invFullAlphaTo0;
+        } else {
+            return fullAlphaTo0;
+        }
+    }
+
+    function avgColors(red, green, blue, alpha) {
+        return (red + green + blue) / 3 / 256;
+    }
+    function lumColors(red, green, blue, alpha) {
+        return (0.2126 * red + 0.7152 * green + 0.0722 * blue) / 256;
+    }
+    function fullAlphaTo0(red, green, blue, alpha) {
+        return alpha !== 0 ? lumColors(red, green, blue, alpha) : 0;
+    }
+
+    function invFullAlphaTo0(red, green, blue, alpha) {
+        return alpha !== 0 ? invert(lumColors(red, green, blue, alpha)) : 0;
+    }
+    function invert(v) {
+        return -v + 1;
     }
 </script>
 </body>

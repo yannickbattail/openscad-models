@@ -8,14 +8,13 @@ include <images/cat.scad>
 //include <images/cat_face.scad>
 //include <images/redPanda.scad>
 //include <images/werefox.scad>
-
 /* [Mug] */
 // height of the nug
-mugHeight = 100;
+mugHeight = 80; // [70:92]
 // external radius of the mug
-mugDiameter = 80;
+mugDiameter = 80; // [75:100]
 // mug thickness (Width of the wall)
-mugThickness = 5;
+mugThickness = 4;
 
 /* [Image] */
 // image display angle
@@ -42,14 +41,29 @@ if (len(inlineImage) > 0) {
 mugImage(mugHeight, mugDiameter / 2, mugThickness, imageAngle, imageRotation, reliefMultipier, imageData);
 
 module mugImage(mugHeight, mugRadius, mugThickness, imageAngle, imageRotation, reliefMultipier, imageMatrix) {
-    mug(mugHeight, mugRadius, mugThickness);
-
-    render() // preview display nothing without this 
-        difference() {
-            rotate([0, 0, imageRotation]) {
-                imageMatrixOnCylinder(mugHeight, mugRadius, imageAngle, reliefMultipier, imageMatrix);
+    difference() {
+        render() // preview display nothing without this
+            union() {
+                mug(mugHeight, mugRadius, mugThickness, true);
+                rotate([0, 0, imageRotation]) {
+                    imageMatrixOnCylinder(mugHeight, mugRadius, imageAngle, reliefMultipier, imageMatrix);
+                }
             }
-            cylinder(h = mugHeight, r = mugRadius - mugThickness);
+        translate([0, 0, mugThickness])
+            #nutellaGlass2();
+    }
+}
+
+module nutellaGlass2() {
+    // total height 92
+    translate([0, 0, 25])
+        difference() {
+            union() {
+                cylinder(d1 = 69.5, d2 = 73.5, h = 67);
+                sphere(d = 69.5);
+            }
+            translate([0, 0, - 40 - 25])
+                cube([80, 80, 80], center = true);
         }
 }
 

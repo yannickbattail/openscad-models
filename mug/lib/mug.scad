@@ -1,4 +1,4 @@
-module mug(height, radius, thickness) {
+module mug(height, radius, thickness, full = false) {
     epsi = 0.01; // epsilon
     difference() {
         union() {
@@ -11,14 +11,16 @@ module mug(height, radius, thickness) {
                 handle(height);
             }
         }
-        translate([0, 0, thickness]) {
-            cylinder(h = height - thickness + epsi, r = radius - thickness); // + epsi to prevent display bug
+        if (!full) {
+            translate([0, 0, thickness]) {
+                cylinder(h = height - thickness + epsi, r = radius - thickness); // + epsi to prevent display bug
+            }
         }
     }
 }
 
 module handle(height) {
-    scale([0.5, 1.2, 0.8]) {
+    scale([0.4, 1.2, 0.65]) {
         rotate([90, 0, 0]) {
             torus(height / 2, 8);
         }

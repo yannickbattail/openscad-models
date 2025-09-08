@@ -24,7 +24,9 @@ mugHeight = 80; // [70:92]
 // external radius of the mug
 mugDiameter = 80; // [75:100]
 // mug thickness (Width of the wall)
-mugThickness = 4;
+mugThickness = 4; // [1:1:10]
+// mug with big handle that can be printed without supports
+hasBigHandle = true;
 // make a mug compatible with nutella glass
 withNutellaGlass = true;
 // Number of block
@@ -36,7 +38,7 @@ imageAngle = 90; // [10:360]
 // image rotation angle
 imageRotation = 45; // [0:360]
 // relief multipier (by default relief is between 0 and 1)
-reliefMultipier = 2;
+reliefMultipier = 2; // [0.5:0.5:10]
 // image data from imageToMatrix.html 
 inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
@@ -81,15 +83,15 @@ if (len(inlineImage) > 0) {
 epsi = 0.01; // epsilon
 
 rotate([0, 0, 180]) mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation,
-reliefMultipier, imageData, partialModel, numberOfBlock);
+reliefMultipier, imageData, partialModel, numberOfBlock, hasBigHandle);
 
 module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier,
-imageMatrix, partialModel = "all", numberOfBlock) {
+imageMatrix, partialModel = "all", numberOfBlock, hasBigHandle) {
     difference() {
         render() // preview display nothing without this
             union() {
                 if (partialModel != "image_only") {
-                    mug(mugHeight, mugRadius, mugThickness);
+                    mug(mugHeight, mugRadius, mugThickness, hasBigHandle);
                 }
                 if (partialModel != "mug_only") {
                     rotate([0, 0, imageRotation]) {

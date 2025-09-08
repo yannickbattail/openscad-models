@@ -1,4 +1,4 @@
-module mug(height, radius, thickness) {
+module mug(height, radius, thickness, hasBigHandle = true) {
     epsi = 0.01; // epsilon
     difference() {
         union() {
@@ -8,7 +8,11 @@ module mug(height, radius, thickness) {
                 torus(radius - thickness / 2, thickness / 2);
             }
             translate([radius * 1.2, 0, height / 2]) {
-                handle(height);
+                if (hasBigHandle) {
+                    bigHandle(height);
+                } else {
+                    handle(height);
+                }
             }
         }
     }
@@ -19,6 +23,18 @@ module handle(height) {
         rotate([90, 0, 0]) {
             torus(height / 2, 8);
         }
+    }
+}
+
+module bigHandle(height) {
+    difference() {
+        scale([0.45, 1.0, 0.86]) {
+            rotate([90, 0, 0]) {
+                torus(height / 2, 8);
+            }
+        }
+        translate([0, 0, -50 -height / 2])
+            cube(100, center=true);
     }
 }
 

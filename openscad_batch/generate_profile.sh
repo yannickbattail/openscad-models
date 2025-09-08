@@ -108,8 +108,9 @@ stl_format="asciistl"
 stl_render_option=""
 #stl_render_option="--enable sort-stl" ### this is an option of openscad-nightly
 
-OPENSCAD="xvfb-run -a openscad"
-#OPENSCAD="xvfb-run -a openscad-nightly"
+OPENSCAD="openscad"
+#OPENSCAD="xvfb-run -a openscad"
+#OPENSCAD="openscad-nightly"
 
 ### end configuration
 
@@ -263,7 +264,7 @@ generate_conf() {
 #stl_render_option="--enable sort-stl"
 
 #OPENSCAD="xvfb-run -a openscad"
-#OPENSCAD="xvfb-run -a openscad-nightly"
+#OPENSCAD="openscad-nightly"
 EOF
 }
 

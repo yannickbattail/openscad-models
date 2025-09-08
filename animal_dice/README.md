@@ -1,14 +1,8 @@
 # Figurine in a dice
 
-## Balanced dices
-
 Dices are balanced, figurine's center of gravity is put in the center of the dice.
 
 If you want to keep the dice balance, print it with 100% of infill.
-
-Sources here: https://github.com/yannickbattail/openscad-models/tree/main/animal_dice
-
-If you want to create another read the part: "how I made them"
 
 Don't forget to post a make.
 
@@ -21,72 +15,73 @@ Don't forget to post a make.
 - panda: https://www.thingiverse.com/thing:182239
 - heart gem: https://www.thingiverse.com/thing:2452845
 - duck vador
+- Platypus_Barbarian https://cults3d.com/en/3d-model/game/platypus-minis-so-far-mz4250
+
+## UPDATE
+
+- v2: generate from `animals_center_of_gravity.json` and use `openscad-generate`
+- v1: 1st design
+
+## Customizable variables
+
+- `part`: default "all", part to generate: all, ball, stick
+- `size`: default 50, size of the model
+- `$fn`: resolution
 
 ## how I made them
 
-Copy model to `animals/heart_gem.stl`
+Add you .stl to the folder `animals`
 
-Install numpy-stl if needed
+backup the file `animals_center_of_gravity.json`
 
-```shell
-python3 -m venv venv
-. ./venv/bin/activate
-pip install numpy-stl
-```
-
-launch the "center of gravity" script with the model as parameter
+Run the command
 
 ```shell
-python get_center_of_gravity.py animals/heart_gem.stl
+all_center_of_gravity.sh
 ```
 
-Output of the script:
+It will regenerate (and override) the file `animals_center_of_gravity.json`
 
-```text
-Volume                            = 117.31810242698218
-Position of the center of gravity = [3.84325029e-03 1.01203855e+00 1.12715415e+01]
+Replace at the beginning of the file `dice_animal.scad` the line starting with `animalNumber = ...` with the one
+displayed by the command.
+
+Open the file `animals_center_of_gravity.json` and go to your model and edit (only) the following variables to make the
+model fit in the dice.
+
+```json
+    "scale": 1.29,
+    "rotation": [
+        0,
+        0,
+        -30
+    ]
 ```
 
-add it in the code, in the module `animal()` duplicate an animal line 95
+## Sources
 
-```openscad
-    else if (animalName == "fox") {
-animalModel(file = "animals/foxLowPoly.stl", scalePercent = 1, centerOfGravity = [ - 14.18385003, 4.57492739,
-75.20926315]);
-}
+On GitHub: [here](https://github.com/yannickbattail/openscad-models/tree/main/VoxelHeart)
+
+## Generate
+
+Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
+
+```bash
+npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile dice_animal.yaml ./dice_animal.scad
 ```
 
-change file and centerOfGravity
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
+number of cores minus 1)
 
-```openscad
-    else if (animalName == "heart_gem") {
-animalModel(file = "animals/heart_gem.stl", scalePercent = 1, centerOfGravity = [3.84325029e-03, 1.01203855e+00,
-1.12715415e+01]);
-}
-```
+Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
-in line 2 add heart_gem
+## License
 
-```openscad
-part = "fox"; // [fox, dino, dragon, cat, panda, heart_gem]
-```
+[GPL](https://www.gnu.org/licenses/gpl-3.0.html)
 
-Open the file dice_animal.scad in openscad and choose in the customizer animal : heart_gem
+[CC BY](https://creativecommons.org/licenses/by/4.0/)
 
-Change the variable `scalePercent` so the model fit inside the dice. (Note: check every faces)
+And licenses form the models used to create the dices.
 
-For the heart_gem, the model is upside down, so I add `rotation = [180, 0, 0]`
+## keywords
 
-The final code is:
-
-```openscad
-animalModel(file = "animals/heart_gem.stl", scalePercent = 0.7, centerOfGravity = [3.84325029e-03, 1.01203855e+00,
-    1.12715415e+01], rotation = [180, 0, 0]);
-```
-
-> See every changes for adding this model in this
-> commit [5f048454d40d1761096770d57f2074d0c837404c](https://github.com/yannickbattail/openscad-models/commit/5f048454d40d1761096770d57f2074d0c837404c)
-
-Render the model to check if everything is ok.
-
-Print it with 100% of infill to keep the dice balanced.
+dice, d6 dice, game, random, openscad, customizable, customizer

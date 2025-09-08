@@ -1,0 +1,142 @@
+[
+  {
+    "filename": "animals/Platypus_Barbarian.stl",
+    "center_of_gravity": [
+      1.1230533871206347,
+      1.0956566422385834,
+      10.980891473309287
+    ],
+    "scale": 1.29,
+    "rotation": [
+      0,
+      0,
+      -30
+    ]
+  },
+  {
+    "filename": "animals/VoxelHeart1_hull.stl",
+    "center_of_gravity": [
+      2.0901835264592224e-07,
+      -1.8785165545006746e-08,
+      0.28239328048809503
+    ],
+    "scale": 25,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/catLowPoly.stl",
+    "center_of_gravity": [
+      -0.6062058674727037,
+      0.16325696964008554,
+      39.433186247854955
+    ],
+    "scale": 0.6,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/dino.stl",
+    "center_of_gravity": [
+      44.2458633735483,
+      68.37108616779152,
+      24.26176049064134
+    ],
+    "scale": 0.9,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/dragonLED.stl",
+    "center_of_gravity": [
+      -1.7467419812509115,
+      -0.06901589385240287,
+      5.673348979673018
+    ],
+    "scale": 1.1,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/duckVader.stl",
+    "center_of_gravity": [
+      28.58639166757021,
+      25.695862267240354,
+      21.326077602586622
+    ],
+    "scale": 0.92,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/foxLowPoly.stl",
+    "center_of_gravity": [
+      -14.18385468761964,
+      4.574931991152794,
+      75.20925120069465
+    ],
+    "scale": 0.25,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/heart_gem.stl",
+    "center_of_gravity": [
+      0.00384312912802246,
+      1.012037825353349,
+      11.271531080216205
+    ],
+    "scale": 0.7,
+    "rotation": [
+      180,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/panda.stl",
+    "center_of_gravity": [
+      -4.4592379524466815e-05,
+      6.499238518542008,
+      23.677168856861748
+    ],
+    "scale": 0.9,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
+    "filename": "animals/vader.stl",
+    "center_of_gravity": [
+      -0.22242166042817943,
+      0.6174840177249927,
+      43.68599403662518
+    ],
+    "scale": 0.75,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  }
+]

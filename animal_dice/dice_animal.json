@@ -1,32 +1,35 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "fox": {
-            "part": "fox"
-        },
-        "dino": {
-            "part": "dino"
-        },
-        "dragon": {
-            "part": "dragon"
-        },
-        "cat": {
-            "part": "cat"
-        },
-        "panda": {
-            "part": "panda"
-        },
-      "heart_gem": {
-        "part": "heart_gem"
-        },
-        "duckVader": {
-            "part": "duckVader"
-        },
-        "VoxelHeart": {
-            "part": "VoxelHeart"
-        },
-        "vader": {
-            "part": "vader"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "Platypus_Barbarian": {
+      "animalNumber": "0"
+    },
+    "VoxelHeart1_hull": {
+      "animalNumber": "1"
+    },
+    "catLowPoly": {
+      "animalNumber": "2"
+    },
+    "dino": {
+      "animalNumber": "3"
+    },
+    "dragonLED": {
+      "animalNumber": "4"
+    },
+    "duckVader": {
+      "animalNumber": "5"
+    },
+    "foxLowPoly": {
+      "animalNumber": "6"
+    },
+    "heart_gem": {
+      "animalNumber": "7"
+    },
+    "panda": {
+      "animalNumber": "8"
+    },
+    "vader": {
+      "animalNumber": "9"
     }
+  }
 }

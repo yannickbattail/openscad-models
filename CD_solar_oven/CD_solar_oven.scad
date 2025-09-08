@@ -1,8 +1,16 @@
-number_of_rows = 2; // [1:1:40]
+
+part="all"; // [all, base, support]
+
+number_of_rows = 4; // [1:1:40]
 number_of_column = 2; // [1:1:40]
 
 // positioning of the focus point
 focus_of_parabola = "middle"; // [middle, bottom_center, bottom_left]
+
+// when part=support, it only show the support at row Y
+support_at_row="1";
+// when part=support, it only show the support at column X
+support_at_column="A";
 
 // distance of the focus point
 focus_distance = 1000; // [100:2000]
@@ -12,6 +20,9 @@ base_height = 2; // [1:10]
 
 // support height (from the bottom of the base)
 support_height = 60; // [35, 100]
+
+// add the base to the display
+show_base=true;
 
 // display CD, reflection vector, focus point and coordinates
 debug = true;
@@ -33,8 +44,11 @@ baseRadius = baseDiameter / 2;
 
 dimentions = [positionX(number_of_column, number_of_rows), positionY(number_of_column, number_of_rows)];
 
-solar_oven(base_height, support_height, baseDiameter);
-//support_example(base_height, support_height, baseDiameter);
+if (part=="all" || part=="support") {
+    solar_oven(base_height, support_height, baseDiameter);
+} else if (part=="base") {
+    base(base_height, baseDiameter);
+}
 
 module solar_oven(base_height, support_height, baseDiameter) {
     focusPos = focus_position(focus_of_parabola, dimentions, focus_distance);
@@ -49,10 +63,16 @@ module solar_oven(base_height, support_height, baseDiameter) {
         for (y = [0:number_of_rows - 1]) {
             xt = positionX(x, y);
             yt = positionY(x, y);
-            supportRotation = support_rotation(focusPos, [xt, yt, support_height]);
-            translate([xt, yt, 0]) {
-                base(base_height, baseDiameter);
-                support(str(chr(65 + x), ",", y + 1), supportRotation, support_height, base_height);
+            row_name = str(y + 1);
+            column_name = chr(65 + x);
+            if (part=="all" || (part=="support" && column_name == support_at_column && row_name == support_at_row)) {
+                supportRotation = support_rotation(focusPos, [xt, yt, support_height]);
+                translate([xt, yt, 0]) {
+                    if (show_base && part=="all") {
+                        base(base_height, baseDiameter);
+                    }
+                    support(str(column_name, ",", row_name), supportRotation, support_height, base_height);
+                }
             }
         }
     }
@@ -67,12 +87,6 @@ module solar_oven(base_height, support_height, baseDiameter) {
                         text(str(y + 1), 50);
         }
     }
-}
-
-module support_example(base_height, support_height, baseDiameter) {
-    base(base_height, baseDiameter);
-    translate([0, 0, 6])
-        support("A1", [30, 30, 0], support_height, base_height);
 }
 
 function positionX(x, y) = y % 2 ? x * baseRadius * 3 + baseRadius * 1.5 : x * baseRadius * 3;

@@ -238,16 +238,16 @@ function project_plane(plane, p) =
     )
         rot(from = n, to = UP) * move(- cp)
     : is_path(plane, 3) && is_undef(p) ?               // no data, generic point list plane
-            assert(len(plane) >= 3, "Need three points to define a plane")
-            let(plane = plane_from_points(plane))
-            assert(is_def(plane), "Point list is not coplanar")
-            project_plane(plane)
-            : assert(is_def(p), str("Invalid plane specification: ", plane))
+assert(len(plane) >= 3, "Need three points to define a plane")
+let(plane = plane_from_points(plane))
+assert(is_def(plane), "Point list is not coplanar")
+project_plane(plane)
+: assert(is_def(p), str("Invalid plane specification: ", plane))
 is_vnf(p) ? [project_plane(plane, p[0]), p[1]]
-    : is_list(p) && is_list(p[0]) && is_vector(p[0][0], 3) ?  // bezier patch or region
-                [for (plist = p) project_plane(plane, plist)]
-            : assert(is_vector(p, 3) || is_path(p, 3), str("Data must be a 3d point, path, region, vnf or bezier patch",
-                p))
+: is_list(p) && is_list(p[0]) && is_vector(p[0][0], 3) ?  // bezier patch or region
+[for (plist = p) project_plane(plane, plist)]
+: assert(is_vector(p, 3) || is_path(p, 3), str("Data must be a 3d point, path, region, vnf or bezier patch",
+p))
 is_matrix(plane, 3, 3) ?
 assert(!is_collinear(plane), "Points defining the plane must not be collinear")
 let(

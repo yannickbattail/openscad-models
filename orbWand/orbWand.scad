@@ -35,7 +35,7 @@ module model2d() {
 
 module orb() {
     color("DarkSlateGray")
-        cylinder(h=50, d1=100, d2=65);
+        cylinder(h = 50, d1 = 100, d2 = 65);
     color("darkviolet")
         translate([0, 0, 80])
             sphere(d = 75);
@@ -43,13 +43,13 @@ module orb() {
 
 module fixation() {
     color("green")
-    difference() {
-        translate([0, 0, -10])
-            cylinder(h = 20, d = 102);
-        cylinder(h = 11, d1 = 100, d2=93);
-        translate([0, 0, -10.001])
-            cylinder(h = 10.002, d = 100);
-    }
+        difference() {
+            translate([0, 0, -10])
+                cylinder(h = 20, d = 102);
+            cylinder(h = 11, d1 = 100, d2 = 93);
+            translate([0, 0, -10.001])
+                cylinder(h = 10.002, d = 100);
+        }
 }
 
 module wand() {

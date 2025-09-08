@@ -1,28 +1,28 @@
 {
     "fileFormatVersion": "1",
     "parameterSets": {
-        "heart1_cube": {
+        "VoxelHeart1_cube": {
             "$fn": "10",
             "resolution": "0.1",
             "alternative_design": "false",
             "hull_that": "false",
             "use_sphere": "false"
         },
-        "heart1_sphere": {
+        "VoxelHeart1_sphere": {
             "$fn": "8",
             "resolution": "0.1",
             "alternative_design": "false",
             "hull_that": "false",
             "use_sphere": "true"
         },
-        "heart2_cube": {
+        "VoxelHeart2_cube": {
             "$fn": "10",
             "resolution": "0.1",
             "alternative_design": "true",
             "hull_that": "false",
             "use_sphere": "false"
         },
-        "heart1_hull": {
+        "VoxelHeart1_hull": {
             "$fn": "10",
             "resolution": "0.1",
             "alternative_design": "false",

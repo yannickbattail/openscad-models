@@ -1,5 +1,4 @@
-
-part="nutellaGlass"; // [nutellaGlass, emptyNutellaGlass]
+part = "nutellaGlass"; // [nutellaGlass, emptyNutellaGlass]
 
 /* [Animation] */
 // rotating animation
@@ -18,24 +17,24 @@ $vpd = is_animated?500:[];
 
 if (debug) {
     difference() {
-        if (part == "emptyNutellaGlass") {
-            emptyNutellaGlass();
-        } else {
-            nutellaGlass();
-        }
-        translate([0, -200, -0.1]) cube(200);
+        emptyNutellaGlass(part == "emptyNutellaGlass");
+        translate([0, - 200, - 0.1]) cube(200);
     }
 } else {
-    if (part == "emptyNutellaGlass") {
+    emptyNutellaGlass(part == "emptyNutellaGlass");
+}
+
+module nutellaGlass(empty = false) {
+    echo("nutellaGlass: total height 92");
+    echo("nutellaGlass: max diameter 73.5");
+    if (empty) {
         emptyNutellaGlass();
     } else {
-        nutellaGlass();
+        fullNutellaGlass();
     }
 }
 
-module nutellaGlass() {
-    echo("nutellaGlass: total height 92");
-    echo("nutellaGlass: max diameter 73.5");
+module fullNutellaGlass() {
     translate([0, 0, 25])
         difference() {
             union() {
@@ -49,9 +48,9 @@ module nutellaGlass() {
 
 module emptyNutellaGlass() {
     difference() {
-        nutellaGlass();
-        translate([0,0,5])
+        fullNutellaGlass();
+        translate([0, 0, 5])
             scale(0.95)
-                nutellaGlass();
+                fullNutellaGlass();
     }
 }

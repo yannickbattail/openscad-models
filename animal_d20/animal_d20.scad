@@ -1,5 +1,5 @@
 // animal
-part = "heart"; // [heart, Damagetypes-Acit, Damagetypes-Bludgeoning, Damagetypes-Cold, Damagetypes-Fire, Damagetypes-Force, Damagetypes-Lightning, Damagetypes-Necrotic, Damagetypes-Piercing, Damagetypes-Poison, Damagetypes-Psychic, Damagetypes-Radiant, Damagetypes-Slashing, Damagetypes-Thunder]
+part = 13; // [0:Damagetypes-Acid, 1:Damagetypes-Bludgeoning, 2:Damagetypes-Cold, 3:Damagetypes-Fire, 4:Damagetypes-Force, 5:Damagetypes-Lightning, 6:Damagetypes-Necrotic, 7:Damagetypes-Piercing, 8:Damagetypes-Poison, 9:Damagetypes-Psychic, 10:Damagetypes-Radiant, 11:Damagetypes-Slashing, 12:Damagetypes-Thunder, 13:VoxelHeart1_hull]
 // fixation bars diameter
 fixation_diameter = 4;
 // The diameter of the edge
@@ -55,12 +55,16 @@ $vpd = animation_rotation ? 300 : [];
 
 include <icosahedron.scad>
 
+animals = import("animals_center_of_gravity.json");
+
 dice_animal(part, fixation_diameter, faces, font_params);
 
-module dice_animal(animalName, fixation_diameter, faces, font_params) {
+module dice_animal(animalNumber = 0, fixation_diameter, faces, font_params) {
     dice();
+    animalConfig = animals[animalNumber];
+    echo("animalConfig ", animalNumber, animalConfig);
     color("red")
-        animal(animalName);
+        animalModel(animalConfig);
 }
 
 module dice() {
@@ -68,57 +72,9 @@ module dice() {
         icosahedron();
 }
 
-module animal(animalName) {
-    if (animalName == "heart") {
-        animalModel(file = "animals/VoxelHeart1_hull.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Acit") {
-        animalModel(file = "animals/Damagetypes-Acit.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Bludgeoning") {
-        animalModel(file = "animals/Damagetypes-Bludgeoning.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Cold") {
-        animalModel(file = "animals/Damagetypes-Cold.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Fire") {
-        animalModel(file = "animals/Damagetypes-Fire.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Force") {
-        animalModel(file = "animals/Damagetypes-Force.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Lightning") {
-        animalModel(file = "animals/Damagetypes-Lightning.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Necrotic") {
-        animalModel(file = "animals/Damagetypes-Necrotic.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Piercing") {
-        animalModel(file = "animals/Damagetypes-Piercing.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Poison") {
-        animalModel(file = "animals/Damagetypes-Poison.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Psychic") {
-        animalModel(file = "animals/Damagetypes-Psychic.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Radiant") {
-        animalModel(file = "animals/Damagetypes-Radiant.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Slashing") {
-        animalModel(file = "animals/Damagetypes-Slashing.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else if (animalName == "Damagetypes-Thunder") {
-        animalModel(file = "animals/Damagetypes-Thunder.stl", scalePercent = 25, centerOfGravity = [-1.33321397e-10, -
-        2.47270318e-10, 2.82393425e-01], rotation = [0, 0, 0]);
-    } else {
-        assert(true, str("wrong animalname", animalName));
-    }
-}
-
-module animalModel(file, scalePercent, centerOfGravity, rotation = [0, 0, 0]) {
-    scale([scalePercent, scalePercent, scalePercent])
-        rotate(rotation)
-            translate(-centerOfGravity)
-                import(file);
+module animalModel(animalConfig) {
+    scale([animalConfig.scale, animalConfig.scale, animalConfig.scale])
+        rotate(animalConfig.rotation)
+            translate(-animalConfig.center_of_gravity)
+                import(animalConfig.filename);
 }

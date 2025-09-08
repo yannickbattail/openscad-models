@@ -17,6 +17,7 @@ Several models made with openSCAD.
 - [wall-art arrow stencil](arrow/README.md)
 - [grogu wall art](grogu_wall_art/README.md)
 - [Dices](dice/README.md)
+- [Twist: customizable christmas decoration](twist/README.md)
 - [VoxelHeart and EasiestHeart](VoxelHeart/README.md)
 - [MarioWorld](MarioWorld/README.md)
 - [CD solar oven](CD_solar_oven/README.md)

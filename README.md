@@ -8,6 +8,7 @@ Several models made with openSCAD.
   - [Image on a mug](mug/README.md)
   - [Grogu (baby yoda) mug](mug/README.md#grogu-baby-yoda-mug-upcycling-nutella-glass)
   - [C3PO mug](mug/README.md#c3po-mug-upcycling-nutella-glass)
+  - [R2D2 mug](mug/README.md#r2d2-mug-upcycling-nutella-glass)
   - [Customizable pumpkin mug, upcycling nutella glass](pumpkin/README.md)
   - [nutella glass template](mug/README.md#nutella-glass)
 - [Animal (or figurine) in a dice](animal_dice/README.md)

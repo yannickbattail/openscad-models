@@ -35,7 +35,7 @@
 | signetRing                  | generate_profile.sh  | ok                   |
 | star_wars/ahsoka_ball_map   | *openscad-generate*  | ok                   |
 | star_wars/crate             | *openscad-generate*  | ok                   |
-| star_wars/darth_grogu       | manual               | ok                   |
+| star_wars/darth_grogu       | *openscad-generate*  | not updated          |
 | star_wars/grogu_wall_art    | generate_profile.sh  | ok                   |
 | star_wars/holocron          | generate_profile.sh  | ok                   |
 | star_wars/Medical_emblem    | *openscad-generate*  | ok                   |

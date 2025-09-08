@@ -1,0 +1,32 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "n": {
+      "horn_name": "n"
+    },
+    "c": {
+      "horn_name": "c"
+    },
+    "s": {
+      "horn_name": "s"
+    },
+    "w": {
+      "horn_name": "w"
+    },
+    "e": {
+      "horn_name": "e"
+    },
+    "nw": {
+      "horn_name": "nw"
+    },
+    "ne": {
+      "horn_name": "ne"
+    },
+    "sw": {
+      "horn_name": "sw"
+    },
+    "se": {
+      "horn_name": "se"
+    }
+  }
+}

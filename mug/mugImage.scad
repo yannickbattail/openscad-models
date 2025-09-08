@@ -16,8 +16,9 @@ include <images/solo_carbonite.scad>
 include <images/yoda.scad>
 include <images/mountain_lake.scad>
 include <images/denver.scad>
+include <images/christmas.scad>
 
-part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver]
+part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver, christmas]
 
 /* [Mug] */
 // height of the mug
@@ -59,21 +60,20 @@ $vpd = is_animated?500:[];
 
 function selectImage() =
     (part == "cat")?image_cat:
-            (part == "cat_fur")?image_cat_fur:
-                    (part == "cat_profile")?image_cat_profile:
-                            (part == "cat_face")?image_cat_face:
-                                    (part == "red_panda")?image_red_panda:
-                                            (part == "werefox")?image_werefox:
-                                                    (part == "mountain")?image_mountain:
-                                                            (part == "moon")?image_moon:
-                                                                    (part == "jedi_sith")?image_jedi_sith:
-                                                                            (part == "solo_carbonite")?
-                                                                            image_solo_carbonite:
-                                                                                    (part == "yoda")?image_yoda:
-                                                                                            (part == "mountain_lake")?
-                                                                                            image_mountain_lake:
-                                                                                                (part == "denver")?
-                                                                                                image_denver:[];
+        (part == "cat_fur")?image_cat_fur:
+            (part == "cat_profile")?image_cat_profile:
+                (part == "cat_face")?image_cat_face:
+                    (part == "red_panda")?image_red_panda:
+                        (part == "werefox")?image_werefox:
+                            (part == "mountain")?image_mountain:
+                                (part == "moon")?image_moon:
+                                    (part == "jedi_sith")?image_jedi_sith:
+                                        (part == "solo_carbonite")?image_solo_carbonite:
+                                            (part == "yoda")?image_yoda:
+                                                (part == "mountain_lake")?image_mountain_lake:
+                                                    (part == "denver")?image_denver:
+                                                        (part == "christmas")?image_christmas:
+                                                            [];
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 

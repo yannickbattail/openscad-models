@@ -4,7 +4,7 @@ part = "full"; // [full, all, top, bottom]
 // thickness of the box
 thickness = 1; // [1:0.2:10]
 
-/* [Animation] */
+/* [resolution] */
 // resolution
 $fn = 100;
 

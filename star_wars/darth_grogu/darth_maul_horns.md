@@ -1,31 +1,24 @@
-# Darth Grogu a Sith version of Baby Yoda
+# Darth Maul horns
 
-Darth Grogu: a Sith version of Baby Yoda with Darth Maul horns
+This is remix of [Darth Maul horns](https://www.thingiverse.com/thing:3040798) but horns in separated files.
 
-This is made with [Darth Maul horns](https://www.thingiverse.com/thing:3040798) and a [grumpy Grogu](https://www.thingiverse.com/thing:3988192)
+```
+name of the horns (north south est west center)
+nw  n  ne
+w   c   e
+sw     se
+    s
+```
 
 ## Update
 
 - v2: use 3mf file format compatible with multiple colors, fix non-manifold original models and change generation of models animations and mosaic
 - v1: 1st design
 
-## How to print it
-
-**⚠️Darth Maul horns are hollow and if you print him too small the horn will have issues, preview the generated gcode in your slicer. /!\ **
-
-Material: *what you want*
-
-Color: sith
-
-Support: Yes
-
 ## Customizable variables
 
-yoda_color = "#333333"; // MediumSeaGreen
-horn_color = "red"; // DarkKhaki
-
-- `yoda_color`: default "#333333", one of: DarkSlateGray, black or MediumSeaGreen
-- `horn_color`: default red, one of: red or DarkKhaki
+- `horn_name`: name of the horns (north south est west center) [all, n, c, s, w, e, nw, ne, sw, se]
+- `debug`: false
 
 ## Sources
 
@@ -36,8 +29,7 @@ Sources available [here](https://github.com/yannickbattail/openscad-models/tree/
 Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
 
 ```bash
-npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 3,3 --configFile horns.yaml ./horns.scad
-npx openscad-generate@latest generate --outFormats png,webp,3mf --configFile darth_grogu.yaml ./darth_grogu.scad
+npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 3,3 --configFile darth_maul_horns.yaml ./darth_maul_horns.scad
 ```
 
 You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
@@ -60,4 +52,4 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## keywords
 
-grogu, baby yoda, yoda, sith, darth maul, star_wars, openscad, customizable, customizer
+sith, darth maul, horns, star_wars, openscad, customizable, customizer

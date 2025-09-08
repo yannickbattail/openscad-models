@@ -8,6 +8,7 @@ Mug using the nutella glass
     - [mug C-3PO](mugC3po/mugC3po.md)
     - [mug Grogu (baby Yoda)](mugGrogu/mugGrogu.md)
     - [mug tonneau](mugTonneau/mugTonneau.md)
+    - [mug D20](mugD20/mugD20.md)
     - [mug R2D2](mugR2d2/mugR2d2.md) (work in progress)
 - [Your Image on a Mug](mugImage/mugImage.md)
     - cat: cat emoji, base example fast to render

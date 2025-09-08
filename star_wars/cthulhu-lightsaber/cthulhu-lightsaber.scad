@@ -4,7 +4,6 @@ part = "all"; // [all, handle, pomel, fundation]
 // looseCoef
 looseCoef = 0.6; // [0.1:0.1:2]
 
-/* [Animation] */
 // resolution
 $fn = 100;
 
@@ -71,8 +70,8 @@ module wand() {
         }
       }
     }
-    translate([0,0,323+50])
-      cube(100, center=true);
+    translate([0, 0, 323 + 50])
+      cube(100, center = true);
   }
 }
 

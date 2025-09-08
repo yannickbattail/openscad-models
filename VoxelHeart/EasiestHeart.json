@@ -1,6 +1,6 @@
 {
     "parameterSets": {
-        "easiest_heart": {
+        "EasiestHeart": {
             "scale_x": "1",
             "scale_y": "0.7",
             "scale_z": "1.7"

@@ -224,6 +224,20 @@ test7() {
   rm -Rf ./cube1.conf
 }
 
+test8() {
+  echo -e "${IBlue} ###### test8 only_generate multiple values ${IReset}"
+  
+  echo "       generate gif,jpg cube1.scad"
+  check_return_code ../generate_profile.sh -g gif,jpg cube1.scad
+  echo "       generation done"
+  check_directory ./cube1/ "gif
+images"
+  check_directory ./cube1/gif/ "test1.gif"
+  check_directory ./cube1/images/ 'mosaic_cube1.jpg
+test1.png'
+  rm -Rf ./cube1/
+}
+
 test1
 test2
 test3
@@ -231,6 +245,7 @@ test4
 test5
 test6
 test7
+test8
 
 echo -e "${IWhite}[${IGreen} OK ${IWhite}] All tests are successful!${IReset}"
 

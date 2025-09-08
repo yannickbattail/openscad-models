@@ -54,7 +54,7 @@ module c3po_mug() {
 }
 
 module c3po() {
-        scale([1, 1, 0.84])
-            translate([-127, -127, 0]) // center the model
-                import("resources/cupbarrel.stl");
+    scale([1, 1, 0.84])
+        translate([-127, -127, 0]) // center the model
+            import("resources/cupbarrel.stl");
 }

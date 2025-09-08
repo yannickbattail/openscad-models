@@ -25,11 +25,13 @@ C3PO mug that uses nutella glass (200g size).
 
 ## UPDATE
 
-- ...
+- v2: add block
+- v1: initial version
 
 ## customizable variables
 
 - `nutellaGlassScale`: nutella glass scale: grow nutella glass to better fit in
+- `numberOfBlock`: Number of block
 - `debug`: cut the mug in quarter and display the nutella glass
 
 ## nutella glass
@@ -57,11 +59,13 @@ R2D2 mug that uses nutella glass (200g size).
 
 ## UPDATE
 
-- ...
+- v2: add block
+- v1: initial version
 
 ## customizable variables
 
 - `nutellaGlassScale`: nutella glass scale: grow nutella glass to better fit in
+- `numberOfBlock`: Number of block
 - `debug`: cut the mug in quarter and display the nutella glass
 
 ## nutella glass
@@ -89,11 +93,13 @@ Grogu (baby yoda) mug that uses nutella glass (200g size).
 
 ## UPDATE
 
-- ...
+- v2: add block
+- v1: initial version
 
 ## customizable variables
 
 - `nutellaGlassScale`: nutella glass scale: grow nutella glass to better fit in
+- `numberOfBlock`: Number of block
 - `debug`: cut the mug in quarter and display the nutella glass
 
 ## nutella glass template
@@ -114,6 +120,38 @@ licence GPL
 
 mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, baby yoda, grogu,
 nutella
+
+# Tonneau mug, upcycling nutella glass
+
+Tonneau mug that uses nutella glass (200g size).
+
+## UPDATE
+
+- v1: initial version with block
+
+## customizable variables
+
+- `nutellaGlassScale`: nutella glass scale: grow nutella glass to better fit in
+- `numberOfBlock`: Number of block
+- `debug`: cut the mug in quarter and display the nutella glass
+
+## nutella glass
+
+It uses a nutella 200g.
+
+If you pour hot beverage in the glass when it cools down it may be stuck in the mug, so put hot water in it to detach it
+
+## Sources
+
+tonneau: https://www.thingiverse.com/thing:703127
+
+here: https://github.com/yannickbattail/openscad-models/tree/main/mug
+
+licence GPL
+
+## keywords
+
+mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, tonneau, barrel, nutella
 
 # nutella glass
 
@@ -154,6 +192,7 @@ Command to generate for all the presets: png image, webp animation, 3mf 3D model
 npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile globalConfig.yaml ./mugImage.scad
 ```
 
-You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
+number of cores minus 1)
 
 Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)

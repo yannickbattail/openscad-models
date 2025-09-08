@@ -118,7 +118,7 @@ assert(is_def(result), "Input to path4d is invalid")
     fill == 0 || change >= 0 ? result :
         let(
             addition = is_list(fill) ? concat(0 * points[0], fill) :
-                    concat(0 * points[0], repeat(fill, - change))
+                    concat(0 * points[0], repeat(fill, -change))
         )
         assert(len(addition) == 4, "Fill is the wrong length")
             result + repeat(addition, len(result));
@@ -229,14 +229,14 @@ function project_plane(plane, p) =
         y = unit(plane[1] - plane[0]), // y axis goes to point b
         x = unit(v - (v * y) * y)   // x axis 
     )
-        frame_map(x, y) * move(- plane[0])
+        frame_map(x, y) * move(-plane[0])
     : is_vector(plane, 4) && is_undef(p) ?            // no data, plane given in "plane"
     assert(_valid_plane(plane), "Plane is not valid")
     let(
         n = point3d(plane),
         cp = n * plane[3] / (n * n)
     )
-        rot(from = n, to = UP) * move(- cp)
+        rot(from = n, to = UP) * move(-cp)
     : is_path(plane, 3) && is_undef(p) ?               // no data, generic point list plane
 assert(len(plane) >= 3, "Need three points to define a plane")
 let(plane = plane_from_points(plane))

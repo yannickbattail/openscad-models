@@ -16,7 +16,7 @@ include <images/solo_carbonite.scad>
 include <images/yoda.scad>
 
 /* [Mug] */
-// height of the nug
+// height of the mug
 mugHeight = 80; // [70:92]
 // external radius of the mug
 mugDiameter = 80; // [75:100]

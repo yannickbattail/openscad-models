@@ -16,7 +16,7 @@ Several models made with openSCAD.
 - [Dragon scale pattern](dragon_scale_pattern/README.md)
 - [wall-art arrow stencil](arrow/README.md)
 - [Grogu wall art](grogu_wall_art/README.md)
-- [Bouk wall art, logo of the french brewery: le galibier](bouk/README.md)
+- [Ibex wall art, made with malt and hops.](ibex/README.md)
 - [Dices](dice/README.md)
 - [Twist: customizable christmas decoration](twist/README.md)
 - [VoxelHeart and EasiestHeart](VoxelHeart/README.md)

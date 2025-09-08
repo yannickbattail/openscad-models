@@ -18,8 +18,9 @@ include <images/mountain_lake.scad>
 include <images/denver.scad>
 include <images/christmas.scad>
 include <images/bicicletta.scad>
+include <images/lord_of_the_jedi_potter.scad>
 
-part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver, christmas, bicicletta]
+part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver, christmas, bicicletta, lord_of_the_jedi_potter]
 
 /* [Mug] */
 // height of the mug
@@ -75,7 +76,8 @@ function selectImage() =
                                                     (part == "denver")?image_denver:
                                                         (part == "christmas")?image_christmas:
                                                             (part == "bicicletta")?image_bicicletta:
-                                                                [];
+                                                                (part == "lord_of_the_jedi_potter")?image_lord_of_the_jedi_potter:
+                                                                    [];
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 

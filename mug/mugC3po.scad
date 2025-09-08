@@ -49,9 +49,10 @@ module c3po_mug() {
         }
     }
 }
+
 module c3po() {
     translate([10, 0, 0])
         rotate([0, 0, - 90])
             scale(9.8)
-                import("C3PO_fixed_hi-res.stl");
+                import("resources/C3PO_fixed_hi-res.stl");
 }

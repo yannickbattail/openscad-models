@@ -5,13 +5,15 @@ part="example"; // [example, paperclip, random_pipe, animation_length, animation
 /* [Animation] */
 // rotating animation
 animation_rotation = false;
+// variables animation
+animation_var = false;
 
 $fn = 100;
 
 /* for animation */
-$vpt = animation_rotation ? [0, 0, 0] : [];
-$vpr = animation_rotation ? [70, 0, 360 * $t] : [];
-$vpd = animation_rotation ? 5000 : [];
+$vpt = animation_rotation ? [0, 0, 0]         : (animation_var? [0, 0, 180] :[]);
+$vpr = animation_rotation ? [70, 0, 360 * $t] : (animation_var? [120, 0, 60]:[]);
+$vpd = animation_rotation ? 2000              : (animation_var? 1000        :[]);
 
 if (part == "example") {
     example();

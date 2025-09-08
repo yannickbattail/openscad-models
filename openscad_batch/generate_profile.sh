@@ -91,6 +91,7 @@ anim_dollar_fn="50"
 anim_size="512,512"
 anim_nb_image="20"
 anim_delay="20" ### delay between images en 100th of seconds
+anim_keep_images="false"
 
 stl_dollar_fn="50"
 stl_format="asciistl"
@@ -148,6 +149,7 @@ cat << EOF > $config_file
 #anim_nb_image="${anim_nb_image}"
 ### delay between images en 100th of seconds
 #anim_delay="${anim_delay}"
+#anim_keep_images="true"
 
 #stl_dollar_fn="${stl_dollar_fn}"
 #stl_format="asciistl"
@@ -227,7 +229,10 @@ generate_anim() {
 }
 clean_anim() {
     echo_info "cleanup animation images ${parameter_set} ..."
-    rm ${anim_dir}/${parameter_set}*.png
+    if [[ $anim_keep_images != "true" ]]
+    then
+        rm ${anim_dir}/${parameter_set}*.png
+    fi
 }
 
 generate_gif() {
@@ -316,6 +321,11 @@ then
 elif  [[ $only_generate == "" ]]
 then
         generate_mosaic
+fi
+
+if [[ $anim_keep_images != "true" ]]
+then
+    rm -Rf $anim_dir 
 fi
 
 echo_info "Done."

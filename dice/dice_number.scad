@@ -8,12 +8,22 @@ dice_color = "yellow"; // [yellow, red, green, blue, white, black]
 face_color = "red"; // [yellow, red, green, blue, white, black]
 
 /* [Font] */
-// font size
-font_size=0.5;
-// font type
-font_type = "Arial";
-
-$fn = 100;
+// The generated text has an ascent (height above the baseline) of approximately the given value.
+font_size=0.5;  // [0:0.1:2]
+// The name of the font that should be used. This can also include a style parameter
+font_type = "Liberation Mono:style=Regular";
+// The horizontal alignment for the text.
+font_halign="center"; // [left, center, right]
+// The vertical alignment for the text.
+font_valign="center"; // [top, center, baseline, bottom]
+// Factor to increase/decrease the character spacing. The default value of 1 results in the normal spacing for the font, giving a value greater than 1 causes the letters to be spaced further apart.
+font_spacing=1; // [0:0.1:2]
+// Direction of the text flow.
+font_direction="ltr"; // [ltr:left-to-right, rtl:right-to-left, ttb:top-to-bottom, btt:bottom-to-top]
+// The language of the text
+font_language="en";
+// The script of the text
+font_script="latin";
 
 /* [Faces] */
 // text on face 1
@@ -33,6 +43,8 @@ face_6 = "6";
 // rotating animation
 animation_rotation = false;
 
+$fn = 100;
+
 /* [Hidden] */
 is_animated = animation_rotation;
 $vpt = is_animated?[0, 0, 0]:$vpt;
@@ -40,27 +52,37 @@ $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr; // animation 
 $vpd = is_animated?200:$vpd;
 
 faces = [face_1, face_2, face_3, face_4, face_5, face_6];
+font_params=[font_size, font_type, font_halign, font_valign, font_spacing, font_direction, font_language, font_script];
 
-scale(10) dice(rounding, hole_size, faces, dice_color, face_color);
-module dice(rounding, hole_size, faces, dice_color, face_color) {
+scale(10) dice(rounding, hole_size, faces, dice_color, face_color, font_params);
+module dice(rounding, hole_size, faces, dice_color, face_color, font_params) {
     difference() {
         color(dice_color) intersection() {
             cube(1, center = true);
             sphere(rounding);
         }
         color(face_color) {
-            rotate([0, 0, 0]) faceText(faces[0]); // 1
-            rotate([180, 0, 0]) faceText(faces[5]); // 6
-            rotate([90, 0, 0]) faceText(faces[1]); // 2
-            rotate([- 90, 0, 0]) faceText(faces[4]); // 5
-            rotate([90, 0, 90]) faceText(faces[2]); // 3
-            rotate([90, 0, - 90]) faceText(faces[3]); // 4
+            rotate([0, 0, 0]) faceText(faces[0], font_params); // 1
+            rotate([180, 0, 0]) faceText(faces[5], font_params); // 6
+            rotate([90, 0, 0]) faceText(faces[1], font_params); // 2
+            rotate([- 90, 0, 0]) faceText(faces[4], font_params); // 5
+            rotate([90, 0, 90]) faceText(faces[2], font_params); // 3
+            rotate([90, 0, - 90]) faceText(faces[3], font_params); // 4
         }
     }
 }
 
-module faceText(letter) {
+module faceText(letter, font_params) {
     translate([0, 0, hole_size]) {
-        linear_extrude(1) text(text = letter, font = font_type, size = font_size, halign = "center", valign = "center");
+        linear_extrude(1)
+            text(text = letter,
+                size = font_params[0],
+                font = font_params[1],
+                halign = font_params[2],
+                valign = font_params[3],
+                spacing = font_params[4],
+                direction = font_params[5],
+                language = font_params[6],
+                script = font_params[7]);
     }
 }

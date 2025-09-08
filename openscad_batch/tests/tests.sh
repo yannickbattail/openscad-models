@@ -59,7 +59,6 @@ check_directory() {
 check_return_code() {
   "$@"
   local ret=$?
-  echo ret $ret
   if [[ $ret != "0" ]]
   then
     echo -e "[${IRed} FAIL ${IReset}] Excution fail, return code is $ret for command $*${IReset}" >&2
@@ -94,7 +93,6 @@ test1() {
   compare_images ./cube1/gif/test1.gif ./cube1_expected/gif/test1.gif
   compare_bin_files ./cube1/webp/test1.webp ./cube1_expected/webp/test1.webp
   compare_bin_files ./cube1/stl/test1.stl ./cube1_expected/stl/test1.stl
-  compare_bin_files ./cube1.conf ./cube1_expected/cube1.conf
   
   rm -Rf ./cube1/ ./cube1.conf
 }
@@ -203,12 +201,23 @@ test100004.png"
 }
 
 test6() {
-  echo -e "${IBlue} ###### test6 ${IReset}"
+  echo -e "${IBlue} ###### test6 check commands return code${IReset}"
   
   echo "       generate cube6.scad"
   check_return_code_fails ../generate_profile.sh cube6.scad
   
   rm -Rf ./cube6/ ./cube6.conf
+}
+
+test7() {
+  echo -e "${IBlue} ###### test7 check config file generation${IReset}"
+  
+  echo "       generate cube1.scad"
+  check_return_code ../generate_profile.sh -g conf cube1.scad
+  echo "       generate cube1.scad"
+  compare_bin_files ./cube1.conf ./cube1_expected/cube1.conf
+  
+  rm -Rf ./cube1.conf
 }
 
 test1
@@ -217,5 +226,8 @@ test3
 test4
 test5
 test6
+test7
+
+echo -e "${IWhite}[${IGreen} OK ${IWhite}] All tests are successful!${IReset}"
 
 rm test.log

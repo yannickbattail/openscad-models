@@ -6,7 +6,7 @@ Usage: `generate_profile.sh [OPTION]... OPENSCAD_FILE`
 Options:
 - `-c`, `--config-file` `configuration_file`      specify another configuration file thant the default OPENSCAD_FILE.conf.
 - `-p`, `--only-parameter-set` `parameter-set`    parameter-set is one the parameter-set name present in the file.
-- `-g`, `--generate` `only_generate`              only_generate must be one of jpg,gif,webp,stl. bay default it will generate all.
+- `-g`, `--generate` `only_generate`              only_generate must be one of jpg,gif,webp,stl,conf. bay default it will generate all.
 
 ## Requirements
 
@@ -48,10 +48,9 @@ sudo apt install jq imagemagick webp
 
 ## Changelog
 
-- check commands fails and exit 
+- check commands fails and exit
+- generate config file only when `-g conf`
 
 ## TODO
 
 - `only_generate` option can have multiple values ex: "git,webp"
-
-- generate config file only when `-g conf`

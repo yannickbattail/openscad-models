@@ -1,3 +1,16 @@
+# Figurine in a dice
+
+## 
+
+Dices are balanced, figurine's center of gravity is put in the center of the dice.
+
+If you want to keep the dice balance, print it with 100% of infill.
+
+Sources here: https://github.com/yannickbattail/openscad-models/tree/main/animal_dice
+
+If you want to create another read the part: "how I made them"
+
+Don't forget to post a make.
 
 ## models
 
@@ -5,6 +18,7 @@
 - fox https://www.thingiverse.com/thing:1736162
 - cat https://www.thingiverse.com/thing:5035825
 - dino https://www.thingiverse.com/thing:913069
+- panda: https://www.thingiverse.com/thing:182239
 
 ## how I made them
 

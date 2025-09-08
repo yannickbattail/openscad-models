@@ -1,4 +1,4 @@
-part = "estourballeEntiere"; // [estourballeEntiere, demiSphereBas, demiSpherehaut, anneau, bouton, croix]
+part = "estourballeEntiere"; // [estourballeEntiere, demiSphereBas, demiSpherehaut, anneau, bouton, bande1, bande2, croix]
 
 /* [Animation] */
 // rotating animation
@@ -6,13 +6,22 @@ animation_rotation = false;
 
 $fn = 100;
 
+// cut the mug in quarter and display the nutella glass
+debug = false;
+
 /* [Hidden] */
 is_animated = animation_rotation;
 $vpt = is_animated?[0, 0, 0]:[];
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
 $vpd = is_animated?500:[];
-
-estourballePieces(part);
+if (debug) {
+    difference() {
+        estourballePieces(part);
+        translate([0, 0, - 100]) cube(200);
+    }
+} else {
+    estourballePieces(part);
+}
 
 module estourballePieces(part) {
     ballDiameter = 70;
@@ -25,6 +34,12 @@ module estourballePieces(part) {
         ringBlack(ballDiameter, thickness);
     } else if (part == "bouton") {
         button(ballDiameter);
+    } else if (part == "bande1") {
+        bande(ballDiameter, thickness);
+    } else if (part == "bande2") {
+        mirror([0, 1]) {
+            bande(ballDiameter, thickness);
+        }
     } else if (part == "croix") {
         crossBase(ballDiameter);
         crossTop();
@@ -38,55 +53,62 @@ module estourballe(ballDiameter, thickness) {
     halfSphereBottom(ballDiameter, thickness);
     ringBlack(ballDiameter, thickness);
     button(ballDiameter);
+    bandes(ballDiameter, thickness);
     crossBase(ballDiameter);
     crossTop();
 }
 
 module halfSphereBottom(ballDiameter, thickness) {
     color("white")
-        translate([0, 0, - 1])
+        translate([0, 0, -0.01])
             difference() {
                 sphere(d = ballDiameter);
-                translate([0, 0, ballDiameter / 2])
+                translate([0, 0, ballDiameter / 2 + 1])
                     cube(ballDiameter, center = true);
                 sphere(d = ballDiameter - thickness);
             }
 }
 
 module halfSphereTop(ballDiameter, thickness) {
-    translate([0, 0, 1])
+    translate([0, 0, 0.01])
         difference() {
             union() {
                 color("blue")
                     sphere(d = ballDiameter);
-                bande(ballDiameter);
-                mirror([0, 1]) {
-                    bande(ballDiameter);
-                }
             }
-            translate([0, 0, - ballDiameter / 2])
+            bandes(ballDiameter, thickness);
+            translate([0, 0, - ballDiameter / 2 - 1])
                 cube(ballDiameter, center = true);
             sphere(d = ballDiameter - thickness);
             crossBase(ballDiameter);
         }
 }
 
-module bande(ballDiameter) {
+module bandes(ballDiameter, thickness) {
+    bande(ballDiameter, thickness);
+    mirror([0, 1]) {
+        bande(ballDiameter, thickness);
+    }
+}
+
+module bande(ballDiameter, thickness) {
+    bandeThickness = 4;
     difference() {
         union() {
             color("red")
-                sphere(d = ballDiameter + 4);
+                sphere(d = ballDiameter + bandeThickness);
             rotate([55, 0, 0])
                 nails(ballDiameter);
         }
         rotate([65, 0, 0])
-            translate([- ballDiameter / 2 - 2, - ballDiameter / 2 - 2, 0])
-                cube(ballDiameter + 4);
+            translate([- ballDiameter / 2 - 5, - ballDiameter / 2 - 5, 0])
+                cube(ballDiameter + 10);
         rotate([- 45, 0, 0])
-            translate([- ballDiameter / 2 - 2, 0, - ballDiameter / 2 - 2])
-                cube(ballDiameter + 4);
+            translate([- ballDiameter / 2 - 5, 0, - ballDiameter / 2 - 5])
+                cube(ballDiameter + 10);
         rotate([0, 90, 0])
             cylinder(d = 30, h = ballDiameter + 10, center = true);
+        sphere(d = ballDiameter - thickness);
     }
 }
 

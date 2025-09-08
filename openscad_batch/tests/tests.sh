@@ -172,7 +172,7 @@ test1.png'
   echo "       generation done"
   check_directory ./cube1/ "3D"
   check_directory ./cube1/3D/ "test1.wrl"
-  rm -Rf ./cube1/ ./cube1.conf
+  rm -Rf ./cube1/
   
   echo "       generate stl cube1.scad"
   check_return_code ../generate_profile.sh -g off cube1.scad

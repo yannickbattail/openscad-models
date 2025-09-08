@@ -1,13 +1,11 @@
 {
   "fileFormatVersion": "1",
   "parameterSets": {
-    "mugGrogu": {
-      "debug": "false",
-      "nutellaGlassScale": "1.01"
+    "noBlock": {
+      "numberOfBlock": 0
     },
-    "mugGroguDebug": {
-      "debug": "true",
-      "nutellaGlassScale": "1.01"
+    "6blocks": {
+      "numberOfBlock": 6
     }
   }
 }

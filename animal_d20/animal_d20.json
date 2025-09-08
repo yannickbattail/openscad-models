@@ -1,0 +1,47 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "Damagetypes-Acid": {
+      "part": "0"
+    },
+    "Damagetypes-Bludgeoning": {
+      "part": "1"
+    },
+    "Damagetypes-Cold": {
+      "part": "2"
+    },
+    "Damagetypes-Fire": {
+      "part": "3"
+    },
+    "Damagetypes-Force": {
+      "part": "4"
+    },
+    "Damagetypes-Lightning": {
+      "part": "5"
+    },
+    "Damagetypes-Necrotic": {
+      "part": "6"
+    },
+    "Damagetypes-Piercing": {
+      "part": "7"
+    },
+    "Damagetypes-Poison": {
+      "part": "8"
+    },
+    "Damagetypes-Psychic": {
+      "part": "9"
+    },
+    "Damagetypes-Radiant": {
+      "part": "10"
+    },
+    "Damagetypes-Slashing": {
+      "part": "11"
+    },
+    "Damagetypes-Thunder": {
+      "part": "12"
+    },
+    "VoxelHeart1_hull": {
+      "part": "13"
+    }
+  }
+}

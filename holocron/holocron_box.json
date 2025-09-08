@@ -1,0 +1,23 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "all": {
+      "part": "all"
+    },
+    "all_faces": {
+      "part": "all_faces"
+    },
+    "face": {
+      "part": "face"
+    },
+    "face_side": {
+      "part": "face_side"
+    },
+    "box_top": {
+      "part": "box_top"
+    },
+    "box_bottom": {
+      "part": "box_bottom"
+    }
+  }
+}

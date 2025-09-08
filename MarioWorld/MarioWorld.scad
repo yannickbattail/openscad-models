@@ -1,15 +1,23 @@
 
 // a list of theses caracters: mgkpB12e?wx0ftuTU
+worldLine12 = " ";
+worldLine11 = " ";
+worldLine10 = " ";
+worldLine9 = " ";
 worldLine8 = " ";
 worldLine7 = " ";
 worldLine6 = " ";
 worldLine5 = " ";
-worldLine4 = " ";
+worldLine4 = " C";
 worldLine3 = " ";
 worldLine2 = "mgkpB ftT";
 worldLine1 = "12e?wx0uU";
 
 world = [
+    worldLine12,
+    worldLine11,
+    worldLine10,
+    worldLine9,
     worldLine8,
     worldLine7,
     worldLine6,
@@ -43,6 +51,7 @@ module tile(tileType) {
   else if (tileType == "k") { koopa(); }
   else if (tileType == "p") { piranha_plant(); }
   else if (tileType == "B") { bush(); }
+  else if (tileType == "C") { cloud(); }
   else if (tileType == "T") { tube_top(); }
   else if (tileType == "U") { tube_bottom(); }
   else if (tileType == "t") { small_tube_top(); }
@@ -92,6 +101,11 @@ module tileHollow() {
       translate([15, 0, 0]) cube([1,1,16]);
       translate([15,15, 0]) cube([1,1,16]);
   }
+}
+
+module cloud() {
+    color("white")
+        bush();
 }
 
 module mario() {

@@ -1,20 +1,23 @@
 #!/bin/bash
 #set -x
 
-# hartbeat_httping.sh
-# Usage: hartbeat_httping.sh URI
+# heartbeat_process.sh
+# Usage: heartbeat_process.sh process_id
 # stop it with ctrl+c
 # ex:
-# hartbeat_httping.sh http://perdu.com
-# hartbeat_httping.sh https://192.168.1.1:8080
+# heartbeat_process.sh 42666
+# ex:
+# sleep 10 & ### or other cmd with a & at the end
+# pid=$!
+# heartbeat_process.sh $pid 
 
-hartbeatOpt=""
+heartbeatOpt=""
 cmdOpt=""
 
 while [[ $# -gt 0 ]]; do
   case $1 in
     -*|--*)
-      hartbeatOpt="${hartbeatOpt} $1 $2"
+      heartbeatOpt="${heartbeatOpt} $1 $2"
       shift # past argument
       shift # past value
       ;;
@@ -35,7 +38,7 @@ then
   exit 1
 fi
 
-cmd="httping -t 1 -c 1 $cmdOpt"
+cmd="ps -p $cmdOpt"
 
-echo ./hartbeat.sh $hartbeatOpt $cmd
-./hartbeat.sh $hartbeatOpt $cmd
+echo ./heartbeat.sh $heartbeatOpt $cmd
+./heartbeat.sh $heartbeatOpt $cmd

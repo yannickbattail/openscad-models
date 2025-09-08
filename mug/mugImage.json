@@ -121,6 +121,17 @@
       "partialModel": "all",
       "reliefMultipier": "5",
       "withNutellaGlass": "true"
+    },
+    "mountain_lake": {
+      "imageAngle": "180",
+      "imageRotation": "90",
+      "mugDiameter": "76",
+      "mugHeight": "80",
+      "mugThickness": "2",
+      "part": "mountain_lake",
+      "partialModel": "all",
+      "reliefMultipier": "1",
+      "withNutellaGlass": "true"
     }
   }
 }

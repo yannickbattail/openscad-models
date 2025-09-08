@@ -1,25 +1,25 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "animation_rounding": {
-            "hole_size": "0.56",
-            "dice_color": "blue",
-            "holes_color": "white",
-            "animation_rotation": "false",
-            "animation_rounding": "true"
-        },
-        "animation_hole_size": {
-            "rounding": "0.69",
-            "dice_color": "white",
-            "holes_color": "red",
-            "animation_hole_size": "true",
-            "animation_rotation": "false"
-        },
-        "basic": {
-            "hole_size": "0.56",
-            "rounding": "0.69",
-            "dice_color": "yellow",
-            "holes_color": "red"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "animation_rounding": {
+      "hole_size": "0.56",
+      "dice_color": "blue",
+      "holes_color": "white",
+      "animation_rotation": "false",
+      "animation_rounding": "true"
+    },
+    "animation_hole_size": {
+      "rounding": "0.69",
+      "dice_color": "white",
+      "holes_color": "red",
+      "animation_hole_size": "true",
+      "animation_rotation": "false"
+    },
+    "basic": {
+      "hole_size": "0.56",
+      "rounding": "0.69",
+      "dice_color": "yellow",
+      "holes_color": "red"
     }
+  }
 }

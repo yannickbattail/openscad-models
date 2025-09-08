@@ -1,24 +1,24 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "New set 2": {
-            "$fn": "100",
-            "depth_ratio": "0.029999999999999999",
-            "face_1": "1",
-            "face_10": "10",
-            "face_11": "11",
-            "face_12": "12",
-            "face_2": "2",
-            "face_3": "3",
-            "face_4": "4",
-            "face_5": "5",
-            "face_6": "6.",
-            "face_7": "7",
-            "face_8": "8",
-            "face_9": "9.",
-            "face_rounding": "0.79999999999999993",
-            "letter_ratio": "0.45000000000000001",
-            "size": "25"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "New set 2": {
+      "$fn": "100",
+      "depth_ratio": "0.029999999999999999",
+      "face_1": "1",
+      "face_10": "10",
+      "face_11": "11",
+      "face_12": "12",
+      "face_2": "2",
+      "face_3": "3",
+      "face_4": "4",
+      "face_5": "5",
+      "face_6": "6.",
+      "face_7": "7",
+      "face_8": "8",
+      "face_9": "9.",
+      "face_rounding": "0.79999999999999993",
+      "letter_ratio": "0.45000000000000001",
+      "size": "25"
     }
+  }
 }

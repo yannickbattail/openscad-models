@@ -1,10 +1,10 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "fox_3mm_layer": {
-            "layer1Height": "3",
-            "layer2Height": "3",
-            "layer3Height": "3"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "fox_3mm_layer": {
+      "layer1Height": "3",
+      "layer2Height": "3",
+      "layer3Height": "3"
     }
+  }
 }

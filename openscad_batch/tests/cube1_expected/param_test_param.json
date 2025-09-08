@@ -1,1 +1,185 @@
-{"parameters":[{"caption":"combo box for number","group":"Drop down box:","initial":2.0,"name":"Numbers","options":[{"name":"0","value":0.0},{"name":"1","value":1.0},{"name":"2","value":2.0},{"name":"3","value":3.0}],"type":"number"},{"caption":"combo box for string","group":"Drop down box:","initial":"foo","name":"Strings","options":[{"name":"foo","value":"foo"},{"name":"bar","value":"bar"},{"name":"baz","value":"baz"}],"type":"string"},{"caption":"labeled combo box for numbers","group":"Drop down box:","initial":10.0,"name":"Labeled_values","options":[{"name":"L","value":10.0},{"name":"M","value":20.0},{"name":"XL","value":30.0}],"type":"number"},{"caption":"labeled combo box for string","group":"Drop down box:","initial":"S","name":"Labeled_value","options":[{"name":"Small","value":"S"},{"name":"Medium","value":"M"},{"name":"Large","value":"L"}],"type":"string"},{"caption":"slider widget for number","group":"Slider","initial":34.0,"max":100.0,"min":10.0,"name":"slider","step":1.0,"type":"number"},{"caption":"step slider for number","group":"Slider","initial":2.0,"max":100.0,"min":0.0,"name":"stepSlider","step":5.0,"type":"number"},{"caption":"description","group":"Checkbox","initial":true,"name":"Variable","type":"boolean"},{"caption":"spinbox with step size 1","group":"Spinbox","initial":5.0,"name":"Spinbox","type":"number"},{"caption":"Text box for string","group":"Textbox","initial":"hello","name":"String","type":"string"},{"caption":"Text box for vector with less than or equal to 4 elements","group":"Special vector","initial":[12.0],"max":50.0,"min":0.0,"name":"Vector1","step":2.0,"type":"number"},{"group":"Special vector","initial":[12.0,34.0],"max":50.0,"min":0.0,"name":"Vector2","step":2.0,"type":"number"},{"group":"Special vector","initial":[12.0,34.0,46.0],"max":50.0,"min":0.0,"name":"Vector3","step":2.0,"type":"number"},{"group":"Special vector","initial":[12.0,34.0,46.0,24.0],"max":50.0,"min":0.0,"name":"Vector4","step":2.0,"type":"number"}],"title":"param_test"}
+{
+  "parameters": [
+    {
+      "caption": "combo box for number",
+      "group": "Drop down box:",
+      "initial": 2.0,
+      "name": "Numbers",
+      "options": [
+        {
+          "name": "0",
+          "value": 0.0
+        },
+        {
+          "name": "1",
+          "value": 1.0
+        },
+        {
+          "name": "2",
+          "value": 2.0
+        },
+        {
+          "name": "3",
+          "value": 3.0
+        }
+      ],
+      "type": "number"
+    },
+    {
+      "caption": "combo box for string",
+      "group": "Drop down box:",
+      "initial": "foo",
+      "name": "Strings",
+      "options": [
+        {
+          "name": "foo",
+          "value": "foo"
+        },
+        {
+          "name": "bar",
+          "value": "bar"
+        },
+        {
+          "name": "baz",
+          "value": "baz"
+        }
+      ],
+      "type": "string"
+    },
+    {
+      "caption": "labeled combo box for numbers",
+      "group": "Drop down box:",
+      "initial": 10.0,
+      "name": "Labeled_values",
+      "options": [
+        {
+          "name": "L",
+          "value": 10.0
+        },
+        {
+          "name": "M",
+          "value": 20.0
+        },
+        {
+          "name": "XL",
+          "value": 30.0
+        }
+      ],
+      "type": "number"
+    },
+    {
+      "caption": "labeled combo box for string",
+      "group": "Drop down box:",
+      "initial": "S",
+      "name": "Labeled_value",
+      "options": [
+        {
+          "name": "Small",
+          "value": "S"
+        },
+        {
+          "name": "Medium",
+          "value": "M"
+        },
+        {
+          "name": "Large",
+          "value": "L"
+        }
+      ],
+      "type": "string"
+    },
+    {
+      "caption": "slider widget for number",
+      "group": "Slider",
+      "initial": 34.0,
+      "max": 100.0,
+      "min": 10.0,
+      "name": "slider",
+      "step": 1.0,
+      "type": "number"
+    },
+    {
+      "caption": "step slider for number",
+      "group": "Slider",
+      "initial": 2.0,
+      "max": 100.0,
+      "min": 0.0,
+      "name": "stepSlider",
+      "step": 5.0,
+      "type": "number"
+    },
+    {
+      "caption": "description",
+      "group": "Checkbox",
+      "initial": true,
+      "name": "Variable",
+      "type": "boolean"
+    },
+    {
+      "caption": "spinbox with step size 1",
+      "group": "Spinbox",
+      "initial": 5.0,
+      "name": "Spinbox",
+      "type": "number"
+    },
+    {
+      "caption": "Text box for string",
+      "group": "Textbox",
+      "initial": "hello",
+      "name": "String",
+      "type": "string"
+    },
+    {
+      "caption": "Text box for vector with less than or equal to 4 elements",
+      "group": "Special vector",
+      "initial": [
+        12.0
+      ],
+      "max": 50.0,
+      "min": 0.0,
+      "name": "Vector1",
+      "step": 2.0,
+      "type": "number"
+    },
+    {
+      "group": "Special vector",
+      "initial": [
+        12.0,
+        34.0
+      ],
+      "max": 50.0,
+      "min": 0.0,
+      "name": "Vector2",
+      "step": 2.0,
+      "type": "number"
+    },
+    {
+      "group": "Special vector",
+      "initial": [
+        12.0,
+        34.0,
+        46.0
+      ],
+      "max": 50.0,
+      "min": 0.0,
+      "name": "Vector3",
+      "step": 2.0,
+      "type": "number"
+    },
+    {
+      "group": "Special vector",
+      "initial": [
+        12.0,
+        34.0,
+        46.0,
+        24.0
+      ],
+      "max": 50.0,
+      "min": 0.0,
+      "name": "Vector4",
+      "step": 2.0,
+      "type": "number"
+    }
+  ],
+  "title": "param_test"
+}

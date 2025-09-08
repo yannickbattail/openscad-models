@@ -7,11 +7,11 @@ part = "all"; // [all, phoneHolder, hook, screw1, screw2, serratedWasher]
 saberDiameterInch = 1; // [0.5:0.025:2]
 
 // phone height, when in lanscape mode
-phoneHeight = 74; // [50:1:200]
+phoneHeight = 80; // [50:1:200]
 // phone width, when in lanscape mode
-phoneWidth = 164; // [120:1:300]
+phoneWidth = 170; // [120:1:300]
 // phone thickness
-phoneThickness = 9; // [5:1:20]
+phoneThickness = 15; // [5:1:20]
 
 /* [other parameter] */
 // lenth of the hook (part around the saber)

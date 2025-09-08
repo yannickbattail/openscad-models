@@ -3,7 +3,7 @@ use <lib/surfaceData.scad>
 use <lib/mug.scad>
 use <lib/nutellaGlass.scad>
 /* Images */
-include <images/cat.scad> // base example and fast rendering
+include <images/cat.scad>
 include <images/cat_fur.scad>
 include <images/cat_profile.scad>
 include <images/cat_face.scad>

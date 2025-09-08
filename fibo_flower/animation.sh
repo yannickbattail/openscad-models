@@ -15,11 +15,11 @@ delay=3.333333333
 img_size=521,512
 
 #### fibo_flower config ###
-form="cone" # cone or petal
+form="petal" # cone or petal
 
 mkdir ./anim
 echo rendering images ...
-openscad -q -o ./anim/${scad_file}.png -D "form=${form}" -D "animation_rotation=true" --animate ${nb_image} --imgsize ${img_size} ./${scad_file}.scad
+openscad -q -o ./anim/${scad_file}.png -D "form=\"${form}\"" -D "animation_rotation=true" --animate ${nb_image} --imgsize ${img_size} ./${scad_file}.scad
 
 echo generating animation ...
 convert -delay ${delay} -loop 0 ./anim/${scad_file}*.png ./${scad_file}.gif

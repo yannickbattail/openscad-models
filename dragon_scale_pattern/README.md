@@ -15,3 +15,4 @@ scale is from https://www.thingiverse.com/thing:3470986 and simplified number of
 ### TODO
 
 - Enter a custom matrix as string
+- offset on X and Y

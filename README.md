@@ -6,6 +6,7 @@ Several models made with openSCAD.
 
 - [Image on a mug](mug/README.md)
 - [Animal (or figurine) in a dice](animal_dice/README.md)
+- [Dragon scale pattern](dragon_scale_pattern/README.md)
 - [wall-art arrow stencil](arrow/README.md)
 - [Dices](dice/README.md)
 - [VoxelHeart and EasiestHeart](VoxelHeart/README.md)

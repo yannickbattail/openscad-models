@@ -26,17 +26,17 @@ font_language="en";
 font_script="latin";
 
 /* [Faces] */
-// text on face 1
+// text on face 1 (top)
 face_1 = "1";
-// text on face 2
+// text on face 2 (front)
 face_2 = "2";
-// text on face 3
+// text on face 3 (right)
 face_3 = "3";
-// text on face 4
+// text on face 4 (left)
 face_4 = "4";
-// text on face 5
+// text on face 5 (back)
 face_5 = "5";
-// text on face 6
+// text on face 6 (bottom)
 face_6 = "6";
 
 /* [Animation] */
@@ -61,13 +61,18 @@ module dice(rounding, hole_size, faces, dice_color, face_color, font_params) {
             cube(1, center = true);
             sphere(rounding);
         }
+        every_faces=[
+                [0,   0, 0  ], // 1 top
+                [90,  0, 0  ], // 2 front
+                [90,  0, 90 ], // 3 right
+                [90,  0, -90], // 4 left
+                [-90, 0, 0  ], // 5 back
+                [180, 0, 0  ]  // 6 bottom
+            ];
         color(face_color) {
-            rotate([0, 0, 0]) faceText(faces[0], font_params); // 1
-            rotate([180, 0, 0]) faceText(faces[5], font_params); // 6
-            rotate([90, 0, 0]) faceText(faces[1], font_params); // 2
-            rotate([- 90, 0, 0]) faceText(faces[4], font_params); // 5
-            rotate([90, 0, 90]) faceText(faces[2], font_params); // 3
-            rotate([90, 0, - 90]) faceText(faces[3], font_params); // 4
+            for (i = [0:len(every_faces)-1]) {
+                rotate(every_faces[i]) faceText(faces[i], font_params);
+            }
         }
     }
 }

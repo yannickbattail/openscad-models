@@ -2,6 +2,8 @@
 slices = 10; // [6 : 12]
 // put a little Pumpkin on the handle
 PumpkinOnHandle = true;
+// on which side of the mug the face of the pumpkin is
+PumpkinFaceOrientation=0; // [0:right, 270:front, 180:left]
 // random seed, if seed=0 no random slice
 seed = 1; // [0: 255]
 
@@ -20,19 +22,19 @@ $vpt = is_animated?[0, 0, 0]:[];
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
 $vpd = is_animated?500:[];
 
-PumpkinMug(slices, PumpkinOnHandle, seed);
+PumpkinMug(slices, PumpkinOnHandle, PumpkinFaceOrientation, seed);
 
-module PumpkinMug(slices, PumpkinOnHandle, seed) {
+module PumpkinMug(slices, PumpkinOnHandle, PumpkinFaceOrientation, seed) {
     difference() {
         union() {
             scale([0.28, 0.28, 0.5])
-                PumpkinBase(slices, seed);
+                PumpkinBody(slices, PumpkinFaceOrientation, seed);
             translate([55, 0, 0])
                 handle(100);
             if (PumpkinOnHandle) {
                 translate([55, 0, 40])
                     scale([0.07, 0.07, 0.07])
-                        Pumpkin(slices, seed);
+                        Pumpkin(slices, PumpkinFaceOrientation, seed);
             }
         }
         // flat bottom
@@ -53,6 +55,7 @@ module PumpkinMug(slices, PumpkinOnHandle, seed) {
 }
 
 module handle(height) {
+    color("orange")
     scale([0.4, 1.2, 0.65]) {
         rotate([90, 0, 0]) {
             torus(height / 2, 8);
@@ -66,8 +69,8 @@ module torus(radius, thickness) {
     }
 }
 
-module Pumpkin(slices, seed) {
-    PumpkinBase(slices, seed);
+module Pumpkin(slices, PumpkinFaceOrientation, seed) {
+    PumpkinBody(slices, PumpkinFaceOrientation, seed);
     PumpkinTail();
     PumpkinBottom();
 }
@@ -77,7 +80,19 @@ function rndAround(around, moreOrLess, seed)
 function rndAroundN(around, moreOrLess, number, seed)
 = rands(around - moreOrLess, around + moreOrLess, number, seed);
 
-module PumpkinBase(slices, seed) {
+module PumpkinBody(slices, PumpkinFaceOrientation, seed) {
+    difference() {
+        PumpkinBase();
+        color("yellow")
+        translate([0,0,-70])
+            rotate([90,0, PumpkinFaceOrientation])
+                scale([4,4,4])
+                    linear_extrude(50)
+                        PumpkinFace();
+    }
+}
+
+module PumpkinBase() {
     randSlices = rndAroundN(30, 8, slices, seed);
     color("orange")
         for (a = [0:slices - 1]) {
@@ -105,6 +120,36 @@ module PumpkinBottom() {
             translate([0, 0, 115])
                 linear_extrude(10, scale = 0.6)
                     circle(26);
+}
+
+module PumpkinFace() {
+    PumpkinHalfFace();
+    mirror(v= [1,0,0]) {
+        PumpkinHalfFace();
+    }
+}
+module PumpkinHalfFace() {
+    polygon([
+            [0, 0],
+            [0, 7],
+            [4, 6],
+            [8, 10],
+            [12, 9],
+            [16, 13],
+            [20, 13],
+            [23, 14],
+            [24, 12-4],
+            [20, 13-5],
+            [16, 9-5],
+            [12, 11-6],
+            [8, 7-6],
+            [4, 8-6],
+        ]);
+    polygon([
+            [12, 32],
+            [20, 24],
+            [ 4, 24],
+        ]);
 }
 
 module nutellaGlass() {

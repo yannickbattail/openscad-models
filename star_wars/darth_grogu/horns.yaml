@@ -20,17 +20,17 @@ mosaicOptions:
     height: 256
     border: 2
   tiles:
-    width: 1
-    height: 1
+    width: 2
+    height: 2
 openScadOptions:
-  openScadExecutable: openscad-nightly # or "openscad"
+  openScadExecutable: openscad # or "openscad-nightly"
   backend: Manifold # "CGAL" (old/slow) or "Manifold" (new/fast)
   check_parameter_ranges: false
   check_parameters: false
   hardwarnings: false
   debug: null
   imageOptions:
-    colorscheme: BeforeDawn # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
+    colorscheme: Starnight # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
     imgsize:
       height: 1024
       width: 1024
@@ -38,31 +38,38 @@ openScadOptions:
     preview: null # [=throwntogether] -for ThrownTogether preview png
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"
-    autocenter: false # adjust camera to look at object's center
+    autocenter: false # adjust the camera to look at object's center
   animOptions:
     animDelay: 50 # delay in milliseconds between frames
     animate: 20 # number of frames
-    colorscheme: BeforeDawn # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
+    colorscheme: Starnight # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
     imgsize:
       height: 256
       width: 256
-    render: true # for full geometry evaluation when exporting png
+    render: null # for full geometry evaluation when exporting png
     preview: null # [=throwntogether] -for ThrownTogether preview png
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"
-    autocenter: false # adjust camera to look at object's center
+    autocenter: false # adjust the camera to look at object's center
   option3mf:
-    color_mode: model # "model" | "none" | "selected_only".  Set to "model" useful if you want to export mutilple colors in a 3mf file
+    color_mode: model # "model" | "none" | "selected_only".  Set to "model" useful if you want to export multiple colors in a 3mf file
     color: ""
-    material_type: color # "color" | "basematerial". Set to "color" useful if you want to export mutilple colors in a 3mf file
+    material_type: color # "color" | "basematerial". Set to "color" useful if you want to export multiple colors in a 3mf file
     unit: millimeter #  micron, millimeter, centimeter, meter, inch, foot
     add_meta_data: "true"
-    meta_data_copyright: me 2025
-    meta_data_description: __BASE_FILE_NAME__ - __PARAMETER_SET__ (made with OpenSCAD from "file __FILE_NAME__")
-    meta_data_designer: me
-    meta_data_license_terms: CC BY https://creativecommons.org/licenses/by/4.0/
+    meta_data_copyright: 'XcinnaY 2025'
+    # the following variables are replaced by their value when generating the file
+    # __FILE_NAME__: the openscad file name with extension
+    # __BASE_FILE_NAME__: the openscad file name without extension
+    # __PARAMETER_SET__: the parameter set name used to generate the file
+    # __GENERATION_DATE__: date of the generation
+    # __PARAMETERS__: values of the parameter set as a JSON string
+    meta_data_description: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with OpenSCAD, generated at __GENERATION_DATE__ from "file __FILE_NAME__" with parameters: __PARAMETERS__ Sources: https://github.com/yannickbattail/openscad-models/tree/main/star_wars/crate'
+    meta_data_designer: 'XcinnaY  https://www.thingiverse.com/xcinnay'
+    meta_data_license_terms: 'CC BY https://creativecommons.org/licenses/by/4.0/'
     meta_data_rating: ""
-    meta_data_title: __BASE_FILE_NAME__ - __PARAMETER_SET__
+    # the variables are replaced by their value when generating the file
+    meta_data_title: '__BASE_FILE_NAME__ - __PARAMETER_SET__'
   optionPdf:
     paper_size: "a4"
     orientation: "portrait"
@@ -72,19 +79,21 @@ openScadOptions:
     show_grid: "false"
     grid_size: 10.0
     add_meta_data: "true"
-    meta_data_title: __BASE_FILE_NAME__ - __PARAMETER_SET__
+    # the variables are replaced by their value when generating the file
+    meta_data_title: '__BASE_FILE_NAME__ - __PARAMETER_SET__'
     meta_data_author: "me"
-    meta_data_subject: __BASE_FILE_NAME__ - __PARAMETER_SET__ (made with OpenSCAD from "file __FILE_NAME__")
+    # the variables are replaced by their value when generating the file
+    meta_data_subject: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with OpenSCAD, generated at __GENERATION_DATE__ from "file __FILE_NAME__" with parameters: __PARAMETERS__'
     meta_data_keywords: "OpenSCAD, 2D model"
-    fill: "true"
-    fill_color: "#7F1617"
-    stroke: "false"
+    fill: "false"
+    fill_color: "black"
+    stroke: "true"
     stroke_color: "black"
     stroke_width: 0.35
   optionSvg:
-    fill: "true"
-    fill_color: "#7F1617"
-    stroke: "false"
+    fill: "false"
+    fill_color: "white"
+    stroke: "true"
     stroke_color: "black"
     stroke_width: 0.35
   experimentalFeatures:

@@ -13,6 +13,7 @@ Material: *what you want*
 Color: grey
 
 Parts:
+
 - `full`: support Yes, rotate 180°
 - `top`: support Yes, rotate 180°
 - `bottom`: support Yes, rotate 0°
@@ -45,10 +46,10 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## License
 
-license GPL
+[GPL](https://www.gnu.org/licenses/gpl-3.0.html)
 
-CC BY https://creativecommons.org/licenses/by/4.0/
+[CC BY](https://creativecommons.org/licenses/by/4.0/)
 
-## keywords
+## Keywords
 
 star_wars, crate, box, openscad, 3D model, customizable, customizer

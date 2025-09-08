@@ -9,18 +9,18 @@ $vpt = animation_rotation?[4, 3, 15]:$vpt;
 $vpr = animation_rotation?[60, 0, 365 * $t]:$vpr; // animation rotate around the object
 $vpd = animation_rotation?3000:$vpd;
 
-$fn=100;
+$fn = 100;
 
 example();
 bugle();
 
-module example(){
+module example() {
     translate([0, 100, 0])
-    pipe([
-        //length,outer_radius_start, inner_radius_start,outer_radius_end, inner_radius_end,rotation,angle,radius_of_curvature,straight_part_color,curved_part_color
-        [    200,                50,                 47,              20,               17,       0,   90,                20,             "green",            "red"],
-        [    200,                20,                 17,              10,                7,      90,  120,                20,              "blue",         "orange"],
-    ]);
+        pipe([
+            //length,outer_radius_start, inner_radius_start,outer_radius_end, inner_radius_end,rotation,angle,radius_of_curvature,straight_part_color,curved_part_color
+            [    200,                50,                 47,              20,               17,       0,   90,                20,             "green",            "red"],
+            [    200,                20,                 17,              10,                7,      90,  120,                20,              "blue",         "orange"],
+        ]);
 }
 
 module bugle() {
@@ -41,7 +41,7 @@ module bugle() {
 }
 
 module mouthpiece() {
-    rotate([0, -90, 0]) {
+    rotate([0, - 90, 0]) {
         pipe([
             //length,outer_radius_start, inner_radius_start,outer_radius_end, inner_radius_end,rotation,angle,radius_of_curvature,straight_part_color,curved_part_color
             [     60,                8,                  7,              9,               8,       0,    0,                  0,           "orange",         "orange"],

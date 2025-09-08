@@ -1,35 +1,135 @@
 {
   "fileFormatVersion": "1",
   "parameterSets": {
+    "Mimic_Chest": {
+      "animalNumber": "0",
+      "part": "model"
+    },
+    "wholeDice_Mimic_Chest": {
+      "animalNumber": "0",
+      "part": "whole"
+    },
     "Platypus_Barbarian": {
-      "animalNumber": "0"
+      "animalNumber": "1",
+      "part": "model"
+    },
+    "wholeDice_Platypus_Barbarian": {
+      "animalNumber": "1",
+      "part": "whole"
     },
     "VoxelHeart1_hull": {
-      "animalNumber": "1"
+      "animalNumber": "2",
+      "part": "model"
+    },
+    "wholeDice_VoxelHeart1_hull": {
+      "animalNumber": "2",
+      "part": "whole"
     },
     "catLowPoly": {
-      "animalNumber": "2"
+      "animalNumber": "3",
+      "part": "model"
+    },
+    "wholeDice_catLowPoly": {
+      "animalNumber": "3",
+      "part": "whole"
     },
     "dino": {
-      "animalNumber": "3"
+      "animalNumber": "4",
+      "part": "model"
+    },
+    "wholeDice_dino": {
+      "animalNumber": "4",
+      "part": "whole"
     },
     "dragonLED": {
-      "animalNumber": "4"
+      "animalNumber": "5",
+      "part": "model"
+    },
+    "wholeDice_dragonLED": {
+      "animalNumber": "5",
+      "part": "whole"
     },
     "duckVader": {
-      "animalNumber": "5"
+      "animalNumber": "6",
+      "part": "model"
+    },
+    "wholeDice_duckVader": {
+      "animalNumber": "6",
+      "part": "whole"
     },
     "foxLowPoly": {
-      "animalNumber": "6"
+      "animalNumber": "7",
+      "part": "model"
+    },
+    "wholeDice_foxLowPoly": {
+      "animalNumber": "7",
+      "part": "whole"
     },
     "heart_gem": {
-      "animalNumber": "7"
+      "animalNumber": "8",
+      "part": "model"
+    },
+    "wholeDice_heart_gem": {
+      "animalNumber": "8",
+      "part": "whole"
     },
     "panda": {
-      "animalNumber": "8"
+      "animalNumber": "9",
+      "part": "model"
+    },
+    "wholeDice_panda": {
+      "animalNumber": "9",
+      "part": "whole"
     },
     "vader": {
-      "animalNumber": "9"
+      "animalNumber": "10",
+      "part": "model"
+    },
+    "wholeDice_vader": {
+      "animalNumber": "10",
+      "part": "whole"
+    },
+    "fixation": {
+      "part": "fixation"
+    },
+    "all_edges": {
+      "part": "all_edges"
+    },
+    "edge1_2": {
+      "part": "edge1_2"
+    },
+    "edge1_3": {
+      "part": "edge1_3"
+    },
+    "edge1_4": {
+      "part": "edge1_4"
+    },
+    "edge1_5": {
+      "part": "edge1_5"
+    },
+    "edge6_2": {
+      "part": "edge6_2"
+    },
+    "edge6_3": {
+      "part": "edge6_3"
+    },
+    "edge6_4": {
+      "part": "edge6_4"
+    },
+    "edge6_5": {
+      "part": "edge6_5"
+    },
+    "edge2_3": {
+      "part": "edge2_3"
+    },
+    "edge2_4": {
+      "part": "edge2_4"
+    },
+    "edge3_5": {
+      "part": "edge3_5"
+    },
+    "edge4_5": {
+      "part": "edge4_5"
     }
   }
 }

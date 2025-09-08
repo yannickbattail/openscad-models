@@ -23,7 +23,7 @@ usage() {
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file thant the default OPENSCAD_FILE.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-    echo "-g, --generate only_generate              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,conf. By default it will generate all except con." >&2
+    echo "-g, --generate only_generate              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,3mf,conf. By default it will generate all except con." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
     echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
@@ -169,6 +169,7 @@ anim_dir=./${scad_file_name}/anim
 gif_dir=./${scad_file_name}/gif
 webp_dir=./${scad_file_name}/webp
 stl_dir=./${scad_file_name}/stl
+threemf_dir=./${scad_file_name}/3mf
 
 prepare_jpg() {
     mkdir -p "$jpg_dir"
@@ -198,6 +199,10 @@ prepare_webp() {
 
 prepare_stl() {
     mkdir -p "$stl_dir"
+}
+
+prepare_3mf() {
+    mkdir -p "$threemf_dir"
 }
 
 generate_jpg() {
@@ -230,6 +235,11 @@ generate_webp() {
 generate_stl() {
     echo_info "generating ${stl_dir}/${parameter_set}.stl ..."
     exec_check $OPENSCAD -q -o "${stl_dir}/${parameter_set}.stl" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${stl_dollar_fn}" --export-format "${stl_format}" ${stl_render_option} "${scad_file}"
+}
+
+generate_3mf() {
+    echo_info "generating ${threemf_dir}/${parameter_set}.3mf ..."
+    exec_check $OPENSCAD -q -o "${threemf_dir}/${parameter_set}.3mf" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${stl_dollar_fn}" ${stl_render_option} "${scad_file}"
 }
 
 generate_mosaic() {
@@ -281,6 +291,9 @@ prepare_all() {
   if [[ $only_generate == *"stl"* ]]; then
     prepare_stl
   fi
+  if [[ $only_generate == *"3mf"* ]]; then
+    prepare_3mf
+  fi
   if [[ $only_generate == *"conf"* ]]; then
     touch "$config_file"
   fi
@@ -289,6 +302,7 @@ prepare_all() {
     prepare_gif
     prepare_webp
     prepare_stl
+    prepare_3mf
   fi
 }
 
@@ -313,6 +327,10 @@ generate_all() {
     then
       generate_stl
     fi
+    if  [[ $only_generate == *"3mf"* ]]
+    then
+      generate_3mf
+    fi
     if  [[ $only_generate == *"conf"* ]]
     then
       generate_conf
@@ -323,6 +341,7 @@ generate_all() {
       generate_gif
       generate_webp
       generate_stl
+      generate_3mf
     fi
     if  [[  $only_generate == "" || $only_generate == *"gif"* || $only_generate == *"webp"* ]]
     then

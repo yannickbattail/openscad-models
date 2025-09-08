@@ -13,6 +13,11 @@
             "bothSides": true,
             "thickness": "1",
             "thicknessBase": "1"
+        },
+        "tiny_grogu": {
+            "width": 50,
+            "thickness": "1",
+            "thicknessBase": "1"
         }
     }
 }

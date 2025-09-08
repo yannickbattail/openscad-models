@@ -4,7 +4,7 @@ Cute Grogu wall art
 
 ## UPDATE
 
-- v3 grogu string: hook position customizable
+- v3 grogu string: customizable hook position
 - v2 grogu string: grogu with hook up and down
 - v1 grogu
 
@@ -15,8 +15,6 @@ Cute Grogu wall art
 - `thickness`: default 1, between 1 and 10 step 0.1
 
 - `thicknessBase` default 1, between 0 and 10 step 0.1
-
-- `width`: default 100;
 
 - `hookPosition` default "both", values: both, top, bottom, none
 

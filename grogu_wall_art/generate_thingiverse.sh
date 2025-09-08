@@ -14,4 +14,4 @@ generate() {
 
 mkdir -p ./thingiverse/
 
-generate grogu_string
+generate grogu

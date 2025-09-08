@@ -16,12 +16,6 @@
     "bouton": {
       "part": "bouton"
     },
-    "bande1": {
-      "part": "bande1"
-    },
-    "bande2": {
-      "part": "bande2"
-    },
     "croix": {
       "part": "croix"
     }

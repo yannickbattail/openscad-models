@@ -1,13 +1,32 @@
 use <time_steps.scad>;
 use <hsv.scad>
-$fn=20;
 
-_tests();
-Logo(50);
-graph_steps(6);
+// part or piece to display
+part="logo_animation"; // [logo_animation, graph_steps]
+
+/* [Animation] */
+// rotating animation
+animation_rotation = false;
+
+// resolution
+$fn=50;
+
+$vpt = animation_rotation ? [-50, 0, 0] : [];
+$vpr = animation_rotation ? [70, 0, 0] : [];
+$vpd = animation_rotation ? 300 : [];
+
+unit_tests();
+
+if (part == "logo_animation") {
+    Logo(50);
+} else if (part == "graph_steps") {
+    graph_steps(6);
+} else {
+    Logo(50);
+    graph_steps(6);
+}
 
 module Logo(size=50) {
-    // Temporary variables
     hole = size/2;
     cylinderHeight = size * 1.25;
     t = time_steps(3);
@@ -20,7 +39,7 @@ module Logo(size=50) {
 }
 
 module graph_steps(nb_step) {
-    translate([0,0,100]) {
+    rotate([90,0,0]) {
         cube([30, 1, 1]);
         cube([1, 30, 1]);
         scale([20, 10, 1]) {
@@ -38,7 +57,7 @@ module graph(step, nb_steps) {
     polygon(newPoints);
 }
 
-module _tests() {
+module unit_tests() {
     test(0.2, 4, [0.8,0,0,0]);
     test(0.4, 4, [1,0.6,0,0]);
     test(0.6, 4, [1,1,0.4,0]);

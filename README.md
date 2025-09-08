@@ -12,6 +12,7 @@ Several models made with openSCAD.
     - [Customizable pumpkin mug, upcycling nutella glass](pumpkin/README.md)
     - [nutella glass template](mug/README.md#nutella-glass)
 - [Animal (or figurine) in a dice](animal_dice/README.md)
+- [Animal (or figurine) in a d20](animal_d20/README.md)
 - [Estourballe](estourballe/README.md) L'estourballe est une Pokéball médiévale tirée du [Pochon Dextre](https://simondethuillieres.com/product/le-pochon-dextre/)
 - [Dragon scale pattern](dragon_scale_pattern/README.md)
 - [lightsaber as selfie stick](selfie_saber/README.md)

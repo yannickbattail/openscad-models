@@ -1,6 +1,7 @@
+include <BOSL/constants.scad>
+use <BOSL/threading.scad>
 
-
-part="all"; // [all, phoneHolder, hook]
+part="all"; // [all, phoneHolder, hook, screw1, screw2]
 
 // saber blade diameter in inch
 saberDiameterInch = 1; // [0.5:0.025:2]
@@ -34,12 +35,19 @@ epsi = 0.01;
 
 saberDiameter = saberDiameterInch * INCH;
 
-if (part == "hook" || part == "all") {
+if (part == "all") {
     hook(saberDiameter, tolerance);
-}
-
-if (part == "phoneHolder" || part == "all") {
     holder();
+    screw1(saberDiameter);
+    screw2();
+} else if (part == "hook") {
+    hook(saberDiameter, tolerance);
+} else if (part == "phoneHolder") {
+    holder();
+} else if (part == "screw1") {
+    screw1(saberDiameter);
+} else if (part == "screw2") {
+    screw2();
 }
 
 if (displaySaber) {
@@ -72,7 +80,9 @@ module hook(saberDiameter, tolerance) {
         translate([10 + 2, 0, 0])
             cube([hookSize + 20 + epsi, hookLength + epsi, 2], center = true);
         translate([saberDiameter / 2 + 10, 0, 0])
-            cylinder(d = 5 + tolerance, h = 100, center = true);
+            cylinder(d = 5 + 1, h = 100);
+        translate([saberDiameter / 2 + 10, 0, -50])
+            trapezoidal_threaded_rod(d=5 + tolerance, l=100, pitch=2, thread_angle=15, internal=true);
     }
     screw1(saberDiameter);
     fix(saberDiameter);
@@ -81,23 +91,22 @@ module hook(saberDiameter, tolerance) {
 module screw1(saberDiameter) {
     hookSize = saberDiameter + 10;
     translate([saberDiameter / 2 + 10, 0, 0]) {
-        screw(hookSize + 10);
+        screw(hookSize + 5);
     }
+}
+module screw2() {
+    translate([0, 0, saberDiameter / 2 + 5])
+        translate([0, 0, 30])
+            rotate([0, 90, 0])
+                screw(22);
 }
 
 module screw(length) {
-    if (part == "all") {
-        cylinder(d = 5, h = length, center = true);
-    
-        translate([0, 0, length / 2])
-            cylinder(d = 10, h = 5, $fn = 6);
-    
-        translate([0, 0, - length])
-            difference() {
-                cylinder(d = 10, h = 5, $fn = 6);
-                cylinder(d = 5, h = 100, center = true);
-            }
-    }
+    //cylinder(d = 5, h = length, center = true);
+    trapezoidal_threaded_rod(d=5, l=length, pitch=2, thread_angle=15);
+
+    translate([0, 0, length / 2])
+        cylinder(d = 10, h = 5, $fn = 6);
 }
 
 module fix(saberDiameter) {
@@ -113,12 +122,11 @@ module fix(saberDiameter) {
                         cylinder(h = 10, r = 10);
             }
             translate([0, 0, 30])
-                rotate([0, 90, 0])
-                    cylinder(d = 5 + tolerance, h = 100, center = true);
+                rotate([0, 90, 0]) {
+                    //cylinder(d = 5 + tolerance, h = 100, center = true);
+                    trapezoidal_threaded_rod(d=5 + tolerance, l=20, pitch=2, thread_angle=15, internal=true);
+                }
         }
-        translate([0, 0, 30])
-            rotate([0, 90, 0])
-                screw(30);
     }
 }
 
@@ -142,7 +150,7 @@ module phoneHolder() {
                 cylinder(h = 10, r = 10);
         }
         rotate([0, 90, 0])
-            cylinder(d = 5 + tolerance, h = 100, center = true);
+            cylinder(d = 5 + 1, h = 100, center = true);
     }
     translate([0, - 30, 20]) {
         f = 5;

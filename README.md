@@ -31,6 +31,7 @@ Several models made with openSCAD.
 ## Libraries
 
 - [pipe library](pipe/README.md)
+- [library to bend a model](BendingLib/README.md)
 - [time step library](time_steps/README.md)
 
 ## Scripts

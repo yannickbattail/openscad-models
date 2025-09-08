@@ -1,0 +1,34 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "cat": {
+      "part": "cat"
+    },
+    "pyramid_pentagon": {
+      "part": "pyramid_pentagon"
+    },
+    "hook_pentagon": {
+      "part": "pyramid_pentagon",
+      "distance_to_center": 50,
+      "angle": 180
+    },
+    "pyramid_pentagon_runover": {
+      "part": "cat_anim_runover"
+    },
+    "pyramid_pentagon_anim_angle": {
+      "part": "pyramid_pentagon_anim_dist"
+    },
+    "pyramid_pentagon_anim_dist": {
+      "part": "pyramid_pentagon_anim_dist"
+    },
+    "pyramid_pentagon_anim_runover": {
+      "part": "pyramid_pentagon_anim_runover"
+    },
+    "cat_anim_angle": {
+      "part": "cat_anim_angle"
+    },
+    "cat_anim_runover": {
+      "part": "cat_anim_runover"
+    }
+  }
+}

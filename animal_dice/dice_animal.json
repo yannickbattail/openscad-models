@@ -1,95 +1,100 @@
 {
   "fileFormatVersion": "1",
   "parameterSets": {
-    "wholeDice_Platypus_Barbarian": {
-      "animalNumber": "0",
-      "part": "whole"
-    },
-    "wholeDice_VoxelHeart1_hull": {
-      "animalNumber": "1",
-      "part": "whole"
-    },
-    "wholeDice_catLowPoly": {
-      "animalNumber": "2",
-      "part": "whole"
-    },
-    "wholeDice_dino": {
-      "animalNumber": "3",
-      "part": "whole"
-    },
-    "wholeDice_dragonLED": {
-      "animalNumber": "4",
-      "part": "whole"
-    },
-    "wholeDice_duckVader": {
-      "animalNumber": "5",
-      "part": "whole"
-    },
-    "wholeDice_foxLowPoly": {
-      "animalNumber": "6",
-      "part": "whole"
-    },
-    "wholeDice_heart_gem": {
-      "animalNumber": "7",
-      "part": "whole"
-    },
-    "wholeDice_panda": {
-      "animalNumber": "8",
-      "part": "whole"
-    },
-    "wholeDice_vader": {
-      "animalNumber": "9",
-      "part": "whole"
-    },
-
-    "Platypus_Barbarian": {
+    "Mimic_Chest": {
       "animalNumber": "0",
       "part": "model"
+    },
+    "wholeDice_Mimic_Chest": {
+      "animalNumber": "0",
+      "part": "whole"
+    },
+    "Platypus_Barbarian": {
+      "animalNumber": "1",
+      "part": "model"
+    },
+    "wholeDice_Platypus_Barbarian": {
+      "animalNumber": "1",
+      "part": "whole"
     },
     "VoxelHeart1_hull": {
-      "animalNumber": "1",
-      "part": "model"
-    },
-    "catLowPoly": {
       "animalNumber": "2",
       "part": "model"
     },
-    "dino": {
+    "wholeDice_VoxelHeart1_hull": {
+      "animalNumber": "2",
+      "part": "whole"
+    },
+    "catLowPoly": {
       "animalNumber": "3",
       "part": "model"
     },
-    "dragonLED": {
+    "wholeDice_catLowPoly": {
+      "animalNumber": "3",
+      "part": "whole"
+    },
+    "dino": {
       "animalNumber": "4",
       "part": "model"
     },
-    "duckVader": {
+    "wholeDice_dino": {
+      "animalNumber": "4",
+      "part": "whole"
+    },
+    "dragonLED": {
       "animalNumber": "5",
       "part": "model"
     },
-    "foxLowPoly": {
+    "wholeDice_dragonLED": {
+      "animalNumber": "5",
+      "part": "whole"
+    },
+    "duckVader": {
       "animalNumber": "6",
       "part": "model"
     },
-    "heart_gem": {
+    "wholeDice_duckVader": {
+      "animalNumber": "6",
+      "part": "whole"
+    },
+    "foxLowPoly": {
       "animalNumber": "7",
       "part": "model"
     },
-    "panda": {
+    "wholeDice_foxLowPoly": {
+      "animalNumber": "7",
+      "part": "whole"
+    },
+    "heart_gem": {
       "animalNumber": "8",
       "part": "model"
     },
-    "vader": {
+    "wholeDice_heart_gem": {
+      "animalNumber": "8",
+      "part": "whole"
+    },
+    "panda": {
       "animalNumber": "9",
       "part": "model"
     },
-
+    "wholeDice_panda": {
+      "animalNumber": "9",
+      "part": "whole"
+    },
+    "vader": {
+      "animalNumber": "10",
+      "part": "model"
+    },
+    "wholeDice_vader": {
+      "animalNumber": "10",
+      "part": "whole"
+    },
     "fixation": {
       "part": "fixation"
     },
     "all_edges": {
       "part": "all_edges"
     },
-
     "edge1_2": {
       "part": "edge1_2"
     },

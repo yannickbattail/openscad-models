@@ -33,7 +33,12 @@ for file in sorted(os.listdir(folder)):
             "rotation": [0, 0, 0]  # rotation
         })
         parameterSet["parameterSets"][fileWithoutExt] = {
-            "part": str(i),
+            "animalNumber": str(i),
+            "part": "model"
+        }
+        parameterSet["parameterSets"]["wholeDice_"+fileWithoutExt] = {
+            "animalNumber": str(i),
+            "part": "whole"
         }
         parts += str(i) + ":" + fileWithoutExt + ", "
         i += 1
@@ -42,9 +47,53 @@ for file in sorted(os.listdir(folder)):
 with open(output_file, "w") as f:
     json.dump(results, f, indent=2)
 
-# Write the results to a JSON file
+parameterSet["parameterSets"]["fixation"] = {
+  "part": "fixation"
+}
+parameterSet["parameterSets"]["all_edges"] = {
+  "part": "all_edges"
+}
+
+parameterSet["parameterSets"]["edge1_2"] = {
+  "part": "edge1_2"
+}
+parameterSet["parameterSets"]["edge1_3"] = {
+  "part": "edge1_3"
+}
+parameterSet["parameterSets"]["edge1_4"] = {
+  "part": "edge1_4"
+}
+parameterSet["parameterSets"]["edge1_5"] = {
+  "part": "edge1_5"
+}
+parameterSet["parameterSets"]["edge6_2"] = {
+  "part": "edge6_2"
+}
+parameterSet["parameterSets"]["edge6_3"] = {
+  "part": "edge6_3"
+}
+parameterSet["parameterSets"]["edge6_4"] = {
+  "part": "edge6_4"
+}
+parameterSet["parameterSets"]["edge6_5"] = {
+  "part": "edge6_5"
+}
+parameterSet["parameterSets"]["edge2_3"] = {
+  "part": "edge2_3"
+}
+parameterSet["parameterSets"]["edge2_4"] = {
+  "part": "edge2_4"
+}
+parameterSet["parameterSets"]["edge3_5"] = {
+  "part": "edge3_5"
+}
+parameterSet["parameterSets"]["edge4_5"] = {
+  "part": "edge4_5"
+}
+
+# Write the parameterSet file
 with open(preset_file, "w") as f:
     json.dump(parameterSet, f, indent=2)
 
-print("add to you file:")
-print("part = 0; // [" + parts + "]")
+print("add to your file:")
+print("animalNumber = 0; // [" + parts + "]")

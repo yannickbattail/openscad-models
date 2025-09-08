@@ -1,5 +1,19 @@
 [
   {
+    "filename": "animals/Mimic_Chest.stl",
+    "center_of_gravity": [
+      0.19836468359481668,
+      0.6349426459741511,
+      6.99620865555421
+    ],
+    "scale": 2.25,
+    "rotation": [
+      0,
+      0,
+      0
+    ]
+  },
+  {
     "filename": "animals/Platypus_Barbarian.stl",
     "center_of_gravity": [
       1.1230533871206347,

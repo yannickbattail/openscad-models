@@ -48,6 +48,37 @@ licence GPL
 
 mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, c3po, droid, nutella
 
+# Grogu (baby yoda) mug, upcycling nutella glass
+
+Grogu (baby yoda) mug that uses nutella glass (200g size).
+
+## UPDATE
+
+- ...
+
+## customizable variables
+
+- `nutellaGlassScale`: nutella glass scale: grow nutella glass to better fit in
+- `debug`: cut the mug in quarter and display the nutella glass
+
+## nutella glass
+
+It uses a nutella 200g.
+
+If you pour hot beverage in the glass when it cools down it may be stuck in the mug, so put hot water in it to detach it
+
+## Sources
+
+Grogu (baby yoda) head: https://www.thingiverse.com/thing:5411741
+
+here: https://github.com/yannickbattail/openscad-models/tree/main/mug
+
+licence GPL
+
+## keywords
+
+mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, baby yoda, grogu, nutella
+
 # nutella glass template
 
 Template of nutella glass (200g size).

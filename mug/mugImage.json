@@ -102,7 +102,7 @@
         },
         "yoda": {
             "imageAngle": "110",
-            "imageRotation": "0",
+            "imageRotation": "40",
             "mugDiameter": "80",
             "mugHeight": "80",
             "mugThickness": "4",

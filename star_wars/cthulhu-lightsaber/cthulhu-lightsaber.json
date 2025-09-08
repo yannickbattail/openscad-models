@@ -1,0 +1,14 @@
+{
+  "parameterSets": {
+    "all": {
+      "part": "all"
+    },
+    "handle": {
+      "part": "handle"
+    },
+    "fundation": {
+      "part": "fundation"
+    }
+  },
+  "fileFormatVersion": "1"
+}

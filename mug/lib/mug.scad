@@ -1,4 +1,4 @@
-module mug(height, radius, thickness, full = false) {
+module mug(height, radius, thickness) {
     epsi = 0.01; // epsilon
     difference() {
         union() {
@@ -9,11 +9,6 @@ module mug(height, radius, thickness, full = false) {
             }
             translate([radius * 1.2, 0, height / 2]) {
                 handle(height);
-            }
-        }
-        if (!full) {
-            translate([0, 0, thickness]) {
-                cylinder(h = height - thickness + epsi, r = radius - thickness); // + epsi to prevent display bug
             }
         }
     }

@@ -14,6 +14,7 @@ Several models made with openSCAD.
 - [Animal (or figurine) in a dice](animal_dice/README.md)
 - [Estourballe](estourballe/README.md) L'estourballe est une Pokéball médiévale tirée du [Pochon Dextre](https://simondethuillieres.com/product/le-pochon-dextre/)
 - [Dragon scale pattern](dragon_scale_pattern/README.md)
+- [lightsaber as selfie stick](selfie_saber/README.md)
 - [wall-art arrow stencil](arrow/README.md)
 - [Dices](dice/README.md)
 - [VoxelHeart and EasiestHeart](VoxelHeart/README.md)

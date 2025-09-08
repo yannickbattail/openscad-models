@@ -2,32 +2,23 @@
     "fileFormatVersion": "1",
     "parameterSets": {
         "hook_for_1_inch_blade": {
-            "displaySaber": "false",
             "part": "hook",
             "saberDiameterInch": "1"
         },
         "hook_for_7_8th_inch_blade": {
-            "displaySaber": "false",
             "part": "hook",
             "saberDiameterInch": "0.875"
         },
         "phone_holder": {
-            "displaySaber": "false",
-            "part": "phoneHolder",
-            "phoneAngle": "0"
+            "part": "phoneHolder"
         },
         "screw1": {
-            "displaySaber": "false",
-            "part": "screw1",
-            "saberDiameterInch": "1"
+            "part": "screw1"
         },
         "screw2": {
-            "displaySaber": "false",
-            "part": "screw2",
-            "saberDiameterInch": "1"
+            "part": "screw2"
         },
         "serrated_washer": {
-            "displaySaber": "false",
             "part": "serratedWasher"
         },
         "all_with_saber": {

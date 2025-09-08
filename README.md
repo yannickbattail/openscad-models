@@ -29,6 +29,7 @@ Several models made with openSCAD.
 - [MarioWorld](MarioWorld/README.md)
 - [CD solar oven](CD_solar_oven/README.md)
 - [Ahsoka's TV show ball map](ahsoka_ball_map/README.md)
+- [cube orné de nouilles](cubeOrnéDeNouilles/README.md)
 
 ## Libraries
 
@@ -45,7 +46,6 @@ Several models made with openSCAD.
 
 - [Pendantif agroglyphe (crop circle) de Sarraltroff](agroglyphe/README.md)
 - batteries_holder
-- cube orné de nouilles
 - darth_grogu
 - etoile_et_foudre
 - fibo_flower

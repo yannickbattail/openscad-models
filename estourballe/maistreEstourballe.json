@@ -1,0 +1,28 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "estourballeEntiere": {
+      "part": "estourballeEntiere"
+    },
+    "demiSphereBas": {
+      "part": "demiSphereBas",
+      "use_geodesic_sphere": false
+    },
+    "demiSphereBasGeodesic": {
+      "part": "demiSphereBas",
+      "use_geodesic_sphere": true
+    },
+    "demiSpherehaut": {
+      "part": "demiSpherehaut"
+    },
+    "anneau": {
+      "part": "anneau"
+    },
+    "bouton": {
+      "part": "bouton"
+    },
+    "croix": {
+      "part": "croix"
+    }
+  }
+}

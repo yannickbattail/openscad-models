@@ -83,9 +83,9 @@ module virole(radius = 15.7, height = 52, thinkness = 6) {
   angleOpening = 20;
   di = 10;
   color("silver") {
-    translate([0, 0, -height])
+    translate([0, 0, -height]) {
       rotate_extrude(start = angleOpening / 2 + 180, angle = 360 - angleOpening) {
-        rotate([0, 0, 90])
+        rotate([0, 0, 90]) {
           difference() {
             union() {
               square([height, radius + thinkness]);
@@ -99,7 +99,16 @@ module virole(radius = 15.7, height = 52, thinkness = 6) {
                 circle(r = di - thinkness);
             }
           }
+        }
       }
+    }
+  }
+  color("DarkGray") {
+    difference() {
+      cylinder(h = thinkness, r = radius + thinkness);
+      translate([0, 0, -EPSI])
+        cylinder(h = thinkness + 2 * EPSI, d = 25);
+    }
   }
   color("DarkGray") {
     difference() {

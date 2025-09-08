@@ -1,9 +1,8 @@
-
 cat_svg();
 
-module cat_svg(center=true) {
-    tranlation = center?[-300, -425]:[0,0];
-    translate(tranlation+[-100, 550])
+module cat_svg(center = true) {
+    tranlation = center?[-300, -425]:[0, 0];
+    translate(tranlation + [-100, 550])
         difference() {
             union() {
                 //import("split_svg_path/path_0.svg");

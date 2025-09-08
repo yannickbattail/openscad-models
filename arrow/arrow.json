@@ -1,0 +1,25 @@
+{
+    "parameterSets": {
+        "all_20percent": {
+            "part": "all",
+            "scalePercent": "20",
+            "thickness": "3"
+        },
+        "part1_50percent": {
+            "part": "part1",
+            "scalePercent": "50",
+            "thickness": "5"
+        },
+        "part2_50percent": {
+            "part": "part2",
+            "scalePercent": "50",
+            "thickness": "5"
+        },
+        "part3_50percent": {
+            "part": "part3",
+            "scalePercent": "50",
+            "thickness": "5"
+        }
+    },
+    "fileFormatVersion": "1"
+}

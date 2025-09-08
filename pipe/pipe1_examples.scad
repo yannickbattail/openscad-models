@@ -1,19 +1,44 @@
 include <pipe1.scad>
 
+part="example"; // [example, paperclip, random_pipe, animation_length, animation_rotation, animation_angle, animation_radius_of_curvature]
+
 /* [Animation] */
 // rotating animation
 animation_rotation = false;
 
-/* for animation */
-$vpt = animation_rotation ? [0, 0, 0] : [];
-$vpr = animation_rotation ? [70, 0, 365 * $t] : [];
-$vpd = animation_rotation ? 5000 : [];
-
 $fn = 100;
 
-paperclip();
-example();
-//random_pipe();
+/* for animation */
+$vpt = animation_rotation ? [0, 0, 0] : [];
+$vpr = animation_rotation ? [70, 0, 360 * $t] : [];
+$vpd = animation_rotation ? 5000 : [];
+
+if (part == "example") {
+    example();
+} else if (part == "animation_length") {
+    animation(length=$t*100+100);
+} else if (part == "animation_rotation") {
+    animation(rotation=$t*180);
+} else if (part == "animation_angle") {
+    animation(angle=$t*120);
+} else if (part == "animation_radius_of_curvature") {
+    animation(radius_of_curvature=$t*60);
+} else if (part == "paperclip") {
+    paperclip();
+} else if (part == "random_pipe") {
+    random_pipe();
+} else {
+    example();
+}
+
+module animation(length=200,rotation=0,angle=90,radius_of_curvature=10) {
+    //   outer_radius, inner_radius, list of segments
+    pipe(10          , 7           , [
+            //length,rotation,angle,radius_of_curvature 
+            [ length,rotation,angle,radius_of_curvature],
+            [100    , 0      , 60  , 15],
+        ]);
+}
 
 module example() {
     //   outer_radius, inner_radius, list of segments

@@ -1,7 +1,54 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "pipe2": {
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "example": {
+      "part": "example"
+    },
+    "animation_length": {
+      "animation_rotation": "false",
+      "part": "animation_length"
+    },
+    "animation_outer_radius_start": {
+      "animation_rotation": "false",
+      "part": "animation_outer_radius_start"
+    },
+    "animation_inner_radius_start": {
+      "animation_rotation": "false",
+      "part": "animation_inner_radius_start"
+    },
+    "animation_outer_radius_end": {
+      "animation_rotation": "false",
+      "part": "animation_outer_radius_end"
+    },
+    "animation_inner_radius_end": {
+      "animation_rotation": "false",
+      "part": "animation_inner_radius_end"
+    },
+    "animation_rotation": {
+      "animation_rotation": "false",
+      "part": "animation_rotation"
+    },
+    "animation_angle": {
+      "animation_rotation": "false",
+      "part": "animation_angle"
+    },
+    "animation_radius_of_curvature": {
+      "animation_rotation": "false",
+      "part": "animation_radius_of_curvature"
+    },
+    "animation_straight_part_color": {
+      "animation_rotation": "false",
+      "part": "animation_straight_part_color"
+    },
+    "animation_curved_part_color": {
+      "animation_rotation": "false",
+      "part": "animation_curved_part_color"
+    },
+    "bugle": {
+      "part": "bugle"
+    },
+    "mouthpiece": {
+      "part": "mouthpiece"
     }
+  }
 }

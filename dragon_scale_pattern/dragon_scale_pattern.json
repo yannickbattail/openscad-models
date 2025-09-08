@@ -25,6 +25,16 @@
             "form": "triangle_left",
             "offset": "15",
             "size": "6"
+        },
+        "custom_heart": {
+            "customPattern": "0111|1101|1001|1111",
+            "form": "customPattern",
+            "offset": "15"
+        },
+        "custom_heart_insides": {
+            "customPattern": "0000|0010|0110|0000",
+            "form": "customPattern",
+            "offset": "15"
         }
     }
 }

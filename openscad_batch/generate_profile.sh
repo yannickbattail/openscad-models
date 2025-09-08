@@ -168,10 +168,18 @@ then
     config_file=${scad_file_dir}/${scad_file_name}.conf
 fi
 
+if [[ -f "$HOME/.config/generate_profile.conf" ]]
+then
+    echo_info "loading user config file: $HOME/.config/generate_profile.conf"
+    source "$HOME/.config/generate_profile.conf"
+else
+    echo_info "no user config file: $HOME/.config/generate_profile.conf"
+fi
+
 if [[ -f "$config_file" ]]
 then
     echo_info "loading config file: $config_file"
-    . "$config_file"
+    source "$config_file"
 else
     echo_info "no config file loaded"
 fi

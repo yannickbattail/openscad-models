@@ -1,10 +1,10 @@
 include <coords.scad>
 
-function wrapAroundCylinderPoint(point, imageAngle, image_width, reliefMultipier)
+function wrapPointAroundCylinder(point, imageAngle, imageWidth, imageHeight, reliefMultipier)
 = let(
-    a = point[0] * imageAngle / image_width,
-    r = point[2] * reliefMultipier + image_width,
-    h = point[1],
+    a = point[0] * imageAngle / imageWidth,
+    r = point[2] * reliefMultipier + imageWidth,
+    h = imageHeight - point[1],
     pol = polar_to_xy([r, a])
 )
     [
@@ -13,5 +13,5 @@ function wrapAroundCylinderPoint(point, imageAngle, image_width, reliefMultipier
     h
     ];
 
-function wrapAroundCylinder(points, imageAngle, image_width, reliefMultipier = 1)
-= [for (p = points) wrapAroundCylinderPoint(p, imageAngle, image_width, reliefMultipier)];
+function wrapAroundCylinder(points, imageAngle, imageWidth, imageHeight, reliefMultipier = 1)
+= [for (p = points) wrapPointAroundCylinder(p, imageAngle, imageWidth, imageHeight, reliefMultipier)];

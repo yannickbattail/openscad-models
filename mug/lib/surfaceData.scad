@@ -1,4 +1,3 @@
-
 // source https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Tips_and_Tricks
 // operate like the builtin module surface() but
 // from a matrix of floats instead of a text file

@@ -103,6 +103,7 @@ module nails(ballDiameter) {
     for (i = [0:16]) {
         rotate([0, 0, i * 360 / 16])
             translate([0, ballDiameter / 2, 0])
+                scale([1.5,1.5,0.5])
                 sphere(d = 4);
     }
 }

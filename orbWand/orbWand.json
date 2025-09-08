@@ -1,0 +1,17 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "all": {
+            "part": "all"
+        },
+        "wand": {
+            "part": "wand"
+        },
+        "orb": {
+            "part": "orb"
+        },
+        "fixation": {
+            "part": "fixation"
+        }
+    }
+}

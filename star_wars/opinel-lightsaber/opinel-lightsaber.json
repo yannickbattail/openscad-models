@@ -1,0 +1,14 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "all": {
+      "part": "all"
+    },
+    "fundationAndVirole": {
+      "part": "fundationAndVirole"
+    },
+    "opinel": {
+      "part": "opinel"
+    }
+  }
+}

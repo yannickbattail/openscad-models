@@ -77,6 +77,17 @@
             "partialModel": "all",
             "reliefMultipier": "3",
             "withNutellaGlass": "true"
+        },
+        "moon": {
+            "imageAngle": "360",
+            "imageRotation": "0",
+            "mugDiameter": "80",
+            "mugHeight": "80",
+            "mugThickness": "4",
+            "part": "moon",
+            "partialModel": "all",
+            "reliefMultipier": "3",
+            "withNutellaGlass": "true"
         }
     }
 }

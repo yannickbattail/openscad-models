@@ -9,6 +9,7 @@ include <images/cat_face.scad>
 include <images/red_panda.scad>
 include <images/werefox.scad>
 include <images/mountain.scad>
+include <images/moon.scad>
 
 /* [Mug] */
 // height of the nug
@@ -32,7 +33,7 @@ inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
 partialModel = "all"; // [all, image_only, mug_only]
 
-part="cat"; // [cat, cat_fur, cat_profile, cat_face, redPanda, werefox, mountain]
+part="cat"; // [cat, cat_fur, cat_profile, cat_face, redPanda, werefox, mountain, moon]
 
 /* [Animation] */
 // rotating animation
@@ -53,7 +54,8 @@ function selectImage() =
                 (part == "cat_face")?image_cat_face:
                     (part == "red_panda")?image_red_panda:
                         (part == "werefox")?image_werefox:
-                            (part == "mountain")?image_mountain:[];
+                            (part == "mountain")?image_mountain:
+                                (part == "moon")?image_moon:[];
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 
@@ -68,7 +70,6 @@ epsi = 0.01; // epsilon
 rotate([0,0,180]) mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageData, partialModel);
 
 module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageMatrix, partialModel = "all") {
-
     difference() {
         render() // preview display nothing without this
             union() {

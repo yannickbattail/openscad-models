@@ -2,7 +2,7 @@
 part = "all"; // [all, all_faces, face, face_side,  box_top, box_bottom]
 
 // size of the model
-box_thickness = 0.2; // [0.1:0.1:3]
+box_thickness = 0.8; // [0.1:0.1:3]
 
 /* [Animation] */
 // rotating animation
@@ -52,9 +52,10 @@ module box_bottom(box_thickness) {
         }
 }
 module box(box_thickness) {
+    box_size = 100 - 0.1;
     difference() {
-        cube(100 - 0.1, center = true);
-        cube(100 - 0.1 - box_thickness * 2, center = true);
+        cube(box_size, center = true);
+        cube(box_size - box_thickness * 2, center = true);
     }
 }
 
@@ -123,8 +124,8 @@ module holocronFace2D_1(thickness) {
 
 module holocronFace2D_2(thickness) {
     difference() {
-        circle(d = 100 + thickness / 2);
-        circle(d = 100 - 1);
+        circle(d = 100 + thickness / 2 - 2);
+        circle(d = 100 - 2);
     }
     hypo = (100 + thickness) / 2 * sqrt(2);
     rotate([0, 0, 45]) {

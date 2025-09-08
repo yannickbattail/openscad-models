@@ -4,3 +4,4 @@ rm -Rf ./standard_dice    && time ../openscad_batch/generate_profile.sh ./standa
 rm -Rf ./dice_number      && time ../openscad_batch/generate_profile.sh ./dice_number.scad
 rm -Rf ./dice_hollow_cube && time ../openscad_batch/generate_profile.sh ./dice_hollow_cube.scad
 rm -Rf ./dice_hollow_cone && time ../openscad_batch/generate_profile.sh ./dice_hollow_cone.scad
+rm -Rf ./dice_holocron    && time ../openscad_batch/generate_profile.sh ./dice_holocron.scad

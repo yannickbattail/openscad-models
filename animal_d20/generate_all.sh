@@ -14,6 +14,6 @@ then
   echo "generate for thingiverse"
   run_in_docker generate_for_thingiverse.sh "$(basename ${file} .scad)"
 else
-#  run_in_docker generate_profile.sh -g jpg,webp,3mf "${file}"
-  run_in_docker generate_profile.sh -g jpg,webp,3mf --debug CMD,OUT "${file}" # debug
+  ../openscad_batch/generate_profile.sh -g jpg,webp,3mf "${file}"
+#  run_in_docker generate_profile.sh -g jpg,3mf "${file}"
 fi

@@ -1,23 +1,13 @@
 #!/bin/bash
 
-run_in_docker() {
-   docker run -it --user $UID -v ./:/work openscad-tools $@
-}
+parallelJobs=4
+outFormats=png,webp,3mf
 
-if [[ $1 == "thingiverse" ]]
-then
-  echo "Generate for thingiverse"
-  run_in_docker generate_for_thingiverse.sh mugImage
-  run_in_docker generate_for_thingiverse.sh mugC3po
-  run_in_docker generate_for_thingiverse.sh mugR2d2
-  run_in_docker generate_for_thingiverse.sh mugGrogu
-  run_in_docker generate_for_thingiverse.sh mugTonneau
-  run_in_docker generate_for_thingiverse.sh nutellaGlass
-else
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./mugImage.scad
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./mugC3po.scad
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./mugR2d2.scad
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./mugGrogu.scad
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./mugTonneau.scad
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./nutellaGlass.scad
-fi
+npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,2 --parallelJobs ${parallelJobs} --configFile globalConfig.yaml ./nutellaGlass.scad
+npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile globalConfig.yaml ./mugC3po.scad
+npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile globalConfig.yaml ./mugGrogu.scad
+npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile globalConfig.yaml ./mugTonneau.scad
+### it takes a loooong time (and cpu, and memory) to generate
+npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 4,3 --parallelJobs ${parallelJobs} --configFile globalConfig.yaml ./mugImage.scad
+# not working (for now)
+## npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,1 --parallelJobs ${parallelJobs} --configFile globalConfig.yaml ./mugR2d2.scad

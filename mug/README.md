@@ -145,3 +145,15 @@ licence GPL
 ## keywords
 
 mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, glass, upcycling, nutella
+
+## Generate
+
+Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
+
+```bash
+npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile globalConfig.yaml ./mugImage.scad
+```
+
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
+
+Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)

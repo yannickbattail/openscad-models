@@ -13,7 +13,7 @@ Options:
 - `--f3d`                                         use f3d for images generation
 - `--debug` `what_to_debug`                       debug mode: what_to_debug must be one or multiple separated by ',' of these values: CMD,OUT
 
-Important Note: if there is no parameter file (.json file) for your OPENSCAD_FILE, it will not work. See paragraph : [Code best practices](#Code best practices)
+Important Note: if there is no parameter file (.json file) for your OPENSCAD_FILE, it will not work. See paragraph : [Code best practices](#Code-best-practices)
 
 ## Examples
 
@@ -101,7 +101,7 @@ generate_profile.sh  --debug CMD,OUT my_model.scad
 #### On ubuntu
 
 ```bash
-sudo apt install jq imagemagick webp
+sudo apt install jq imagemagick webp f3d
 ```
 
 ## Configuration

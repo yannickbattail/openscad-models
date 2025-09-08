@@ -1,6 +1,8 @@
-// animal
-part = "fox"; // [fox, dino, dragon, cat, panda, heart_gem]
-// fixation bars diameter 
+// animal model
+model = "fox"; // [fox, dino, dragon, cat, panda, heart_gem, VoxelHeart, vader, duckVader]
+// part
+part = "whole"; // [whole, edge1_3]
+// fixation bars diameter
 fixation_diameter = 4;
 // font type
 font_type = "Arial";
@@ -34,9 +36,31 @@ $vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
 $vpd = animation_rotation ? 300 : [];
 
-dice(part, fixation_diameter, faces, font_type, font_size);
+//full_dice(model, fixation_diameter, faces, font_type, font_size);
+dicePart(model, fixation_diameter, faces, font_type, font_size);
 
-module dice(animalName, fixation_diameter, faces, font_type, font_size) {
+module dicePart(animalName, fixation_diameter, faces, font_type, font_size) {
+    intersection() {
+        dice(faces, font_type, font_size);
+        rotate([45, 0, 0])
+            translate([-50, 0, 0])
+                cube(100);
+        rotate([0, 0, -45])
+            translate([0, 0, -50])
+                cube(100);
+
+    }
+}
+
+module full_dice(animalName, fixation_diameter, faces, font_type, font_size) {
+    dice(animalName, fixation_diameter, faces, font_type, font_size);
+    fixation(fixation_diameter);
+    color("red")
+        animal(animalName);
+    // cube(77, center=true); // containing cube
+}
+
+module dice(faces, font_type, font_size) {
     difference() {
         color("yellow")
             sphere(d = 100);
@@ -49,23 +73,23 @@ module dice(animalName, fixation_diameter, faces, font_type, font_size) {
         numberFaces(faces, font_type, font_size);
     }
     fixation(fixation_diameter);
-    color("orange") animal(animalName);
+    color("red") animal(animalName);
     // cube(77, center=true); // containing cube
 }
 
 module numberFaces(numberText, font_type, font_size) {
-    rotate([  0, 0,  0]) numbers(numberText[0], font_type, font_size); // 1
-    rotate([180, 0,  0]) numbers(numberText[5], font_type, font_size); // 6
-    rotate([ 90, 0,  0]) numbers(numberText[1], font_type, font_size); // 2
-    rotate([-90, 0,  0]) numbers(numberText[4], font_type, font_size); // 5
-    rotate([ 90, 0, 90]) numbers(numberText[2], font_type, font_size); // 3
-    rotate([ 90, 0,-90]) numbers(numberText[3], font_type, font_size); // 4
+    rotate([0, 0, 0]) numbers(numberText[0], font_type, font_size); // 1
+    rotate([180, 0, 0]) numbers(numberText[5], font_type, font_size); // 6
+    rotate([90, 0, 0]) numbers(numberText[1], font_type, font_size); // 2
+    rotate([-90, 0, 0]) numbers(numberText[4], font_type, font_size); // 5
+    rotate([90, 0, 90]) numbers(numberText[2], font_type, font_size); // 3
+    rotate([90, 0, -90]) numbers(numberText[3], font_type, font_size); // 4
 }
 
 module numbers(number, font_type, font_size) {
     for (i = [0:4]) {
         rotate([46, 0, 45 + 90 * i])
-            translate([0, 0, 49])
+            translate([0, 0, 49.5])
                 number(number, font_type, font_size);
     }
 }
@@ -76,34 +100,49 @@ module number(number, font_type, font_size) {
 }
 
 module fixation(fixation_diameter) {
-    color("red") {
+    color("blue") {
         for (i = [0:4]) {
-            rotate([55, 0, 45 + 90 * i]) cylinder(h = 100, d = fixation_diameter, center = true);
+            rotate([55, 0, 45 + 90 * i])
+                cylinder(h = 95, d = fixation_diameter, center = true);
         }
     }
 }
 
 module animal(animalName) {
     if (animalName == "panda") {
-        animalModel(file = "animals/panda.stl", scalePercent = 0.9, centerOfGravity = [- 4.45929179e-05, 6.49922599e+00, 2.36770148e+01]);
+        animalModel(file = "animals/panda.stl", scalePercent = 0.9, centerOfGravity = [-4.45929179e-05, 6.49922599e+00,
+            2.36770148e+01]);
     } else if (animalName == "dino") {
-        animalModel(file = "animals/dino.stl", scalePercent = 0.9, centerOfGravity = [44.24588094, 68.37104575, 24.26177268]);
+        animalModel(file = "animals/dino.stl", scalePercent = 0.9, centerOfGravity = [44.24588094, 68.37104575,
+            24.26177268]);
     } else if (animalName == "dragon") {
-        animalModel(file = "animals/dragonLED.stl", scalePercent = 1.1, centerOfGravity = [- 1.74671741, - 0.06900702, 5.67328133]);
+        animalModel(file = "animals/dragonLED.stl", scalePercent = 1.1, centerOfGravity = [-1.74671741, -0.06900702,
+            5.67328133]);
     } else if (animalName == "cat") {
-        animalModel(file = "animals/catLowPoly.stl", scalePercent = 0.6, centerOfGravity = [- 0.60620592, 0.16325684, 39.43318665]);
+        animalModel(file = "animals/catLowPoly.stl", scalePercent = 0.6, centerOfGravity = [-0.60620592, 0.16325684,
+            39.43318665]);
     } else if (animalName == "fox") {
-        animalModel(file = "animals/foxLowPoly.stl", scalePercent = 0.25, centerOfGravity = [- 14.18385003, 4.57492739, 75.20926315]);
+        animalModel(file = "animals/foxLowPoly.stl", scalePercent = 0.25, centerOfGravity = [-14.18385003, 4.57492739,
+            75.20926315]);
     } else if (animalName == "heart_gem") {
-        animalModel(file = "animals/heart_gem.stl", scalePercent = 0.7, centerOfGravity = [3.84325029e-03, 1.01203855e+00, 1.12715415e+01], rotation = [180, 0, 0]);
+        animalModel(file = "animals/heart_gem.stl", scalePercent = 0.7, centerOfGravity = [3.84325029e-03,
+            1.01203855e+00, 1.12715415e+01], rotation = [180, 0, 0]);
+    } else if (animalName == "VoxelHeart") {
+        animalModel(file = "animals/VoxelHeart1_hull.stl", scalePercent = 25, centerOfGravity = [-1.78855650e-09,
+            1.70348953e-10, 2.82393421e-01]);
+    } else if (animalName == "vader") {
+        animalModel(file = "animals/vader.stl", scalePercent = 0.75, centerOfGravity =   [-0.22242166,  0.61748402, 43.68599404]);
+    } else if (animalName == "duckVader") {
+        animalModel(file = "animals/duckVader.stl", scalePercent = 0.92, centerOfGravity = [28.58639167, 25.69586227, 21.3260776 ], rotation = [0, 0, 0]);
     } else {
         assert(true, str("wrong animalname", animalName));
     }
 }
 
+
 module animalModel(file, scalePercent, centerOfGravity, rotation = [0, 0, 0]) {
     scale([scalePercent, scalePercent, scalePercent])
         rotate(rotation)
-            translate(- centerOfGravity)
+            translate(-centerOfGravity)
                 import(file);
 }

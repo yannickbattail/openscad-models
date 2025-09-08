@@ -1,4 +1,5 @@
 import sys
+
 from stl import mesh
 
 # Using an existing closed stl file:

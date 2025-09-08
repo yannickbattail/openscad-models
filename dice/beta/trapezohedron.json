@@ -1,0 +1,26 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "New set 1": {
+            "$fn": "20",
+            "angular_fudge": "3",
+            "depth_ratio": "0.029999999999999999",
+            "die": "10",
+            "face_1": "1",
+            "face_10": "10",
+            "face_2": "2",
+            "face_3": "3",
+            "face_4": "4",
+            "face_5": "5",
+            "face_6": "6.",
+            "face_7": "7",
+            "face_8": "8",
+            "face_9": "9.",
+            "kite": "0.051999999999999998",
+            "letter_ratio": "0.29999999999999999",
+            "radial_fudge": "0.125",
+            "roundness": "0.050000000000000003",
+            "size": "25"
+        }
+    }
+}

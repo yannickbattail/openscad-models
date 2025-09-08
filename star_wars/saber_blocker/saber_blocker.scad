@@ -6,8 +6,8 @@ h = 10; // [5:20]
 l = 80; // [30:150]
 // thickness of the tube
 thickness = 1; // [0.2:0.1:3]
-// tolerence space between the tube and blade
-tolerence = 2; // [0.2:0.1:5]
+// tolerance space between the tube and blade
+tolerance = 2; // [0.2:0.1:5]
 
 // resolution
 $fn = 200;
@@ -28,21 +28,21 @@ epsi = 0.01;
 saberSupport();
 
 module saberSupport() {
-    INCH = 25.4;
-    hole = INCH + tolerence;
-    difference() {
-        union() {
-            color("Silver")
-                translate([0, 0, -d / 2 + h])
-                    rotate([0, 90, 0])
-                        cylinder(d = d, h = l, center = true);
-            color("Gray")
-                cylinder(d = hole + thickness * 2, h = h);
-        }
-        translate([0, 0, -d / 2])
-            cube([l + epsi, d + epsi, d], center = true);
-        // balde hole
-        color("red")
-            cylinder(d = hole, h = 80, center = true);
+  INCH = 25.4;
+  hole = INCH + tolerance;
+  difference() {
+    union() {
+      color("Silver")
+        translate([0, 0, -d / 2 + h])
+          rotate([0, 90, 0])
+            cylinder(d = d, h = l, center = true);
+      color("Gray")
+        cylinder(d = hole + thickness * 2, h = h);
     }
+    translate([0, 0, -d / 2])
+      cube([l + epsi, d + epsi, d], center = true);
+    // balde hole
+    color("red")
+      cylinder(d = hole, h = 80, center = true);
+  }
 }

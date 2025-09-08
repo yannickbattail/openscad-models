@@ -1,18 +1,9 @@
 #!/bin/bash
 
-run_in_docker() {
-   docker run -it \
-     --user "$(id -u):$(id -g)" \
-     -v ./:/openscad \
-     openscad-nightly-tools $@
-}
+parallelJobs=14
+outFormats="png,webp,3mf"
 
-for file in *.scad; do
-  if [[ $1 == "thingiverse" ]]
-  then
-    echo "generate for thingiverse"
-    run_in_docker generate_for_thingiverse.sh "$(basename ${file} .scad)"
-  else
-    run_in_docker generate_profile.sh -g jpg,webp,3mf "${file}"
-  fi
-done
+npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 1,2 --parallelJobs ${parallelJobs} --configFile EasiestHeart.yaml ./EasiestHeart.scad
+npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,2 --parallelJobs ${parallelJobs} --configFile VoxelHeart.yaml ./VoxelHeart.scad
+## this after because it needs gen/VoxelHeart_VoxelHeart1_hull.3mf
+npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,3 --parallelJobs ${parallelJobs} --configFile heartJewel.yaml ./heartJewel.scad

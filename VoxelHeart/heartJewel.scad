@@ -48,7 +48,7 @@ module baseHeart() {
     difference() {
         if (voxelHeart) {
             scale(24)
-                import("./VoxelHeart/3D/VoxelHeart1_hull.stl");
+                import("gen/VoxelHeart_VoxelHeart1_hull.3mf");
             //    heart(resolution, hull_that)
             //        cube(resolution * 1.0001, center = true); // * 1.0001 this is juste to make sure the cubes realy touch each other
         } else {

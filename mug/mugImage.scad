@@ -34,32 +34,29 @@ if (len(inlineImage) > 0) {
 
 mugImage(mugHeight, mugDiameter, mugThickness, imageAngle, imageRotation, reliefMultipier, imageData);
 
-module mugImage(mugHeight, mugDiameter, mugThickness, imageAngle, imageRotation, reliefMultipier, imageData) {
+module mugImage(mugHeight, mugDiameter, mugThickness, imageAngle, imageRotation, reliefMultipier, imageMatrix) {
     mug(mugHeight, mugDiameter, mugThickness);
 
     render() // preview display nothing without this 
         difference() {
             rotate([0, 0, imageRotation]) {
-                imageOnCyinder(mugHeight, mugDiameter, imageAngle, reliefMultipier, imageData);
+                imageMatrixOnCylinder(mugHeight, mugDiameter, imageAngle, reliefMultipier, imageMatrix);
             }
             cylinder(h = mugHeight, r = mugDiameter - mugThickness);
         }
 }
 
-module imageOnCyinder(mugHeight, mugDiameter, imageAngle, reliefMultipier, imageData) {
+module imageMatrixOnCylinder(height, diameter, imageAngle, reliefMultipier, imageMatrix) {
 
     /* constants. Do not change them */
-    IMAGE_WIDTH = 0;
-    IMAGE_HEIGHT = 1;
-    IMAGE_PIXELS = 2;
     POINTS = 0;
     FACES = 1;
     
-    polygoneSurface = surfaceDataf(imageData[IMAGE_PIXELS]);
+    polygoneSurface = surfaceDataf(imageMatrix);
 
     //points = polygoneSurface[POINTS];
-    points = wrapAroundCylinder(polygoneSurface[POINTS], [imageData[IMAGE_WIDTH], imageData[IMAGE_HEIGHT]], mugDiameter,
-    mugHeight, imageAngle, reliefMultipier);
+    points = wrapAroundCylinder(polygoneSurface[POINTS], [len(imageMatrix[0]), len(imageMatrix)], diameter,
+    height, imageAngle, reliefMultipier);
     
     polyhedron(points = points, faces = polygoneSurface[FACES]);
 }

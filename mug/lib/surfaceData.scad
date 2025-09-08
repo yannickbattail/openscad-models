@@ -38,5 +38,5 @@ function surfaceDataf(M, center = false) = let(
 
 module surfaceData(M, center = false, convexity = 10) {
     a = surfaceDataf(M, center);
-    polyhedron(a[0], a[1]);
+    polyhedron(a[0], a[1], convexity = convexity);
 }

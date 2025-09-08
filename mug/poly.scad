@@ -1,13 +1,15 @@
-include <wrapAroundCylinder.scad>
-include <surfaceData.scad>
-include <mug.scad>
+use <lib/wrapAroundCylinder.scad>
+use <lib/surfaceData.scad>
+use <lib/mug.scad>
 //include <mandalorian_symbol.scad>
-include <redPanda.scad>
+//include <redPanda.scad>
+include <werefox.scad>
 
 imageAngle = 90;
 reliefMultipier = 20;
 
 
+/* [Hidden] */
 /* constants */
 IMAGE_WIDTH=0;
 IMAGE_HEIGHT=1;
@@ -17,13 +19,7 @@ FACES=1;
 
 s = surfaceDataf(image[IMAGE_PIXELS]);
 
-points = s[POINTS];
-faces = s[FACES];
+//points = s[POINTS];
+points = wrapAroundCylinder(s[POINTS], imageAngle, image[IMAGE_WIDTH], image[IMAGE_HEIGHT], reliefMultipier);
 
-polyhedron(s[POINTS], s[FACES]);
-
-// newPoints = wrapAroundCylinder(points, imageAngle, image_width, reliefMultipier);
-
-color("blue") polyhedron(points = newPoints, faces = faces);
-
-//cylinder(r=image_width, h=image_height, center=true, $fn=100);
+polyhedron(points = points, faces = s[FACES]);

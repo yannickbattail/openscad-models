@@ -2,6 +2,13 @@
 
 Collection of scripts to monitor a command and play a heartbeat like an electrocardiogram when command success or fail
 
+- `heartbeat.sh` check command success or fail
+- `heartbeat_file.sh` check file exists or not
+- `heartbeat_ping.sh` check host respond to the ping
+- `heartbeat_httping.sh` check an URI respond to http request
+- `heartbeat_process.sh` check a process PID exists or not
+- `beep.sh` play sound
+
 
 ## heartbeat.sh
 Script that play a heartbeat like an electrocardiogram when command success or fail

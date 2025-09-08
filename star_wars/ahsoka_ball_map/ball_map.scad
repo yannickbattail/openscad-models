@@ -9,9 +9,9 @@ animation_rotation = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:$vpt;
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr; // animation rotate around the object
-$vpd = is_animated?1000:$vpd;
+$vpt = is_animated ? [0, 0, 0] : $vpt;
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
+$vpd = is_animated ? 1000 : $vpd;
 
 ballMap(circlesRadius, circlesDepth);
 
@@ -21,7 +21,7 @@ module ballMap(circlesRadius, circlesDepth) {
     ringTrace(circlesRadius, circlesDepth);
     rotate([180, 0, 0])
       ringTrace(circlesRadius, circlesDepth);
-    for (i = [0:4]) {
+    for(i = [0:4]) {
       rotate([0, 0, 72 * i]) {
         rotate([116.565, 0, 0]) {
           ringTrace(circlesRadius, circlesDepth);

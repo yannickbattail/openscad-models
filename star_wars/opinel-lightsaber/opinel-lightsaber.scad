@@ -15,9 +15,9 @@ animation_rotation = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:$vpt;
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr;  // animation rotate around the object
-$vpd = is_animated?1000:$vpd;
+$vpt = is_animated ? [0, 0, 0] : $vpt;
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
+$vpd = is_animated ? 1000 : $vpd;
 
 EPSI = 0.01; // constant epsilon for the difference operation
 
@@ -68,7 +68,7 @@ module fundation() {
 
 module fundationHole(fundation = false) {
   d = 27;
-  diameter = fundation?d:d + looseCoef;
+  diameter = fundation ? d : d + looseCoef;
   translate([0, 0, -206])
     cylinder(h = 206, d = diameter);
 }

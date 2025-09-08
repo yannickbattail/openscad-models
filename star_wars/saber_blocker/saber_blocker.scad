@@ -18,9 +18,9 @@ animation_rotation = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:$vpt;
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr;  // animation rotate around the object
-$vpd = is_animated?200:$vpd;
+$vpt = is_animated ? [0, 0, 0] : $vpt;
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
+$vpd = is_animated ? 200 : $vpd;
 
 // epsilon
 epsi = 0.01;

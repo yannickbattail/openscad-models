@@ -14,9 +14,9 @@ animation_rotation = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:$vpt;
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr;  // animation rotate around the object
-$vpd = is_animated?700:$vpd;
+$vpt = is_animated ? [0, 0, 0] : $vpt;
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
+$vpd = is_animated ? 700 : $vpd;
 // epsilon for floating point precision issues
 epsi = 0.01;
 
@@ -42,18 +42,18 @@ module crate(part, thickness) {
   }
 }
 every_faces = [
-    [0, 0, 0], // 1 top
-    [90, 0, 0], // 2 front
-    [90, 0, 90], // 3 right
-    [90, 0, -90], // 4 left
-    [-90, 0, 0], // 5 back
-    [180, 0, 0]  // 6 bottom
-  ];
+  [0, 0, 0], // 1 top
+  [90, 0, 0], // 2 front
+  [90, 0, 90], // 3 right
+  [90, 0, -90], // 4 left
+  [-90, 0, 0], // 5 back
+  [180, 0, 0] // 6 bottom
+];
 
 module full(thickness, width, depth, radius, wholeSize) {
   difference() {
     cube(wholeSize, center = true);
-    for (i = [0:len(every_faces) - 1]) {
+    for(i = [0:len(every_faces) - 1]) {
       rotate(every_faces[i])
         translate([0, 0, wholeSize / 2 + epsi])
           face(width, depth, radius, wholeSize);
@@ -63,13 +63,13 @@ module full(thickness, width, depth, radius, wholeSize) {
 
 module top(thickness, width, depth, radius, wholeSize) {
   difference() {
-    full(thickness, width, depth, radius, wholeSize) ;
+    full(thickness, width, depth, radius, wholeSize);
     // hollow out
     cube(wholeSize - depth * 2 - thickness * 2, center = true);
     // remove the bottom
     translate([0, 0, -wholeSize / 2])
       cube(wholeSize + epsi, center = true);
-    for (i = [1:4]) {
+    for(i = [1:4]) {
       rotate(every_faces[i])
         translate([0, 0, wholeSize / 2 + epsi])
           translate([0, 0, -depth + epsi]) {
@@ -84,14 +84,14 @@ module top(thickness, width, depth, radius, wholeSize) {
 module bottom(thickness, width, depth, radius, wholeSize) {
   union() {
     difference() {
-      full(thickness, width, depth, radius, wholeSize) ;
+      full(thickness, width, depth, radius, wholeSize);
       // hollow out
       cube(wholeSize - depth * 2 - thickness * 2, center = true);
       // remove the top
       translate([0, 0, wholeSize / 2])
         cube(wholeSize + epsi, center = true);
     }
-    for (i = [1:4]) {
+    for(i = [1:4]) {
       rotate(every_faces[i])
         translate([0, 0, wholeSize / 2 + epsi])
           translate([0, 0, -depth + epsi]) {
@@ -106,7 +106,7 @@ module bottom(thickness, width, depth, radius, wholeSize) {
 module face(width, depth, radius, wholeSize) {
   translate([0, 0, -depth + epsi]) {
     linear_extrude(depth) {
-      for (i = [0:90:270]) {
+      for(i = [0:90:270]) {
         rotate([0, 0, i])
           translate([wholeSize / 4 - 1 + radius, 0, 0])
             square([wholeSize / 2, width], center = true);

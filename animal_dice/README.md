@@ -85,7 +85,8 @@ animalModel(file = "animals/heart_gem.stl", scalePercent = 0.7, centerOfGravity 
 ```
 
 > See every changes for adding this model in this
-> commit [5f048454d40d1761096770d57f2074d0c837404c](https://github.com/yannickbattail/openscad-models/commit/5f048454d40d1761096770d57f2074d0c837404c)
+>
+commit [5f048454d40d1761096770d57f2074d0c837404c](https://github.com/yannickbattail/openscad-models/commit/5f048454d40d1761096770d57f2074d0c837404c)
 
 Render the model to check if everything is ok.
 

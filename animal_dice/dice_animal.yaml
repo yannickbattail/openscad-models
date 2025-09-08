@@ -1,4 +1,3 @@
-
 outputDir: ./gen
 outFormats:
   - png
@@ -21,7 +20,7 @@ mosaicOptions:
     height: 256
     border: 2
   tiles:
-    width: 3
+    width: 4
     height: 3
 openScadOptions:
   openScadExecutable: openscad # or "openscad-nightly"
@@ -41,7 +40,7 @@ openScadOptions:
     view: null # "axes" | "crosshairs" | "edges" | "scales"
     autocenter: false # adjust camera to look at object's center
   animOptions:
-    animDelay: 50 # delay in milliseconds between frames
+    animDelay: 100 # delay in milliseconds between frames
     animate: 20 # number of frames
     colorscheme: Starnight # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
     imgsize:

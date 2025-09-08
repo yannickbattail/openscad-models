@@ -47,9 +47,9 @@ $fn = 100;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:$vpt;
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr; // animation rotate around the object
-$vpd = is_animated?500:$vpd;
+$vpt = is_animated?[0, 0, 0]:[];
+$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
+$vpd = is_animated?500:[];
 
 function selectImage() = 
     (part == "cat")?image_cat:

@@ -60,7 +60,7 @@ if (part == "whole") {
   dice_animal(animalNumber, fixation_diameter, faces, font_params);
 } else if (part == "fixation") {
   intersection() {
-    fixation(fixation_diameter); // no use of fixation_tolerence
+    fixation(fixation_diameter - fixation_tolerence);
     cube(100);
   }
 } else if (part == "model") {

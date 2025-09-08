@@ -21,11 +21,11 @@ withNutellaGlass = true;
 
 /* [Image] */
 // image display angle
-imageAngle = 360; // [10:360]
+imageAngle = 90; // [10:360]
 // image rotation angle
-imageRotation = 0; // [0:360]
+imageRotation = 45; // [0:360]
 // relief multipier (by default relief is between 0 and 1)
-reliefMultipier = 3;
+reliefMultipier = 2;
 // image data from imageToMatrix.html 
 inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
@@ -74,6 +74,7 @@ module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle
 
 module nutellaGlass() {
     // total height 92
+    // max diameter 73.5
     translate([0, 0, 25])
         difference() {
             union() {
@@ -90,11 +91,11 @@ module imageMatrixOnCylinder(height, radius, imageAngle, reliefMultipier, imageM
     POINTS = 0;
     FACES = 1;
 
-    polygoneSurface = surfaceDataf(imageMatrix);
+    polygonSurface = surfaceDataf(imageMatrix);
 
-    //points = polygoneSurface[POINTS];
-    points = wrapAroundCylinder(polygoneSurface[POINTS], [len(imageMatrix[0]), len(imageMatrix)], radius,
+    //points = polygonSurface[POINTS];
+    points = wrapAroundCylinder(polygonSurface[POINTS], [len(imageMatrix[0]), len(imageMatrix)], radius,
     height, imageAngle, reliefMultipier);
 
-    polyhedron(points = points, faces = polygoneSurface[FACES]);
+    polyhedron(points = points, faces = polygonSurface[FACES]);
 }

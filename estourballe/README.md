@@ -22,7 +22,7 @@ jeu [worms](https://worms.fandom.com/wiki/Holy_Hand_Grenade).
 - `part` : estourballeEntiere, demiSphereBas, demiSpherehaut, anneau, bouton, bande1, bande2, croix
 - `use_geodesic_sphere` : use geodesic_sphere` or normal sphere for demiSphereBas for maistre estourballe
 
-## customizable variables for support 
+## customizable variables for support
 
 - `part` : all, base, cup
 - `height` : hauteur des coupes

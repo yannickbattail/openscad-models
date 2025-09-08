@@ -2,9 +2,11 @@
 
 d20 mug that uses nutella glass (200g size).
 
-A friend challenges me to create a d20 mug with the face 20 in front of you and face 1 in front of the others when holding the mug in the right hand. Here is it.
+A friend challenges me to create a d20 mug with the face 20 in front of you and face 1 in front of the others when holding the mug in the right hand.
+Here is it.
 
-If you pour hot beverage in the glass when it cools down it may be stuck in the mug, so put hot water in it to detach it. Print it in ABS because it is more resistant to temperature changes (in PLA it will crack after few hot beverage).
+If you pour hot beverage in the glass when it cools down it may be stuck in the mug, so put hot water in it to detach it. Print it in ABS because it
+is more resistant to temperature changes (in PLA it will crack after few hot beverage).
 
 ## UPDATE
 

@@ -7,13 +7,16 @@ Script for generating 3D files, images and animations from an openscad file and 
 Usage: `generate_profile.sh [OPTION]... OPENSCAD_FILE`
 
 Options:
+
 - `-c`, `--config-file` `configuration_file`      specify another configuration file than the default *OPENSCAD_FILE*.conf.
 - `-p`, `--only-parameter-set` `parameter-set`    parameter-set is one the parameter-set name present in the file.
-- `-g`, `--generate` `only_generate`              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl.
+- `-g`, `--generate` `only_generate`              only_generate must be one or multiple separated by  ',' of these values:
+  jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl.
 - `--f3d`                                         use f3d for images generation
 - `--debug` `what_to_debug`                       debug mode: what_to_debug must be one or multiple separated by ',' of these values: CMD,OUT
 
-Important Note: if there is no parameter file (.json file) for your OPENSCAD_FILE, it will not work. See paragraph : [Code best practices](#Code-best-practices)
+Important Note: if there is no parameter file (.json file) for your OPENSCAD_FILE, it will not work. See
+paragraph : [Code best practices](#Code-best-practices)
 
 ## Examples
 
@@ -76,16 +79,19 @@ Edit the file `my_model.conf` amd re-run the script without the `-g conf`
 ### Debug
 
 display executing commands
+
 ```bash
 generate_profile.sh --debug CMD my_model.scad
 ```
 
 debug output: displays verbose output of commands
+
 ```bash
 generate_profile.sh --debug OUT my_model.scad
 ```
 
 display executing commands and their output
+
 ```bash
 generate_profile.sh  --debug CMD,OUT my_model.scad
 ```
@@ -111,7 +117,7 @@ sudo apt install jq imagemagick webp f3d
 ## it will be sourced by generate_profile.sh
 
 #### image generation ####
-## value of the $fn variable (3d model resolution) for image generation 
+## value of the $fn variable (3d model resolution) for image generation
 #image_dollar_fn="50"
 ## image size
 #image_size="1024,1024"
@@ -121,7 +127,7 @@ sudo apt install jq imagemagick webp f3d
 #image_mosaic_tile="2x2"
 
 #### animation (gif or webp) generation ####
-## value of the $fn variable (3d model resolution) for animation generation 
+## value of the $fn variable (3d model resolution) for animation generation
 #anim_dollar_fn="50"
 ## animation image size
 #anim_size="512,512"
@@ -133,7 +139,7 @@ sudo apt install jq imagemagick webp f3d
 #anim_keep_images="true"
 
 #### model3D  generation (stl, obj, 3mf, off, wrl or amf) ####
-## value of the \$fn variable (3d model resolution) for 3D model generation 
+## value of the \$fn variable (3d model resolution) for 3D model generation
 #m3D_dollar_fn="50"
 ## 3D rendering options
 #m3D_render_option=""
@@ -146,7 +152,7 @@ sudo apt install jq imagemagick webp f3d
 #stl_format="binstl"
 
 #### the openscad command ####
-## use headless X server, for running the script in a machine without X server (ex: CI scripts)  
+## use headless X server, for running the script in a machine without X server (ex: CI scripts)
 #OPENSCAD="xvfb-run -a openscad"
 ## use nightly build
 #OPENSCAD="openscad-nightly"
@@ -175,7 +181,7 @@ Explanation: when the script generate animations, the variable `animation_rotati
 then the value for the camera is set to `$vpr = [60, 0, 365 * $t:45]` where `$t` is the value of "time" (value between 0 and 1).
 It will animate a rotate of the camera around the object.
 
-### Parameter file (the .json file) 
+### Parameter file (the .json file)
 
 Create a parameter set in the customizer in openscad.
 
@@ -184,7 +190,7 @@ For file `my_model.scad` it will create a parameter file `my_model.json`.
 Remove every line that define the variable `$fn` and `animation_rotation`
 because the script won't be able the override the value of theses variables it they are set in the .json file.
 
-If you want to force the value of `$fn`, generate a config file (see last example), and change `image_dollar_fn`, `anim_dollar_fn`, `stl_dollar_fn`.  
+If you want to force the value of `$fn`, generate a config file (see last example), and change `image_dollar_fn`, `anim_dollar_fn`, `stl_dollar_fn`.
 
 ## Folder structure
 
@@ -210,7 +216,8 @@ cube1
     └── test1.webp
 ```
 
-If you activate `anim_keep_images="true"` in the configuration file it will add a folder `anim` next to `images` that contains every frame of the animation.
+If you activate `anim_keep_images="true"` in the configuration file it will add a folder `anim` next to `images` that contains every frame of the
+animation.
 
 ## Changelog
 

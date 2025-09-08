@@ -1,6 +1,7 @@
 // animal
 part = "fox"; // [fox, dino, dragon, cat, panda]
-
+// fixation bars diameter 
+fixation_diameter = 4;
 // font type
 font_type = "Arial";
 // font_size
@@ -33,9 +34,9 @@ $vpt = animation_rotation ? [0, 0, 30] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
 $vpd = animation_rotation ? 300 : [];
 
-dice(part, faces, font_type, font_size);
+dice(part, fixation_diameter, faces, font_type, font_size);
 
-module dice(animalName, faces, font_type, font_size) {
+module dice(animalName, fixation_diameter, faces, font_type, font_size) {
     difference() {
         color("yellow")
             sphere(d = 100);
@@ -47,8 +48,9 @@ module dice(animalName, faces, font_type, font_size) {
             cylinder(r = r, h = 200, center = true);
         numberFaces(faces, font_type, font_size);
     }
-    fixation();
+    fixation(fixation_diameter);
     animal(animalName);
+    // cube(77, center=true);
 }
 
 module numberFaces(numberText, font_type, font_size) {
@@ -73,10 +75,10 @@ module number(number, font_type, font_size) {
         text(text = number, font = font_type, size = font_size, halign = "center", valign = "center");
 }
 
-module fixation() {
+module fixation(fixation_diameter) {
     color("red") {
         for (i = [0:4]) {
-            rotate([55, 0, 45 + 90 * i]) cylinder(h = 100, r = 2, center = true);
+            rotate([55, 0, 45 + 90 * i]) cylinder(h = 100, d = fixation_diameter, center = true);
         }
     }
 }

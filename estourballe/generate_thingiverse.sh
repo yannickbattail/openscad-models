@@ -15,3 +15,4 @@ generate() {
 mkdir -p ./thingiverse/
 
 generate estourballe
+generate superEstourballe

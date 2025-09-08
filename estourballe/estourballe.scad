@@ -24,9 +24,7 @@ module estourballePieces(part) {
     } else if (part == "anneau") {
         ringBlack(ballDiameter, thickness);
     } else if (part == "bouton") {
-        rotate([0,-90,0]) {
-            button(ballDiameter);
-        }
+        button(ballDiameter);
     } else if (part == "croix") {
         crossBase(ballDiameter);
         crossWhite();
@@ -46,41 +44,41 @@ module estourballe(ballDiameter, thickness) {
 
 module halfSphereWhite(ballDiameter, thickness) {
     color("white")
-        translate([0, 0, -1])
-        difference() {
-            sphere(d = ballDiameter);
-            translate([0, 0, ballDiameter / 2])
-                cube(ballDiameter, center = true);
-            sphere(d = ballDiameter-thickness);
-        }
+        translate([0, 0, - 1])
+            difference() {
+                sphere(d = ballDiameter);
+                translate([0, 0, ballDiameter / 2])
+                    cube(ballDiameter, center = true);
+                sphere(d = ballDiameter - thickness);
+            }
 }
 
 module halfSphereRed(ballDiameter, thickness) {
     color("red")
         translate([0, 0, 1])
-        difference() {
-            sphere(d = ballDiameter);
-            translate([0, 0, - ballDiameter / 2])
-                cube(ballDiameter, center = true);
-            sphere(d = ballDiameter-thickness);
-            crossBase(ballDiameter);
-        }
+            difference() {
+                sphere(d = ballDiameter);
+                translate([0, 0, - ballDiameter / 2])
+                    cube(ballDiameter, center = true);
+                sphere(d = ballDiameter - thickness);
+                crossBase(ballDiameter);
+            }
 }
 
 module ringBlack(ballDiameter, thickness) {
     difference() {
         union() {
             color("DarkSlateGray")
-            scale([1, 1, 3]) {
-                torus(ballDiameter / 2, 2);
-            }
+                scale([1, 1, 3]) {
+                    torus(ballDiameter / 2, 2);
+                }
             nails(ballDiameter);
         }
         button(ballDiameter);
-        translate([0,0,1])
-            cylinder(d=ballDiameter, h=ballDiameter);
-        translate([0,0,-ballDiameter-1])
-            cylinder(d=ballDiameter, h=ballDiameter);
+        translate([0, 0, 1])
+            cylinder(d = ballDiameter, h = ballDiameter);
+        translate([0, 0, - ballDiameter - 1])
+            cylinder(d = ballDiameter, h = ballDiameter);
     }
 }
 
@@ -93,7 +91,7 @@ module torus(radius, thickness) {
 module button(ballDiameter) {
     color("white")
         rotate([0, 90, 0]) {
-            translate([0,0,ballDiameter/2+0.2]) {
+            translate([0, 0, ballDiameter / 2 + 0.2]) {
                 cylinder(d = 13, h = 2);
                 cylinder(d = 6, h = 3);
             }
@@ -112,9 +110,9 @@ module nails(ballDiameter) {
 module crossBase(ballDiameter) {
     color("white") {
         difference() {
-            translate([0,0,ballDiameter/2 -4]) {
+            translate([0, 0, ballDiameter / 2 - 4]) {
                 cylinder(d = 26, h = 10);
-            }   
+            }
             translate([0, 0, ballDiameter / 2 + 6])
                 torus(12, 6);
         }

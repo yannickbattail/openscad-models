@@ -1,0 +1,28 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "1_inch_blade": {
+            "displaySaber": "false",
+            "hookLength": "40",
+            "saberDiameterInch": "1",
+            "tolerance": "0.5"
+        },
+        "7_8th_inch_blade": {
+            "displaySaber": "false",
+            "hookLength": "30",
+            "phoneAngle": "45",
+            "saberDiameterInch": "0.875",
+            "tolerance": "0.5"
+        },
+        "with_saber": {
+            "displaySaber": "true",
+            "hookLength": "20",
+            "phoneAngle": "20",
+            "phoneHeight": "80",
+            "phoneThickness": "10",
+            "phoneWidth": "180",
+            "saberDiameterInch": "0.875",
+            "tolerance": "0.5"
+        }
+    }
+}

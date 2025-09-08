@@ -2,12 +2,13 @@ use <lib/wrapAroundCylinder.scad>
 use <lib/surfaceData.scad>
 use <lib/mug.scad>
 /* Images */
-include <images/cat.scad>
-//include <images/cat_fur.scad>
-//include <images/cat_profile.scad>
-//include <images/cat_face.scad>
-//include <images/redPanda.scad>
-//include <images/werefox.scad>
+include <images/cat.scad> // base example and fast rendering
+include <images/cat_fur.scad>
+include <images/cat_profile.scad>
+include <images/cat_face.scad>
+include <images/red_panda.scad>
+include <images/werefox.scad>
+include <images/mountain.scad>
 
 /* [Mug] */
 // height of the nug
@@ -31,11 +32,30 @@ inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
 partialModel = "all"; // [all, image_only, mug_only]
 
-/* [Details] */
+part="cat"; // [cat, cat_fur, cat_profile, cat_face, redPanda, werefox, mountain]
+
+/* [Animation] */
+// rotating animation
+animation_rotation = false;
+
 $fn = 100;
 
 /* [Hidden] */
-imageData = len(inlineImage) > 0 ? inlineImage : image;
+is_animated = animation_rotation;
+$vpt = is_animated?[0, 0, 0]:$vpt;
+$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr; // animation rotate around the object
+$vpd = is_animated?500:$vpd;
+
+function selectImage() = 
+    (part == "cat")?image_cat:
+        (part == "cat_fur")?image_cat_fur:
+            (part == "cat_profile")?image_cat_profile:
+                (part == "cat_face")?image_cat_face:
+                    (part == "red_panda")?image_red_panda:
+                        (part == "werefox")?image_werefox:
+                            (part == "mountain")?image_mountain:[];
+
+imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 
 if (len(inlineImage) > 0) {
     echo("use inline image data (customizer)");
@@ -45,7 +65,7 @@ if (len(inlineImage) > 0) {
 
 epsi = 0.01; // epsilon
 
-mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageData, partialModel);
+rotate([0,0,180]) mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageData, partialModel);
 
 module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultipier, imageMatrix, partialModel = "all") {
 
@@ -63,7 +83,7 @@ module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle
             }
         if (withNutellaGlass) {
             translate([0, 0, mugThickness])
-                #nutellaGlass();
+                nutellaGlass();
         } else {
             translate([0, 0, mugThickness]) {
                 cylinder(h = mugHeight - mugThickness + epsi, r = mugRadius - mugThickness); // + epsi to prevent display bug

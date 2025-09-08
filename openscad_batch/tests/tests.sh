@@ -49,7 +49,34 @@ check_directory() {
   else
     echo -e "[${IRed} FAIL ${IReset}] content of directory $1 must be $2"
     echo "## content of $1"
+    echo -ne "$IPurple"
     ls -A1 $1
+    echo -ne "$IReset"
+    exit 1
+  fi
+}
+
+check_return_code() {
+  "$@"
+  local ret=$?
+  echo ret $ret
+  if [[ $ret != "0" ]]
+  then
+    echo -e "[${IRed} FAIL ${IReset}] Excution fail, return code is $ret for command $*${IReset}" >&2
+    exit 1
+  fi
+}
+
+check_return_code_fails() {
+  if ! $* > test.log 2>&1
+  then
+    echo -e "[${IGreen} OK ${IReset}] the command fails successfully"
+  else
+    echo -e "[${IRed} FAIL ${IReset}] the command should fail: $*"
+    echo -ne "$IPurple"
+    echo poutre
+    cat test.log
+    echo -ne "$IReset"
     exit 1
   fi
 }
@@ -59,7 +86,7 @@ test1() {
   echo -e "${IBlue} ###### test1 ${IReset}"
   
   echo "       generate cube1.scad"
-  ../generate_profile.sh cube1.scad > /dev/null 2>&1
+  ../generate_profile.sh cube1.scad
   echo "       generation done"
   
   compare_images ./cube1/gif/test1.gif ./cube1_expected/gif/test1.gif
@@ -76,9 +103,9 @@ test2() {
   echo -e "${IBlue} ###### test2 animations ${IReset}"
   
   echo "       generate gif cube_anim.scad"
-  ../generate_profile.sh -g gif cube_anim.scad > /dev/null 2>&1
+  check_return_code ../generate_profile.sh -g gif cube_anim.scad
   echo "       generate webp cube_anim.scad"
-  ../generate_profile.sh -g webp cube_anim.scad > /dev/null 2>&1
+  check_return_code ../generate_profile.sh -g webp cube_anim.scad
   echo "       generation done"
   
   compare_bin_files ./cube_anim/webp/test1.webp ./cube_anim_expected/webp/test1.webp
@@ -91,14 +118,14 @@ test3() {
   echo -e "${IBlue} ###### test3 only_generate ${IReset}"
   
   echo "       generate gif cube1.scad"
-  ../generate_profile.sh -g gif cube1.scad > /dev/null 2>&1
+  check_return_code ../generate_profile.sh -g gif cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "gif"
   check_directory ./cube1/gif/ "test1.gif"
   rm -Rf ./cube1/
   
   echo "       generate image cube1.scad"
-  ../generate_profile.sh -g jpg cube1.scad > /dev/null 2>&1
+  check_return_code ../generate_profile.sh -g jpg cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "images"
   check_directory ./cube1/images/ 'mosaic_cube1.jpg
@@ -106,14 +133,14 @@ test1.png'
   rm -Rf ./cube1/
   
   echo "       generate webp cube1.scad"
-  ../generate_profile.sh -g webp cube1.scad > /dev/null 2>&1
+  check_return_code ../generate_profile.sh -g webp cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "webp"
   check_directory ./cube1/webp/ "test1.webp"
   rm -Rf ./cube1/
   
   echo "       generate stl cube1.scad"
-  ../generate_profile.sh -g stl cube1.scad > /dev/null 2>&1
+  check_return_code ../generate_profile.sh -g stl cube1.scad
   echo "       generation done"
   check_directory ./cube1/ "stl"
   check_directory ./cube1/stl/ "test1.stl"
@@ -124,7 +151,7 @@ test4() {
   echo -e "${IBlue} ###### test4 parameter-set ${IReset}"
   
   echo "       generate cube4.scad"
-  ../generate_profile.sh cube4.scad > /dev/null 2>&1
+  check_return_code ../generate_profile.sh cube4.scad
   echo "       generation done"
   check_directory ./cube4/ "gif
 images
@@ -142,7 +169,7 @@ cube_50.webp"
   rm -Rf ./cube4/
   
   echo "       generate parameter-set cube_50 cube4.scad"
-  ../generate_profile.sh -p cube_50 cube4.scad > /dev/null 2>&1
+  check_return_code ../generate_profile.sh -p cube_50 cube4.scad
   echo "       generation done"
   check_directory ./cube4/ "gif
 images
@@ -160,7 +187,7 @@ test5() {
   echo -e "${IBlue} ###### test5 option: anim_keep_images ${IReset}"
   
   echo "       generate p cube5.scad"
-  ../generate_profile.sh cube5.scad > /dev/null 2>&1
+  check_return_code ../generate_profile.sh cube5.scad
   echo "       generation done"
   check_directory ./cube5/ "anim
 gif
@@ -175,8 +202,20 @@ test100004.png"
   rm -Rf ./cube5/
 }
 
+test6() {
+  echo -e "${IBlue} ###### test6 ${IReset}"
+  
+  echo "       generate cube6.scad"
+  check_return_code_fails ../generate_profile.sh cube6.scad
+  
+  rm -Rf ./cube6/ ./cube6.conf
+}
+
 test1
 test2
 test3
 test4
 test5
+test6
+
+rm test.log

@@ -4,4 +4,4 @@ function flatArrayToMatrix(flatArray, nbLine, nbCol) = [
         ]
     ];
 
-echo(flatArrayToMatrix([1, 1,]));
+//assert(flatArrayToMatrix([1,2,3, 4,5,6], 2, 3)==[[1,2,3],[3,4,5]]);

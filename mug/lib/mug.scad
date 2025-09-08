@@ -1,5 +1,4 @@
-// "Fragments" or fineness. Higher = smoother
-$fn = 60;
+/**
 // Rounding of the bottom, radius in mm.
 cornd = 10;
 // Height of the cup in mm
@@ -10,12 +9,11 @@ cupwd = 41;
 cupwal = 4;
 // Thickness of handle in mm.
 handlr = 5.25;
-cornerd = min(cornd, cupwd / 2); // Bad things happen if you try to round the bottom too much!
-cupht = ovrht - cornerd - cupwal * .5; // cup height adjusted for other features
+ */
+module mug(cornd = 10, ovrht = 115, cupwd = 41, cupwal = 4, handlr = 5.25) {
+    cornerd = min(cornd, cupwd / 2); // Bad things happen if you try to round the bottom too much!
+    cupht = ovrht - cornerd - cupwal * .5; // cup height adjusted for other features
 
-mug();
-
-module mug() {
     /* The next functions make a primitive coffee cup from two cylinders and a torus. */
     module cupprim(h1, r1, rc) {
         cylinder(h1, r1, r1);
@@ -51,5 +49,4 @@ module mug() {
         }
         translate([0, 0, cupwal]) cupprim(cupht, cupwd - cupwal, cornerd);
     }
-
 }

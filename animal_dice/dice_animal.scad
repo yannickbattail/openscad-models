@@ -30,7 +30,7 @@ $fn = 100;
 
 faces = [face_1, face_2, face_3, face_4, face_5, face_6];
 
-$vpt = animation_rotation ? [0, 0, 30] : [];
+$vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
 $vpd = animation_rotation ? 300 : [];
 
@@ -49,8 +49,8 @@ module dice(animalName, fixation_diameter, faces, font_type, font_size) {
         numberFaces(faces, font_type, font_size);
     }
     fixation(fixation_diameter);
-    animal(animalName);
-    // cube(77, center=true);
+    color("orange") animal(animalName);
+    // cube(77, center=true); // containing cube
 }
 
 module numberFaces(numberText, font_type, font_size) {
@@ -84,23 +84,18 @@ module fixation(fixation_diameter) {
 }
 
 module animal(animalName) {
-    color("orange") {
-        if (animalName == "panda") {
-            animalModel(file = "animals/panda.stl", scalePercent = 0.9, centerOfGravity = [-4.45929179e-05, 6.49922599e+00, 2.36770148e+01]);
-        } else if (animalName == "dino") {
-            animalModel(file = "animals/dino.stl", scalePercent = 0.9, centerOfGravity = [44.24588094, 68.37104575, 24.26177268]);
-        } else if (animalName == "dragon") {
-            animalModel(file = "animals/dragonLED.stl", scalePercent = 1.1, centerOfGravity = [- 1.74671741, - 0.06900702,
-                5.67328133]);
-        } else if (animalName == "cat") {
-            animalModel(file = "animals/catLowPoly.stl", scalePercent = 0.6, centerOfGravity = [- 0.60620592, 0.16325684,
-                39.43318665]);
-        } else if (animalName == "fox") {
-            animalModel(file = "animals/foxLowPoly.stl", scalePercent = 0.25, centerOfGravity = [- 14.18385003, 4.57492739,
-                75.20926315]);
-        } else {
-            assert(true, str("wrong animalname", animalName));
-        }
+    if (animalName == "panda") {
+        animalModel(file = "animals/panda.stl", scalePercent = 0.9, centerOfGravity = [- 4.45929179e-05, 6.49922599e+00, 2.36770148e+01]);
+    } else if (animalName == "dino") {
+        animalModel(file = "animals/dino.stl", scalePercent = 0.9, centerOfGravity = [44.24588094, 68.37104575, 24.26177268]);
+    } else if (animalName == "dragon") {
+        animalModel(file = "animals/dragonLED.stl", scalePercent = 1.1, centerOfGravity = [- 1.74671741, - 0.06900702, 5.67328133]);
+    } else if (animalName == "cat") {
+        animalModel(file = "animals/catLowPoly.stl", scalePercent = 0.6, centerOfGravity = [- 0.60620592, 0.16325684, 39.43318665]);
+    } else if (animalName == "fox") {
+        animalModel(file = "animals/foxLowPoly.stl", scalePercent = 0.25, centerOfGravity = [- 14.18385003, 4.57492739, 75.20926315]);
+    } else {
+        assert(true, str("wrong animalname", animalName));
     }
 }
 

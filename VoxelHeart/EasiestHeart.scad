@@ -17,7 +17,7 @@ animation_rotation = false;
 
 $vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
-$vpd = animation_rotation ? 300 : [];
+$vpd = animation_rotation ? 200 : [];
 
 easiest_heart([scale_x, scale_y, scale_z]);
 

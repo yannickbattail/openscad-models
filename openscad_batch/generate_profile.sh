@@ -30,7 +30,7 @@ usage() {
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file than the default \${OPENSCAD_FILE}.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-    echo "-g, --generate only_generate              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,3mf,conf. By default it will generate all except conf." >&2
+    echo "-g, --generate only_generate              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
     echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
@@ -109,9 +109,9 @@ anim_nb_image="20"
 anim_delay="20"
 anim_keep_images="false"
 
-stl_dollar_fn="50"
+m3D_dollar_fn="50"
 stl_format="asciistl"
-stl_render_option=""
+m3D_render_option=""
 
 OPENSCAD="openscad"
 
@@ -171,8 +171,7 @@ jpg_dir=./${scad_file_name}/images
 anim_dir=./${scad_file_name}/anim
 gif_dir=./${scad_file_name}/gif
 webp_dir=./${scad_file_name}/webp
-stl_dir=./${scad_file_name}/stl
-threemf_dir=./${scad_file_name}/3mf
+m3D_dir=./${scad_file_name}/3D
 
 prepare_jpg() {
     mkdir -p "$jpg_dir"
@@ -200,12 +199,8 @@ prepare_webp() {
     fi
 }
 
-prepare_stl() {
-    mkdir -p "$stl_dir"
-}
-
-prepare_3mf() {
-    mkdir -p "$threemf_dir"
+prepare_m3D() {
+    mkdir -p "$m3D_dir"
 }
 
 generate_jpg() {
@@ -235,14 +230,14 @@ generate_webp() {
     exec_check img2webp -o "${webp_dir}/${parameter_set}.webp" -d "${anim_delay}0" -loop 0 "${anim_dir}"/"${parameter_set}"*.png
 }
 
-generate_stl() {
-    echo_info "generating ${stl_dir}/${parameter_set}.stl ..."
-    exec_check $OPENSCAD -q -o "${stl_dir}/${parameter_set}.stl" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${stl_dollar_fn}" --export-format "${stl_format}" ${stl_render_option} "${scad_file}"
-}
-
-generate_3mf() {
-    echo_info "generating ${threemf_dir}/${parameter_set}.3mf ..."
-    exec_check $OPENSCAD -q -o "${threemf_dir}/${parameter_set}.3mf" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${stl_dollar_fn}" ${stl_render_option} "${scad_file}"
+generate_m3D() {
+    extension=$1
+    echo_info "generating ${m3D_dir}/${parameter_set}.${extension} ..."
+    if [[ ${extension} == "stl" ]]; then
+        exec_check $OPENSCAD -q -o "${m3D_dir}/${parameter_set}.${extension}" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${m3D_dollar_fn}" --export-format "${stl_format}" ${m3D_render_option} "${scad_file}"
+    else
+        exec_check $OPENSCAD -q -o "${m3D_dir}/${parameter_set}.${extension}" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${m3D_dollar_fn}" ${m3D_render_option} "${scad_file}"
+    fi
 }
 
 generate_mosaic() {
@@ -278,17 +273,18 @@ generate_conf() {
 ## keep of images in the animation in the folder "anim"
 #anim_keep_images="true"
 
-#### 3D model generation (stl or 3mf) ####
+#### model3D  generation (stl, obj, 3mf, off, wrl or amf) ####
 ## value of the \$fn variable (3d model resolution) for 3D model generation 
-#stl_dollar_fn="${stl_dollar_fn}"
+#m3D_dollar_fn="${m3Ddollar_fn}"
+## 3D rendering options
+#m3D_render_option="${m3D_render_option}"
+## this option is only available on openscad-nightly.
+#m3D_render_option="--enable sort-stl"
+
+## For a diffable stl, use stl_format="asciistl" and stl_render_option="--enable sort-stl"
 ## stl_format can be asciistl or binstl
 #stl_format="asciistl"
 #stl_format="binstl"
-## 3D rendering options
-#stl_render_option="${stl_render_option}"
-## this option is only available on openscad-nightly.
-#stl_render_option="--enable sort-stl"
-## For a diffable stl, use stl_format="asciistl" and stl_render_option="--enable sort-stl"
 
 #### the openscad command ####
 ## use headless X server, for running the script in a machine without X server (ex: CI scripts)  
@@ -310,10 +306,22 @@ prepare_all() {
     prepare_webp
   fi
   if [[ $only_generate == *"stl"* ]]; then
-    prepare_stl
+    prepare_m3D
+  fi
+  if [[ $only_generate == *"obj"* ]]; then
+    prepare_m3D
   fi
   if [[ $only_generate == *"3mf"* ]]; then
-    prepare_3mf
+    prepare_m3D
+  fi
+  if [[ $only_generate == *"wrl"* ]]; then
+    prepare_m3D
+  fi
+  if [[ $only_generate == *"off"* ]]; then
+    prepare_m3D
+  fi
+  if [[ $only_generate == *"amf"* ]]; then
+    prepare_m3D
   fi
   if [[ $only_generate == *"conf"* ]]; then
     touch "$config_file"
@@ -322,8 +330,7 @@ prepare_all() {
     prepare_jpg
     prepare_gif
     prepare_webp
-    prepare_stl
-    prepare_3mf
+    prepare_m3D
   fi
 }
 
@@ -346,11 +353,27 @@ generate_all() {
     fi
     if  [[ $only_generate == *"stl"* ]]
     then
-      generate_stl
+      generate_m3D stl
+    fi
+    if  [[ $only_generate == *"obj"* ]]
+    then
+      generate_m3D obj
     fi
     if  [[ $only_generate == *"3mf"* ]]
     then
-      generate_3mf
+      generate_m3D 3mf
+    fi
+    if  [[ $only_generate == *"wrl"* ]]
+    then
+      generate_m3D wrl
+    fi
+    if  [[ $only_generate == *"off"* ]]
+    then
+      generate_m3D off
+    fi
+    if  [[ $only_generate == *"amf"* ]]
+    then
+      generate_m3D amf
     fi
     if  [[ $only_generate == *"conf"* ]]
     then
@@ -360,9 +383,13 @@ generate_all() {
     then
       generate_jpg
       generate_gif
-      generate_webp
-      generate_stl
-      generate_3mf
+#       generate_webp
+      generate_m3D stl
+#       generate_m3D obj
+#       generate_m3D 3mf
+#       generate_m3D wrl
+#       generate_m3D off
+#       generate_m3D amf
     fi
     if  [[  $only_generate == "" || $only_generate == *"gif"* || $only_generate == *"webp"* ]]
     then

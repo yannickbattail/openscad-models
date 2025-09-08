@@ -63,7 +63,6 @@ check_return_code() {
   then
     echo -e "[${IRed} FAIL ${IReset}] Excution fail, return code is $ret for command $*${IReset}" >&2
     echo -ne "$IPurple"
-    echo poutre
     cat test.log
     echo -ne "$IReset"
     exit 1
@@ -86,21 +85,25 @@ check_return_code_fails() {
 
 
 test1() {
-  echo -e "${IBlue} ###### test1 ${IReset}"
+  echo -e "${IBlue} ###### test1 all ${IReset}"
   
   echo "       generate cube1.scad"
-  check_return_code ../generate_profile.sh cube1.scad
+  echo 'OPENSCAD="openscad-nightly"' > cube1.conf
+  check_return_code ../generate_profile.sh -g jpg,gif,webp,stl,obj,3mf,wrl,off,amf cube1.scad
   echo "       generation done"
   
   compare_images ./cube1/gif/test1.gif ./cube1_expected/gif/test1.gif
   compare_images ./cube1/images/test1.png ./cube1_expected/images/test1.png
   compare_images ./cube1/gif/test1.gif ./cube1_expected/gif/test1.gif
-  compare_bin_files ./cube1/webp/test1.webp ./cube1_expected/webp/test1.webp
-  compare_bin_files ./cube1/stl/test1.stl ./cube1_expected/stl/test1.stl
+  compare_bin_files ./cube1/3D/test1.stl ./cube1_expected/3D/test1.stl
+  compare_bin_files ./cube1/3D/test1.obj ./cube1_expected/3D/test1.obj
   ## find a way to compare 3mf files, because they contains a UUID different at every generation.
-  #compare_bin_files ./cube1/stl/test1.3mf ./cube1_expected/stl/test1.3mf
+  #compare_bin_files ./cube1/3D/test1.3mf ./cube1_expected/3D/test1.3mf
+  compare_bin_files ./cube1/3D/test1.wrl ./cube1_expected/3D/test1.wrl
+  compare_bin_files ./cube1/3D/test1.off ./cube1_expected/3D/test1.off
+  compare_bin_files ./cube1/3D/test1.amf ./cube1_expected/3D/test1.amf
   
-  rm -Rf ./cube1/ ./cube1.conf
+  rm -Rf ./cube1/
 }
 
 test2() {
@@ -146,9 +149,44 @@ test1.png'
   echo "       generate stl cube1.scad"
   check_return_code ../generate_profile.sh -g stl cube1.scad
   echo "       generation done"
-  check_directory ./cube1/ "stl"
-  check_directory ./cube1/stl/ "test1.stl"
+  check_directory ./cube1/ "3D"
+  check_directory ./cube1/3D/ "test1.stl"
+  rm -Rf ./cube1/
+  
+  echo "       generate stl cube1.scad"
+  check_return_code ../generate_profile.sh -g obj cube1.scad
+  echo "       generation done"
+  check_directory ./cube1/ "3D"
+  check_directory ./cube1/3D/ "test1.obj"
+  rm -Rf ./cube1/
+  
+  echo "       generate stl cube1.scad"
+  check_return_code ../generate_profile.sh -g 3mf cube1.scad
+  echo "       generation done"
+  check_directory ./cube1/ "3D"
+  check_directory ./cube1/3D/ "test1.3mf"
+  rm -Rf ./cube1/
+  
+  echo "       generate stl cube1.scad"
+  check_return_code ../generate_profile.sh -g wrl cube1.scad
+  echo "       generation done"
+  check_directory ./cube1/ "3D"
+  check_directory ./cube1/3D/ "test1.wrl"
   rm -Rf ./cube1/ ./cube1.conf
+  
+  echo "       generate stl cube1.scad"
+  check_return_code ../generate_profile.sh -g off cube1.scad
+  echo "       generation done"
+  check_directory ./cube1/ "3D"
+  check_directory ./cube1/3D/ "test1.off"
+  rm -Rf ./cube1/
+  
+  echo "       generate stl cube1.scad"
+  check_return_code ../generate_profile.sh -g amf cube1.scad
+  echo "       generation done"
+  check_directory ./cube1/ "3D"
+  check_directory ./cube1/3D/ "test1.amf"
+  rm -Rf ./cube1/
 }
 
 test4() {
@@ -157,35 +195,30 @@ test4() {
   echo "       generate cube4.scad"
   check_return_code ../generate_profile.sh cube4.scad
   echo "       generation done"
-  check_directory ./cube4/ "3mf
+  check_directory ./cube4/ "3D
 gif
 images
-stl
 webp"
   check_directory ./cube4/gif/ "cube_30.gif
 cube_50.gif"
   check_directory ./cube4/images/ "cube_30.png
 cube_50.png
 mosaic_cube4.jpg"
-  check_directory ./cube4/stl/ "cube_30.stl
+  check_directory ./cube4/3D/ "cube_30.stl
 cube_50.stl"
-  check_directory ./cube4/webp/ "cube_30.webp
-cube_50.webp"
   rm -Rf ./cube4/
   
   echo "       generate parameter-set cube_50 cube4.scad"
   check_return_code ../generate_profile.sh -p cube_50 cube4.scad
   echo "       generation done"
-  check_directory ./cube4/ "3mf
+  check_directory ./cube4/ "3D
 gif
 images
-stl
 webp"
   check_directory ./cube4/gif/ "cube_50.gif"
   check_directory ./cube4/images/ "cube_50.png
 mosaic_cube4.jpg"
-  check_directory ./cube4/stl/ "cube_50.stl"
-  check_directory ./cube4/webp/ "cube_50.webp"
+  check_directory ./cube4/3D/ "cube_50.stl"
   rm -Rf ./cube4/ ./cube4.conf
 }
 
@@ -195,11 +228,10 @@ test5() {
   echo "       generate p cube5.scad"
   check_return_code ../generate_profile.sh cube5.scad
   echo "       generation done"
-  check_directory ./cube5/ "3mf
+  check_directory ./cube5/ "3D
 anim
 gif
 images
-stl
 webp"
   check_directory ./cube5/anim/ "test100000.png
 test100001.png
@@ -221,12 +253,12 @@ test6() {
 test7() {
   echo -e "${IBlue} ###### test7 check config file generation${IReset}"
   
-  echo "       generate cube1.scad"
-  check_return_code ../generate_profile.sh -g conf cube1.scad
-  echo "       generate cube1.scad"
-  compare_bin_files ./cube1.conf ./cube1_expected/cube1.conf
+  echo "       generate cube4.scad"
+  check_return_code ../generate_profile.sh -g conf cube4.scad
+  echo "       generate cube4.scad"
+  compare_bin_files ./cube4.conf ./cube1_expected/cube1.conf
   
-  rm -Rf ./cube1.conf
+  rm -Rf ./cube4.conf
 }
 
 test8() {

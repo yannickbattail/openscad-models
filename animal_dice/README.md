@@ -1,6 +1,6 @@
 # Figurine in a dice
 
-## 
+## Balanced dices 
 
 Dices are balanced, figurine's center of gravity is put in the center of the dice.
 

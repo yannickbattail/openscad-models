@@ -1,15 +1,17 @@
 // rounding of the dice
 rounding = 0.69; // [0.6:0.01:0.8]
 // hole size/depth
-hole_size = 0.49; // [0.3:0.01:0.495]
+hole_size = 0.1; // [0.3:0.01:0.495]
 // dice color
 dice_color = "yellow"; // [yellow, red, green, blue, white, black]
 // face (numbers) color
 face_color = "red"; // [yellow, red, green, blue, white, black]
 
+$fn = 100;
+
 /* [Font] */
 // The generated text has an ascent (height above the baseline) of approximately the given value.
-font_size=0.5;  // [0:0.1:2]
+font_size=0.2;  // [0:0.1:2]
 // The name of the font that should be used. This can also include a style parameter
 font_type = "Liberation Mono:style=Regular";
 // The horizontal alignment for the text.
@@ -39,11 +41,10 @@ face_5 = "5";
 // text on face 6 (bottom)
 face_6 = "6";
 
+
 /* [Animation] */
 // rotating animation
 animation_rotation = false;
-
-$fn = 100;
 
 /* [Hidden] */
 is_animated = animation_rotation;
@@ -69,15 +70,23 @@ module dice(rounding, hole_size, faces, dice_color, face_color, font_params) {
                 [-90, 0, 0  ], // 5 back
                 [180, 0, 0  ]  // 6 bottom
             ];
-        color(face_color) {
-            for (i = [0:len(every_faces)-1]) {
-                rotate(every_faces[i]) faceText(faces[i], font_params);
-            }
+        color(face_color)
+        for (i = [0:len(every_faces)-1]) {
+            rotate(every_faces[i]) faceText(faces[i], font_params);
         }
     }
 }
 
+module face() {
+    translate([0, 0, 0.60]) {
+        color("orange")
+       sphere(0.48);
+    }
+}
+
 module faceText(letter, font_params) {
+    face();
+    color(face_color)
     translate([0, 0, hole_size]) {
         linear_extrude(1)
             text(text = letter,

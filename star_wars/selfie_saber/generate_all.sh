@@ -1,3 +1,6 @@
 #!/bin/bash
 
-time ../openscad_batch/generate_profile.sh -g jpg,webp,3mf ./selfie_saber.scad
+parallelJobs=10
+outFormats=png,webp,3mf
+
+npx openscad-generate@latest generate --outFormats $outFormats --mosaicFormat 3,3 --parallelJobs $parallelJobs --configFile selfie_saber.yaml ./selfie_saber.scad

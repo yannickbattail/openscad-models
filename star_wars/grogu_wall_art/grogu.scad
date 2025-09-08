@@ -23,68 +23,68 @@ $vpd = is_animated?2000:[];
 grogu(thickness, thicknessBase, bothSides);
 
 if (hookPosition == "both" || hookPosition == "top")
-    translate([490, 585, 0])
-        hook();
+  translate([490, 585, 0])
+    hook();
 
 if (hookPosition == "both" || hookPosition == "bottom")
-    translate([490, 10, 0])
-        rotate([0, 0, 180])
-            hook();
+  translate([490, 10, 0])
+    rotate([0, 0, 180])
+      hook();
 
 module hook() {
-    color("DarkGreen")
-        linear_extrude(thickness + thicknessBase)
-            difference() {
-                circle(r = 140);
-                circle(r = 90);
-                translate([0, -140])
-                    square([280, 280], center = true);
-            }
+  color("DarkGreen")
+    linear_extrude(thickness + thicknessBase)
+      difference() {
+        circle(r = 140);
+        circle(r = 90);
+        translate([0, -140])
+          square([280, 280], center = true);
+      }
 }
 
 
 module grogu(thickness, thicknessBase, bothSides = false) {
-    color("Green") {
-        linear_extrude(thicknessBase) {
-            import("svg/grogu_base.svg");
-        }
+  color("Green") {
+    linear_extrude(thicknessBase) {
+      import("svg/grogu_base.svg");
     }
+  }
+  color("DarkGreen") {
+    translate([0, 0, thicknessBase]) {
+      linear_extrude(thickness) {
+        grogu2D();
+      }
+    }
+  }
+  if (bothSides)
     color("DarkGreen") {
-        translate([0, 0, thicknessBase]) {
-            linear_extrude(thickness) {
-                grogu2D();
-            }
+      translate([0, 0, -thickness]) {
+        linear_extrude(thickness) {
+          grogu2D();
         }
+      }
     }
-    if (bothSides)
-        color("DarkGreen") {
-            translate([0, 0, -thickness]) {
-                linear_extrude(thickness) {
-                    grogu2D();
-                }
-            }
-        }
 }
 
 module grogu2D() {
-    import("svg/splited_svg_path/path_0.svg");
-    import("svg/splited_svg_path/path_1.svg");
-    import("svg/splited_svg_path/path_2.svg");
-    import("svg/splited_svg_path/path_3.svg");
-    import("svg/splited_svg_path/path_4.svg");
-    import("svg/splited_svg_path/path_5.svg");
-    import("svg/splited_svg_path/path_6.svg");
-    import("svg/splited_svg_path/path_7.svg");
-    import("svg/splited_svg_path/path_8.svg");
-    import("svg/splited_svg_path/path_9.svg");
-    import("svg/splited_svg_path/path_0.svg");
-    import("svg/splited_svg_path/path_1.svg");
-    import("svg/splited_svg_path/path_2.svg");
-    import("svg/splited_svg_path/path_3.svg");
-    import("svg/splited_svg_path/path_4.svg");
-    import("svg/splited_svg_path/path_5.svg");
-    import("svg/splited_svg_path/path_6.svg");
-    import("svg/splited_svg_path/path_7.svg");
-    import("svg/splited_svg_path/path_8.svg");
-    import("svg/splited_svg_path/path_9.svg");
+  import("svg/splited_svg_path/path_0.svg");
+  import("svg/splited_svg_path/path_1.svg");
+  import("svg/splited_svg_path/path_2.svg");
+  import("svg/splited_svg_path/path_3.svg");
+  import("svg/splited_svg_path/path_4.svg");
+  import("svg/splited_svg_path/path_5.svg");
+  import("svg/splited_svg_path/path_6.svg");
+  import("svg/splited_svg_path/path_7.svg");
+  import("svg/splited_svg_path/path_8.svg");
+  import("svg/splited_svg_path/path_9.svg");
+  import("svg/splited_svg_path/path_0.svg");
+  import("svg/splited_svg_path/path_1.svg");
+  import("svg/splited_svg_path/path_2.svg");
+  import("svg/splited_svg_path/path_3.svg");
+  import("svg/splited_svg_path/path_4.svg");
+  import("svg/splited_svg_path/path_5.svg");
+  import("svg/splited_svg_path/path_6.svg");
+  import("svg/splited_svg_path/path_7.svg");
+  import("svg/splited_svg_path/path_8.svg");
+  import("svg/splited_svg_path/path_9.svg");
 }

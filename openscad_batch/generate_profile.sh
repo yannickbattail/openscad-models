@@ -19,37 +19,46 @@ only_parameter_set=""
 only_generate=""
 
 usage() {
-    echo -ne $IBlue
+    echo -ne "$IBlue"
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file thant the default OPENSCAD_FILE.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-    echo "-g, --generate only_generate              only_generate must be one of jpg,gif,webp,stl. bay default it will generate all." >&2
+    echo "-g, --generate only_generate              only_generate must be one of jpg,gif,webp,stl,conf. bay default it will generate all." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
-    echo "Requirements: command 'jq' and imagemagick for gif and mosaic generation"
-    echo -ne $IReset
+    echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
+    echo -ne "$IReset"
 }
 
 echo_info() {
-    echo -ne $IGreen
-    echo $@
-    echo -ne $IReset
+    echo -ne "$IGreen"
+    echo "$@"
+    echo -ne "$IReset"
 }
 
 echo_warn() {
-    echo -ne IPurple
-    echo $@
-    echo -ne $IReset
+    echo -ne "$IPurple"
+    echo "$@"
+    echo -ne "$IReset"
 }
 
 echo_error() {
-    echo -ne $IRed >&2
-    echo $@ >&2
+    echo -ne "$IRed" >&2
+    echo "$@" >&2
     usage
-    echo -ne $IReset >&2
+    echo -ne "$IReset" >&2
     exit 1
 }
 
+exec_check () {
+  "$@"
+  local ret=$?
+  if [[ $ret != "0" ]]
+  then
+      echo -e "${IRed}Excution fail, return code is $ret for command: $*${IReset}" >&2
+      exit $ret
+  fi
+}
 
 while [[ $# -gt 0 ]]; do
   case $1 in
@@ -99,8 +108,9 @@ stl_format="asciistl"
 stl_render_option=""
 #stl_render_option="--enable sort-stl" ### this is an option of openscad-nightly
 
-OPENSCAD="xvfb-run -a openscad"
-#OPENSCAD="xvfb-run -a openscad-nightly"
+OPENSCAD="openscad"
+#OPENSCAD="xvfb-run -a openscad"
+#OPENSCAD="openscad-nightly"
 
 ### end configuration
 
@@ -121,22 +131,117 @@ then
     echo_error "openscad file $scad_file does not exist."
 fi
 
-scad_file_name=$(basename $scad_file .scad)
-scad_file_dir=$(dirname $scad_file)
+scad_file_name=$(basename "$scad_file" .scad)
+scad_file_dir=$(dirname "$scad_file")
+
+
+if [[ $config_file != "" ]]
+then
+    if [[ ! -f "$config_file" ]]
+    then
+        echo_error "config file: $config_file does not exist."
+    fi
+fi
 
 if [[ $config_file == "" ]]
 then
     config_file=${scad_file_dir}/${scad_file_name}.conf
-    if [[ -f "$config_file" ]]
+fi
+
+if [[ -f "$config_file" ]]
+then
+    echo_info "loading config file: $config_file"
+    . "$config_file"
+else
+    echo_info "no config file loaded"
+fi
+
+parameter_file=${scad_file_dir}/${scad_file_name}.json
+if [[ ! -f $parameter_file ]]
+then
+    echo_error "no parameter file: $parameter_file"
+fi
+echo -e "${IGreen}use parameter file: $parameter_file${IReset}"
+parameter_sets=$( jq -r '.parameterSets | keys[]' "${parameter_file}" )
+
+jpg_dir=./${scad_file_name}/images
+anim_dir=./${scad_file_name}/anim
+gif_dir=./${scad_file_name}/gif
+webp_dir=./${scad_file_name}/webp
+stl_dir=./${scad_file_name}/stl
+
+prepare_jpg() {
+    mkdir -p "$jpg_dir"
+    if ! command -v montage &> /dev/null
     then
-        echo_info "loading config file: $config_file"
-        . $config_file
-    else
-        echo_info "creating default config file: $config_file"
-        
-cat << EOF > $config_file
-####### configuration file for $0 #######
-## it will be sourced by $0
+        echo_error "the command 'montage' in not found, mosaics will not be generated, install imagemagick."
+    fi
+}
+
+prepare_gif() {
+    mkdir -p "$gif_dir" "$anim_dir"
+    if ! command -v convert &> /dev/null
+    then
+        echo_error "the command 'convert' in not found, gif will not be generated, install imagemagick."
+        exit 1
+    fi
+}
+
+prepare_webp() {
+    mkdir -p "$webp_dir" "$anim_dir"
+    if ! command -v img2webp &> /dev/null
+    then
+        echo_error "the command 'img2webp' in not found, webp will not be generated, install webp."
+        exit 1
+    fi
+}
+
+prepare_stl() {
+    mkdir -p "$stl_dir"
+}
+
+generate_jpg() {
+    echo_info "generating images ${jpg_dir}/${parameter_set}.png ..."
+    exec_check $OPENSCAD -q -o "${jpg_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${image_dollar_fn}" --imgsize "${image_size}" "${scad_file}"
+}
+
+generate_anim() {
+    echo_info "generating animation images ${anim_dir}/${parameter_set}.png ..."
+    exec_check $OPENSCAD -q -o "${anim_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate "${anim_nb_image}" --imgsize "${anim_size}" "${scad_file}"  
+}
+clean_anim() {
+    echo_info "cleanup animation images ${parameter_set} ..."
+    if [[ $anim_keep_images != "true" ]]
+    then
+        rm "${anim_dir}"/"${parameter_set}"*.png
+    fi
+}
+
+generate_gif() {
+    echo_info "building animation ${gif_dir}/${parameter_set}.gif ..."
+    exec_check convert -delay ${anim_delay} -loop 0 "${anim_dir}"/"${parameter_set}"*.png "${gif_dir}/${parameter_set}.gif"
+}
+
+generate_webp() {
+    echo_info "building animation ${webp_dir}/${parameter_set}.webp ..."
+    exec_check img2webp -o "${webp_dir}/${parameter_set}.webp" -d "${anim_delay}0" -loop 0 "${anim_dir}"/"${parameter_set}"*.png
+}
+
+generate_stl() {
+    echo_info "generating ${stl_dir}/${parameter_set}.stl ..."
+    exec_check $OPENSCAD -q -o "${stl_dir}/${parameter_set}.stl" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${stl_dollar_fn}" --export-format "${stl_format}" ${stl_render_option} "${scad_file}"
+}
+
+generate_mosaic() {
+    echo_info "generating mosaic ${jpg_dir}/${scad_file_name}.jpg ..."
+    exec_check montage -geometry "${image_mosaic_geometry}" -tile "${image_mosaic_tile}" "${jpg_dir}/"*.png "${jpg_dir}/mosaic_${scad_file_name}.jpg"
+}
+
+generate_conf() {
+  echo_info "generating config file ${config_file} ..."
+  cat << EOF > "$config_file"
+####### configuration file for generate_profile.sh #######
+## it will be sourced by generate_profile.sh
 
 #image_dollar_fn="${image_dollar_fn}"
 #image_size="${image_size}"
@@ -159,100 +264,8 @@ cat << EOF > $config_file
 #stl_render_option="--enable sort-stl"
 
 #OPENSCAD="xvfb-run -a openscad"
-#OPENSCAD="xvfb-run -a openscad-nightly"
-
+#OPENSCAD="openscad-nightly"
 EOF
-
-    fi
-else
-    if [[ -f "$config_file" ]]
-    then
-        echo_info "loading config file: $config_file"
-        . $config_file
-    else
-        echo_error "config file: $config_file does not exist."
-    fi
-fi
-
-parameter_file=${scad_file_dir}/${scad_file_name}.json
-if [[ ! -f $parameter_file ]]
-then
-    echo_error "no parameter file: $parameter_file"
-fi
-echo -e "${IGreen}use parameter file: $parameter_file${On_Reset}"
-parameter_sets=$( jq -r '.parameterSets | keys[]' ${parameter_file} )
-
-jpg_dir=./${scad_file_name}/images
-anim_dir=./${scad_file_name}/anim
-gif_dir=./${scad_file_name}/gif
-webp_dir=./${scad_file_name}/webp
-stl_dir=./${scad_file_name}/stl
-
-prepare_jpg() {
-    mkdir -p $jpg_dir
-    if ! command -v montage &> /dev/null
-    then
-        echo_error "the command 'montage' in not found, mosaics will not be generated, install imagemagick."
-    fi
-}
-
-prepare_gif() {
-    mkdir -p $gif_dir $anim_dir
-    if ! command -v convert &> /dev/null
-    then
-        echo_error "the command 'convert' in not found, gif will not be generated, install imagemagick."
-        exit 1
-    fi
-}
-
-prepare_webp() {
-    mkdir -p $webp_dir $anim_dir
-    if ! command -v img2webp &> /dev/null
-    then
-        echo_error "the command 'img2webp' in not found, webp will not be generated, install webp."
-        exit 1
-    fi
-}
-
-prepare_stl() {
-    mkdir -p $stl_dir
-}
-
-generate_jpg() {
-    echo_info "generating images ${jpg_dir}/${parameter_set}.png ..."
-    $OPENSCAD -q -o ${jpg_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${image_dollar_fn}" --imgsize ${image_size} ${scad_file}
-}
-
-generate_anim() {
-    echo_info "generating animation images ${anim_dir}/${parameter_set}.png ..."
-    $OPENSCAD -q -o ${anim_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate ${anim_nb_image} --imgsize ${anim_size} ${scad_file}  
-}
-clean_anim() {
-    echo_info "cleanup animation images ${parameter_set} ..."
-    if [[ $anim_keep_images != "true" ]]
-    then
-        rm ${anim_dir}/${parameter_set}*.png
-    fi
-}
-
-generate_gif() {
-    echo_info "building animation ${gif_dir}/${parameter_set}.gif ..."
-    convert -delay ${anim_delay} -loop 0 ${anim_dir}/${parameter_set}*.png ${gif_dir}/${parameter_set}.gif
-}
-
-generate_webp() {
-    echo_info "building animation ${webp_dir}/${parameter_set}.webp ..."
-    img2webp -o ${webp_dir}/${parameter_set}.webp -d ${anim_delay}0 -loop 0 ${anim_dir}/${parameter_set}*.png 
-}
-
-generate_stl() {
-      echo_info "generating ${stl_dir}/${parameter_set}.stl ..."
-      $OPENSCAD -q -o ${stl_dir}/${parameter_set}.stl --p ${parameter_file} --P ${parameter_set} -D "\$fn=${stl_dollar_fn}" --export-format ${stl_format} ${stl_render_option} ${scad_file}
-}
-
-generate_mosaic() {
-    echo_info "generating mosaic ${jpg_dir}/${scad_file_name}.jpg ..."
-    montage -geometry ${image_mosaic_geometry} -tile ${image_mosaic_tile} ${jpg_dir}/*.png ${jpg_dir}/mosaic_${scad_file_name}.jpg
 }
 
 if [[ $only_generate == "jpg" ]]
@@ -267,6 +280,9 @@ then
 elif  [[ $only_generate == "stl" ]]
 then
     prepare_stl
+elif  [[ $only_generate == "conf" ]]
+then
+    touch "$config_file"
 elif  [[ $only_generate == "" ]]
 then
     prepare_jpg
@@ -274,7 +290,7 @@ then
     prepare_webp
     prepare_stl
 else
-  echo_error "bad usage: option -g or --generate must be one of: jpg,gif,webp,stl"
+  echo_error "bad usage: option -g or --generate must be one of: jpg,gif,webp,stl,conf"
 fi
 
 generate_all() {
@@ -294,6 +310,9 @@ generate_all() {
     elif  [[ $only_generate == "stl" ]]
     then
       generate_stl
+    elif  [[ $only_generate == "conf" ]]
+    then
+      generate_conf
     elif  [[ $only_generate == "" ]]
     then
       generate_jpg
@@ -325,7 +344,7 @@ fi
 
 if [[ $anim_keep_images != "true" ]]
 then
-    rm -Rf $anim_dir 
+    rm -Rf "$anim_dir" 
 fi
 
 echo_info "Done."

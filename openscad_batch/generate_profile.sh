@@ -58,6 +58,7 @@ echo_error() {
 }
 
 exec_check () {
+  # echo $@ ## for debugging commands
   "$@"
   local ret=$?
   if [[ $ret != "0" ]]
@@ -205,12 +206,12 @@ prepare_m3D() {
 
 generate_jpg() {
     echo_info "generating images ${jpg_dir}/${parameter_set}.png ..."
-    exec_check $OPENSCAD -q -o "${jpg_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${image_dollar_fn}" --imgsize "${image_size}" "${scad_file}"
+    exec_check $OPENSCAD -q -o "${jpg_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${image_dollar_fn}" --imgsize "${image_size}" ${m3D_render_option} "${scad_file}"
 }
 
 generate_anim() {
     echo_info "generating animation images ${anim_dir}/${parameter_set}.png ..."
-    exec_check $OPENSCAD -q -o "${anim_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate "${anim_nb_image}" --imgsize "${anim_size}" "${scad_file}"  
+    exec_check $OPENSCAD -q -o "${anim_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate "${anim_nb_image}" --imgsize "${anim_size}" ${m3D_render_option} "${scad_file}"  
 }
 clean_anim() {
     echo_info "cleanup animation images ${parameter_set} ..."

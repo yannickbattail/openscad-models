@@ -34,9 +34,10 @@ function surfaceDataf(M, center = false) = let(
             [for (i = [0:n - 1])     i * m + m - 1, n * m + 2, n * m + 1],
             [n * m, n * m + 1, n * m + 2, n * m + 3]
         ]
-) [points, faces];
+) object(points=points, faces=faces);
 
 module surfaceData(M, center = false, convexity = 10) {
     a = surfaceDataf(M, center);
-    polyhedron(a[0], a[1], convexity = convexity);
+    polyhedron(a.points, a.faces
+    , convexity = convexity);
 }

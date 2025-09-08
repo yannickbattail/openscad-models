@@ -128,9 +128,22 @@
       "mugDiameter": "76",
       "mugHeight": "80",
       "mugThickness": "2",
+      "numberOfBlock": "4",
       "part": "mountain_lake",
       "partialModel": "all",
       "reliefMultipier": "1",
+      "withNutellaGlass": "true"
+    },
+    "denver": {
+      "imageAngle": "120",
+      "imageRotation": "120",
+      "mugDiameter": "76",
+      "mugHeight": "80",
+      "mugThickness": "2",
+      "numberOfBlock": "4",
+      "part": "denver",
+      "partialModel": "all",
+      "reliefMultipier": "3",
       "withNutellaGlass": "true"
     }
   }

@@ -23,7 +23,7 @@ $vpd = is_animated?500:[];
 if (debug) {
     difference() {
         c3po_mug();
-        translate([- 10, -200, 0]) cube(200);
+        translate([- 10, - 200, 0]) cube(200);
     }
 } else {
     c3po_mug();

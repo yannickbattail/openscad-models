@@ -1,11 +1,11 @@
 {
   "fileFormatVersion": "1",
   "parameterSets": {
-    "mugGrogu": {
+    "r2d2_mug": {
       "debug": "false",
       "nutellaGlassScale": "1.01"
     },
-    "mugGroguDebug": {
+    "debug_mug": {
       "debug": "true",
       "nutellaGlassScale": "1.01"
     }

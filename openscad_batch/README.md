@@ -10,6 +10,8 @@ Options:
 - `-c`, `--config-file` `configuration_file`      specify another configuration file than the default *OPENSCAD_FILE*.conf.
 - `-p`, `--only-parameter-set` `parameter-set`    parameter-set is one the parameter-set name present in the file.
 - `-g`, `--generate` `only_generate`              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl.
+- `--f3d`                                         use f3d for images generation
+- `--debug` `what_to_debug`                       debug mode: what_to_debug must be one or multiple separated by ',' of these values: CMD,OUT
 
 Important Note: if there is no parameter file (.json file) for your OPENSCAD_FILE, it will not work. See paragraph : [Code best practices](#Code best practices)
 
@@ -41,6 +43,14 @@ Thingiverse only support gif, not webp and stl files are more common and a previ
 generate_profile.sh -g jpg,gif,stl my_model.scad
 ```
 
+### Generate images and animation using f3d
+
+Thingiverse only support gif, not webp and stl files are more common and a preview is possible.
+
+```bash
+generate_profile.sh -g jpg,gif,webp --f3d my_model.scad
+```
+
 ### Generate only the stl of one part (parameter set)
 
 ```bash
@@ -62,6 +72,23 @@ generate_profile.sh -g conf my_model.scad
 ```
 
 Edit the file `my_model.conf` amd re-run the script without the `-g conf`
+
+### Debug
+
+display executing commands
+```bash
+generate_profile.sh --debug CMD my_model.scad
+```
+
+debug output: displays verbose output of commands
+```bash
+generate_profile.sh --debug OUT my_model.scad
+```
+
+display executing commands and their output
+```bash
+generate_profile.sh  --debug CMD,OUT my_model.scad
+```
 
 ## Requirements
 

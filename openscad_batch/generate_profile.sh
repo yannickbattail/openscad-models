@@ -23,6 +23,7 @@ POSITIONAL_ARGS=()
 config_file=""
 only_parameter_set=""
 only_generate=""
+debug="0"
 use_f3d="false"
 
 usage() {
@@ -31,11 +32,18 @@ usage() {
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file than the default \${OPENSCAD_FILE}.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-    echo "-g, --generate only_generate              only_generate must be one or multiple separated by  ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl." >&2
+    echo "-g, --generate only_generate              only_generate must be one or multiple separated by ',' of these values: jpg,gif,webp,stl,obj,3mf,wrl,off,amf,conf. By default it will generate jpg,gif,stl." >&2
     echo "--f3d                                     use f3d for images generation" >&2
+    echo "--debug what_to_debug                     debug mode: what_to_debug must be one or multiple separated by ',' of these values: CMD,OUT" >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
     echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
+    echo -ne "$IReset"
+}
+
+echo_log() {
+    echo -ne "$ICyan"
+    echo "$@"
     echo -ne "$IReset"
 }
 
@@ -60,7 +68,10 @@ echo_error() {
 }
 
 exec_check () {
-  # echo $@ ## for debugging commands
+  if [[ $debug == *"CMD"* ]]
+  then
+    echo_log "RUN COMMAND: $@"
+  fi
   "$@"
   local ret=$?
   if [[ $ret != "0" ]]
@@ -90,6 +101,11 @@ while [[ $# -gt 0 ]]; do
     --f3d)
       use_f3d="true"
       shift # past argument
+      ;;
+    --debug)
+      debug="$2"
+      shift # past argument
+      shift # past value
       ;;
     -*|--*)
       echo_error "unknown option: $1"
@@ -192,6 +208,18 @@ fi
 echo -e "${IGreen}use parameter file: $parameter_file${IReset}"
 parameter_sets=$( jq -r '.parameterSets | keys[]' "${parameter_file}" )
 
+openscad_debug="-q"
+f3d_debug="--quiet"
+imagemagick_debug=""
+img2webp_debug=""
+if [[ $debug == *"OUT"* ]]
+then
+    openscad_debug=""
+    f3d_debug="--verbose" 
+    imagemagick_debug="-verbose" 
+    img2webp_debug="-v"
+fi
+
 jpg_dir=./${scad_file_name}/images
 anim_dir=./${scad_file_name}/anim
 gif_dir=./${scad_file_name}/gif
@@ -232,9 +260,9 @@ generate_jpg() {
     echo_info "generating images ${jpg_dir}/${parameter_set}.png ..."
     if [[ $use_f3d == "true" ]]
     then 
-        exec_check f3d --quiet --resolution ${image_size} ${f3d_colors} -q -a -t --axis=false --grid=false --filename=false ${f3d_material} ${f3d_hdri} --output "${jpg_dir}/${parameter_set}.png" "${m3D_dir}/${parameter_set}.stl"
+        exec_check f3d ${f3d_debug} --resolution ${image_size} ${f3d_colors} -q -a -t --axis=false --grid=false --filename=false ${f3d_material} ${f3d_hdri} --output "${jpg_dir}/${parameter_set}.png" "${m3D_dir}/${parameter_set}.stl"
     else
-        exec_check $OPENSCAD -q -o "${jpg_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${image_dollar_fn}" --imgsize "${image_size}" ${m3D_render_option} "${scad_file}"
+        exec_check $OPENSCAD ${openscad_debug} -o "${jpg_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${image_dollar_fn}" --imgsize "${image_size}" ${m3D_render_option} "${scad_file}"
     fi
 }
 
@@ -245,12 +273,12 @@ generate_anim() {
         imageEveryXDegree=$((360 / anim_nb_image))
         for i in $(seq -f "%03g" 1 $imageEveryXDegree 359);
         do
-            exec_check f3d --quiet --resolution ${anim_size}  ${f3d_colors} -q -a -t --axis=false --grid=false --filename=false --camera-azimuth-angle=$i ${f3d_material} ${f3d_hdri} --output "${anim_dir}/${parameter_set}_${i}.png" "${m3D_dir}/${parameter_set}.stl"
+            exec_check f3d  ${f3d_debug} --resolution ${anim_size}  ${f3d_colors} -q -a -t --axis=false --grid=false --filename=false --camera-azimuth-angle=$i ${f3d_material} ${f3d_hdri} --output "${anim_dir}/${parameter_set}_${i}.png" "${m3D_dir}/${parameter_set}.stl"
             echo -n .
         done
         echo
     else
-        exec_check $OPENSCAD -q -o "${anim_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate "${anim_nb_image}" --imgsize "${anim_size}" ${m3D_render_option} "${scad_file}"  
+        exec_check $OPENSCAD ${openscad_debug} -o "${anim_dir}/${parameter_set}.png" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate "${anim_nb_image}" --imgsize "${anim_size}" ${m3D_render_option} "${scad_file}"  
     fi
 }
 clean_anim() {
@@ -263,27 +291,27 @@ clean_anim() {
 
 generate_gif() {
     echo_info "building animation ${gif_dir}/${parameter_set}.gif ..."
-    exec_check convert -delay ${anim_delay} -loop 0 "${anim_dir}"/"${parameter_set}"*.png "${gif_dir}/${parameter_set}.gif"
+    exec_check convert ${imagemagick_debug} -delay ${anim_delay} -loop 0 "${anim_dir}"/"${parameter_set}"*.png "${gif_dir}/${parameter_set}.gif"
 }
 
 generate_webp() {
     echo_info "building animation ${webp_dir}/${parameter_set}.webp ..."
-    exec_check img2webp -o "${webp_dir}/${parameter_set}.webp" -d "${anim_delay}0" -loop 0 "${anim_dir}"/"${parameter_set}"*.png
+    exec_check img2webp ${img2webp_debug} -o "${webp_dir}/${parameter_set}.webp" -d "${anim_delay}0" -loop 0 "${anim_dir}"/"${parameter_set}"*.png
 }
 
 generate_m3D() {
     extension=$1
     echo_info "generating ${m3D_dir}/${parameter_set}.${extension} ..."
     if [[ ${extension} == "stl" ]]; then
-        exec_check $OPENSCAD -q -o "${m3D_dir}/${parameter_set}.${extension}" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${m3D_dollar_fn}" --export-format "${stl_format}" ${m3D_render_option} "${scad_file}"
+        exec_check $OPENSCAD ${openscad_debug} -o "${m3D_dir}/${parameter_set}.${extension}" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${m3D_dollar_fn}" --export-format "${stl_format}" ${m3D_render_option} "${scad_file}"
     else
-        exec_check $OPENSCAD -q -o "${m3D_dir}/${parameter_set}.${extension}" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${m3D_dollar_fn}" ${m3D_render_option} "${scad_file}"
+        exec_check $OPENSCAD ${openscad_debug} -o "${m3D_dir}/${parameter_set}.${extension}" --p "${parameter_file}" --P "${parameter_set}" -D "\$fn"="${m3D_dollar_fn}" ${m3D_render_option} "${scad_file}"
     fi
 }
 
 generate_mosaic() {
     echo_info "generating mosaic ${jpg_dir}/${scad_file_name}.jpg ..."
-    exec_check montage -geometry "${image_mosaic_geometry}" -tile "${image_mosaic_tile}" "${jpg_dir}/"*.png "${jpg_dir}/mosaic_${scad_file_name}.jpg"
+    exec_check montage ${imagemagick_debug} -geometry "${image_mosaic_geometry}" -tile "${image_mosaic_tile}" "${jpg_dir}/"*.png "${jpg_dir}/mosaic_${scad_file_name}.jpg"
 }
 
 generate_conf() {

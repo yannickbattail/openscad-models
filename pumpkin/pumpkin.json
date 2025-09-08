@@ -1,0 +1,26 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "withoutPumkin": {
+            "pumkinOnHandle": "false",
+            "seed": "1",
+            "slices": "10"
+        },
+        "withPumkin": {
+            "pumkinOnHandle": "true",
+            "seed": "1",
+            "slices": "12"
+        },
+        "noRandom": {
+            "pumkinOnHandle": "true",
+            "seed": "0",
+            "slices": "10"
+        },
+        "debug": {
+            "pumkinOnHandle": "true",
+            "seed": "0",
+            "slices": "10",
+            "debug": "1"
+        }
+    }
+}

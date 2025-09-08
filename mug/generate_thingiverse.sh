@@ -1,6 +1,18 @@
 #!/bin/bash
 
-time ../openscad_batch/generate_profile.sh -g jpg,gif,stl ./mugImage.scad
-time ../openscad_batch/generate_profile.sh -g jpg,gif,stl --f3d ./mugC3po.scad
+generate() {
+    file=$1
+    time ../openscad_batch/generate_profile.sh -g jpg,gif,stl --f3d ./${file}.scad
+    
+    mv ./${file}/3D/*.stl ./thingiverse/
+    mv ./${file}/gif/*.gif ./thingiverse/
+    mv ./${file}/images/mosaic_*.jpg ./thingiverse/
+    
+    ../openscad_batch/one_file.sh ./${file}.scad > ./thingiverse/${file}.scad
+}
 
-../openscad_batch/one_file.sh ./mugImage.scad > mugImage_one_file.scad
+mkdir -p ./thingiverse/
+
+generate mugImage
+generate mugC3po
+generate nutellaGlass

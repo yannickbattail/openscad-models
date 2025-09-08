@@ -37,5 +37,5 @@ fi
 
 cmd="head -c 0 $cmdOpt"
 
-echo ./heartbeat.sh $heartbeatOpt $cmd
+#echo ./heartbeat.sh $heartbeatOpt $cmd
 ./heartbeat.sh $heartbeatOpt $cmd

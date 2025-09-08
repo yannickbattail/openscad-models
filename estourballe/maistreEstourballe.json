@@ -5,7 +5,12 @@
       "part": "estourballeEntiere"
     },
     "demiSphereBas": {
-      "part": "demiSphereBas"
+      "part": "demiSphereBas",
+      "use_geodesic_sphere": false
+    },
+    "demiSphereBasGeodesic": {
+      "part": "demiSphereBas",
+      "use_geodesic_sphere": true
     },
     "demiSpherehaut": {
       "part": "demiSpherehaut"

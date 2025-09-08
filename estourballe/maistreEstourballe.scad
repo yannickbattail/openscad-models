@@ -2,7 +2,7 @@ use<geodesic_sphere.scad>;
 
 part = "estourballeEntiere"; // [estourballeEntiere, demiSphereBas, demiSpherehaut, anneau, bouton, croix]
 
-// use geodesic_sphere or normal sphere
+// use geodesic_sphere or normal sphere for demiSphereBas
 use_geodesic_sphere=true;
 
 /* [Animation] */
@@ -119,8 +119,12 @@ module nails(ballDiameter) {
 
 module ringBlack(ballDiameter, thickness) {
     difference() {
-        color("SlateGray")
-            cylinder(d = ballDiameter + 3, h = 7, center = true);
+        union() {
+            color("SlateGray")
+                cylinder(d = ballDiameter + 3, h = 7, center = true);
+
+            nails(ballDiameter);
+        }
         button(ballDiameter);
         translate([0, 0, 1])
             cylinder(d = ballDiameter, h = ballDiameter);
@@ -128,7 +132,6 @@ module ringBlack(ballDiameter, thickness) {
             cylinder(d = ballDiameter, h = ballDiameter);
         cylinder(d = ballDiameter - 4, h = ballDiameter, center = true);
     }
-    nails(ballDiameter);
 }
 
 module button(ballDiameter) {

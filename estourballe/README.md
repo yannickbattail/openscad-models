@@ -19,6 +19,7 @@ jeu [worms](https://worms.fandom.com/wiki/Holy_Hand_Grenade).
 ## customizable variables
 
 - `part` : estourballeEntiere, demiSphereBas, demiSpherehaut, anneau, bouton, bande1, bande2, croix
+- `use_geodesic_sphere` : use geodesic_sphere` or normal sphere for demiSphereBas
 
 Hidden variables
 

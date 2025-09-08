@@ -1,5 +1,8 @@
 // part to generate
-part = "opinel"; // [opinel]
+part = "opinel"; // [all, opinel, fundation]
+
+// looseCoef
+looseCoef = 0.6; // [0.1:0.1:2]
 
 /* [Animation] */
 // resolution
@@ -17,32 +20,47 @@ $vpd = is_animated?200:$vpd;
 
 if (part == "opinel") {
   opinel_saber();
+} else if (part == "fundation") {
+  fundation();
 } else {
-  assert(false, "Unknown part: " + part);
-}
-
-module stick(size) {
-  color("green") rotate([0, 90, 0]) cylinder(d = size / 2, h = size * 1.25, center = true);
+  opinel_saber();
+  fundation();
 }
 
 module opinel_saber() {
   difference() {
-    scale(2.3)
+    scale(2.5)
       opinel();
-    bladeHole();
+    fundationHole();
   }
 }
 
 module opinel() {
-  // translate([-11.5,-11.5,-75]) // translate to virole
-  translate([-11.5,-11.5,-96.75])
-    rotate([90,0,90])
+  // translate([-11.3, -11.55, -75]) // translate to virole
+  translate([-11.3, -11.55, -96.8])
+    rotate([90, 0, 90])
       color("BurlyWood")
         import("opinel.stl");
 }
 
+
+module fundation() {
+  color("blue")
+    difference() {
+      fundationHole(true);
+      bladeHole();
+    }
+}
+
+module fundationHole(fundation = false) {
+  d = 27;
+  diameter = fundation?d:d + looseCoef;
+  translate([0, 0, -206])
+    cylinder(h = 206, d = diameter);
+}
+
 module bladeHole() {
-    cylinder(h = 206, d1 = 25, d2 = 25);
-    translate([0, 0, -206])
-      cylinder(h = 206, d1 = 26.16, d2 = 25);
+  cylinder(h = 206, d1 = 25, d2 = 25);
+  translate([0, 0, -206])
+    cylinder(h = 206, d1 = 26.16, d2 = 25);
 }

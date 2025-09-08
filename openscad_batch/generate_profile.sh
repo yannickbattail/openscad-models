@@ -8,7 +8,8 @@
 ################################################################################
 
 # Background
-On_Black='\033[40m' On_Red='\033[41m' On_Green='\033[42m' On_Yellow='\033[43m' On_Blue='\033[44m' On_Purple='\033[45m' On_Cyan='\033[46m' On_White='\033[47m' 
+# shellcheck disable=SC2034
+On_Black='\033[40m' On_Red='\033[41m' On_Green='\033[42m' On_Yellow='\033[43m' On_Blue='\033[44m' On_Purple='\033[45m' On_Cyan='\033[46m' On_White='\033[47m'
 # High Intensity
 IBlack='\033[0;90m' IRed='\033[0;91m' IGreen='\033[0;92m' IYellow='\033[0;93m' IBlue='\033[0;94m' IPurple='\033[0;95m' ICyan='\033[0;96m' IWhite='\033[0;97m' 
 # Bold High Intensity
@@ -41,45 +42,45 @@ usage() {
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
     echo "Requirements: command 'jq', 'webp' and 'imagemagick' for gif and mosaic generation"
-    echo -ne "$IReset"
+    echo -ne "$On_Reset"
 }
 
 echo_log() {
     echo -ne "$ICyan"
     echo "$@"
-    echo -ne "$IReset"
+    echo -ne "$On_Reset"
 }
 
 echo_info() {
     echo -ne "$IGreen"
     echo "$@"
-    echo -ne "$IReset"
+    echo -ne "$On_Reset"
 }
 
 echo_warn() {
     echo -ne "$IPurple"
     echo "$@"
-    echo -ne "$IReset"
+    echo -ne "$On_Reset"
 }
 
 echo_error() {
     echo -ne "$IRed" >&2
     echo "$@" >&2
     usage
-    echo -ne "$IReset" >&2
+    echo -ne "$On_Reset" >&2
     exit 1
 }
 
 exec_check () {
   if [[ $debug == *"CMD"* ]]
   then
-    echo_log "RUN COMMAND: $@"
+    echo_log "RUN COMMAND: " "$@"
   fi
   "$@"
   local ret=$?
   if [[ $ret != "0" ]]
   then
-      echo -e "${IRed}Execution fail, return code is $ret for command: $*${IReset}" >&2
+      echo -e "${IRed}Execution fail, return code is $ret for command: $*${On_Reset}" >&2
       exit $ret
   fi
 }
@@ -97,7 +98,6 @@ prepare_gif() {
     if ! command -v convert &> /dev/null
     then
         echo_error "the command 'convert' in not found, gif will not be generated, install imagemagick."
-        exit 1
     fi
 }
 
@@ -106,7 +106,6 @@ prepare_webp() {
     if ! command -v img2webp &> /dev/null
     then
         echo_error "the command 'img2webp' in not found, webp will not be generated, install webp."
-        exit 1
     fi
 }
 
@@ -278,7 +277,7 @@ generate_conf() {
 
 #### model3D  generation (stl, obj, 3mf, off, wrl or amf) ####
 ## value of the \$fn variable (3d model resolution) for 3D model generation 
-#m3D_dollar_fn="${m3Ddollar_fn}"
+#m3D_dollar_fn="${m3D_dollar_fn}"
 ## 3D rendering options
 #m3D_render_option="${m3D_render_option}"
 ## this option is only available on openscad-nightly.
@@ -517,7 +516,7 @@ while [[ $# -gt 0 ]]; do
       shift # past argument
       shift # past value
       ;;
-    -*|--*)
+    -*)
       echo_error "unknown option: $1"
       ;;
     *)
@@ -612,6 +611,7 @@ fi
 if [[ -f "$config_file" ]]
 then
     echo_info "loading config file: $config_file"
+    # shellcheck disable=SC1090
     source "$config_file"
 else
     echo_info "no config file loaded"
@@ -622,7 +622,7 @@ if [[ ! -f $parameter_file ]]
 then
     echo_error "no parameter file: $parameter_file"
 fi
-echo -e "${IGreen}use parameter file: $parameter_file${IReset}"
+echo -e "${IGreen}use parameter file: $parameter_file${On_Reset}"
 parameter_sets=$( jq -r '.parameterSets | keys[]' "${parameter_file}" )
 
 openscad_debug="-q"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <amf unit="millimeter">
- <metadata type="producer">OpenSCAD 2024.06.24.nightly (git d4c36aa)</metadata>
+ <metadata type="producer">OpenSCAD 2025.02.17 (git 3d6fec950)</metadata>
  <object id="0">
   <mesh>
    <vertices>

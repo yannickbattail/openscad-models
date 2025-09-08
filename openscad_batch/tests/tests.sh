@@ -124,6 +124,45 @@ test1.png'
   rm -Rf ./cube1/
 }
 
+test4() {
+  echo -e "${IBlue} ###### test4 parameter-set ${IReset}"
+  
+  echo "       generate cube4.scad"
+  ../generate_profile.sh cube4.scad > /dev/null 2>&1
+  echo "       generation done"
+  rm -Rf ./cube4/anim ## workaround
+  check_directory ./cube4/ "gif
+images
+stl
+webp"
+  check_directory ./cube4/gif/ "cube_30.gif
+cube_50.gif"
+  check_directory ./cube4/images/ "cube_30.png
+cube_50.png
+mosaic_cube4.jpg"
+  check_directory ./cube4/stl/ "cube_30.stl
+cube_50.stl"
+  check_directory ./cube4/webp/ "cube_30.webp
+cube_50.webp"
+  rm -Rf ./cube4/
+  
+  echo "       generate parameter-set cube_50 cube4.scad"
+  ../generate_profile.sh -p cube_50 cube4.scad > /dev/null 2>&1
+  echo "       generation done"
+  rm -Rf ./cube4/anim ## workaround
+  check_directory ./cube4/ "gif
+images
+stl
+webp"
+  check_directory ./cube4/gif/ "cube_50.gif"
+  check_directory ./cube4/images/ "cube_50.png
+mosaic_cube4.jpg"
+  check_directory ./cube4/stl/ "cube_50.stl"
+  check_directory ./cube4/webp/ "cube_50.webp"
+  rm -Rf ./cube4/
+}
+
 test1
 test2
 test3
+test4

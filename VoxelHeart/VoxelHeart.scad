@@ -1,3 +1,9 @@
+// ######################################################################################
+// #  use_sphere=false;  #
+// ######################################################################################
+// ######################################################################################
+// #  ./VoxelHeart.scad  #
+// ######################################################################################
 // Size of a voxel and so then number of voxels. It takes an exponential time to process. Look at the console for "Number of voxel". (value lower than 0.03 will cause an error, 0.02 will work with manifold enabled)
 resolution=0.05; // [0.02:0.01:0.1]
 

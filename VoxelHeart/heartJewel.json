@@ -1,0 +1,17 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "all": {
+            "part": "all",
+            "resolution": 0.1
+        },
+        "heartLeft": {
+            "part": "heartLeft",
+            "resolution": 0.01
+        },
+        "heartRight": {
+            "part": "heartRight",
+            "resolution": 0.01
+        }
+    }
+}

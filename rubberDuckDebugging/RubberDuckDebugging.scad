@@ -31,48 +31,29 @@ $vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
 $vpd = animation_rotation ? 500 : [];
 
-font_params1 = [text_string1, text_size1, font_type, "center", "center", font_spacing, font_direction, font_language,
-    font_script];
-font_params2 = [text_string2, text_size2, font_type, "center", "center", font_spacing, font_direction, font_language,
-    font_script];
+font_params1 = [text_string1, text_size1, font_type, "center", "center", font_spacing, font_direction, font_language, font_script];
+font_params2 = [text_string2, text_size2, font_type, "center", "center", font_spacing, font_direction, font_language, font_script];
 
 duck(font_params1, text_position1, font_params2, text_position2);
 
 module duck(font_params1, text_position1, font_params2, text_position2) {
-    difference()
-        {
-            import("Rubber_Duck.stl", convexity = 10);
-            rotate([0, 90, 00]) {
-                translate(text_position1) {
-                    rotate([0, 0, 90]) {
-                        linear_extrude(height = 10, convexity = 10)
-                            text(text = font_params1[0],
-                            size = font_params1[1],
-                            font = font_params1[2],
-                            halign = font_params1[3],
-                            valign = font_params1[4],
-                            spacing = font_params1[5],
-                            direction = font_params1[6],
-                            language = font_params1[7],
-                            script = font_params1[8]);
-                    }
-                }
-            }
-            rotate([0, -90, 0]) {
-                translate(text_position2) {
-                    rotate([0, 0, -90]) {
-                        linear_extrude(height = 10, convexity = 10)
-                            text(text = font_params2[0],
-                            size = font_params2[1],
-                            font = font_params2[2],
-                            halign = font_params2[3],
-                            valign = font_params2[4],
-                            spacing = font_params2[5],
-                            direction = font_params2[6],
-                            language = font_params2[7],
-                            script = font_params2[8]);
-                    }
-                }
-            }
+  difference() {
+    import("Rubber_Duck.stl", convexity = 10);
+    rotate([0, 90, 00]) {
+      translate(text_position1) {
+        rotate([0, 0, 90]) {
+          linear_extrude(height = 10, convexity = 10)
+            text(text = font_params1[0], size = font_params1[1], font = font_params1[2], halign = font_params1[3], valign = font_params1[4], spacing = font_params1[5], direction = font_params1[6], language = font_params1[7], script = font_params1[8]);
         }
+      }
+    }
+    rotate([0, -90, 0]) {
+      translate(text_position2) {
+        rotate([0, 0, -90]) {
+          linear_extrude(height = 10, convexity = 10)
+            text(text = font_params2[0], size = font_params2[1], font = font_params2[2], halign = font_params2[3], valign = font_params2[4], spacing = font_params2[5], direction = font_params2[6], language = font_params2[7], script = font_params2[8]);
+        }
+      }
+    }
+  }
 }

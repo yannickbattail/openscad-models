@@ -8,9 +8,12 @@ debugAxes();
 */
 
 module debugAxis() {
-  color("red") cube([1000, 1, 1]);
-  color("green") cube([1, 1000, 1]);
-  color("blue") cube([1, 1, 1000]);
+  color("red")
+    cube([1000, 1, 1]);
+  color("green")
+    cube([1, 1000, 1]);
+  color("blue")
+    cube([1, 1, 1000]);
 }
 
 module debugCollision(debug = false) {

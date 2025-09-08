@@ -11,21 +11,21 @@ $fn = 100;
 
 /* [Font] */
 // The generated text has an ascent (height above the baseline) of approximately the given value.
-font_size=0.2;  // [0:0.1:2]
+font_size = 0.2; // [0:0.1:2]
 // The name of the font that should be used. This can also include a style parameter
 font_type = "Liberation Mono:style=Regular";
 // The horizontal alignment for the text.
-font_halign="center"; // [left, center, right]
+font_halign = "center"; // [left, center, right]
 // The vertical alignment for the text.
-font_valign="center"; // [top, center, baseline, bottom]
+font_valign = "center"; // [top, center, baseline, bottom]
 // Factor to increase/decrease the character spacing. The default value of 1 results in the normal spacing for the font, giving a value greater than 1 causes the letters to be spaced further apart.
-font_spacing=1; // [0:0.1:2]
+font_spacing = 1; // [0:0.1:2]
 // Direction of the text flow.
-font_direction="ltr"; // [ltr:left-to-right, rtl:right-to-left, ttb:top-to-bottom, btt:bottom-to-top]
+font_direction = "ltr"; // [ltr:left-to-right, rtl:right-to-left, ttb:top-to-bottom, btt:bottom-to-top]
 // The language of the text
-font_language="en";
+font_language = "en";
 // The script of the text
-font_script="latin";
+font_script = "latin";
 
 /* [Faces] */
 // text on face 1 (top)
@@ -48,55 +48,50 @@ animation_rotation = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:$vpt;
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr; // animation rotate around the object
-$vpd = is_animated?200:$vpd;
+$vpt = is_animated ? [0, 0, 0] : $vpt;
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
+$vpd = is_animated ? 200 : $vpd;
 
 faces = [face_1, face_2, face_3, face_4, face_5, face_6];
-font_params=[font_size, font_type, font_halign, font_valign, font_spacing, font_direction, font_language, font_script];
+font_params = [font_size, font_type, font_halign, font_valign, font_spacing, font_direction, font_language, font_script];
 
-scale(10) dice(rounding, hole_size, faces, dice_color, face_color, font_params);
+scale(10)
+  dice(rounding, hole_size, faces, dice_color, face_color, font_params);
 module dice(rounding, hole_size, faces, dice_color, face_color, font_params) {
-    difference() {
-        color(dice_color) intersection() {
-            cube(1, center = true);
-            sphere(rounding);
-        }
-        every_faces=[
-                [0,   0, 0  ], // 1 top
-                [90,  0, 0  ], // 2 front
-                [90,  0, 90 ], // 3 right
-                [90,  0, -90], // 4 left
-                [-90, 0, 0  ], // 5 back
-                [180, 0, 0  ]  // 6 bottom
-            ];
-        color(face_color)
-        for (i = [0:len(every_faces)-1]) {
-            rotate(every_faces[i]) faceText(faces[i], font_params);
-        }
-    }
+  difference() {
+    color(dice_color)
+      intersection() {
+        cube(1, center = true);
+        sphere(rounding);
+      }
+    every_faces = [
+      [0, 0, 0], // 1 top
+      [90, 0, 0], // 2 front
+      [90, 0, 90], // 3 right
+      [90, 0, -90], // 4 left
+      [-90, 0, 0], // 5 back
+      [180, 0, 0] // 6 bottom
+    ];
+    color(face_color)
+      for(i = [0:len(every_faces) - 1]) {
+        rotate(every_faces[i])
+          faceText(faces[i], font_params);
+      }
+  }
 }
 
 module face() {
-    translate([0, 0, 0.60]) {
-        color("orange")
-       sphere(0.48);
-    }
+  translate([0, 0, 0.60]) {
+    color("orange")
+      sphere(0.48);
+  }
 }
 
 module faceText(letter, font_params) {
-    face();
-    color(face_color)
+  face();
+  color(face_color)
     translate([0, 0, hole_size]) {
-        linear_extrude(1)
-            text(text = letter,
-                size = font_params[0],
-                font = font_params[1],
-                halign = font_params[2],
-                valign = font_params[3],
-                spacing = font_params[4],
-                direction = font_params[5],
-                language = font_params[6],
-                script = font_params[7]);
+      linear_extrude(1)
+        text(text = letter, size = font_params[0], font = font_params[1], halign = font_params[2], valign = font_params[3], spacing = font_params[4], direction = font_params[5], language = font_params[6], script = font_params[7]);
     }
 }

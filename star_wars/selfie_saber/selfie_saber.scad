@@ -38,9 +38,9 @@ animation_rotation = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:[];
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
-$vpd = is_animated?700:[];
+$vpt = is_animated ? [0, 0, 0] : [];
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : []; // animation rotate around the object
+$vpd = is_animated ? 700 : [];
 
 phone = [phoneWidth, phoneThickness, phoneHeight];
 // constant: 1 inch in mm
@@ -215,7 +215,7 @@ module serratedWasher() {
   intersection() {
     step = 18;
     union() {
-      for (i = [0:step]) {
+      for(i = [0:step]) {
         rotate([i * 360 / step, 0, 0])
           translate([0, 0, -10]) {
             linear_extrude(11, scale = [0, 0]) {

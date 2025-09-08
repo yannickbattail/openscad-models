@@ -1,17 +1,17 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "graph": {
-            "part": "graph_steps",
-            "$vpt": "[20,0,5]",
-            "$vpr": "[90,0,0]",
-            "$vpd": "200"
-        },
-        "logo_animation": {
-            "part": "logo_animation",
-            "$vpt": "[-20,0,0]",
-            "$vpr": "[60,0,0]",
-            "$vpd": "300"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "graph": {
+      "part": "graph_steps",
+      "$vpt": "[20,0,5]",
+      "$vpr": "[90,0,0]",
+      "$vpd": "200"
+    },
+    "logo_animation": {
+      "part": "logo_animation",
+      "$vpt": "[-20,0,0]",
+      "$vpr": "[60,0,0]",
+      "$vpd": "300"
     }
+  }
 }

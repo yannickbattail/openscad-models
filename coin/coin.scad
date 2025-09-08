@@ -1,6 +1,6 @@
 // intersection() {
 //     cylinder(r=25, h=10);
-//translate([0,0,1]) 
+//translate([0,0,1])
 // resize([50,50,6]) {
 //     surface(file = "alpes.png", center = true, invert=false, convexity = 5);
 // }
@@ -14,5 +14,5 @@
 
 
 translate([0, 0, 0]) {
-    cylinder(r1 = 10, r2 = 8, h = 10, center = true);
+  cylinder(r1 = 10, r2 = 8, h = 10, center = true);
 }

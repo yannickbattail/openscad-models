@@ -1,21 +1,21 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "all": {
-            "part": "all",
-            "octo": true,
-            "withEstourballe": true
-        },
-        "cup": {
-            "part": "cup",
-            "octo": false
-        },
-        "cup_octo": {
-            "part": "cup",
-            "octo": true
-        },
-        "base": {
-            "part": "base"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "all": {
+      "part": "all",
+      "octo": true,
+      "withEstourballe": true
+    },
+    "cup": {
+      "part": "cup",
+      "octo": false
+    },
+    "cup_octo": {
+      "part": "cup",
+      "octo": true
+    },
+    "base": {
+      "part": "base"
     }
+  }
 }

@@ -1,17 +1,17 @@
 {
-    "parameterSets": {
-        "cube_num": {
-            "hole_size": "0.2",
-            "rounding": "0.69",
-            "dice_color": "yellow",
-            "face_color": "red",
-            "face_1": "1",
-            "face_2": "2",
-            "face_3": "3",
-            "face_4": "4",
-            "face_5": "5",
-            "face_6": "6"
-        }
-    },
-    "fileFormatVersion": "1"
+  "parameterSets": {
+    "cube_num": {
+      "hole_size": "0.2",
+      "rounding": "0.69",
+      "dice_color": "yellow",
+      "face_color": "red",
+      "face_1": "1",
+      "face_2": "2",
+      "face_3": "3",
+      "face_4": "4",
+      "face_5": "5",
+      "face_6": "6"
+    }
+  },
+  "fileFormatVersion": "1"
 }

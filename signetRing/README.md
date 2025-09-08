@@ -28,12 +28,14 @@ Font details
 - `font_style`: The font style that should be used: Regular, Bold, Italic, Bold Italic
 - `font_halign`: The horizontal alignment for the text: left, center, right
 - `font_valign`: The vertical alignment for the text: top, center, baseline, bottom
-- `font_spacing`: Factor to increase/decrease the character spacing. The default value of 1 results in the normal spacing for the font, giving a value greater than 1 causes the letters to be spaced further apart.
+- `font_spacing`: Factor to increase/decrease the character spacing. The default value of 1 results in the normal spacing for the font, giving a value
+  greater than 1 causes the letters to be spaced further apart.
 - `font_direction`: Direction of the text flow. [ltr:left-to-right, rtl:right-to-left, ttb:top-to-bottom, btt:bottom-to-top]
 - `font_language`: The language of the text
 - `font_script`: The script of the text
 
 Animation
+
 - `animation_rotation` : default false rotating animation
 
 ## Sources

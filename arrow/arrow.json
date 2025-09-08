@@ -1,37 +1,37 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "all_parts_50percent": {
-            "animation_rotation": "false",
-            "part": "all_parts",
-            "scalePercent": "50",
-            "thickness": "5"
-        },
-        "part1_50percent": {
-            "part": "part1",
-            "scalePercent": "50",
-            "thickness": "5"
-        },
-        "part2_50percent": {
-            "part": "part2",
-            "scalePercent": "50",
-            "thickness": "5"
-        },
-        "part3_50percent": {
-            "part": "part3",
-            "scalePercent": "50",
-            "thickness": "5"
-        },
-        "connector_50percent": {
-            "animation_rotation": "false",
-            "part": "connector",
-            "scalePercent": "50",
-            "thickness": "5"
-        },
-        "whole_20percent": {
-            "part": "whole",
-            "scalePercent": "20",
-            "thickness": "3"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "all_parts_50percent": {
+      "animation_rotation": "false",
+      "part": "all_parts",
+      "scalePercent": "50",
+      "thickness": "5"
+    },
+    "part1_50percent": {
+      "part": "part1",
+      "scalePercent": "50",
+      "thickness": "5"
+    },
+    "part2_50percent": {
+      "part": "part2",
+      "scalePercent": "50",
+      "thickness": "5"
+    },
+    "part3_50percent": {
+      "part": "part3",
+      "scalePercent": "50",
+      "thickness": "5"
+    },
+    "connector_50percent": {
+      "animation_rotation": "false",
+      "part": "connector",
+      "scalePercent": "50",
+      "thickness": "5"
+    },
+    "whole_20percent": {
+      "part": "whole",
+      "scalePercent": "20",
+      "thickness": "3"
     }
+  }
 }

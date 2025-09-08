@@ -19,14 +19,15 @@ debug = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:[];
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
-$vpd = is_animated?500:[];
+$vpt = is_animated ? [0, 0, 0] : [];
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : []; // animation rotate around the object
+$vpd = is_animated ? 500 : [];
 
 if (debug) {
   difference() {
     d20_mug();
-    translate([-10, -200, 0]) cube(200);
+    translate([-10, -200, 0])
+      cube(200);
   }
 } else {
   d20_mug();
@@ -60,7 +61,7 @@ module d20_mug() {
 module d20() {
   translate([0, 0, 45])
     // make the face 20 in front of you and face 1 in front of the others when holding the mug in the right hand
-    rotate([0, 60+180, -90])
+    rotate([0, 60 + 180, -90])
       scale(5.4)
         import("d20.stl");
 }

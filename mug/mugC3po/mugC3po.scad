@@ -19,43 +19,44 @@ debug = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:[];
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
-$vpd = is_animated?500:[];
+$vpt = is_animated ? [0, 0, 0] : [];
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : []; // animation rotate around the object
+$vpd = is_animated ? 500 : [];
 
 if (debug) {
-    difference() {
-        c3po_mug();
-        translate([-10, -200, 0]) cube(200);
-    }
-} else {
+  difference() {
     c3po_mug();
+    translate([-10, -200, 0])
+      cube(200);
+  }
+} else {
+  c3po_mug();
 }
 
 module c3po_mug() {
-    difference() {
-        union() {
-            c3po();
-            translate([58, 0, 66])
-                handle(120);
-        }
-        translate([0, 0, 30]) {
-            scale(1.01) {
-                if (debug) {
-                    #nutellaGlass(plain = true, nbBlock = numberOfBlock);
-                } else {
-                    nutellaGlass(plain = true, nbBlock = numberOfBlock);
-                }
-            }
-            translate([0, 0, 92 + 100 - 10])
-                cube(200, center = true);
-        }
+  difference() {
+    union() {
+      c3po();
+      translate([58, 0, 66])
+        handle(120);
     }
+    translate([0, 0, 30]) {
+      scale(1.01) {
+        if (debug) {
+          #nutellaGlass(plain = true, nbBlock = numberOfBlock);
+        } else {
+          nutellaGlass(plain = true, nbBlock = numberOfBlock);
+        }
+      }
+      translate([0, 0, 92 + 100 - 10])
+        cube(200, center = true);
+    }
+  }
 }
 
 module c3po() {
-    translate([10, 0, 0])
-        rotate([0, 0, -90])
-            scale(9.8)
-                import("C-3PO_head.stl");
+  translate([10, 0, 0])
+    rotate([0, 0, -90])
+      scale(9.8)
+        import("C-3PO_head.stl");
 }

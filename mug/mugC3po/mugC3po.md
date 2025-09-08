@@ -42,4 +42,5 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## keywords
 
-mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, c3po, droid, nutella, openscad, customizable, customizer
+mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, c3po, droid, nutella, openscad, customizable,
+customizer

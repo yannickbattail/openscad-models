@@ -19,42 +19,43 @@ debug = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:[];
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
-$vpd = is_animated?500:[];
+$vpt = is_animated ? [0, 0, 0] : [];
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : []; // animation rotate around the object
+$vpd = is_animated ? 500 : [];
 
 if (debug) {
-    difference() {
-        tonneau_mug();
-        translate([-10, -200, 0]) cube(200);
-    }
-} else {
+  difference() {
     tonneau_mug();
+    translate([-10, -200, 0])
+      cube(200);
+  }
+} else {
+  tonneau_mug();
 }
 
 module tonneau_mug() {
-    difference() {
-        union() {
-            tonneau();
-            translate([50, 0, 40])
-                bigHandle(80);
-        }
-        translate([0, 0, 5]) {
-            scale(1.01) {
-                if (debug) {
-                    #nutellaGlass(plain = true, nbBlock = numberOfBlock);
-                } else {
-                    nutellaGlass(plain = true, nbBlock = numberOfBlock);
-                }
-            }
-            translate([0, 0, 92 + 100 - 10])
-                cube(200, center = true);
-        }
+  difference() {
+    union() {
+      tonneau();
+      translate([50, 0, 40])
+        bigHandle(80);
     }
+    translate([0, 0, 5]) {
+      scale(1.01) {
+        if (debug) {
+          #nutellaGlass(plain = true, nbBlock = numberOfBlock);
+        } else {
+          nutellaGlass(plain = true, nbBlock = numberOfBlock);
+        }
+      }
+      translate([0, 0, 92 + 100 - 10])
+        cube(200, center = true);
+    }
+  }
 }
 
 module tonneau() {
-    scale([1, 1, 0.84])
-        translate([-127, -127, 0]) // center the model
-            import("cupbarrel.stl");
+  scale([1, 1, 0.84])
+    translate([-127, -127, 0]) // center the model
+      import("cupbarrel.stl");
 }

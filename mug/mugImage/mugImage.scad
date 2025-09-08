@@ -57,31 +57,14 @@ $fn = 100;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[0, 0, 0]:[];
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
-$vpd = is_animated?500:[];
+$vpt = is_animated ? [0, 0, 0] : [];
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : []; // animation rotate around the object
+$vpd = is_animated ? 500 : [];
 
-imageMap = object(
-  cat = image_cat,
-  cat_fur = image_cat_fur,
-  cat_profile = image_cat_profile,
-  cat_face = image_cat_face,
-  red_panda = image_red_panda,
-  werefox = image_werefox,
-  mountain = image_mountain,
-  moon = image_moon,
-  jedi_sith = image_jedi_sith,
-  solo_carbonite = image_solo_carbonite,
-  yoda = image_yoda,
-  mountain_lake = image_mountain_lake,
-  denver = image_denver,
-  christmas = image_christmas,
-  bicicletta = image_bicicletta,
-  lord_of_the_jedi_potter = image_lord_of_the_jedi_potter,
-  savoie = image_savoie
-);
+imageMap = object(cat = image_cat, cat_fur = image_cat_fur, cat_profile = image_cat_profile, cat_face = image_cat_face, red_panda = image_red_panda, werefox = image_werefox, mountain = image_mountain, moon = image_moon, jedi_sith = image_jedi_sith, solo_carbonite = image_solo_carbonite, yoda = image_yoda, mountain_lake = image_mountain_lake, denver = image_denver, christmas = image_christmas, bicicletta = image_bicicletta, lord_of_the_jedi_potter = image_lord_of_the_jedi_potter, savoie = image_savoie);
 
-function selectImage() = has_key(imageMap, part) ? imageMap[part]:assert(false, str("no such part: ", part));
+function selectImage() =
+  has_key(imageMap, part) ? imageMap[part] : assert (false, str("no such part: ", part));
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 
@@ -93,11 +76,10 @@ if (len(inlineImage) > 0) {
 
 epsi = 0.01; // epsilon
 
-rotate([0, 0, 180]) mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation,
-reliefMultiplier, imageData, partialModel, numberOfBlock, hasBigHandle);
+rotate([0, 0, 180])
+  mugImage(mugHeight, mugDiameter / 2, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultiplier, imageData, partialModel, numberOfBlock, hasBigHandle);
 
-module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultiplier,
-imageMatrix, partialModel = "all", numberOfBlock, hasBigHandle) {
+module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultiplier, imageMatrix, partialModel = "all", numberOfBlock, hasBigHandle) {
   difference() {
     render() // preview display nothing without this
       union() {
@@ -116,7 +98,7 @@ imageMatrix, partialModel = "all", numberOfBlock, hasBigHandle) {
     } else {
       translate([0, 0, mugThickness]) {
         cylinder(h = mugHeight - mugThickness + epsi, r = mugRadius - mugThickness);
-        // + epsi to prevent display bug
+      // + epsi to prevent display bug
       }
     }
   }

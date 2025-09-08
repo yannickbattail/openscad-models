@@ -1,6 +1,6 @@
 include <pipe1.scad>
 
-part="example"; // [example, paperclip, random_pipe, animation_length, animation_rotation, animation_angle, animation_radius_of_curvature]
+part = "example"; // [example, paperclip, random_pipe, animation_length, animation_rotation, animation_angle, animation_radius_of_curvature]
 
 /* [Animation] */
 // rotating animation
@@ -11,78 +11,81 @@ animation_var = false;
 $fn = 100;
 
 /* for animation */
-$vpt = animation_rotation ? [0, 0, 0]         : (animation_var? [0, 0, 180] :[]);
-$vpr = animation_rotation ? [70, 0, 360 * $t] : (animation_var? [120, 0, 60]:[]);
-$vpd = animation_rotation ? 2000              : (animation_var? 1000        :[]);
+$vpt = animation_rotation ? [0, 0, 0] : (animation_var ? [0, 0, 180] : []);
+$vpr = animation_rotation ? [70, 0, 360 * $t] : (animation_var ? [120, 0, 60] : []);
+$vpd = animation_rotation ? 2000 : (animation_var ? 1000 : []);
 
 if (part == "example") {
-    example();
+  example();
 } else if (part == "animation_length") {
-    animation(length=$t*100+100);
+  animation(length = $t * 100 + 100);
 } else if (part == "animation_rotation") {
-    animation(rotation=$t*180);
+  animation(rotation = $t * 180);
 } else if (part == "animation_angle") {
-    animation(angle=$t*120);
+  animation(angle = $t * 120);
 } else if (part == "animation_radius_of_curvature") {
-    animation(radius_of_curvature=$t*60);
+  animation(radius_of_curvature = $t * 60);
 } else if (part == "paperclip") {
-    paperclip();
+  paperclip();
 } else if (part == "random_pipe") {
-    random_pipe();
+  random_pipe();
 } else {
-    example();
+  example();
 }
 
-module animation(length=200,rotation=0,angle=90,radius_of_curvature=10) {
-    //   outer_radius, inner_radius, list of segments
-    pipe(10          , 7           , [
-            //length,rotation,angle,radius_of_curvature 
-            [ length,rotation,angle,radius_of_curvature],
-            [100    , 0      , 60  , 15],
-        ]);
+module animation(length = 200, rotation = 0, angle = 90, radius_of_curvature = 10) {
+  //   outer_radius, inner_radius, list of segments
+  pipe(10, 7, [
+    //length,rotation,angle,radius_of_curvature
+    [length, rotation, angle, radius_of_curvature],
+    [100, 0, 60, 15],
+  ]);
 }
 
 module example() {
-    //   outer_radius, inner_radius, list of segments
-    pipe(10          , 7           , [
-            //length,rotation,angle,radius_of_curvature 
-            [200    , 0      , 90  , 10],
-            [120    , 90     , 120 , 20],
-            [100    , 0      , 120 , 20],
-            [60     , 0      , 0   , 20]
-        ]);
+  //   outer_radius, inner_radius, list of segments
+  pipe(10, 7, [
+    //length,rotation,angle,radius_of_curvature
+    [200, 0, 90, 10],
+    [120, 90, 120, 20],
+    [100, 0, 120, 20],
+    [60, 0, 0, 20]
+  ]);
 
-    color("white")
-        rotate([180, 0, 0])
-            //   outer_radius, inner_radius, list of segments
-            pipe(14          , 10          , [
-                    //length,rotation,angle,radius_of_curvature 
-                    [60     , 180    , 90  , 0],
-                    [60     , 90     , 0   , 20]
-                ]);
+  color("white")
+    rotate([180, 0, 0])
+      //   outer_radius, inner_radius, list of segments
+      pipe(14, 10, [
+        //length,rotation,angle,radius_of_curvature
+        [60, 180, 90, 0],
+        [60, 90, 0, 20]
+      ]);
 
 }
 
 // example paperclip
 module paperclip() {
-    color("gray")
-        translate([100, 0, 60])
-            //   outer_radius, inner_radius, list of segments
-            pipe(10          , 9           , [
-                    //length,rotation,angle,radius_of_curvature 
-                    [500    , 0      , 90  , 70],
-                    [140    , 0      , 90  , 70],
-                    [550    , 10     , 90  , 30],
-                    [120    , 0      , 90  , 30],
-                    [400    , 10     , 90  , 50],
-                    [100    , 0      , 90  , 50],
-                    [360    , 10     , 0   , 50],
-                ]);
+  color("gray")
+    translate([100, 0, 60])
+      //   outer_radius, inner_radius, list of segments
+      pipe(10, 9, [
+        //length,rotation,angle,radius_of_curvature
+        [500, 0, 90, 70],
+        [140, 0, 90, 70],
+        [550, 10, 90, 30],
+        [120, 0, 90, 30],
+        [400, 10, 90, 50],
+        [100, 0, 90, 50],
+        [360, 10, 0, 50],
+      ]);
 }
 
 module random_pipe() {
-    //segments = [ for (a = [0 : 400]) [ 50, rands(0, 360, 1)[0], 90, 10 ] ];
-    segments = [for (a = [0 : 400]) [rands(40, 100, 1)[0], rands(0, 360, 1)[0], rands(30, 160, 1)[0], 0]];
-    //echo(str("segments = ", segments));
-    pipe(10, 9, segments);
+  //segments = [ for (a = [0 : 400]) [ 50, rands(0, 360, 1)[0], 90, 10 ] ];
+  segments = [
+    for (a = [0:400])
+      [rands(40, 100, 1)[0], rands(0, 360, 1)[0], rands(30, 160, 1)[0], 0]
+  ];
+  //echo(str("segments = ", segments));
+  pipe(10, 9, segments);
 }

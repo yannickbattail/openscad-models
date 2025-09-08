@@ -47,7 +47,8 @@ module Trefoil_knot() {
 // https://en.wikipedia.org/wiki/Lemniscate_of_Bernoulli
 // https://en.wikipedia.org/wiki/Trefoil_knot
 
-function trefoil_knot(angle) = [size / 2 * (sin(angle) + 2 * sin(2 * angle)), size / 2 * (cos(angle) - 2 * cos(2 * angle)), size / 2 * (-sin(3 * angle))];
+function trefoil_knot(angle) =
+  [size / 2 * (sin(angle) + 2 * sin(2 * angle)), size / 2 * (cos(angle) - 2 * cos(2 * angle)), size / 2 * (-sin(3 * angle))];
 
 
 module dot(angle) {

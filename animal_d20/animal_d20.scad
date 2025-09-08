@@ -9,7 +9,7 @@ radiusFix = 0.04; // [0.01:0.01:0.2]
 
 /* [Font] */
 // The generated text has an ascent (height above the baseline) of approximately the given value.
-font_size = 0.6;  // [0:0.1:2]
+font_size = 0.6; // [0:0.1:2]
 // The name of the font that should be used. This can also include a style parameter
 font_type = "Liberation Mono:style=Regular";
 // The horizontal alignment for the text.
@@ -60,27 +60,33 @@ animals = import("animals_center_of_gravity.json");
 dice_animal(part, fixation_diameter, faces, font_params);
 
 function toInt(str) =
-    let(d = [for (s = str) ord(s) - 48], l = len(d) - 1)
-        [for (i = 0, a = d[i];i <= l;i = i + 1, a = 10 * a + d[i]) a][l];
+  let (d = [
+    for (s = str)
+      ord(s) - 48
+  ], l = len(d) - 1)
+    [
+      for (i = 0, a = d[i];i <= l;i = i + 1, a = 10 * a + d[i])
+        a
+    ][l];
 
 module dice_animal(animalNumber = 0, fixation_diameter, faces, font_params) {
-    dice();
-    animalInt = is_string(animalNumber) ? toInt(animalNumber) : animalNumber;
-    animalConfig = animals[animalInt];
-    //echo("animalConfig ", animalInt, animalConfig);
-    assert(!is_undef(animalConfig), "animalConfig is null");
-    color("red")
-        animalModel(animalConfig);
+  dice();
+  animalInt = is_string(animalNumber) ? toInt(animalNumber) : animalNumber;
+  animalConfig = animals[animalInt];
+  //echo("animalConfig ", animalInt, animalConfig);
+  assert(!is_undef(animalConfig), "animalConfig is null");
+  color("red")
+    animalModel(animalConfig);
 }
 
 module dice() {
-    scale(50)
-        icosahedron();
+  scale(50)
+    icosahedron();
 }
 
 module animalModel(animalConfig) {
-    scale([animalConfig.scale, animalConfig.scale, animalConfig.scale])
-        rotate(animalConfig.rotation)
-            translate(-animalConfig.center_of_gravity)
-                import(animalConfig.filename);
+  scale([animalConfig.scale, animalConfig.scale, animalConfig.scale])
+    rotate(animalConfig.rotation)
+      translate(-animalConfig.center_of_gravity)
+        import(animalConfig.filename);
 }

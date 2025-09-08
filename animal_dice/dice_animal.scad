@@ -9,7 +9,7 @@ fixation_tolerence = 0.2; // [0:0.1:2]
 
 /* [Font] */
 // The generated text has an ascent (height above the baseline) of approximately the given value.
-font_size = 10;  // [0:0.1:2]
+font_size = 10; // [0:0.1:2]
 // The name of the font that should be used. This can also include a style parameter
 font_type = "Arial";
 // The horizontal alignment for the text.
@@ -53,7 +53,8 @@ $vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
 $vpd = animation_rotation ? 300 : [];
 
-use <../color_hsv.scad>;
+use <../color_hsv.scad>
+;
 animals = import("animals_center_of_gravity.json");
 
 if (part == "whole") {
@@ -69,24 +70,29 @@ if (part == "whole") {
     fixation(fixation_diameter + fixation_tolerence);
   }
 } else if (part == "all_edges") {
-  edges = ["edge1_2", "edge1_3", "edge1_4", "edge1_5", "edge6_2", "edge6_3", "edge6_4", "edge6_5", "edge2_3", "edge2_4",
-    "edge3_5", "edge4_5"];
-  for (i = [0: len(edges)]) {
+  edges = ["edge1_2", "edge1_3", "edge1_4", "edge1_5", "edge6_2", "edge6_3", "edge6_4", "edge6_5", "edge2_3", "edge2_4", "edge3_5", "edge4_5"];
+  for(i = [0:len(edges)]) {
     diceEdge(fixation_diameter + fixation_tolerence, faces, font_params, getEdge(edges[i]), hsv(i / len(edges)));
   }
-} else {// edgeX_X
+} else { // edgeX_X
   diceEdge(fixation_diameter + fixation_tolerence, faces, font_params, getEdge(part), "yellow");
 }
 
 function toInt(str) =
-let(d = [for (s = str) ord(s) - 48], l = len(d) - 1)
-  [for (i = 0, a = d[i];i <= l;i = i + 1, a = 10 * a + d[i]) a][l];
+  let (d = [
+    for (s = str)
+      ord(s) - 48
+  ], l = len(d) - 1)
+    [
+      for (i = 0, a = d[i];i <= l;i = i + 1, a = 10 * a + d[i])
+        a
+    ][l];
 
 module dice_animal(animalNumber, fixation_diameter, faces, font_params) {
   dice(faces, font_params);
   fixation(fixation_diameter);
   getModel(animalNumber, fixation_diameter, faces, font_params);
-  // cube(77, center=true); // containing cube
+// cube(77, center=true); // containing cube
 }
 
 module getModel(animalNumber, fixation_diameter, faces, font_params) {
@@ -106,21 +112,11 @@ module animalModel(animalConfig) {
 }
 
 function getEdge(edgeName) =
-  (edgeName == "edge1_3") ? [0, 0, 0]:
-    (edgeName == "edge1_5") ? [0, 0, 90]:
-      (edgeName == "edge1_4") ? [0, 0, 180]:
-        (edgeName == "edge1_2") ? [0, 0, 270]:
+  (edgeName == "edge1_3") ? [0, 0, 0] : (edgeName == "edge1_5") ? [0, 0, 90] : (edgeName == "edge1_4") ? [0, 0, 180] : (edgeName == "edge1_2") ? [0, 0, 270] : 
 
-          (edgeName == "edge6_3") ? [0, 90, 0]:
-            (edgeName == "edge6_5") ? [0, 90, 90]:
-              (edgeName == "edge6_4") ? [0, 90, 180]:
-                (edgeName == "edge6_2") ? [0, 90, 270]:
+  (edgeName == "edge6_3") ? [0, 90, 0] : (edgeName == "edge6_5") ? [0, 90, 90] : (edgeName == "edge6_4") ? [0, 90, 180] : (edgeName == "edge6_2") ? [0, 90, 270] : 
 
-                  (edgeName == "edge2_3") ? [90, 0, 0]:
-                    (edgeName == "edge3_5") ? [90, 0, 90]:
-                      (edgeName == "edge4_5") ? [90, 0, 180]:
-                        (edgeName == "edge2_4") ? [90, 0, 270]:
-                          [];
+  (edgeName == "edge2_3") ? [90, 0, 0] : (edgeName == "edge3_5") ? [90, 0, 90] : (edgeName == "edge4_5") ? [90, 0, 180] : (edgeName == "edge2_4") ? [90, 0, 270] : [];
 
 module diceEdge(fixation_diameter, faces, font_params, edge, color) {
   color(color)
@@ -161,16 +157,22 @@ module dice(faces, font_params) {
 }
 
 module numberFaces(numberText, font_params) {
-  rotate([0, 0, 0]) numbers(numberText[0], font_params); // 1
-  rotate([180, 0, 0]) numbers(numberText[5], font_params); // 6
-  rotate([90, 0, 0]) numbers(numberText[1], font_params); // 2
-  rotate([-90, 0, 0]) numbers(numberText[4], font_params); // 5
-  rotate([90, 0, 90]) numbers(numberText[2], font_params); // 3
-  rotate([90, 0, -90]) numbers(numberText[3], font_params); // 4
+  rotate([0, 0, 0])
+    numbers(numberText[0], font_params); // 1
+  rotate([180, 0, 0])
+    numbers(numberText[5], font_params); // 6
+  rotate([90, 0, 0])
+    numbers(numberText[1], font_params); // 2
+  rotate([-90, 0, 0])
+    numbers(numberText[4], font_params); // 5
+  rotate([90, 0, 90])
+    numbers(numberText[2], font_params); // 3
+  rotate([90, 0, -90])
+    numbers(numberText[3], font_params); // 4
 }
 
 module numbers(number, font_params) {
-  for (i = [0:4]) {
+  for(i = [0:4]) {
     rotate([46, 0, 45 + 90 * i])
       translate([0, 0, 49.5])
         number(number, font_params);
@@ -179,20 +181,12 @@ module numbers(number, font_params) {
 
 module number(number, font_params) {
   linear_extrude(10)
-    text(text = number,
-    size = font_params[0],
-    font = font_params[1],
-    halign = font_params[2],
-    valign = font_params[3],
-    spacing = font_params[4],
-    direction = font_params[5],
-    language = font_params[6],
-    script = font_params[7]);
+    text(text = number, size = font_params[0], font = font_params[1], halign = font_params[2], valign = font_params[3], spacing = font_params[4], direction = font_params[5], language = font_params[6], script = font_params[7]);
 }
 
 module fixation(fixation_diameter) {
   color("blue") {
-    for (i = [0:4]) {
+    for(i = [0:4]) {
       rotate([55, 0, 45 + 90 * i])
         cylinder(h = 95, d = fixation_diameter, center = true);
     }

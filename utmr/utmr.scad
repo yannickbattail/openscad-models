@@ -1,4 +1,3 @@
-
 /* [text] */
 line0 = "line0";
 line1 = "line1";
@@ -14,9 +13,9 @@ animation_rotation = false;
 
 /* [Hidden] */
 is_animated = animation_rotation;
-$vpt = is_animated?[50, 30, 0]:$vpt;
-$vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr;  // animation rotate around the object
-$vpd = is_animated?400:$vpd;
+$vpt = is_animated ? [50, 30, 0] : $vpt;
+$vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
+$vpd = is_animated ? 400 : $vpd;
 
 award([line0, line1, line2]);
 

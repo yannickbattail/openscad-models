@@ -60,7 +60,7 @@ module estourballe(ballDiameter, thickness) {
 
 module halfSphereBottom(ballDiameter, thickness) {
     color("white")
-        translate([0, 0, -0.01])
+        translate([0, 0, - 0.01])
             difference() {
                 sphere(d = ballDiameter);
                 translate([0, 0, ballDiameter / 2 + 1])

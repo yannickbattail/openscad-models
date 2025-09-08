@@ -9,7 +9,7 @@
             "mugThickness": "4",
             "part": "cat",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "cat_fur": {
@@ -20,7 +20,7 @@
             "mugThickness": "4",
             "part": "cat_fur",
             "partialModel": "all",
-            "reliefMultipier": "1",
+            "reliefMultiplier": "1",
             "withNutellaGlass": "true"
         },
         "cat_profile": {
@@ -31,7 +31,7 @@
             "mugThickness": "4",
             "part": "cat_profile",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "cat_face": {
@@ -42,7 +42,7 @@
             "mugThickness": "4",
             "part": "cat_face",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "red_panda": {
@@ -53,7 +53,7 @@
             "mugThickness": "4",
             "part": "red_panda",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "werefox": {
@@ -64,7 +64,7 @@
             "mugThickness": "4",
             "part": "werefox",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "mountain": {
@@ -75,7 +75,7 @@
             "mugThickness": "4",
             "part": "mountain",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "moon": {
@@ -86,7 +86,7 @@
             "mugThickness": "4",
             "part": "moon",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "jedi_sith": {
@@ -97,7 +97,7 @@
             "mugThickness": "4",
             "part": "jedi_sith",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "yoda": {
@@ -108,7 +108,7 @@
             "mugThickness": "4",
             "part": "yoda",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "solo_carbonite": {
@@ -119,7 +119,7 @@
             "mugThickness": "4",
             "part": "solo_carbonite",
             "partialModel": "all",
-            "reliefMultipier": "5",
+            "reliefMultiplier": "5",
             "withNutellaGlass": "true"
         },
         "mountain_lake": {
@@ -131,7 +131,7 @@
             "numberOfBlock": "4",
             "part": "mountain_lake",
             "partialModel": "all",
-            "reliefMultipier": "1",
+            "reliefMultiplier": "1",
             "withNutellaGlass": "true"
         },
         "denver": {
@@ -143,7 +143,7 @@
             "numberOfBlock": "4",
             "part": "denver",
             "partialModel": "all",
-            "reliefMultipier": "3",
+            "reliefMultiplier": "3",
             "withNutellaGlass": "true"
         },
         "christmas": {
@@ -155,7 +155,7 @@
             "numberOfBlock": "4",
             "part": "christmas",
             "partialModel": "all",
-            "reliefMultipier": "2",
+            "reliefMultiplier": "2",
             "withNutellaGlass": "true"
         },
         "bicicletta": {
@@ -167,7 +167,7 @@
             "numberOfBlock": "4",
             "part": "bicicletta",
             "partialModel": "all",
-            "reliefMultipier": "2",
+            "reliefMultiplier": "2",
             "withNutellaGlass": "true"
         },
         "lord_of_the_jedi_potter": {
@@ -179,7 +179,7 @@
             "numberOfBlock": "3",
             "part": "lord_of_the_jedi_potter",
             "partialModel": "all",
-            "reliefMultipier": "1",
+            "reliefMultiplier": "1",
             "withNutellaGlass": "true"
         }
     }

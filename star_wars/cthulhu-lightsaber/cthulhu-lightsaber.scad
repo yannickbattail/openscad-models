@@ -1,13 +1,12 @@
-
 // part to generate
-part = "ball"; // [all, ball, stick]
+part = "all"; // [all, handle, fundation]
 
-// size of the model
-size=50; // [10:5:100]
+// looseCoef
+looseCoef = 0.6; // [0.1:0.1:2]
 
 /* [Animation] */
 // resolution
-$fn=10;
+$fn = 100;
 
 /* [Animation] */
 // rotating animation
@@ -19,24 +18,73 @@ $vpt = is_animated?[0, 0, 0]:$vpt;
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr;  // animation rotate around the object
 $vpd = is_animated?200:$vpd;
 
-if (part == "ball") {
-    ball(size);
-} else if (part == "stick") {
-    stick(size);
+EPSI = 0.01; // constant epsilon for the difference operation
+
+if (part == "handle") {
+  handle();
+} else if (part == "fundation") {
+  fundation();
 } else {
-    ball(size);
-    stick(size);
+  handle();
+  fundation();
+  saberBlade();
 }
 
-module stick(size) {
-    color("green") rotate([0, 90, 0]) cylinder(d=size/2, h=size * 1.25, center=true);
-}
-
-module ball(size) {
+module handle() {
+  color("DarkGreen")
     difference() {
-        sphere(d=size);
-        cylinder(d=size/2, h=size * 1.25, center=true);
-        #rotate([90, 0, 0]) cylinder(d=size/2, h=size * 1.25, center=true);
-        stick(size);
+      wand();
+      fundationHole();
+      saberBlade();
     }
+}
+
+module saberBlade() {
+  bladeLength = 800;
+  bladeDiameter = 27;
+  color("red", 0.5) {
+    cylinder(h = bladeLength, d = bladeDiameter);
+    translate([0, 0, bladeLength])
+      sphere(d = bladeDiameter);
+  }
+}
+
+module wand() {
+  translate([0, 0, -100])
+    scale(30)
+      rotate([180, 0, 0]) {
+        import("./model/gen/cthulhu-wand_manche.3mf");
+        import("./model/gen/cthulhu-wand_partie1.3mf");
+        import("./model/gen/cthulhu-wand_partie2.3mf");
+        import("./model/gen/cthulhu-wand_partie3.3mf");
+      }
+}
+
+module fundation() {
+  color("blue")
+    difference() {
+      fundationHole(true);
+      bladeHole();
+    }
+}
+
+module fundation() {
+  color("blue")
+    difference() {
+      fundationHole(true);
+      bladeHole();
+    }
+}
+
+module fundationHole(fundation = false) {
+  d = 27;
+  diameter = fundation?d:d + looseCoef;
+  translate([0, 0, -206])
+    cylinder(h = 206, d = diameter);
+}
+
+module bladeHole() {
+  cylinder(h = 206, d1 = 25, d2 = 25);
+  translate([0, 0, -206 - EPSI])
+    cylinder(h = 206 + 2 * EPSI, d1 = 26.16, d2 = 25);
 }

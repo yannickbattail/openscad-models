@@ -1,4 +1,7 @@
 
+
+part="all"; // [all, phoneHolder, hook]
+
 // saber blade diameter in inch
 saberDiameterInch = 1; // [0.5:0.025:2]
 
@@ -22,17 +25,26 @@ displaySaber = true;
 phoneAngle = 30; // [0:90]
 
 /* [Hidden] */
-phone = [phoneWidth, phoneThickness, phoneHeight];
 $fn = 50;
+
+phone = [phoneWidth, phoneThickness, phoneHeight];
 // constant: 1 inch in mm
 INCH = 25.4; // [25.4]
 epsi = 0.01;
 
 saberDiameter = saberDiameterInch * INCH;
-hook(saberDiameter, tolerance);
-screw1(saberDiameter);
-if (displaySaber)
+
+if (part == "hook" || part == "all") {
+    hook(saberDiameter, tolerance);
+}
+
+if (part == "phoneHolder" || part == "all") {
+    holder();
+}
+
+if (displaySaber) {
     saber(saberDiameter);
+}
 
 module saber(saberDiameter) {
     translate([0, - 300, 0]) {
@@ -62,6 +74,7 @@ module hook(saberDiameter, tolerance) {
         translate([saberDiameter / 2 + 10, 0, 0])
             cylinder(d = 5 + tolerance, h = 100, center = true);
     }
+    screw1(saberDiameter);
     fix(saberDiameter);
 }
 
@@ -73,16 +86,18 @@ module screw1(saberDiameter) {
 }
 
 module screw(length) {
+    if (part == "all") {
         cylinder(d = 5, h = length, center = true);
-
-        translate([0, 0, length/2])
+    
+        translate([0, 0, length / 2])
             cylinder(d = 10, h = 5, $fn = 6);
-
+    
         translate([0, 0, - length])
             difference() {
                 cylinder(d = 10, h = 5, $fn = 6);
                 cylinder(d = 5, h = 100, center = true);
             }
+    }
 }
 
 module fix(saberDiameter) {
@@ -104,6 +119,11 @@ module fix(saberDiameter) {
         translate([0, 0, 30])
             rotate([0, 90, 0])
                 screw(30);
+    }
+}
+
+module holder() {
+    translate([0, 0, saberDiameter / 2 + 5]) {
         translate([0, 0, 30])
             rotate([- phoneAngle, 0, 0])
                 phoneHolder();

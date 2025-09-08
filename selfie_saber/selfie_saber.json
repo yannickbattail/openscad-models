@@ -23,6 +23,7 @@
         },
         "all_with_saber": {
             "displaySaber": "true",
+            "displayPhone": "true",
             "part": "all"
         }
     }

@@ -1,22 +1,36 @@
 {
-  "fileFormatVersion": "1",
-  "parameterSets": {
-    "templateNutellaGlass": {
-      "debug": "false",
-      "part": "nutellaGlass"
-    },
-    "templateNutellaGlassHighRes": {
-      "$fn": "200",
-      "debug": "false",
-      "part": "nutellaGlass"
-    },
-    "emptyNutellaGlass": {
-      "debug": "false",
-      "part": "emptyNutellaGlass"
-    },
-    "debugEmptyNutellaGlass": {
-      "debug": "true",
-      "part": "emptyNutellaGlass"
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "templateNutellaWithoutBlock": {
+            "plain": "true",
+            "numberOfBlock": "0"
+        },
+        "templateNutellaWith3Blocks": {
+            "plain": "true",
+            "numberOfBlock": "3"
+        },
+        "templateNutellaWith4Blocks": {
+            "plain": "true",
+            "numberOfBlock": "4"
+        },
+        "templateNutellaWith5Blocks": {
+            "plain": "true",
+            "numberOfBlock": "5"
+        },
+        "templateNutellaWith6Blocks": {
+            "plain": "true",
+            "numberOfBlock": "6"
+        },
+        "nutellaGlass": {
+            "plain": "false",
+            "thickness": "2",
+            "numberOfBlock": "0"
+        },
+        "debugEmptyNutellaGlass": {
+            "plain": "false",
+            "thickness": "2",
+            "numberOfBlock": "6",
+            "debug": "true"
+        }
     }
-  }
 }

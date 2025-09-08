@@ -1,10 +1,17 @@
-part = "nutellaGlass"; // [nutellaGlass, emptyNutellaGlass]
+// plain (template for making mug or cup) or empty (the glass),
+plain = false;
+
+// Number of block
+numberOfBlock = 0; // [0:none, 3:3, 4:4, 5:5, 6:6]
+
+// thickness of the glass
+thickness=2; // [0.7:0.1:4]
 
 /* [Animation] */
 // rotating animation
 animation_rotation = false;
 
-$fn = 100;
+$fn = 200;
 
 // cut the glass in quarter
 debug = false;
@@ -17,24 +24,34 @@ $vpd = is_animated?500:[];
 
 if (debug) {
     difference() {
-        emptyNutellaGlass(part == "emptyNutellaGlass");
+        nutellaGlass(plain, numberOfBlock, thickness);
         translate([0, - 200, - 0.1]) cube(200);
     }
 } else {
-    emptyNutellaGlass(part == "emptyNutellaGlass");
+    nutellaGlass(plain, numberOfBlock, thickness);
 }
 
-module nutellaGlass(empty = false) {
+module nutellaGlass(plain = false, nbBlock = 0, thickness = 1.8) {
     echo("nutellaGlass: total height 92");
     echo("nutellaGlass: max diameter 73.5");
-    if (empty) {
-        emptyNutellaGlass();
+    if (plain) {
+        plainNutellaGlassWithBlock(nbBlock);
     } else {
-        fullNutellaGlass();
+        emptyNutellaGlass(nbBlock, thickness);
     }
 }
 
-module fullNutellaGlass() {
+module emptyNutellaGlass(nbBlock, thickness) {
+    difference() {
+        plainNutellaGlassWithBlock(nbBlock);
+        scaleInside = (73.5-thickness*2)/73.5;
+        translate([0, 0, thickness*3])
+            scale(scaleInside)
+                plainNutellaGlass();
+    }
+}
+
+module plainNutellaGlass() {
     translate([0, 0, 25])
         difference() {
             union() {
@@ -46,11 +63,18 @@ module fullNutellaGlass() {
         }
 }
 
-module emptyNutellaGlass() {
+module plainNutellaGlassWithBlock(nbBlock) {
+    scale1 = (73.5-1)/73.5;
+    scale([scale1,scale1,]) plainNutellaGlass();
+    angle = 360/nbBlock;
     difference() {
-        fullNutellaGlass();
-        translate([0, 0, 5])
-            scale(0.95)
-                fullNutellaGlass();
+        plainNutellaGlass();
+        if (nbBlock) {
+            for (i = [0:nbBlock - 1]) {
+                rotate([0, 0, angle * i])
+                    translate([0, 0, 0])
+                        cube([80, 1, 100]);
+            }
+        }
     }
 }

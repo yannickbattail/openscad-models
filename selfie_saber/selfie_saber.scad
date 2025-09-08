@@ -1,7 +1,9 @@
-include <BOSL/constants.scad>
-use <BOSL/threading.scad>
+include <../BOSL/constants.scad>
+use <../BOSL/threading.scad>
+//include <BOSL/constants.scad>
+//use <BOSL/threading.scad>
 
-part="all"; // [all, phoneHolder, hook, screw1, screw2]
+part="all"; // [all, phoneHolder, hook, screw1, screw2, serratedWasher]
 
 // saber blade diameter in inch
 saberDiameterInch = 1; // [0.5:0.025:2]
@@ -48,6 +50,8 @@ if (part == "all") {
     screw1(saberDiameter);
 } else if (part == "screw2") {
     screw2();
+} else if (part == "serratedWasher") {
+    serratedWashers();
 }
 
 if (displaySaber) {
@@ -163,5 +167,33 @@ module phoneHolder() {
                 translate([0, - f - 1, f])
                     cube(phone - [f, f, f], center = true);
             }
+    }
+}
+
+module serratedWashers() {
+    rotate([0,-90,0])
+    difference() {
+        serratedWasher();
+        rotate([0,90,0])
+            cylinder(d=5 + 1, h=2, $fn=36);
+    }
+}
+
+module serratedWasher() {
+    intersection() {
+        step = 36;
+        union() {
+            for(i = [0:step]) {
+                rotate([i * 360 / step, 0, 0])
+                    translate([0, 0, -10]) {
+                        linear_extrude(11, scale = [0, 0]) {
+                            rotate([0, 0, 45])
+                                square(1.5, center = true);
+                        }
+                    }
+            }
+        }
+        rotate([0, 90, 0])
+            cylinder(r = 10, h = 2, $fn = step * 2);
     }
 }

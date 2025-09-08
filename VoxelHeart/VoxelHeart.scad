@@ -1,16 +1,16 @@
-// size of a voxel and so then number of voxels, it takes an exponential time to process. look at the console for "Number of voxel" (values lower than 0.03 will cause an error)
+// Size of a voxel and so then number of voxels. It takes an exponential time to process. Look at the console for "Number of voxel". (value lower than 0.03 will cause an error)
 resolution=0.05; // [0.02:0.01:0.1]
 
-// use cube or sphere as voxels, using sphere takes a lots of time
+// Use sphere or cube as voxels. Using sphere takes a lot of time, check the value of $fn for better rendering time.
 use_sphere=false;
 
-// do a hull() on all voxels, takes a lots of time. I looks smoother but it make the 2 bumps of the heart disapear.
+// Do a hull() on all voxels. It takes a lot of time. It looks smoother but it makes the 2 bumps of the heart disappear.
 hull_that=false;
 
-// another design
+// Another design design of the heart using the second equation.
 alternative_design=false;
 
-// $fn, when use_sphere=true . values greater than 20 will will take a lot of time
+// when use_sphere=true , values greater than 20 will will take a lot of time.
 $fn=10;
 
 /* [Animation] */

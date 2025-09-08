@@ -9,13 +9,12 @@ Lightsaber with the handle of an Opinel knife.
 ## How to print it
 
 Parts:
-- fundationAndVirole: rotate 180° on the X axis (virole on bottom), and you dont need to add supports.
+
+- fundationAndVirole: rotate 180° on the X axis (virole on bottom), and you don't need to add supports.
 - opinel: add supports bloquer on the 2 holes of the handle, they are useless, and it will save you some time and some filament.
 - the blade by [3dprintingworld](https://thangs.com/3dprintingworld) available
-on [thang](https://thangs.com/designer/3dprintingworld/3d-model/Collapsing%20Lightsaber-23595) or
-on [thingiverse](https://www.thingiverse.com/thing:3606120).
-
-
+  on [thang](https://thangs.com/designer/3dprintingworld/3d-model/Collapsing%20Lightsaber-23595) or
+  on [thingiverse](https://www.thingiverse.com/thing:3606120).
 
 ## Customizable variables
 
@@ -48,4 +47,4 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## keywords
 
-Opinel, lightsaber, saber, sword, star_wars, openscad, customizable, customizer
+Opinel, lightsaber, saber, sword, star wars, openscad, customizable, customizer

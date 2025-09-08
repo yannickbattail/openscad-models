@@ -17,7 +17,7 @@ animation_rotation = false;
 is_animated = animation_rotation;
 $vpt = is_animated?[0, 0, 0]:$vpt;
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:$vpr;  // animation rotate around the object
-$vpd = is_animated?200:$vpd;
+$vpd = is_animated?1000:$vpd;
 
 EPSI = 0.01; // constant epsilon for the difference operation
 

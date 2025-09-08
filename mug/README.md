@@ -61,7 +61,7 @@ Grogu (baby yoda) mug that uses nutella glass (200g size).
 - `nutellaGlassScale`: nutella glass scale: grow nutella glass to better fit in
 - `debug`: cut the mug in quarter and display the nutella glass
 
-## nutella glass
+## nutella glass template
 
 It uses a nutella 200g.
 
@@ -79,7 +79,7 @@ licence GPL
 
 mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, baby yoda, grogu, nutella
 
-# nutella glass template
+# nutella glass
 
 Template of nutella glass (200g size).
 

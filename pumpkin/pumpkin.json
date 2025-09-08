@@ -1,26 +1,30 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "withoutPumkin": {
-            "pumkinOnHandle": "false",
-            "seed": "1",
-            "slices": "10"
-        },
-        "withPumkin": {
-            "pumkinOnHandle": "true",
-            "seed": "1",
-            "slices": "12"
-        },
-        "noRandom": {
-            "pumkinOnHandle": "true",
-            "seed": "0",
-            "slices": "10"
-        },
-        "debug": {
-            "pumkinOnHandle": "true",
-            "seed": "0",
-            "slices": "10",
-            "debug": "1"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "withoutPumpkin": {
+      "PumpkinOnHandle": "false",
+      "PumpkinFaceOrientation": 270,
+      "seed": "1",
+      "slices": "10"
+    },
+    "withPumpkin": {
+      "PumpkinOnHandle": "true",
+      "PumpkinFaceOrientation": 0,
+      "seed": "1",
+      "slices": "12"
+    },
+    "noRandom": {
+      "PumpkinOnHandle": "true",
+      "PumpkinFaceOrientation": 0,
+      "seed": "0",
+      "slices": "10"
+    },
+    "debug": {
+      "PumpkinOnHandle": "true",
+      "PumpkinFaceOrientation": 180,
+      "seed": "0",
+      "slices": "10",
+      "debug": "1"
     }
+  }
 }

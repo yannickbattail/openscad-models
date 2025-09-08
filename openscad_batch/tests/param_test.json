@@ -1,20 +1,20 @@
 {
-    "fileFormatVersion": "1",
-    "parameterSets": {
-        "testing": {
-            "Labeled_value": "S",
-            "Labeled_values": "10",
-            "Numbers": "2",
-            "Spinbox": "5",
-            "String": "hello",
-            "Strings": "foo",
-            "Variable": "true",
-            "Vector1": "[12]",
-            "Vector2": "[12, 34]",
-            "Vector3": "[12, 34, 46]",
-            "Vector4": "[12, 34, 46, 24]",
-            "slider": "34",
-            "stepSlider": "2"
-        }
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "testing": {
+      "Labeled_value": "S",
+      "Labeled_values": "10",
+      "Numbers": "2",
+      "Spinbox": "5",
+      "String": "hello",
+      "Strings": "foo",
+      "Variable": "true",
+      "Vector1": "[12]",
+      "Vector2": "[12, 34]",
+      "Vector3": "[12, 34, 46]",
+      "Vector4": "[12, 34, 46, 24]",
+      "slider": "34",
+      "stepSlider": "2"
     }
+  }
 }

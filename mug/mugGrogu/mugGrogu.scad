@@ -1,5 +1,5 @@
-use <mug.scad>
-use <nutellaGlass.scad>
+use <../common/mug.scad>
+use <../nutellaGlass/nutellaGlass.scad>
 
 /* [Mug] */
 // nutella glass scale: grow nutella glass to better fit in
@@ -55,5 +55,5 @@ module grogu() {
     translate([10, 8, 0])
         rotate([0, 0, -93])
             scale(1.9)
-                import("resources/groguHead.3mf");
+                import("groguHead.3mf");
 }

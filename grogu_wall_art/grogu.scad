@@ -1,4 +1,3 @@
-
 bothSides = false;
 
 thickness = 1; // [1:0.1:10]
@@ -10,13 +9,13 @@ width = 100;
 resize([width, width / 1.62833738, thickness + thicknessBase])
     grogu(thickness, thicknessBase);
 
-module grogu(thickness, thicknessBase, bothSides=false) {
-    color("darkgrey") {
+module grogu(thickness, thicknessBase, bothSides = false) {
+    color("Green") {
         linear_extrude(thicknessBase) {
             import("svg/grogu_base.svg");
         }
     }
-    color("white") {
+    color("DarkGreen") {
         translate([0, 0, thicknessBase]) {
             linear_extrude(thickness) {
                 grogu2D();
@@ -24,13 +23,13 @@ module grogu(thickness, thicknessBase, bothSides=false) {
         }
     }
     if (bothSides)
-    color("white") {
-        translate([0, 0, -thickness]) {
-            linear_extrude(thickness) {
-                grogu2D();
+        color("DarkGreen") {
+            translate([0, 0, -thickness]) {
+                linear_extrude(thickness) {
+                    grogu2D();
+                }
             }
         }
-    }
 }
 
 module grogu2D() {

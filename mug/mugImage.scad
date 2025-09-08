@@ -7,21 +7,20 @@ include <images/cat.scad>
 
 
 /* [Mug] */
-// Rounding of the bottom, radius in mm.
-cornd = 10;
 // Height of the cup in mm
-ovrht = 115;
+mugHeight = 115;
 // Major radius of the cup in mm.
-cupwd = 41;
+mugDiameter = 41;
 // Width of the wall  in mm.
-cupwal = 4;
+mugWall = 4;
 // Thickness of handle in mm.
-handlr = 5.25;
+mugHandleThickness = 5.25;
+// Rounding of the bottom, radius in mm.
+mugRounding = 10;
 
 /* [Image] */
-imageDiameter = 100;
 imageAngle = 90;
-reliefMultipier = 20;
+reliefMultipier = 5;
 // image data from imageToMatrix.html 
 inlineImage = []; // 
 
@@ -39,12 +38,11 @@ FACES = 1;
 
 imageData = len(inlineImage) != 0 ? inlineImage : image;
 
-s = surfaceDataf(imageData[IMAGE_PIXELS]);
+polygoneSurface = surfaceDataf(imageData[IMAGE_PIXELS]);
 
-//points = s[POINTS];
-points = wrapAroundCylinder(s[POINTS], imageDiameter, imageAngle, imageData[IMAGE_WIDTH], imageData[IMAGE_HEIGHT],
-reliefMultipier);
+//points = polygoneSurface[POINTS];
+points = wrapAroundCylinder(polygoneSurface[POINTS], [imageData[IMAGE_WIDTH], imageData[IMAGE_HEIGHT]], mugDiameter, mugHeight, imageAngle, reliefMultipier);
 
-mug(cornd, ovrht, cupwd, cupwal, handlr);
+mug(mugRounding, mugHeight, mugDiameter, mugWall, mugHandleThickness);
 
-polyhedron(points = points, faces = s[FACES]);
+polyhedron(points = points, faces = polygoneSurface[FACES]);

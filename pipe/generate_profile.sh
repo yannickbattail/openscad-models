@@ -12,7 +12,7 @@ usage() {
     echo "Usage: $0 [OPTION]... OPENSCAD_FILE" >&2
     echo "-c, --config-file configuration_file      specify another configuration file thant the default OPENSCAD_FILE.conf." >&2
     echo "-p, --only-parameter-set parameter-set    parameter-set is one the parameter-set name present in the file." >&2
-    echo "-g, --generate only_generate              only_generate must be one of jpg,gif,stl. bay default it will generate all." >&2
+    echo "-g, --generate only_generate              only_generate must be one of jpg,gif,webp,stl. bay default it will generate all." >&2
     echo "OPENSCAD_FILE                             path of the openscad file." >&2
     echo "" >&2
     echo "Requirements: command 'jq' and imagemagick for gif and mosaic generation"
@@ -171,6 +171,7 @@ parameter_sets=$( jq -r '.parameterSets | keys[]' ${parameter_file} )
 
 jpg_dir=./${scad_file_name}/images
 gif_dir=./${scad_file_name}/gif
+webp_dir=./${scad_file_name}/webp
 stl_dir=./${scad_file_name}/stl
 
 generate_jpg() {
@@ -185,6 +186,15 @@ generate_gif() {
     convert -delay ${anim_delay} -loop 0 ${gif_dir}/${parameter_set}*.png ${gif_dir}/${parameter_set}.gif
     echo_info "cleanup animation images ${parameter_set} ..."
     rm ${gif_dir}/${parameter_set}*.png
+}
+
+generate_webp() {
+    echo_info "generating animation images ${webp_dir}/${parameter_set}.png ..."
+    $OPENSCAD -q -o ${webp_dir}/${parameter_set}.png --p ${parameter_file} --P ${parameter_set} -D "\$fn=${anim_dollar_fn}" -D "animation_rotation=true" --animate ${anim_nb_image} --imgsize ${anim_size} ${scad_file}
+    echo_info "building animation ${webp_dir}/${parameter_set}.webp ..."
+    img2webp -o ${webp_dir}/${parameter_set}.webp -d ${anim_delay}0 -loop 0 ${webp_dir}/${parameter_set}*.png 
+    echo_info "cleanup animation images ${parameter_set} ..."
+    rm ${webp_dir}/${parameter_set}*.png
 }
 
 generate_stl() {
@@ -214,6 +224,15 @@ prepare_gif() {
     fi
 }
 
+prepare_webp() {
+    mkdir -p $webp_dir
+    if ! command -v img2webp &> /dev/null
+    then
+        echo_error "the command 'img2webp' in not found, webp will not be generated, install webp."
+        exit 1
+    fi
+}
+
 prepare_stl() {
     mkdir -p $stl_dir
 }
@@ -224,6 +243,9 @@ then
 elif  [[ $only_generate == "gif" ]]
 then
     prepare_gif
+elif  [[ $only_generate == "webp" ]]
+then
+    prepare_webp
 elif  [[ $only_generate == "stl" ]]
 then
     prepare_stl
@@ -231,9 +253,10 @@ elif  [[ $only_generate == "" ]]
 then
     prepare_jpg
     prepare_gif
+    prepare_webp
     prepare_stl
 else
-  echo_error "bad usage: option -g or --generate must be one of: jpg,gif,stl"
+  echo_error "bad usage: option -g or --generate must be one of: jpg,gif,webp,stl"
 fi
 
 generate_all() {
@@ -243,6 +266,9 @@ generate_all() {
     elif  [[ $only_generate == "gif" ]]
     then
       generate_gif
+    elif  [[ $only_generate == "webp" ]]
+    then
+      generate_webp
     elif  [[ $only_generate == "stl" ]]
     then
       generate_stl
@@ -250,6 +276,7 @@ generate_all() {
     then
       generate_jpg
       generate_gif
+      generate_webp
       generate_stl
     fi
 }

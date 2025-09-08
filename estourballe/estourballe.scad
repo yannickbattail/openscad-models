@@ -47,24 +47,24 @@ module estourballe(ballDiameter, thickness) {
 module halfSphereWhite(ballDiameter, thickness) {
     color("white")
         translate([0, 0, -1])
-        difference() {
-            sphere(d = ballDiameter);
-            translate([0, 0, ballDiameter / 2])
-                cube(ballDiameter, center = true);
+            difference() {
+                sphere(d = ballDiameter);
+                translate([0, 0, ballDiameter / 2])
+                    cube(ballDiameter, center = true);
             sphere(d = ballDiameter-thickness);
-        }
+            }
 }
 
 module halfSphereRed(ballDiameter, thickness) {
     color("red")
         translate([0, 0, 1])
-        difference() {
-            sphere(d = ballDiameter);
-            translate([0, 0, - ballDiameter / 2])
-                cube(ballDiameter, center = true);
+            difference() {
+                sphere(d = ballDiameter);
+                translate([0, 0, - ballDiameter / 2])
+                    cube(ballDiameter, center = true);
             sphere(d = ballDiameter-thickness);
             crossBase(ballDiameter);
-        }
+            }
 }
 
 module ringBlack(ballDiameter, thickness) {

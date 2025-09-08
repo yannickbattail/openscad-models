@@ -7,7 +7,7 @@
 
 # openscad file name without .scad
 scad_file=kinetic
-# number of i5ewamages
+# number of images
 nb_image=144
 # delay between each image in 0.01 seconds (animation speed)
 delay=3.333333333

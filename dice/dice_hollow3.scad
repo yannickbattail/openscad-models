@@ -17,19 +17,6 @@ module dice(rounding, hole_size, faces, dice_color, face_color) {
             cube(1, center = true);
             sphere(rounding);
         }
-        color(face_color) {
-            rotate([0, 0, 0]) faceText(faces[0]); // 1
-            rotate([180, 0, 0]) faceText(faces[5]); // 6
-            rotate([90, 0, 0]) faceText(faces[1]); // 2
-            rotate([- 90, 0, 0]) faceText(faces[4]); // 5
-            rotate([90, 0, 90]) faceText(faces[2]); // 3
-            rotate([90, 0, - 90]) faceText(faces[3]); // 4
-        }
-    }
-}
-
-module faceText(letter) {
-    translate([0, 0, hole_size]) {
-        linear_extrude(1) text(text = letter, size = 0.5, halign = "center", valign = "center");
+        sphere(0.67);
     }
 }

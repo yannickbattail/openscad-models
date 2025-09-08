@@ -1,7 +1,7 @@
 #!/bin/bash
 
 run_in_docker() {
-   docker run -it -v ./:/work openscad-tools $@
+   docker run -it --user $UID -v ./:/work openscad-tools $@
 }
 
 if [[ $1 == "thingiverse" ]]

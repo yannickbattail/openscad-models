@@ -36,6 +36,8 @@ RUN groupadd -g 1000 openscad \
     && mkdir /home/openscad/.config/ \
     && chown -R 1000:1000 /home/openscad/.config/ /openscad
 COPY --chmod=755 --chown=1000:1000 ./openscad_batch/generate_profile.for_docker.conf /home/openscad/.config/generate_profile.conf
+COPY --chmod=755 --chown=1000:1000 ./openscad_batch/generate_profile.for_docker.conf /home/ubuntu/.config/generate_profile.conf
+COPY --chmod=755 ./openscad_batch/generate_profile.for_docker.conf /.config/generate_profile.conf
 
 USER 1000:1000
 WORKDIR /openscad

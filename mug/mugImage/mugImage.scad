@@ -19,8 +19,9 @@ include <images/denver.scad>
 include <images/christmas.scad>
 include <images/bicicletta.scad>
 include <images/lord_of_the_jedi_potter.scad>
+include <images/savoie.scad>
 
-part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver, christmas, bicicletta, lord_of_the_jedi_potter]
+part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver, christmas, bicicletta, lord_of_the_jedi_potter, savoie]
 
 /* [Mug] */
 // height of the mug
@@ -43,7 +44,7 @@ imageAngle = 90; // [10:360]
 imageRotation = 45; // [0:360]
 // relief multiplier (by default relief is between 0 and 1)
 reliefMultiplier = 2; // [0.5:0.5:10]
-// image data from imageToMatrix.html 
+// image data from imageToMatrix.html
 inlineImage = []; //
 // show only image or mug (for debug purpose and faster preview)
 partialModel = "all"; // [all, image_only, mug_only]
@@ -60,31 +61,34 @@ $vpt = is_animated?[0, 0, 0]:[];
 $vpr = is_animated?[60, 0, animation_rotation?(365 * $t):45]:[]; // animation rotate around the object
 $vpd = is_animated?500:[];
 
-function selectImage() =
-    (part == "cat")?image_cat:
-        (part == "cat_fur")?image_cat_fur:
-            (part == "cat_profile")?image_cat_profile:
-                (part == "cat_face")?image_cat_face:
-                    (part == "red_panda")?image_red_panda:
-                        (part == "werefox")?image_werefox:
-                            (part == "mountain")?image_mountain:
-                                (part == "moon")?image_moon:
-                                    (part == "jedi_sith")?image_jedi_sith:
-                                        (part == "solo_carbonite")?image_solo_carbonite:
-                                            (part == "yoda")?image_yoda:
-                                                (part == "mountain_lake")?image_mountain_lake:
-                                                    (part == "denver")?image_denver:
-                                                        (part == "christmas")?image_christmas:
-                                                            (part == "bicicletta")?image_bicicletta:
-                                                                (part == "lord_of_the_jedi_potter")?image_lord_of_the_jedi_potter:
-                                                                    [];
+imageMap = object(
+  cat = image_cat,
+  cat_fur = image_cat_fur,
+  cat_profile = image_cat_profile,
+  cat_face = image_cat_face,
+  red_panda = image_red_panda,
+  werefox = image_werefox,
+  mountain = image_mountain,
+  moon = image_moon,
+  jedi_sith = image_jedi_sith,
+  solo_carbonite = image_solo_carbonite,
+  yoda = image_yoda,
+  mountain_lake = image_mountain_lake,
+  denver = image_denver,
+  christmas = image_christmas,
+  bicicletta = image_bicicletta,
+  lord_of_the_jedi_potter = image_lord_of_the_jedi_potter,
+  savoie = image_savoie
+);
+
+function selectImage() = has_key(imageMap, part) ? imageMap[part]:assert(false, str("no such part: ", part));
 
 imageData = len(inlineImage) > 0 ? inlineImage : selectImage();
 
 if (len(inlineImage) > 0) {
-    echo("use inline image data (customizer)");
+  echo("use inline image data (customizer)");
 } else {
-    echo("use image data from file");
+  echo("use image data from file");
 }
 
 epsi = 0.01; // epsilon
@@ -94,40 +98,33 @@ reliefMultiplier, imageData, partialModel, numberOfBlock, hasBigHandle);
 
 module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle, imageRotation, reliefMultiplier,
 imageMatrix, partialModel = "all", numberOfBlock, hasBigHandle) {
-    difference() {
-        render() // preview display nothing without this
-            union() {
-                if (partialModel != "image_only") {
-                    mug(mugHeight, mugRadius, mugThickness, hasBigHandle);
-                }
-                if (partialModel != "mug_only") {
-                    rotate([0, 0, imageRotation]) {
-                        imageMatrixOnCylinder(mugHeight, mugRadius, imageAngle, reliefMultiplier, imageMatrix);
-                    }
-                }
-            }
-        if (withNutellaGlass) {
-            translate([0, 0, mugThickness])
-                nutellaGlass(plain = true, nbBlock = numberOfBlock);
-        } else {
-            translate([0, 0, mugThickness]) {
-                cylinder(h = mugHeight - mugThickness + epsi, r = mugRadius - mugThickness);
-                // + epsi to prevent display bug
-            }
+  difference() {
+    render() // preview display nothing without this
+      union() {
+        if (partialModel != "image_only") {
+          mug(mugHeight, mugRadius, mugThickness, hasBigHandle);
         }
+        if (partialModel != "mug_only") {
+          rotate([0, 0, imageRotation]) {
+            imageMatrixOnCylinder(mugHeight, mugRadius, imageAngle, reliefMultiplier, imageMatrix);
+          }
+        }
+      }
+    if (withNutellaGlass) {
+      translate([0, 0, mugThickness])
+        nutellaGlass(plain = true, nbBlock = numberOfBlock);
+    } else {
+      translate([0, 0, mugThickness]) {
+        cylinder(h = mugHeight - mugThickness + epsi, r = mugRadius - mugThickness);
+        // + epsi to prevent display bug
+      }
     }
+  }
 }
 
 module imageMatrixOnCylinder(height, radius, imageAngle, reliefMultiplier, imageMatrix) {
-    /* constants. Do not change them */
-    POINTS = 0;
-    FACES = 1;
-
-    polygonSurface = surfaceDataf(imageMatrix);
-
-    //points = polygonSurface[POINTS];
-    points = wrapAroundCylinder(polygonSurface[POINTS], [len(imageMatrix[0]), len(imageMatrix)], radius,
-    height, imageAngle, reliefMultiplier);
-
-    polyhedron(points = points, faces = polygonSurface[FACES]);
+  polygonSurface = surfaceDataf(imageMatrix);
+  //points = polygonSurface.points;
+  points = wrapAroundCylinder(polygonSurface.points, [len(imageMatrix[0]), len(imageMatrix)], radius, height, imageAngle, reliefMultiplier);
+  polyhedron(points = points, faces = polygonSurface.faces);
 }

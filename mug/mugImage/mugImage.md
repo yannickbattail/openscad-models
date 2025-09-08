@@ -2,7 +2,7 @@
 
 Put an image on a mug that uses nutella glass (200g size).
 
-If you pour hot beverage in the glass when it cools down it may be stuck in the mug, so put hot water in it to detach it
+If you pour hot beverage in it when it cools down the glass may be stuck in the mug, so put hot water in it to detach it
 
 ## UPDATE
 
@@ -14,7 +14,13 @@ If you pour hot beverage in the glass when it cools down it may be stuck in the 
 - `size`: default 50, size of the model
 - `$fn`: resolution
 
-## Images
+## How to print it
+
+The design is made in a way that **you don't need support.**
+
+Prefer ABS to PLA (PETG ... I don't know), because PLA will crack (and the glass way stuck) after a few temperature changes.
+
+## All designs
 
 - cat: cat emoji, base example fast to render
 - cat_fur: cat face with fur
@@ -33,6 +39,7 @@ If you pour hot beverage in the glass when it cools down it may be stuck in the 
 - bicicletta: logo of bicicletta
 - lord_of_the_jedi_potter: lord of the rings: ring elfic text, the ring, Narsil sword, arrow. Harry potter: elder wand.
   Star wars: Luke's light saber. All forming the deathly hallows symbol
+- savoie: relief of the savoie department in France (made from https://touchterrain.geol.iastate.edu/main)
 
 ## Sources
 
@@ -78,4 +85,4 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## keywords
 
-mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, glass, upcycling, nutella, openscad, customizable, customizer , openscad, customizable, customizer
+mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, glass, upcycling, nutella, openscad, customizable, customizer , openscad,

@@ -1,7 +1,12 @@
 {
   "parameterSets": {
-    "Medical_emblem": {
-      "emblemColor": "red"
+    "Medical_emblem3d": {
+      "emblemColor": "red",
+      "model3d": "true"
+    },
+    "Medical_emblem2d": {
+      "emblemColor": "red",
+      "model3d": "false"
     }
   },
   "fileFormatVersion": "1"

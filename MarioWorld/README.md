@@ -2,9 +2,11 @@
 
 ## Customization
 
-Each worldLine is a list of characters, each character is a tile.
 
-worldLine1 is the floor and worldLine12 is the top of the sky.
+- `worldLineXX` : Each worldLine is a list of characters, each character is a tile. worldLine1 is the floor and worldLine12 is the top of the sky.
+- `background` : add a background to the MarioWorld
+- `backgroundThickness` : thickness of background (between 1 and 32, 32 is twice the size of a tile)
+- `backgroundHeight` : height of background in tile (a tile is 16pixel or mm) (reduce it if you don't put tile to the top de the MarioWorld)
 
 ## Tiles
 

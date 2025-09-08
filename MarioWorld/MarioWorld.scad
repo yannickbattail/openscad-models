@@ -12,8 +12,11 @@ worldLine3 = " ";
 worldLine2 = "MgkpB fT t";
 worldLine1 = "12e?wx0U u";
 
+// add a background to the MarioWorld
 background=false;
+// thickness of background
 backgroundThickness=1; // [1:32]
+// height of background in tile (a tile is 16pixel or mm)
 backgroundHeight=12; // [1:12]
 
 $vpt=[80,0,10];

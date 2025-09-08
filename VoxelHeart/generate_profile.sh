@@ -48,7 +48,7 @@ for parameter_set in $parameter_sets ; do
     
 done
 
-echo generating mosaic ./images/dice_animals.jpg
-montage -geometry 256x256+2+2 -tile 2x2 ./images/*.png ./images/dice_animals.jpg
+echo generating mosaic ./images/${scad_file_name}.jpg
+montage -geometry 256x256+2+2 -tile 2x2 ./images/*.png ./images/${scad_file_name}.jpg
 
 echo done.

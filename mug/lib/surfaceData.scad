@@ -1,12 +1,13 @@
+
 // source https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Tips_and_Tricks
 // operate like the builtin module surface() but
 // from a matrix of floats instead of a text file
-module surfaceData(M, center = false, convexity = 10) {
-    n = len(M);
-    m = len(M[0]);
-    miz = min([for (Mi = M) min(Mi)]);
-    minz = miz < 0? miz - 1 : - 1;
-    ctr = center ? [- (m - 1) / 2, - (n - 1) / 2, 0]: [0, 0, 0];
+function surfaceDataf(M, center = false) = let(
+    n = len(M),
+    m = len(M[0]),
+    miz = min([for (Mi = M) min(Mi)]),
+    minz = miz < 0? miz - 1 : - 1,
+    ctr = center ? [- (m - 1) / 2, - (n - 1) / 2, 0]: [0, 0, 0],
     points = [// original data points
         for (i = [0:n - 1])for (j = [0:m - 1]) [j, i, M[i][j]] + ctr,
                 [0, 0, minz] + ctr,
@@ -19,7 +20,7 @@ module surfaceData(M, center = false, convexity = 10) {
         let(med = i == n - 1 || j == m - 1 ? 0:
                     (M[i][j] + M[i + 1][j] + M[i + 1][j + 1] + M[i][j + 1]) / 4)
                 [j + 0.5, i + 0.5, med] + ctr
-        ];
+        ],
     faces = [// faces connecting data points to interpolated ones
         for (i = [0:n - 2])
         for (j = [i * m:i * m + m - 2])
@@ -33,6 +34,10 @@ module surfaceData(M, center = false, convexity = 10) {
             [for (i = [n - 1:- 1:0])      i * m, n * m, n * m + 3],
             [for (i = [0:n - 1])     i * m + m - 1, n * m + 2, n * m + 1],
             [n * m, n * m + 1, n * m + 2, n * m + 3]
-        ];
-    polyhedron(points, faces, convexity);
+        ]
+) [points, faces];
+
+module surfaceData(M, center = false, convexity = 10) {
+    a = surfaceDataf(M, center);
+    polyhedron(a[0], a[1]);
 }

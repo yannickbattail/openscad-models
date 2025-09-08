@@ -27,8 +27,10 @@ Don't forget to post a make.
 
 ## Customizable variables
 
-- `part`: whole, model, fixation, all_edges, edge1_2, edge1_3, edge1_4, edge1_5 , edge6_2, edge6_3, edge6_4, edge6_5 , edge2_3, edge2_4, edge3_5, edge4_5
-- `animalNumber`: 0:Mimic_Chest, 1:Platypus_Barbarian, 2:VoxelHeart1_hull, 3:catLowPoly, 4:dino, 5:dragonLED, 6:duckVader, 7:foxLowPoly, 8:heart_gem, 9:panda, 10:vader
+- `part`: whole, model, fixation, all_edges, edge1_2, edge1_3, edge1_4, edge1_5 , edge6_2, edge6_3, edge6_4, edge6_5 , edge2_3, edge2_4, edge3_5,
+  edge4_5
+- `animalNumber`: 0:Mimic_Chest, 1:Platypus_Barbarian, 2:VoxelHeart1_hull, 3:catLowPoly, 4:dino, 5:dragonLED, 6:duckVader, 7:foxLowPoly, 8:heart_gem,
+  9:panda, 10:vader
 - `size`: default 50, size of the model
 - `$fn`: resolution
 
@@ -54,11 +56,11 @@ model fit in the dice.
 
 ```json
     "scale": 1.29,
-    "rotation": [
-        0,
-        0,
-        -30
-    ]
+"rotation": [
+0,
+0,
+-30
+]
 ```
 
 ## Sources

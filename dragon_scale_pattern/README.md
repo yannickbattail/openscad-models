@@ -3,6 +3,7 @@
 Dragon scale in customisable pattern
 
 Pattern can be
+
 - square
 - triangle_up
 - triangle_down
@@ -11,17 +12,20 @@ Pattern can be
 - custom pattern defined in a matrix
 
 ## The custom pattern
+
 the custom pattern is a table depict by a string of 0 and 1 with lines separated by a "|", 1=there is a scale, 0=nothing
 
 ### Examples of patterns
 
 input string `0111|1101|1001|1111`
+
 ```
 . X X X
 X X . X
 X . . X
 X X X X
 ```
+
 display (X = scale, . = nothing)
 
 ## credit

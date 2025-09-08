@@ -29,7 +29,8 @@ Command to generate for all the presets: png image, webp animation, 3mf 3D model
 npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,1 --configFile ../globalConfig.yaml ./mugR2d2.scad
 ```
 
-You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
+number of cores minus 1)
 
 Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
@@ -41,5 +42,4 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## keywords
 
-mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, R2D2, droid,
-nutella, openscad, customizable, customizer
+mug, Coffee_Mug, coffee_mugs, Mug_holder, cup, coffee_cup, cup_holder, upcycling, star_wars, starwars, R2D2, droid, nutella, openscad, customizable, customizer

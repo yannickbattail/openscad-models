@@ -31,7 +31,8 @@ If you pour hot beverage in the glass when it cools down it may be stuck in the 
 - denver: denver le dernier dinosaure
 - christmas: santa
 - bicicletta: logo of bicicletta
-- lord_of_the_jedi_potter: lord of the rings: ring elfic text, the ring, Narsil sword, arrow. Harry potter: elder wand. Star wars: Luke's light saber. All forming the deathly hallows symbol
+- lord_of_the_jedi_potter: lord of the rings: ring elfic text, the ring, Narsil sword, arrow. Harry potter: elder wand.
+  Star wars: Luke's light saber. All forming the deathly hallows symbol
 
 ## Sources
 
@@ -64,7 +65,8 @@ Command to generate for all the presets: png image, webp animation, 3mf 3D model
 npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 4,4 --configFile ../globalConfig.yaml ./mugImage.scad
 ```
 
-You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
+number of cores minus 1)
 
 Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 

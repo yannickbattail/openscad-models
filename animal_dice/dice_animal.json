@@ -1,35 +1,130 @@
 {
   "fileFormatVersion": "1",
   "parameterSets": {
+    "wholeDice_Platypus_Barbarian": {
+      "animalNumber": "0",
+      "part": "whole"
+    },
+    "wholeDice_VoxelHeart1_hull": {
+      "animalNumber": "1",
+      "part": "whole"
+    },
+    "wholeDice_catLowPoly": {
+      "animalNumber": "2",
+      "part": "whole"
+    },
+    "wholeDice_dino": {
+      "animalNumber": "3",
+      "part": "whole"
+    },
+    "wholeDice_dragonLED": {
+      "animalNumber": "4",
+      "part": "whole"
+    },
+    "wholeDice_duckVader": {
+      "animalNumber": "5",
+      "part": "whole"
+    },
+    "wholeDice_foxLowPoly": {
+      "animalNumber": "6",
+      "part": "whole"
+    },
+    "wholeDice_heart_gem": {
+      "animalNumber": "7",
+      "part": "whole"
+    },
+    "wholeDice_panda": {
+      "animalNumber": "8",
+      "part": "whole"
+    },
+    "wholeDice_vader": {
+      "animalNumber": "9",
+      "part": "whole"
+    },
+
     "Platypus_Barbarian": {
-      "animalNumber": "0"
+      "animalNumber": "0",
+      "part": "model"
     },
     "VoxelHeart1_hull": {
-      "animalNumber": "1"
+      "animalNumber": "1",
+      "part": "model"
     },
     "catLowPoly": {
-      "animalNumber": "2"
+      "animalNumber": "2",
+      "part": "model"
     },
     "dino": {
-      "animalNumber": "3"
+      "animalNumber": "3",
+      "part": "model"
     },
     "dragonLED": {
-      "animalNumber": "4"
+      "animalNumber": "4",
+      "part": "model"
     },
     "duckVader": {
-      "animalNumber": "5"
+      "animalNumber": "5",
+      "part": "model"
     },
     "foxLowPoly": {
-      "animalNumber": "6"
+      "animalNumber": "6",
+      "part": "model"
     },
     "heart_gem": {
-      "animalNumber": "7"
+      "animalNumber": "7",
+      "part": "model"
     },
     "panda": {
-      "animalNumber": "8"
+      "animalNumber": "8",
+      "part": "model"
     },
     "vader": {
-      "animalNumber": "9"
+      "animalNumber": "9",
+      "part": "model"
+    },
+
+    "fixation": {
+      "part": "fixation"
+    },
+    "all_edges": {
+      "part": "all_edges"
+    },
+
+    "edge1_2": {
+      "part": "edge1_2"
+    },
+    "edge1_3": {
+      "part": "edge1_3"
+    },
+    "edge1_4": {
+      "part": "edge1_4"
+    },
+    "edge1_5": {
+      "part": "edge1_5"
+    },
+    "edge6_2": {
+      "part": "edge6_2"
+    },
+    "edge6_3": {
+      "part": "edge6_3"
+    },
+    "edge6_4": {
+      "part": "edge6_4"
+    },
+    "edge6_5": {
+      "part": "edge6_5"
+    },
+    "edge2_3": {
+      "part": "edge2_3"
+    },
+    "edge2_4": {
+      "part": "edge2_4"
+    },
+    "edge3_5": {
+      "part": "edge3_5"
+    },
+    "edge4_5": {
+      "part": "edge4_5"
     }
   }
 }

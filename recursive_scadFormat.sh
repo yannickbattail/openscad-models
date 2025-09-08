@@ -1,7 +1,7 @@
 #!/bin/bash
 
 directory=$1
-if [[] -z "$directory"]]
+if [[ -z "$directory"]]
 then
   directory="."
 fi

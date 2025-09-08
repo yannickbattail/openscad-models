@@ -11,6 +11,7 @@ Several models made with openSCAD.
 - [Dices](dice/README.md)
 - [VoxelHeart and EasiestHeart](VoxelHeart/README.md)
 - [MarioWorld](MarioWorld/README.md)
+- [CD solar oven](CD_solar_oven/README.md)
 
 ## Libraries
 

@@ -1,8 +1,8 @@
 
 part="all"; // [all, base, support]
 
-number_of_rows = 4; // [1:1:40]
-number_of_column = 2; // [1:1:40]
+number_of_rows = 16; // [1:1:40]
+number_of_column = 5; // [1:1:40]
 
 // positioning of the focus point
 focus_of_parabola = "middle"; // [middle, bottom_center, bottom_left]
@@ -19,12 +19,12 @@ focus_distance = 1000; // [100:2000]
 base_height = 2; // [1:10]
 
 // support height (from the bottom of the base)
-support_height = 60; // [35, 100]
+support_height = 60; // [35:100]
 
 // add the base to the display
 show_base=true;
 
-// display CD, reflection vector, focus point and coordinates
+// display CD, light rays, focus point and coordinates
 debug = true;
 
 /* [Animation] */
@@ -58,7 +58,6 @@ module solar_oven(base_height, support_height, baseDiameter) {
                 translate([positionX(x, 0) + 40, - 150, 0])
                     linear_extrude(2)
                         text(chr(65 + x), 50);
-
         }
         for (y = [0:number_of_rows - 1]) {
             xt = positionX(x, y);
@@ -98,12 +97,15 @@ function focus_position(focus_of_parabola, dimentions, focus_distance) =
             focus_distance]);
 
 function support_rotation(focusPos, support) = let(
-    vct = focusPos - support,
-    length = norm([vct[0], vct[1], vct[2]]), // radial distance
-    theta = acos(vct[2] / length), // inclination angle
-    phi = atan2(vct[1], vct[0])        // azimuthal angle
-) [0, theta, phi];
+    vect = focusPos - support,
+    sphrCord = sphericalCoord(vect)
+) [0, sphrCord[1]/2, sphrCord[2]];
 
+function sphericalCoord(vect)  = let(
+    length = norm([vect[0], vect[1], vect[2]]), // radial distance
+    theta = acos(vect[2] / length), // inclination angle
+    phi = atan2(vect[1], vect[0])    // azimuthal angle
+) [length, theta, phi];
 
 module support(text, rotation, support_height, base_height) {
     difference() {
@@ -113,8 +115,7 @@ module support(text, rotation, support_height, base_height) {
             translate([0, 0, base_height])
                 cylinder(d = 16, h = support_height - 15);
             translate([0, 0, support_height + base_height])
-                rotate(rotation)
-                    head();
+                head(rotation);
         }
         translate([- 4, - 6, 30]) {
             rotate([90, 90, 0])
@@ -125,22 +126,27 @@ module support(text, rotation, support_height, base_height) {
     }
 }
 
-module head() {
-    color("orange")
-        difference() {
-            sphere(d = 35);
-            translate([0, 0, 20])
-                cube(40, center = true);
+module head(rotation) {
+    rotate(rotation) {
+        color("orange") {
+            difference() {
+                sphere(d = 35);
+                translate([0, 0, 20])
+                    cube(40, center = true);
+            }
+            cylinder(d1 = 15, d2 = 14, h = 4);
         }
-    color("orange")
-        cylinder(d1 = 15, d2 = 14, h = 4);
-    if (debug) {
-        color("grey") cylinder(d = 120, h = 1);
-        color("red") cube([1, 1, 1200]);
+        cd(rotation);
     }
 }
 
-
+module cd(rotation) {
+    if (debug) {
+        color("grey") cylinder(d = 120, h = 1, $fn=20); // CD
+        color("red") rotate([0, rotation[1], 0]) cube([1, 1, 1200]); // light ray out
+        color("DarkRed") rotate([0, -rotation[1], 0]) cube([1, 1, 1200]); // light ray in
+    }
+}
 
 module base(base_height, baseDiameter) {
     color("chartreuse")

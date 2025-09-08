@@ -1,4 +1,4 @@
-# Animal in a d20
+# Figurine in a d20
 
 ## Balanced dices
 

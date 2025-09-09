@@ -1,12 +1,24 @@
+use <ducks.scad>
+
+/* [Duck] */
+// use a low polygon number version of the duck
+lowpoly_duck = false;
+
 /* [Text left] */
+// text on left
 text_string1 = "Javascript";
-text_size1 = 8;
-text_position1 = [2, -2, 30];
+// text on left size
+text_size1 = 7;
+// text on left position [x,y,z]
+text_position1 = [-1, 0, 0];
 
 /* [Text right] */
+// text on right
 text_string2 = "HTML/CSS";
+// text on right size
 text_size2 = 8;
-text_position2 = [-4, 0, 30];
+// text on right position [x,y,z]
+text_position2 = [1, 0, 0];
 
 /* [Font] */
 // The name of the font that should be used. This can also include a style parameter
@@ -27,33 +39,40 @@ $fn = 100;
 // rotating animation
 animation_rotation = false;
 
-$vpt = animation_rotation ? [0, 0, 0] : [];
-$vpr = animation_rotation ? [70, 0, 365 * $t] : [];
-$vpd = animation_rotation ? 500 : [];
+/* [Hidden] */
+$vpt = animation_rotation ? [0, 0, 0] : $vpt;
+$vpr = animation_rotation ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
+$vpd = animation_rotation ? 500 : $vpd;
 
 font_params1 = [text_string1, text_size1, font_type, "center", "center", font_spacing, font_direction, font_language, font_script];
 font_params2 = [text_string2, text_size2, font_type, "center", "center", font_spacing, font_direction, font_language, font_script];
 
-duck(font_params1, text_position1, font_params2, text_position2);
+duck(font_params1, text_position1, font_params2, text_position2, lowpoly_duck);
 
-module duck(font_params1, text_position1, font_params2, text_position2) {
+module duck(font_params1, text_position1, font_params2, text_position2, lowpoly_duck) {
   difference() {
-    import("Rubber_Duck.stl", convexity = 10);
-    rotate([0, 90, 00]) {
-      translate(text_position1) {
-        rotate([0, 0, 90]) {
-          linear_extrude(height = 10, convexity = 10)
-            text(text = font_params1[0], size = font_params1[1], font = font_params1[2], halign = font_params1[3], valign = font_params1[4], spacing = font_params1[5], direction = font_params1[6], language = font_params1[7], script = font_params1[8]);
-        }
-      }
-    }
-    rotate([0, -90, 0]) {
-      translate(text_position2) {
-        rotate([0, 0, -90]) {
-          linear_extrude(height = 10, convexity = 10)
-            text(text = font_params2[0], size = font_params2[1], font = font_params2[2], halign = font_params2[3], valign = font_params2[4], spacing = font_params2[5], direction = font_params2[6], language = font_params2[7], script = font_params2[8]);
-        }
-      }
-    }
+    rubber_duck(lowpoly_duck);
+    word(font_params1, text_position1, true);
+    word(font_params2, text_position2, false);
+  }
+}
+
+module word(font_params, text_position, isLeft) {
+  position = text_position + (lowpoly_duck ? [34, 0, 20] : [30, 0, 20]);
+  translate([position[0] * (isLeft ? 1 : -1), position[1], position[2]])
+    rotate([90, 0, isLeft ? 90 : -90])
+      linear_extrude(height = 20, convexity = 10)
+        text(text = font_params[0], size = font_params[1], font = font_params[2], halign = font_params[3], valign = font_params[4], spacing =
+        font_params[5], direction = font_params[6], language = font_params[7], script = font_params[8]);
+}
+
+module rubber_duck(lowpoly_duck) {
+  if (lowpoly_duck) {
+    translate([-280.175, 284.09, -22])
+      scale(4)
+        duck_low();
+  } else {
+    translate([0, 0, 22.74])
+      duck_high();
   }
 }

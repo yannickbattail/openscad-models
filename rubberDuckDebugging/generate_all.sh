@@ -1,13 +1,9 @@
 #!/bin/bash
 
-run_in_docker() {
-  docker run -it -v ./:/work openscad-tools $@
-}
+outFormats="png,webp,3mf"
+mosaicLines=4
+mosaicColumns=4
+parallelJobs=$(nproc --ignore=2)
+echo use ${parallelJobs} parallel jobs
 
-if [[ $1 == "thingiverse" ]]
-then
-  echo "generate for thingiverse"
-  run_in_docker generate_for_thingiverse.sh RubberDuckDebugging
-else
-  run_in_docker generate_profile.sh -g jpg,webp,3mf ./RubberDuckDebugging.scad
-fi
+npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat ${mosaicColumns},${mosaicLines} --parallelJobs ${parallelJobs} --configFile RubberDuckDebugging.yaml ./RubberDuckDebugging.scad

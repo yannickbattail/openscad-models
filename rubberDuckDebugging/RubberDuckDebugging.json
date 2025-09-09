@@ -2,116 +2,140 @@
   "fileFormatVersion": "1",
   "parameterSets": {
     "javascript_html": {
-      "animation_rotation": "false",
-      "font_direction": "ltr",
-      "font_language": "en",
-      "font_script": "latin",
-      "font_spacing": "1",
-      "font_type": "Liberation Mono:style=Regular",
-      "text_position1": "[2, -2, 30]",
-      "text_position2": "[-4, 0, 30]",
-      "text_size1": "8",
-      "text_size2": "8",
       "text_string1": "Javascript",
-      "text_string2": "HTML\/CSS"
+      "text_size1": "7",
+      "text_position1": "[-1, 0, 0]",
+      "text_string2": "HTML/CSS",
+      "text_size2": "8",
+      "text_position2": "[1, 0, 0]"
+    },
+    "typescript_html": {
+      "text_size1": "7",
+      "text_string1": "Typescript",
+      "text_position1": "[0, 0, 0]",
+      "text_position2": "[-1, -1, 0]",
+      "text_size2": "7",
+      "text_string2": "async/await"
     },
     "PHP": {
-      "animation_rotation": "false",
-      "font_direction": "ltr",
-      "font_language": "en",
-      "font_script": "latin",
-      "font_spacing": "1",
-      "font_type": "Liberation Mono:style=Regular",
-      "text_position1": "[2, -2, 32]",
-      "text_position2": "[-4, 0, 34]",
-      "text_size1": "18",
-      "text_size2": "8",
       "text_string1": "PHP",
-      "text_string2": "<?php"
+      "text_size1": "18",
+      "text_position1": "[2, 0, 0]",
+      "text_string2": "<?php",
+      "text_size2": "8",
+      "text_position2": "[3, 0, 0]"
     },
-    "dotnet": {
-      "animation_rotation": "false",
-      "font_direction": "ltr",
-      "font_language": "en",
-      "font_script": "latin",
-      "font_spacing": "1",
-      "font_type": "Liberation Mono:style=Regular",
-      "text_position1": "[3, -4, 32]",
-      "text_position2": "[-2, -5, 31]",
-      "text_size1": "15",
-      "text_size2": "3",
+    "java": {
       "text_string1": "JAVA",
-      "text_string2": "public static void main()"
-    },
-    "python": {
-      "animation_rotation": "false",
-      "font_direction": "ltr",
-      "font_language": "en",
-      "font_script": "latin",
-      "font_spacing": "1",
-      "font_type": "Liberation Mono:style=Regular",
-      "text_position1": "[3, -4, 32]",
-      "text_position2": "[-2, -2, 31]",
       "text_size1": "15",
-      "text_size2": "5",
-      "text_string1": "SQL",
-      "text_string2": "SELECT * FROM"
+      "text_position1": "[2, -4, 1]",
+      "text_string2": "public static void main()",
+      "text_size2": "3",
+      "text_position2": "[0, -3, 0]"
     },
     "SQL": {
-      "animation_rotation": "false",
-      "font_direction": "ltr",
-      "font_language": "en",
-      "font_script": "latin",
-      "font_spacing": "1",
-      "font_type": "Liberation Mono:style=Regular",
-      "text_position1": "[2, -2, 32]",
-      "text_position2": "[-2, -2, 31]",
-      "text_size1": "20",
-      "text_size2": "5",
       "text_string1": "SQL",
-      "text_string2": "SELECT * FROM"
+      "text_size1": "15",
+      "text_position1": "[4, -4, 2]",
+      "text_string2": "SELECT * FROM",
+      "text_size2": "5",
+      "text_position2": "[0, 0, 0]"
     },
     "C": {
-      "animation_rotation": "false",
-      "font_direction": "ltr",
-      "font_language": "en",
-      "font_script": "latin",
-      "font_spacing": "1",
-      "font_type": "Liberation Mono:style=Regular",
-      "text_position1": "[1, -2, 32]",
-      "text_position2": "[-2, -2, 31]",
-      "text_size1": "9",
+      "text_string1": "C/C++",
+      "text_size1": "12",
+      "text_position1": "[2, -2, 0]",
+      "text_string2": "#include <>",
       "text_size2": "6",
-      "text_string1": "C\/C++",
-      "text_string2": "#include <>"
+      "text_position2": "[0, 0, 0]"
     },
     "bash": {
-      "animation_rotation": "false",
-      "font_direction": "ltr",
-      "font_language": "en",
-      "font_script": "latin",
-      "font_spacing": "1",
-      "font_type": "Liberation Mono:style=Regular",
-      "text_position1": "[1, -2, 32]",
-      "text_position2": "[-2, -2, 31]",
+      "text_string1": "sh/bash",
       "text_size1": "9",
+      "text_position1": "[0, 0, 0]",
+      "text_string2": "rm -Rf /",
       "text_size2": "8",
-      "text_string1": "sh-bash",
-      "text_string2": "rm -Rf \/"
+      "text_position2": "[0, 0, 0]"
     },
     "openscad": {
-      "animation_rotation": "false",
-      "font_direction": "ltr",
-      "font_language": "en",
-      "font_script": "latin",
-      "font_spacing": "1",
-      "font_type": "Liberation Mono:style=Regular",
-      "text_position1": "[3, -2, 31]",
-      "text_position2": "[-1, -2, 28]",
-      "text_size1": "9",
-      "text_size2": "5",
       "text_string1": "OpenSCAD",
-      "text_string2": "rotate([0,0,90])"
+      "text_size1": "9",
+      "text_position1": "[-1, 0, 0]",
+      "text_string2": "cube(100);",
+      "text_size2": "5",
+      "text_position2": "[0, 0, 0]"
+    },
+    "javascript_htm_lowpolyl": {
+      "lowpoly_duck": "true",
+      "text_string1": "Javascript",
+      "text_size1": "7",
+      "text_position1": "[-1, 0, 0]",
+      "text_string2": "HTML/CSS",
+      "text_size2": "8",
+      "text_position2": "[1, 0, 0]"
+    },
+    "typescript_html_lowpoly": {
+      "lowpoly_duck": "true",
+      "text_size1": "7",
+      "text_string1": "Typescript",
+      "text_position1": "[0, 0, 0]",
+      "text_position2": "[-1, -1, 0]",
+      "text_size2": "7",
+      "text_string2": "async/await"
+    },
+    "PHP_lowpoly": {
+      "lowpoly_duck": "true",
+      "text_string1": "PHP",
+      "text_size1": "18",
+      "text_position1": "[2, 0, 0]",
+      "text_string2": "<?php",
+      "text_size2": "8",
+      "text_position2": "[3, 0, 0]"
+    },
+    "java_lowpoly": {
+      "lowpoly_duck": "true",
+      "text_string1": "JAVA",
+      "text_size1": "15",
+      "text_position1": "[2, -4, 1]",
+      "text_string2": "public static void main()",
+      "text_size2": "3",
+      "text_position2": "[0, -3, 0]"
+    },
+    "SQL_lowpoly": {
+      "lowpoly_duck": "true",
+      "text_string1": "SQL",
+      "text_size1": "15",
+      "text_position1": "[4, -4, 2]",
+      "text_string2": "SELECT * FROM",
+      "text_size2": "5",
+      "text_position2": "[0, 0, 0]"
+    },
+    "C_lowpoly": {
+      "lowpoly_duck": "true",
+      "text_string1": "C/C++",
+      "text_size1": "12",
+      "text_position1": "[2, -2, 0]",
+      "text_string2": "#include <>",
+      "text_size2": "6",
+      "text_position2": "[0, 0, 0]"
+    },
+    "bash_lowpoly": {
+      "lowpoly_duck": "true",
+      "text_string1": "sh/bash",
+      "text_size1": "9",
+      "text_position1": "[0, 0, 0]",
+      "text_string2": "rm -Rf /",
+      "text_size2": "8",
+      "text_position2": "[0, 0, 0]"
+    },
+    "openscad_lowpoly": {
+      "lowpoly_duck": "true",
+      "text_string1": "OpenSCAD",
+      "text_size1": "9",
+      "text_position1": "[-1, 0, 0]",
+      "text_string2": "cube(100);",
+      "text_size2": "5",
+      "text_position2": "[0, 0, 0]"
     }
   }
 }

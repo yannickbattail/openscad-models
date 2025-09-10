@@ -30,7 +30,7 @@
 | pipe                         | generate_profile.sh  | generate_profile.sh  |
 | pokeball                     | manual               | *work in progress*   |
 | pumpkin                      | generate_profile.sh  | ok                   |
-| rubberDuckDebugging          | generate_profile.sh  | ok                   |
+| rubberDuckDebugging          | *openscad-generate*  | ok                   |
 | sideImageExtrude             | generate_profile.sh  | no                   |
 | signetRing                   | generate_profile.sh  | ok                   |
 | star_wars/ahsoka_ball_map    | *openscad-generate*  | ok                   |

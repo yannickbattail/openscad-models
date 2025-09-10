@@ -1,4 +1,4 @@
-# Rubber duck debugging
+# Customizable Rubber duck debugging
 
 Duck toy for Rubber duck debugging ([explained on wikipedia](https://en.m.wikipedia.org/wiki/Rubber_duck_debugging))
 
@@ -10,6 +10,7 @@ Available:
 - .NET | C#
 - JAVA | ;-)
 - Javascript | HTML/CSS
+- CSS
 - Typescript | async/await
 - SQL | SELECT * FROM
 - C/C++ | #include <>
@@ -18,6 +19,7 @@ Available:
 
 ## UPDATE
 
+- v3: text in relief or in hole
 - v2: inline stl file, for use in thingiverse customizer, add lowpoly duck
 - v1: 1st design
 
@@ -42,12 +44,14 @@ Parts:
 ### Text left
 
 - `text_string1`: text on left
+- `text_out1`: text in relief or in hole
 - `text_size1`: text on left size
 - `text_position1`: text on left position [x,y,z]
 
 ### Text right
 
 - `text_string2`: text on right
+- `text_out2`: text in relief or in hole
 - `text_size2`: text on right size
 - `text_position2`: text on right position [x,y,z]
 
@@ -84,4 +88,4 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## keywords
 
-sample, openscad, customizable, customizer
+duck, Rubber Ducky, rubber duck, Debugger, Rubber Ducky, Debugging, openscad, customizable, customizer

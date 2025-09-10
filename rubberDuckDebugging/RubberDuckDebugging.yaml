@@ -20,8 +20,8 @@ mosaicOptions:
     height: 256
     border: 2
   tiles:
-    width: 2
-    height: 2
+    width: 4
+    height: 4
 openScadOptions:
   openScadExecutable: openscad-nightly # or "openscad"
   backend: Manifold # "CGAL" (old/slow) or "Manifold" (new/fast)
@@ -30,11 +30,11 @@ openScadOptions:
   hardwarnings: false
   debug: null
   imageOptions:
-    colorscheme: Starnight # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
+    colorscheme: DeepOcean # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
     imgsize:
       height: 1024
       width: 1024
-    render: null # for full geometry evaluation when exporting png
+    render: true # for full geometry evaluation when exporting png
     preview: null # [=throwntogether] -for ThrownTogether preview png
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"
@@ -42,11 +42,11 @@ openScadOptions:
   animOptions:
     animDelay: 100 # delay in milliseconds between frames
     animate: 20 # number of frames
-    colorscheme: Starnight # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
+    colorscheme: DeepOcean # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
     imgsize:
-      height: 256
-      width: 256
-    render: null # for full geometry evaluation when exporting png
+      height: 512
+      width: 512
+    render: true # for full geometry evaluation when exporting png
     preview: null # [=throwntogether] -for ThrownTogether preview png
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"

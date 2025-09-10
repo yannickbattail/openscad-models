@@ -7,6 +7,8 @@ lowpoly_duck = false;
 /* [Text left] */
 // text on left
 text_string1 = "Javascript";
+// text in relief or in hole
+text_out1 = false;
 // text on left size
 text_size1 = 7;
 // text on left position [x,y,z]
@@ -15,6 +17,8 @@ text_position1 = [-1, 0, 0];
 /* [Text right] */
 // text on right
 text_string2 = "HTML/CSS";
+// text in relief or in hole
+text_out2 = false;
 // text on right size
 text_size2 = 8;
 // text on right position [x,y,z]
@@ -40,20 +44,24 @@ $fn = 100;
 animation_rotation = false;
 
 /* [Hidden] */
-$vpt = animation_rotation ? [0, 0, 0] : $vpt;
+$vpt = animation_rotation ? [0, 0, 50] : $vpt;
 $vpr = animation_rotation ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
 $vpd = animation_rotation ? 500 : $vpd;
 
 font_params1 = [text_string1, text_size1, font_type, "center", "center", font_spacing, font_direction, font_language, font_script];
 font_params2 = [text_string2, text_size2, font_type, "center", "center", font_spacing, font_direction, font_language, font_script];
 
-duck(font_params1, text_position1, font_params2, text_position2, lowpoly_duck);
+duck(font_params1, text_position1, text_out1, font_params2, text_position2, text_out2, lowpoly_duck);
 
-module duck(font_params1, text_position1, font_params2, text_position2, lowpoly_duck) {
-  difference() {
-    rubber_duck(lowpoly_duck);
-    word(font_params1, text_position1, true);
-    word(font_params2, text_position2, false);
+module duck(font_params1, text_position1, text_out1, font_params2, text_position2, text_out2, lowpoly_duck) {
+  union() {
+    difference() {
+      rubber_duck(lowpoly_duck);
+      if (!text_out1) word(font_params1, text_position1, true);
+      if (!text_out2) word(font_params2, text_position2, false);
+    }
+    if (text_out1) word(font_params1, text_position1, true);
+    if (text_out2) word(font_params2, text_position2, false);
   }
 }
 

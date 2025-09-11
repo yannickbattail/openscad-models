@@ -1,5 +1,8 @@
 // part to generate
-part = "all"; // [all, handle, pomel, fundation]
+part = "all"; // [all, handle, pommel, foundation]
+
+// collapsable blade or standard 1 inch blade
+collapsable = true;
 
 // looseCoef
 looseCoef = 0.6; // [0.1:0.1:2]
@@ -15,43 +18,51 @@ animation_rotation = false;
 is_animated = animation_rotation;
 $vpt = is_animated ? [0, 0, 0] : $vpt;
 $vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
-$vpd = is_animated ? 200 : $vpd;
+$vpd = is_animated ? 1000 : $vpd;
 
 EPSI = 0.01; // constant epsilon for the difference operation
+INCH = 25.4;
 
 if (part == "handle") {
   handle();
-} else if (part == "pomel") {
-  pomel();
-} else if (part == "fundation") {
-  fundation();
+} else if (part == "pommel") {
+  pommel();
+} else if (part == "foundation") {
+  if (collapsable) {
+    foundation();
+  } else {
+    linear_extrude(10) text("No foundation for non collapsable blade", 20);
+  }
 } else {
   handle();
-  pomel();
-  fundation();
-  saberBlade();
+  pommel();
+  if (collapsable) {
+    foundation();
+  }
+  saberBlade(true);
 }
 
 module handle() {
   color("DarkGreen")
     difference() {
       wand();
-      fundationHole();
-      saberBlade();
+      foundationHole();
+      saberBlade(false);
     }
 }
 
-module pomel() {
+module pommel() {
   color("Green")
     difference() {
       wandPommel();
-      fundationHole();
+      foundationHole();
     }
 }
 
-module saberBlade() {
+module saberBlade(bladeItself) {
   bladeLength = 800;
-  bladeDiameter = 27;
+  d = collapsable?27:INCH;
+  bladeDiameter = bladeItself ? d : d + looseCoef;
   color("red", 0.5) {
     cylinder(h = bladeLength, d = bladeDiameter);
     translate([0, 0, bladeLength])
@@ -83,25 +94,17 @@ module wandPommel() {
       }
 }
 
-module fundation() {
+module foundation() {
   color("blue")
     difference() {
-      fundationHole(true);
+      foundationHole(true);
       bladeHole();
     }
 }
 
-module fundation() {
-  color("blue")
-    difference() {
-      fundationHole(true);
-      bladeHole();
-    }
-}
-
-module fundationHole(fundation = false) {
-  d = 27;
-  diameter = fundation ? d : d + looseCoef;
+module foundationHole(foundationItself = false) {
+  d = collapsable?27:INCH;
+  diameter = foundationItself ? d : d + looseCoef;
   translate([0, 0, -206])
     cylinder(h = 206, d = diameter);
 }

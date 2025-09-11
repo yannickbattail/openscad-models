@@ -8,8 +8,8 @@ cthulhu-lightsaber sample openscad model inspired from the openscad logo.
 
 ## Customizable variables
 
-- `part`: default "all", part to generate: all, ball, stick
-- `size`: default 50, size of the model
+- `part`: default "all", part to generate: all, handle, pommel, foundation
+- `collapsable`: default true, collapsable blade or standard 1 inch blade
 - `$fn`: resolution
 
 ## Sources

@@ -1,16 +1,28 @@
 {
   "parameterSets": {
     "all": {
-      "part": "all"
+      "part": "all",
+      "collapsable": "true"
+    },
+    "handle_collapsable": {
+      "part": "handle",
+      "collapsable": "true"
+    },
+    "pommel_collapsable": {
+      "part": "pommel",
+      "collapsable": "true"
+    },
+    "foundation_collapsable": {
+      "part": "foundation",
+      "collapsable": "true"
     },
     "handle": {
-      "part": "handle"
+      "part": "handle",
+      "collapsable": "false"
     },
-    "pomel": {
-      "part": "pomel"
-    },
-    "fundation": {
-      "part": "fundation"
+    "pommel": {
+      "part": "pommel",
+      "collapsable": "false"
     }
   },
   "fileFormatVersion": "1"

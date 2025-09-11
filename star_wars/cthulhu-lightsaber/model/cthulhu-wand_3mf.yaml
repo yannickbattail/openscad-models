@@ -6,10 +6,10 @@ outFormats:
   # - pdf
   # - svg
   # - dxf
-  # - 3mf
+  - 3mf
   # - stl
   # - asciistl
-  - binstl
+  # - binstl
   # - off
   # - wrl
   # - amf

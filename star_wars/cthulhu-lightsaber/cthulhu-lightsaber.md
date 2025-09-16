@@ -1,10 +1,22 @@
-# cthulhu-lightsaber
+# Cthulhu lightsaber
 
-cthulhu-lightsaber sample openscad model inspired from the openscad logo.
+Cthulhu lightsaber made from the [Cthulhu wand](https://www.thingiverse.com/thing:5435250).
+
+I can use a collapsing blade or a standard 1 inch blade.
 
 ## UPDATE
 
 - v1: 1st design
+
+## How to print it
+
+Material: PLA or better
+Color: Green?
+
+Parts:
+- `pommel`: support Yes, rotate 180°
+- `handle`: support Yes, rotate 0°
+- `foundation`: *print it only for collapsable blade,* support No, rotate 180° color: whatever
 
 ## Customizable variables
 
@@ -14,19 +26,23 @@ cthulhu-lightsaber sample openscad model inspired from the openscad logo.
 
 ## Sources
 
-here: https://github.com/.../...
+Sources available [here](https://github.com/yannickbattail/openscad-models/tree/main/star_wars/cthulhu-lightsaber)
 
 ## Generate
 
 Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
 
 ```bash
-npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 2,2 --configFile cthulhu-lightsaber.yaml ./cthulhu-lightsaber.scad
+npx openscad-generate@latest generate --mosaicFormat 2,2 --configFile cthulhu-lightsaber.yaml ./cthulhu-lightsaber.scad
 ```
 
 You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
 
 Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
+
+## Other interesting designs
+
+- [opinel lightsaber](https://www.thingiverse.com/thing:7115218)
 
 ## License
 
@@ -36,4 +52,4 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## keywords
 
-sample, openscad, customizable, customizer
+star_wars, starwars, lightsaber, cthulhu, tentacle, openscad, customizable, customizer

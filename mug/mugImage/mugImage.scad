@@ -20,8 +20,9 @@ include <images/christmas.scad>
 include <images/bicicletta.scad>
 include <images/lord_of_the_jedi_potter.scad>
 include <images/savoie.scad>
+include <images/tikawahukwa.scad>
 
-part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver, christmas, bicicletta, lord_of_the_jedi_potter, savoie]
+part = "cat"; // [cat, cat_fur, cat_profile, cat_face, red_panda, werefox, mountain, moon, jedi_sith, solo_carbonite, yoda, mountain_lake, denver, christmas, bicicletta, lord_of_the_jedi_potter, savoie, tikawahukwa]
 
 /* [Mug] */
 // height of the mug
@@ -61,7 +62,7 @@ $vpt = is_animated ? [0, 0, 0] : [];
 $vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : []; // animation rotate around the object
 $vpd = is_animated ? 500 : [];
 
-imageMap = object(cat = image_cat, cat_fur = image_cat_fur, cat_profile = image_cat_profile, cat_face = image_cat_face, red_panda = image_red_panda, werefox = image_werefox, mountain = image_mountain, moon = image_moon, jedi_sith = image_jedi_sith, solo_carbonite = image_solo_carbonite, yoda = image_yoda, mountain_lake = image_mountain_lake, denver = image_denver, christmas = image_christmas, bicicletta = image_bicicletta, lord_of_the_jedi_potter = image_lord_of_the_jedi_potter, savoie = image_savoie);
+imageMap = object(cat = image_cat, cat_fur = image_cat_fur, cat_profile = image_cat_profile, cat_face = image_cat_face, red_panda = image_red_panda, werefox = image_werefox, mountain = image_mountain, moon = image_moon, jedi_sith = image_jedi_sith, solo_carbonite = image_solo_carbonite, yoda = image_yoda, mountain_lake = image_mountain_lake, denver = image_denver, christmas = image_christmas, bicicletta = image_bicicletta, lord_of_the_jedi_potter = image_lord_of_the_jedi_potter, savoie = image_savoie, tikawahukwa = image_tikawahukwa);
 
 function selectImage() =
   has_key(imageMap, part) ? imageMap[part] : assert (false, str("no such part: ", part));

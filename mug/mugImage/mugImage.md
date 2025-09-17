@@ -4,22 +4,6 @@ Put an image on a mug that uses nutella glass (200g size).
 
 If you pour hot beverage in it when it cools down the glass may be stuck in the mug, so put hot water in it to detach it
 
-## UPDATE
-
-- v1: 1st design
-
-## Customizable variables
-
-- `part`: default "all", part to generate: all, ball, stick
-- `size`: default 50, size of the model
-- `$fn`: resolution
-
-## How to print it
-
-The design is made in a way that **you don't need support.**
-
-Prefer ABS to PLA (PETG ... I don't know), because PLA will crack (and the glass way stuck) after a few temperature changes.
-
 ## All designs
 
 - cat: cat emoji, base example fast to render
@@ -40,6 +24,23 @@ Prefer ABS to PLA (PETG ... I don't know), because PLA will crack (and the glass
 - lord_of_the_jedi_potter: lord of the rings: ring elfic text, the ring, Narsil sword, arrow. Harry potter: elder wand.
   Star wars: Luke's light saber. All forming the deathly hallows symbol
 - savoie: relief of the savoie department in France (made from https://touchterrain.geol.iastate.edu/main)
+- tikawahukwa: ultra vomit song
+
+## UPDATE
+
+- v1: 1st design
+
+## How to print it
+
+The design is made in a way that **you don't need support.**
+
+Prefer ABS to PLA (PETG ... I don't know), because PLA will crack (and the glass way stuck) after a few temperature changes.
+
+## Customizable variables
+
+- `part`: default "all", part to generate: all, ball, stick
+- `size`: default 50, size of the model
+- `$fn`: resolution
 
 ## Sources
 
@@ -72,10 +73,13 @@ Command to generate for all the presets: png image, webp animation, 3mf 3D model
 npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 4,4 --configFile ../globalConfig.yaml ./mugImage.scad
 ```
 
-You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
-number of cores minus 1)
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
 
 Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
+
+## Other interesting designs
+
+- [something](https://www.thingiverse.com/thing:0000000) ???
 
 ## License
 

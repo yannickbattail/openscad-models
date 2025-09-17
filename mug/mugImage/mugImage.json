@@ -193,6 +193,18 @@
       "partialModel": "all",
       "reliefMultiplier": "6",
       "withNutellaGlass": "true"
+    },
+    "tikawahukwa": {
+      "imageAngle": "120",
+      "imageRotation": "120",
+      "mugDiameter": "76",
+      "mugHeight": "80",
+      "mugThickness": "2",
+      "numberOfBlock": "6",
+      "part": "tikawahukwa",
+      "partialModel": "all",
+      "reliefMultiplier": "2",
+      "withNutellaGlass": "true"
     }
   }
 }

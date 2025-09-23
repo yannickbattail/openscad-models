@@ -1,26 +1,35 @@
 #!/bin/bash
 
+mosaicLines=2
+mosaicColumns=2
+parallelJobs=2
+if command -v nproc >/dev/null 2>&1; then # check if the command nproc exists
+  parallelJobs=$(nproc --ignore=2)
+fi
+if ! [[ "$parallelJobs" =~ ^[1-9][0-9]*$ ]]; then # Validate that parallelJobs is a positive integer
+  parallelJobs=2
+fi
 
-rm -Rf ./CD_solar_oven/ support_squareMeter_stl.zip
+echo "use ${parallelJobs} parallel jobs"
 
-for i in {A..E}
-do
-    for j in {1..16}
-    do
-         ../openscad_batch/generate_profile.sh -g stl -p support_squareMeter_${i}${j} ./CD_solar_oven.scad
-    done
-done
+npx openscad-generate@latest generate --mosaicFormat ${mosaicColumns},${mosaicLines} --parallelJobs $parallelJobs --configFile CD_solar_oven.yaml ./CD_solar_oven.scad
+status=$?
 
-../openscad_batch/generate_profile.sh -g stl -p base ./CD_solar_oven.scad
+# Notify user about the result
+if command -v notify-send >/dev/null 2>&1; then
+  if [ $status -eq 0 ]; then
+    notify-send -u normal "openscad-generate" "Generation of CD_solar_oven finished successfully."
+  else
+    notify-send -u critical "openscad-generate" "Generation of CD_solar_oven FAILED with exit code $status."
+  fi
+else
+  # Fallback to stdout if notify-send isn't available
+  if [ $status -eq 0 ]; then
+    echo "[INFO] Generation of CD_solar_oven finished successfully."
+  else
+    echo "[ERROR] Generation of CD_solar_oven FAILED with exit code $status." >&2
+  fi
+fi
 
-../openscad_batch/generate_profile.sh -g jpg -p all_support_squareMeter ./CD_solar_oven.scad
-../openscad_batch/generate_profile.sh -g jpg -p all_debug_squareMeter ./CD_solar_oven.scad
-../openscad_batch/generate_profile.sh -g jpg -p base ./CD_solar_oven.scad
-../openscad_batch/generate_profile.sh -g jpg -p support_squareMeter_A1 ./CD_solar_oven.scad
-../openscad_batch/generate_profile.sh -g jpg -p stl ./CD_solar_oven.scad
+exit $status
 
-zip -r support_squareMeter_stl.zip ./CD_solar_oven/
-
-rm ./CD_solar_oven/3D/support_squareMeter_*
-
-../openscad_batch/generate_profile.sh -g stl -p support_squareMeter_A1 ./CD_solar_oven.scad

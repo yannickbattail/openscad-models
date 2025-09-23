@@ -9,7 +9,7 @@
 | batteries_holder             | none                 | no                   |
 | BendingLib                   | generate_profile.sh  | no                   |
 | catTile                      | generate_profile.sh  | ok                   |
-| CD_solar_oven                | generate_profile.sh  | no                   |
+| CD_solar_oven                | *openscad-generate*  | no                   |
 | coin                         | none                 | *work in progress*   |
 | cubeOrnéDeNouilles           | generate_profile.sh  | ok                   |
 | dice                         | generate_profile.sh  | pas tous             |

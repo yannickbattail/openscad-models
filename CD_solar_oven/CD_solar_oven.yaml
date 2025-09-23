@@ -1,12 +1,11 @@
-
 outputDir: ./gen
-embedThumbnailIn3mf: true
-embedSourcesIn3mf: true
+embedThumbnailIn3mf: false
+embedSourcesIn3mf: false
 outFormats:
   ### image
-  - png
+  # - png
   ### animation
-  - webp
+  # - webp
   ### animation, old low quality
   # - gif
   ### 2D doc, see section optionPdf

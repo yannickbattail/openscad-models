@@ -1,7 +1,5 @@
 #!/bin/bash
 
-mosaicLines=2
-mosaicColumns=2
 parallelJobs=2
 if command -v nproc >/dev/null 2>&1; then # check if the command nproc exists
   parallelJobs=$(nproc --ignore=2)
@@ -12,7 +10,7 @@ fi
 
 echo "use ${parallelJobs} parallel jobs"
 
-npx openscad-generate@latest generate --mosaicFormat ${mosaicColumns},${mosaicLines} --parallelJobs $parallelJobs --configFile CD_solar_oven.yaml ./CD_solar_oven.scad
+npx openscad-generate@latest generate --outFormats 3mf --parallelJobs $parallelJobs --configFile CD_solar_oven.yaml ./CD_solar_oven.scad
 status=$?
 
 # Notify user about the result
@@ -30,6 +28,10 @@ else
     echo "[ERROR] Generation of CD_solar_oven FAILED with exit code $status." >&2
   fi
 fi
+
+npx openscad-generate@latest generate -p all_debug_squareMeter   --outFormats png,webp --parallelJobs $parallelJobs --configFile CD_solar_oven.yaml ./CD_solar_oven.scad
+npx openscad-generate@latest generate -p base                    --outFormats png,webp,3mf --parallelJobs $parallelJobs --configFile CD_solar_oven.yaml ./CD_solar_oven.scad
+npx openscad-generate@latest generate -p support_squareMeter_A1  --outFormats png,webp --parallelJobs $parallelJobs --configFile CD_solar_oven.yaml ./CD_solar_oven.scad
 
 exit $status
 

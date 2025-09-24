@@ -1,0 +1,159 @@
+outputDir: ./gen
+embedThumbnailIn3mf: true
+embedSourcesIn3mf: true
+outFormats:
+  ### image
+  - png
+  ### animation
+  - webp
+  ### animation, old low quality
+  # - gif
+  ### 2D doc, see section optionPdf
+  # - pdf
+  ### 2D vectorial, see section optionSvg
+  # - svg
+  ### 2D: Drawing Exchange Format, vectorial
+  # - dxf
+  ### 3D, compressed format with colors and materials, see section option3mf
+  - 3mf
+  ### 3D stl, ascii or binary depending on openscad configuration
+  # - stl
+  ### 3D stl, ascii (text)
+  # - asciistl
+  ### 3D stl, binary
+  # - binstl
+  ### 3D: Object File Format
+  # - off
+  ### 3D: Virtual Reality Modeling Language
+  # - wrl
+  ### 3D: previous version or 3mf, use 3mf instead if possible
+  # - amf
+  ### 3: POV-Ray Raytracing Format
+  # - pov
+mosaicOptions:
+  geometry:
+    ### dimensions of a tile
+    width: 256
+    height: 256
+    border: 2
+  tiles:
+    ### number of columns
+    width: 2
+    ### number of lines
+    height: 2
+openScadOptions:
+  ### executable location
+  openScadExecutable: openscad-nightly # or "openscad"
+  ### backend engine: "Manifold" (new/fast) or "CGAL" (old/slow)
+  backend: Manifold
+  ### configure the parameter range check for builtin modules
+  check_parameter_ranges: false
+  ### configure the parameter check for user modules and functions
+  check_parameters: false
+  ### Stop on the first warning
+  hardwarnings: false
+  ### special debug info - specify 'all' or a set of source file names
+  debug: null
+  imageOptions:
+    ### Cornfield, Metallic, Sunset, Starnight, BeforeDawn, Nature, DaylightGem, NocturnalGem, DeepOcean, Solarized, Tomorrow, TomorrowNight, ClearSky, Monotone
+    colorscheme: Starnight
+    imgsize:
+      height: 1024
+      width: 1024
+    ### for full geometry evaluation when exporting png
+    render: null
+    ### [=throwntogether] for ThrownTogether preview png
+    preview: null
+    ### "o" for ortho or "p" for perspective when exporting png
+    projection: "p"
+    ### "axes", "crosshairs", "edges", "scales" or null
+    view: null
+    ### adjust camera to look at object's center
+    autocenter: true
+    ### adjust camera to fit object
+    viewall: true
+  animOptions:
+    ### delay in milliseconds between frames
+    animDelay: 50
+    ### number of frames
+    animate: 20
+    ### Cornfield, Metallic, Sunset, Starnight, BeforeDawn, Nature, DaylightGem, NocturnalGem, DeepOcean, Solarized, Tomorrow, TomorrowNight, ClearSky, Monotone
+    colorscheme: Starnight
+    imgsize:
+      height: 300
+      width: 300
+    ### for full geometry evaluation when exporting png
+    render: null
+    ### [=throwntogether] for ThrownTogether preview png
+    preview: null
+    ### "o" for ortho or "p" for perspective when exporting png
+    projection: "p"
+    ### "axes", "crosshairs", "edges", "scales" or null
+    view: null
+    ### adjust camera to look at object's center
+    autocenter: false
+    ### adjust camera to fit object
+    viewall: false
+  option3mf:
+    ### "model", "none" or "selected_only". Set to "model" useful if you want to export multiple colors in a 3mf file
+    color_mode: model
+    ### set model's for when color_mode=selected_only
+    color: ""
+    ### "color" | "basematerial". Set to "color" useful if you want to export multiple colors in a 3mf file
+    material_type: color
+    ###  micron, millimeter, centimeter, meter, inch, foot
+    unit: millimeter
+    ### add metadata in the 3mf file
+    add_meta_data: "true"
+    meta_data_copyright: me 2025
+    ### the following variables are replaced by their value when generating the file
+    #### __FILE_NAME__: the openscad file name with extension
+    #### __BASE_FILE_NAME__: the openscad file name without extension
+    #### __PARAMETER_SET__: the parameter set name used to generate the file
+    #### __GENERATION_DATE__: date of the generation
+    #### __PARAMETERS__: values of the parameter set as a JSON string
+    meta_data_title: '__BASE_FILE_NAME__ - __PARAMETER_SET__'
+    meta_data_description: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with OpenSCAD, generated at __GENERATION_DATE__ from "file __FILE_NAME__" with parameters: __PARAMETERS__'
+    meta_data_designer: me
+    meta_data_license_terms: 'CC BY https://creativecommons.org/licenses/by/4.0/ GPL https://www.gnu.org/licenses/gpl-3.0.html'
+    meta_data_rating: ""
+  optionPdf:
+    paper_size: "a4"
+    orientation: "portrait"
+    show_filename: "false"
+    show_scale: "true"
+    show_scale_message: "true"
+    show_grid: "false"
+    grid_size: 10.0
+    add_meta_data: "true"
+    # the variables are replaced by their value when generating the file
+    meta_data_title: '__BASE_FILE_NAME__ - __PARAMETER_SET__'
+    meta_data_author: "me"
+    # the variables are replaced by their value when generating the file
+    meta_data_subject: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with OpenSCAD, generated at __GENERATION_DATE__ from "file __FILE_NAME__" with parameters: __PARAMETERS__'
+    meta_data_keywords: "OpenSCAD, 2D model"
+    fill: "false"
+    fill_color: "black"
+    stroke: "true"
+    stroke_color: "black"
+    stroke_width: 0.35
+  optionSvg:
+    fill: "false"
+    fill_color: "white"
+    stroke: "true"
+    stroke_color: "black"
+    stroke_width: 0.35
+  experimentalFeatures:
+    ### Enable import() function returning data instead of geometry.
+    import_function: true
+    ### useful if you want to export multiple models in a 3mf file (and multiple colors)
+    lazy_union: true
+    ### Attempt to produce predictible, diffable outputs (e.g. sorting the STL, or remeshing in a determined order)
+    predictible_output: true
+    ### enables object(), is_object() and has_key() functions https://en.wikibooks.org/wiki/OpenSCAD_User_Manual/Objects
+    object_function: true
+    ### enable roof()
+    roof: true
+    ### Enable the textmetrics() and fontmetrics() functions.
+    textmetrics: true
+

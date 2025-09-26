@@ -1,7 +1,9 @@
 part = "all"; // [all, base, support]
 
-// distance of the focus point
-focus_distance = 1000; // [100:2000]
+// distance of the focus point of innter cells
+focus_distance_inner = 1200; // [100:2000]
+// distance of the focus point of outer cells
+focus_distance_outer = 800; // [100:2000]
 
 // thickness of the base
 base_height = 2; // [1:10]
@@ -27,7 +29,6 @@ $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
 $vpd = animation_rotation ? 300 : [];
 
 // constants
-focus_of_parabola = "middle"; // [middle, bottom_center, bottom_left]
 number_of_rows = 9; // [1:1:40]
 number_of_column = 3; // [1:1:40]
 baseSide = 120;
@@ -43,40 +44,39 @@ if (part == "all" || part == "support") {
 }
 
 innerCells = [
-  [1, 6],
-  [1, 5],
-  [1, 3],
-  [1, 2],
-  [0, 3],
-  [0, 5],
+  [0, 2],
+  [0, 1],
+  [0, -1],
+  [0, -2],
+  [-1, -1],
+  [-1, 1],
 ];
 outerCells = [
-  [1, 8],
-  [1, 7],
-  [2, 6],
-  [2, 4],
-  [2, 2],
-  [1, 1],
-  [1, 0],
-  [0, 1],
-  [0, 2],
   [0, 4],
-  [0, 6],
-  [0, 7],
+  [0, 3],
+  [1, 2],
+  [1, 0],
+  [1, -2],
+  [0, -3],
+  [0, -4],
+  [-1, -3],
+  [-1, -2],
+  [-1, 0],
+  [-1, 2],
+  [-1, 3],
 ];
 
 module solar_oven(base_height, support_height, baseDiameter) {
-  focusPos = focus_position(focus_of_parabola, dimentions, focus_distance);
+  cellRing(innerCells, focus_distance_inner, base_height, support_height, baseDiameter);
+  cellRing(outerCells, focus_distance_outer, base_height, support_height, baseDiameter);
+}
+
+module cellRing(cells, focus_distance, base_height, support_height, baseDiameter) {
+  focusPos = [0, 0, focus_distance];
   focusPoint(debug, focusPos);
-  for(i = [0:len(innerCells) - 1]) {
-    c = innerCells[i];
-    color("yellow")
-      cell(c[0], c[1], focusPos, base_height, support_height, baseDiameter);
-  }
-  for(i = [0:len(outerCells) - 1]) {
-    c = outerCells[i];
-    color("gold")
-      cell(c[0], c[1], focusPos, base_height, support_height, baseDiameter);
+  for(i = [0:len(cells) - 1]) {
+    c = cells[i];
+    cell(c[0], c[1], focusPos, base_height, support_height, baseDiameter);
   }
 }
 
@@ -98,10 +98,6 @@ function positionX(x, y) =
   y % 2 ? x * baseRadius * 3 + baseRadius * 1.5 : x * baseRadius * 3;
 function positionY(x, y) =
   y * baseSide / 2;
-
-function focus_position(focus_of_parabola, dimentions, focus_distance) =
-  focus_of_parabola == "middle" ? [dimentions[0] / 2, dimentions[1] / 2, focus_distance] : (focus_of_parabola == "bottom_center" ? [dimentions[0] / 2, 0, focus_distance] : /*bottom_left*/
-  [0, 0, focus_distance]);
 
 function support_rotation(focusPos, support) =
   let (vect = focusPos - support, sphrCord = sphericalCoord(vect))
@@ -151,8 +147,9 @@ module head(rotation) {
 
 module cd(rotation) {
   if (debug) {
-    color("grey")
-      cylinder(d = 120, h = 1, $fn = 6); // CD
+    color("gold")
+      rotate([0, 0, -rotation[2]])
+        cylinder(d = 120, h = 1, $fn = 6); // CD
     //    color("#ff000020")
     //      rotate([0, rotation[1], 0])
     //        cylinder(d = 120, h = 1200); // light ray out

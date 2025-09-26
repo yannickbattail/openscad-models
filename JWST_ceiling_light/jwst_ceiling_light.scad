@@ -1,18 +1,15 @@
-part = "all"; // [all, base, support]
+part = "all"; // [all, support]
 
 // distance of the focus point of innter cells
 focus_distance_inner = 1200; // [100:2000]
 // distance of the focus point of outer cells
 focus_distance_outer = 800; // [100:2000]
 
-// thickness of the base
-base_height = 2; // [1:10]
-
 // support height (from the bottom of the base)
-support_height = 60; // [35:100]
+support_height = 10; // [35:100]
 
-// add the base to the display
-show_base = true;
+// add the mirrors to the display
+show_mirrors = true;
 
 // display CD, light rays, focus point and coordinates
 debug = true;
@@ -24,9 +21,9 @@ animation_rotation = false;
 /* [hidden] */
 $fn = 100;
 
-$vpt = animation_rotation ? [0, 0, 0] : [];
+$vpt = animation_rotation ? [0, 0, 500] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];
-$vpd = animation_rotation ? 300 : [];
+$vpd = animation_rotation ? 3500 : [];
 
 // constants
 number_of_rows = 9; // [1:1:40]
@@ -38,9 +35,7 @@ EPSI = 0.01;
 dimentions = [positionX(number_of_column, number_of_rows), positionY(number_of_column, number_of_rows)];
 
 if (part == "all" || part == "support") {
-  solar_oven(base_height, support_height, baseDiameter);
-} else if (part == "base") {
-  base(base_height, baseDiameter);
+  solar_oven(support_height, baseDiameter);
 }
 
 innerCells = [
@@ -66,30 +61,27 @@ outerCells = [
   [-1, 3],
 ];
 
-module solar_oven(base_height, support_height, baseDiameter) {
-  cellRing(innerCells, focus_distance_inner, base_height, support_height, baseDiameter);
-  cellRing(outerCells, focus_distance_outer, base_height, support_height, baseDiameter);
+module solar_oven(support_height, baseDiameter) {
+  cellRing(innerCells, focus_distance_inner, support_height, baseDiameter);
+  cellRing(outerCells, focus_distance_outer, support_height, baseDiameter);
 }
 
-module cellRing(cells, focus_distance, base_height, support_height, baseDiameter) {
+module cellRing(cells, focus_distance, support_height, baseDiameter) {
   focusPos = [0, 0, focus_distance];
   focusPoint(debug, focusPos);
   for(i = [0:len(cells) - 1]) {
     c = cells[i];
-    cell(c[0], c[1], focusPos, base_height, support_height, baseDiameter);
+    cell(c[0], c[1], focusPos, support_height, baseDiameter);
   }
 }
 
-module cell(x, y, focusPos, base_height, support_height, baseDiameter) {
+module cell(x, y, focusPos, support_height, baseDiameter) {
   xt = positionX(x, y);
   yt = positionY(x, y);
   if (part == "all" || (part == "support")) {
     supportRotation = support_rotation(focusPos, [xt, yt, support_height]);
     translate([xt, yt, 0]) {
-      if (show_base && part == "all") {
-        base(base_height, baseDiameter);
-      }
-      support(supportRotation, support_height, base_height);
+      support(supportRotation, support_height);
     }
   }
 }
@@ -118,38 +110,31 @@ module focusPoint(debug, focusPos) {
   }
 }
 
-module support(rotation, support_height, base_height) {
-  difference() {
-    union() {
-      translate([0, 0, base_height / 2])
-        cube([10, 10, base_height], center = true);
-      translate([0, 0, base_height])
-        cylinder(d = 16, h = support_height - 15);
-      translate([0, 0, support_height + base_height])
-        head(rotation);
-    }
-  }
-}
-
-module head(rotation) {
-  rotate(rotation) {
-    color("orange") {
-      difference() {
-        sphere(d = 35);
-        translate([0, 0, 20])
-          cube(40, center = true);
+module support(rotation, support_height) {
+  color("DarkSlateGray")
+    difference() {
+      cylinder(d = 140, h = support_height + 40, $fn = 6);
+      translate([0, 0, support_height]) {
+        rotate(rotation) {
+          translate([0, 0, 100])
+            cube(200, center = true);
+        }
       }
-      cylinder(d1 = 15, d2 = 14, h = 4); // CD hole pin
     }
-    cd(rotation);
+  translate([0, 0, support_height]) {
+    rotate(rotation) {
+      hexMirror(rotation);
+    }
   }
 }
 
-module cd(rotation) {
-  if (debug) {
+module hexMirror(rotation) {
+  if (show_mirrors) {
     color("gold")
       rotate([0, 0, -rotation[2]])
-        cylinder(d = 120, h = 1, $fn = 6); // CD
+        cylinder(d = 130, h = 1, $fn = 6); // the mirror
+  }
+  if (debug) {
     //    color("#ff000020")
     //      rotate([0, rotation[1], 0])
     //        cylinder(d = 120, h = 1200); // light ray out
@@ -160,24 +145,4 @@ module cd(rotation) {
       rotate([0, -rotation[1], 0])
         cube([1, 1, 1200]); // light ray in
   }
-}
-
-module base(base_height, baseDiameter) {
-  color("chartreuse")
-    difference() {
-      union() {
-        difference() {
-          cylinder(d = baseDiameter, h = base_height, $fn = 6);
-          translate([0, 0, -EPSI])
-            cylinder(d = baseDiameter - 8, h = base_height + EPSI * 2, $fn = 6);
-        }
-        cylinder(d = 30, h = base_height, $fn = 6);
-        translate([0, 0, base_height / 2])
-          for(i = [0:2]) {
-            rotate([0, 0, 60 * i + 30])
-              cube([4, baseDiameter - 3, base_height], center = true);
-          }
-      }
-      cube(10, center = true);
-    }
 }

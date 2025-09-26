@@ -1,30 +1,22 @@
 {
   "fileFormatVersion": "1",
   "parameterSets": {
-    "all_support_squareMeter": {
-      "debug": "false",
-      "focus_distance": "1000",
-      "focus_of_parabola": "middle",
-      "number_of_column": "5",
-      "number_of_rows": "16",
+    "all": {
       "part": "all",
-      "show_base": "false"
+      "debug": "false",
+      "show_mirrors": "false",
+      "focus_distance_inner": "1200",
+      "focus_distance_outer": "800",
+      "focus_of_parabola": "middle",
+      "support_height": "10"
     },
-    "all_debug_squareMeter": {
+    "all_debug": {
+      "part": "all",
       "debug": "true",
-      "focus_distance": "1000",
-      "focus_of_parabola": "middle",
-      "number_of_column": "5",
-      "number_of_rows": "16",
-      "part": "all",
-      "show_base": "true"
-    },
-    "base": {
-      "debug": "false",
-      "number_of_column": "1",
-      "number_of_rows": "1",
-      "part": "base",
-      "show_base": "true"
+      "show_mirrors": "true",
+      "focus_distance_inner": "1200",
+      "focus_distance_outer": "800",
+      "support_height": "10"
     }
   }
 }

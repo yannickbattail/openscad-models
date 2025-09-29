@@ -30,3 +30,5 @@ Mug using the nutella glass
     - lord_of_the_jedi_potter: lord of the rings: ring elfic text, the ring, Narsil sword, arrow. Harry potter: elder
       wand. Star wars: Luke's light saber. All forming the deathly hallows symbol
     - savoie: relief of the savoie department in france
+    - tikawahukwa: ultra vomit song
+    - rapidash: the pokemon rapidash

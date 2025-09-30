@@ -34,13 +34,14 @@ openScadOptions:
     imgsize:
       height: 1024
       width: 1024
-    render: null # for full geometry evaluation when exporting png
+    render: true # for full geometry evaluation when exporting png
     preview: null # [=throwntogether] -for ThrownTogether preview png
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"
-    autocenter: false # adjust the camera to look at object's center
+    autocenter: true # adjust the camera to look at object's center
+    viewall: true # adjust camera to fit object
   animOptions:
-    animDelay: 50 # delay in milliseconds between frames
+    animDelay: 100 # delay in milliseconds between frames
     animate: 20 # number of frames
     colorscheme: Starnight # Cornfield,Metallic,Sunset,Starnight,BeforeDawn,Nature,DaylightGem,NocturnalGem,DeepOcean,Solarized,Tomorrow,TomorrowNight,ClearSky,Monotone,
     imgsize:
@@ -51,6 +52,7 @@ openScadOptions:
     projection: null # "o" for ortho or "p" for perspective when exporting png
     view: null # "axes" | "crosshairs" | "edges" | "scales"
     autocenter: false # adjust the camera to look at object's center
+    viewall: false # adjust camera to fit object
   option3mf:
     color_mode: model # "model" | "none" | "selected_only".  Set to "model" useful if you want to export multiple colors in a 3mf file
     color: ""

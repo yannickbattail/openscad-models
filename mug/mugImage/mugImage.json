@@ -205,6 +205,18 @@
       "partialModel": "all",
       "reliefMultiplier": "2",
       "withNutellaGlass": "true"
+    },
+    "rapidash": {
+      "imageAngle": "140",
+      "imageRotation": "30",
+      "mugDiameter": "76",
+      "mugHeight": "80",
+      "mugThickness": "2",
+      "numberOfBlock": "6",
+      "part": "rapidash",
+      "partialModel": "all",
+      "reliefMultiplier": "3",
+      "withNutellaGlass": "true"
     }
   }
 }

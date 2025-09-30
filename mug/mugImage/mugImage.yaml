@@ -1,4 +1,6 @@
 outputDir: ./gen
+embedThumbnailIn3mf: true
+embedSourcesIn3mf: true
 outFormats:
   ### image
   - png
@@ -67,7 +69,7 @@ openScadOptions:
     ### "axes", "crosshairs", "edges", "scales" or null
     view: null
     ### adjust camera to look at object's center
-    autocenter: false
+    autocenter: true
     ### adjust camera to fit object
     viewall: true
   animOptions:
@@ -91,7 +93,7 @@ openScadOptions:
     ### adjust camera to look at object's center
     autocenter: false
     ### adjust camera to fit object
-    viewall: true
+    viewall: false
   option3mf:
     ### "model", "none" or "selected_only". Set to "model" useful if you want to export multiple colors in a 3mf file
     color_mode: model
@@ -110,8 +112,8 @@ openScadOptions:
     #### __PARAMETER_SET__: the parameter set name used to generate the file
     #### __GENERATION_DATE__: date of the generation
     #### __PARAMETERS__: values of the parameter set as a JSON string
-    meta_data_description: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with OpenSCAD, generated at __GENERATION_DATE__ from "file __FILE_NAME__" with parameters: __PARAMETERS__'
     meta_data_title: '__BASE_FILE_NAME__ - __PARAMETER_SET__'
+    meta_data_description: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with OpenSCAD, generated at __GENERATION_DATE__ from "file __FILE_NAME__" with parameters: __PARAMETERS__'
     meta_data_designer: me
     meta_data_license_terms: 'CC BY https://creativecommons.org/licenses/by/4.0/ GPL https://www.gnu.org/licenses/gpl-3.0.html'
     meta_data_rating: ""

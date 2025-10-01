@@ -14,7 +14,15 @@ see example of use:
 
 ## UPDATE
 
+- v2: fix inner diameter when no block is used
 - v1: 1st design
+
+## How to print it
+
+Material: transparent filament ?
+
+Other slicer options
+- infill: 100% ? or less
 
 ## Customizable variables
 
@@ -25,20 +33,23 @@ see example of use:
 
 ## Sources
 
-here: https://github.com/yannickbattail/openscad-models/tree/main/mug/nutellaGlass .
+Sources available [here](https://github.com/yannickbattail/openscad-models/tree/main/mug/nutellaGlass)
 
 ## Generate
 
 Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
 
 ```bash
-npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 3,3 --configFile ../globalConfig.yaml ./nutellaGlass.scad
+npx openscad-generate@latest generate --mosaicFormat 2,2 --configFile nutellaGlass.yaml ./nutellaGlass.scad
 ```
 
-You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
-number of cores minus 1)
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
 
 Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
+
+## Other interesting designs
+
+- [something](https://www.thingiverse.com/thing:0000000) ???
 
 ## License
 

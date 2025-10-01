@@ -65,19 +65,23 @@ module plainNutellaGlass() {
 }
 
 module plainNutellaGlassWithBlock(nbBlock = 0) {
-  blockHeight = 1;
-  scale1 = (73.5 + blockHeight) / 73.5;
-  plainNutellaGlass();
-  angle = 360 / nbBlock;
-  difference() {
-    scale([scale1, scale1, 1])
-      plainNutellaGlass();
-    if (nbBlock) {
-      for(i = [0:nbBlock - 1]) {
-        rotate([0, 0, angle * i])
-          translate([0, 0, 0])
-            cube([80, 1, 100]);
+  if (nbBlock) {
+    blockHeight = 1;
+    plainNutellaGlass();
+    difference() {
+      scale1 = (73.5 + blockHeight) / 73.5;
+      scale([scale1, scale1, 1])
+        plainNutellaGlass();
+      if (nbBlock) {
+        angle = 360 / nbBlock;
+        for(i = [0:nbBlock - 1]) {
+          rotate([0, 0, angle * i])
+            translate([0, 0, 0])
+              cube([80, 1, 100]);
+        }
       }
     }
+  } else {
+    plainNutellaGlass();
   }
 }

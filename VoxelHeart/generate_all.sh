@@ -1,9 +1,7 @@
 #!/bin/bash
 
-parallelJobs=14
-outFormats="png,webp,3mf"
-
-npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 1,2 --parallelJobs ${parallelJobs} --configFile EasiestHeart.yaml ./EasiestHeart.scad
-npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,2 --parallelJobs ${parallelJobs} --configFile VoxelHeart.yaml ./VoxelHeart.scad
+time generate_EasiestHeart.sh
+## it takes a lot of timefirst
+time generate_VoxelHeart.sh
 ## this after because it needs gen/VoxelHeart_VoxelHeart1_hull.3mf
-npx openscad-generate@latest generate --outFormats ${outFormats} --mosaicFormat 2,3 --parallelJobs ${parallelJobs} --configFile heartJewel.yaml ./heartJewel.scad
+time generate_heartJewel.sh

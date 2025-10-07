@@ -1,6 +1,10 @@
-# easiest_heart
+# Easiest Heart
 
 A very simple code that generates a Heart.
+
+## UPDATE
+
+- v1: 1st design
 
 ## How to print it
 
@@ -23,7 +27,7 @@ Sources available [here](https://github.com/yannickbattail/openscad-models/tree/
 Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
 
 ```bash
-npx openscad-generate@latest generate --outFormats png,webp,3mf --configFile EasiestHeart.yaml ./EasiestHeart.scad
+npx openscad-generate@latest generate --mosaicFormat 2,2 --configFile EasiestHeart.yaml ./EasiestHeart.scad
 ```
 
 You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU

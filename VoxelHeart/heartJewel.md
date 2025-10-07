@@ -6,7 +6,20 @@ Jewel heart: it comes in 2 parts that can be put together like a puzzle
 
 The heart shape is based on the hulled [VoxelHeart](https://www.thingiverse.com/thing:5635344)
 
-## Customisation variables
+
+## UPDATE
+
+- v1: 1st design
+
+## How to print it
+
+Material: Silk PLA red and blue
+
+Parts:
+- `heartLeft`:  support Yes, rotate so the puzzle piece is oriented to the bottom, color: red
+- `heartRight`: support Yes, rotate so the puzzle piece is oriented to the bottom. color: blue
+
+## Customizable variables
 
 - `part:` part to generate: all, heartLeft or heartRight
 - `cat:` true, add the drawing of the cat on the heart
@@ -22,11 +35,10 @@ Sources available [here](https://github.com/yannickbattail/openscad-models/tree/
 Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
 
 ```bash
-npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 3,2 --configFile heartJewel.yaml ./heartJewel.scad
+npx openscad-generate@latest generate --mosaicFormat 3,2 --configFile heartJewel.yaml ./heartJewel.scad
 ```
 
-You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
-number of cores minus 1)
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
 
 Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
@@ -42,6 +54,6 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 [CC BY](https://creativecommons.org/licenses/by/4.0/)
 
-## Keywords
+## keywords
 
-jewelry, pendant, heart, puzzle, cat
+jewelry, pendant, heart, puzzle, cat, openscad, customizable, customizer

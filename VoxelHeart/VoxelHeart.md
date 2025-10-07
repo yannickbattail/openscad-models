@@ -12,7 +12,16 @@ files .3mf are in much higher resolution
 - v2: heartJewel
 - v1: 1st design
 
-## Customisation variables
+## How to print it
+
+Material: PLA, ABS ??? color ???
+
+Other slicer options
+- infill: 20% ???
+- vase mode (Spiral): No ???
+- ...
+
+## Customizable variables
 
 - `resolution:` Size of a voxel and so then number of voxels. It takes an exponential time to process. Look at the
   console for "Number of voxels". (value lower than 0.03 will cause an error)
@@ -31,11 +40,10 @@ Sources available [here](https://github.com/yannickbattail/openscad-models/tree/
 Command to generate for all the presets: png image, webp animation, 3mf 3D model and mosaic of all the presets
 
 ```bash
-npx openscad-generate@latest generate --outFormats png,webp,3mf --mosaicFormat 3,2 --configFile VoxelHeart.yaml ./hVoxelHeartscad
+npx openscad-generate@latest generate --mosaicFormat 3,2 --configFile VoxelHeart.yaml ./VoxelHeart.scad
 ```
 
-You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU
-number of cores minus 1)
+You can add the option `--parallelJobs 7` before the .scad file to generate in parallel. (optimal number is your CPU number of cores minus 1)
 
 Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
@@ -53,4 +61,4 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## Keywords
 
-jewelry, pendant, heart, puzzle, cat
+jewelry, pendant, heart, puzzle, cat, openscad, customizable, customizer

@@ -1,0 +1,11 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "with_rock": {
+          "has_rock" : "true"
+        },
+        "without_rock": {
+          "has_rock" : "false"
+        }
+    }
+}

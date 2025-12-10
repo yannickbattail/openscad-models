@@ -1,8 +1,6 @@
-# dahut
+# Customizable dahut
 
-Description of dahut sample openscad model inspired from the openscad logo.
-
-SEARCH FOR ??? AND COMPLETE THE DOC
+Customizable dahut, dextrogyre or levogyre
 
 ## UPDATE
 
@@ -10,27 +8,23 @@ SEARCH FOR ??? AND COMPLETE THE DOC
 
 ## How to print it
 
-Material: PLA, ABS ??? color ???
-
-Parts:
-- `all`: support Yes/No, rotate 180° color: yellow ???
-- `ball`: support Yes/No, rotate 0° color: blue ???
-- `stick`: support Yes/No, rotate 0° color: red ???
+Material: PLA or whatever, color: dahut color
 
 Other slicer options
-- infill: 20% ???
-- vase mode (Spiral): No ???
-- ...
+- support: yes
+- vase mode (Spiral): no
 
 ## Customizable variables
 
-- `part`: default "all", part to generate: all, ball, stick
-- `size`: default 50, size of the model
-- `$fn`: resolution
+- `leg_shrink`: default 0.7, shrink factor for the legs
+- `has_rock`: default true, has rock under the feet like a sidewalk
+- `sens`: default "dextrogyre", sens, dextrogyre shorter legs on right side, levogyre shorter legs on left side
 
 ## Sources
 
-Sources available [here](https://github.com/.../...) ???
+Original [model of goat](https://www.thingiverse.com/thing:7197001)
+
+Sources available [here](https://github.com/yannickbattail/openscad-models/tree/main/dahut/)
 
 ## Generate
 
@@ -46,7 +40,7 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## Other interesting designs
 
-- [something](https://www.thingiverse.com/thing:0000000) ???
+- [Ibex wall art](https://www.thingiverse.com/thing:6368431)
 
 ## License
 
@@ -56,4 +50,4 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## keywords
 
-openscad, customizable, customizer, ???
+dahut, dahu, dextrogyre, levogyre, chamois, horned goat-antelope, ibex, customizable, customizer

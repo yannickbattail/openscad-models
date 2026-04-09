@@ -100,7 +100,6 @@ module mugImage(mugHeight, mugRadius, mugThickness, withNutellaGlass, imageAngle
     } else {
       translate([0, 0, mugThickness]) {
         cylinder(h = mugHeight - mugThickness + epsi, r = mugRadius - mugThickness);
-      // + epsi to prevent display bug
       }
     }
   }

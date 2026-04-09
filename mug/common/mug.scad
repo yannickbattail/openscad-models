@@ -1,4 +1,4 @@
-module mug(height, radius, thickness, hasBigHandle = true) {
+module mug(height, radius, thickness, hasBigHandle = true, hasHolder = true, holderAngle = 30) {
   epsi = 0.01; // epsilon
   difference() {
     union() {
@@ -14,7 +14,34 @@ module mug(height, radius, thickness, hasBigHandle = true) {
           handle(height);
         }
       }
+      if (hasHolder) {
+        rotate([0, 0, holderAngle])
+          holder(height, radius);
+      }
     }
+  }
+}
+
+module holder(height, radius) {
+  translate([radius - 5, 0, height - 7]) {
+    rotate([0, 0, 90])
+      mmirror([1, 0, 0]) {
+        rotate([0, 0, 45])
+          translate([0, -10, 0])
+            holderPart();
+      }
+  }
+}
+
+module holderPart() {
+  difference() {
+    cube([14, 3, 14], center = true);
+    rotate([0, -45, 0])
+      translate([-10, 0, 0])
+        cube([20, 20, 20], center = true);
+    rotate([0, 0, 90-10])
+      translate([-10, 0, 0])
+        cube([20, 20, 20], center = true);
   }
 }
 
@@ -43,4 +70,13 @@ module torus(radius, thickness) {
     translate([radius, 0])
       circle(r = thickness);
   }
+}
+
+/*
+same as mirror but duplicate children
+*/
+module mmirror(mat) {
+  children();
+  mirror(mat)
+    children();
 }

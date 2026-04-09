@@ -1,0 +1,25 @@
+{
+  "fileFormatVersion": "1",
+  "parameterSets": {
+    "dextrogyre_with_rock": {
+      "has_rock": "true",
+      "sens": "dextrogyre",
+      "leg_shrink": 0.7
+    },
+    "dextrogyre_without_rock": {
+      "has_rock": "false",
+      "sens": "dextrogyre",
+      "leg_shrink": 0.7
+    },
+    "levogyre_with_rock": {
+      "has_rock": "true",
+      "sens": "levogyre",
+      "leg_shrink": 0.7
+    },
+    "levogyre_without_rock": {
+      "has_rock": "false",
+      "sens": "levogyre",
+      "leg_shrink": 0.7
+    }
+  }
+}

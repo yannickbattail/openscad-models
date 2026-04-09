@@ -1,0 +1,13 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "1_inch": {
+          "blade_size": "1",
+          "tolerance": "2"
+        },
+        "7_8th_inch": {
+          "blade_size": "0.875",
+          "tolerance": "2"
+        }
+    }
+}

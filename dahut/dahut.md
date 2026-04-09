@@ -18,7 +18,7 @@ Other slicer options
 
 - `leg_shrink`: default 0.7, shrink factor for the legs
 - `has_rock`: default true, has rock under the feet like a sidewalk
-- `sens`: default "dextrogyre", sens, dextrogyre shorter legs on right side, levogyre shorter legs on left side
+- `sens`: default "dextrogyre", dextrogyre shorter legs on right side, levogyre shorter legs on left side
 
 ## Sources
 

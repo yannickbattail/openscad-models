@@ -74,9 +74,9 @@ openScadOptions:
     ### "axes", "crosshairs", "edges", "scales" or null
     view: null
     ### adjust camera to look at object's center
-    autocenter: true
+    autocenter: false
     ### adjust camera to fit object
-    viewall: true
+    viewall: false
   animOptions:
     ### delay in milliseconds between frames
     animDelay: 50

@@ -81,7 +81,9 @@ module dice_animal(animalNumber = 0, fixation_diameter, faces, font_params) {
 
 module dice() {
   scale(50)
-    icosahedron();
+    rotate([-36,0.8,0]) // face 20 on top
+      rotate([30-180,0,72*3+180]) // face 20 in front
+        icosahedron();
 }
 
 module animalModel(animalConfig) {

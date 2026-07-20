@@ -12,6 +12,11 @@ If you want to create another read the part: "how I made them"
 
 Don't forget to post a make.
 
+## UPDATE
+
+- v2: fix faces number: was from 0 to 19 changed to 1 to 20, make the face 20 on the top
+- v1: 1st design
+
 ## models
 
 - heart : https://github.com/yannickbattail/openscad-models/tree/main/VoxelHeart

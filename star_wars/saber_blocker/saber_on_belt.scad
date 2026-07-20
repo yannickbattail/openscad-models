@@ -27,12 +27,23 @@ saberSupport(blade_size, tolerance);
 
 module saberSupport(blade_size, tolerance) {
   height=5;
-  translate([0,0,height/2])
-    scale([1,1,0.9])
-      roof(method = "voronoi")
-        base2dForm(blade_size, tolerance);
+  translate([0, 0, height / 2])
+    top(blade_size, tolerance, height);
+  translate([0, 0, -height / 2])
+    mirror([0,0,1])
+      top(blade_size, tolerance, height);
   linear_extrude(height, center=true) {
     base2dForm(blade_size, tolerance);
+  }
+}
+
+module top(blade_size, tolerance, height) {
+  difference() {
+      scale([1, 1, 0.9])
+        roof(method = "voronoi")
+          base2dForm(blade_size, tolerance);
+    translate([0,0,25 + 1])
+      cube(50, center=true);
   }
 }
 
@@ -52,6 +63,5 @@ module base2dForm(blade_size, tolerance) {
     translate([-hole / 2 - 5, 0])
       offset(1)
         square([2, 8], center = true);
-
   }
 }

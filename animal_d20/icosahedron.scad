@@ -82,7 +82,7 @@ module sample_vertex(i) {
   if (polyhedraDisplayMode == "enumerated")
     rotate(-90)
       linear_extrude(0.1)
-        underlined_text(text = str(i));
+        underlined_text(text = str(i+1));
   else if (polyhedraDisplayMode == "wireframe")
     sphere(r = radius);
 }
@@ -133,7 +133,7 @@ module sample_edge(i, h = 2, r = radius) {
     linear_extrude(height = h * 0.7, center = true)
       translate([0.1, 0, 0])
         rotate(-90)
-          underlined_text(str(i), text_size = 0.1);
+          underlined_text(str(i+1), text_size = 0.1);
   else if (polyhedraDisplayMode == "wireframe")
     linear_extrude(height = h, center = true)
       circle(r = r);
@@ -147,7 +147,7 @@ n is the number of sides the face has
 module sample_face(i, n, r = 3, h = 0.1, t = 0.1) {
   if (polyhedraDisplayMode == "enumerated") {
     linear_extrude(height = h) {
-      underlined_text(str(i), text_size = r / 2);
+      underlined_text(str(i+1), text_size = r / 2);
       rotate(180 / n - 90)
         difference() {
           circle($fn = n, r = r);
@@ -157,7 +157,7 @@ module sample_face(i, n, r = 3, h = 0.1, t = 0.1) {
   } else if (polyhedraDisplayMode == "wireframe") {
     translate([0, -0.24, 0])
       linear_extrude(height = h) {
-        underlined_text(str(i), text_size = fontSize);
+        underlined_text(str(i+1), text_size = fontSize);
       }
   }
 }

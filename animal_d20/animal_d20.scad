@@ -4,8 +4,6 @@ part = 13; // [0:Damagetypes-Acid, 1:Damagetypes-Bludgeoning, 2:Damagetypes-Cold
 fixation_diameter = 4;
 // The diameter of the edge
 radius = 0.1; // [0.01:0.01:0.2]
-// The radius of the fixation bars
-radiusFix = 0.04; // [0.01:0.01:0.2]
 
 /* [Font] */
 // The generated text has an ascent (height above the baseline) of approximately the given value.
@@ -81,7 +79,9 @@ module dice_animal(animalNumber = 0, fixation_diameter, faces, font_params) {
 
 module dice() {
   scale(50)
-    icosahedron();
+    rotate([-36,0.8,0]) // face 20 on top
+      rotate([30-180,0,72*3+180]) // face 20 in front
+        icosahedron();
 }
 
 module animalModel(animalConfig) {

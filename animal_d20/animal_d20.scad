@@ -4,8 +4,6 @@ part = 13; // [0:Damagetypes-Acid, 1:Damagetypes-Bludgeoning, 2:Damagetypes-Cold
 fixation_diameter = 4;
 // The diameter of the edge
 radius = 0.1; // [0.01:0.01:0.2]
-// The radius of the fixation bars
-radiusFix = 0.04; // [0.01:0.01:0.2]
 
 /* [Font] */
 // The generated text has an ascent (height above the baseline) of approximately the given value.

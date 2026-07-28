@@ -23,7 +23,7 @@ Several models made with openSCAD.
     - [light saber blocker](star_wars/saber_blocker/saber_blocker.md)
     - [Opinel Lightsaber](star_wars/opinel-lightsaber/README.md)
 - [Animal (or figurine) in a dice](animal_dice/README.md)
-- [Animal (or figurine) in a d20](animal_d20/README.md)
+- [Animal (or figurine) in a d20](animal_d20/animal_d20.md)
 - [Estourballe](estourballe/README.md) L'estourballe est une Pokéball médiévale tirée
   du [Pochon Dextre](https://simondethuillieres.com/product/le-pochon-dextre/)
 - [Dragon scale pattern](dragon_scale_pattern/README.md)

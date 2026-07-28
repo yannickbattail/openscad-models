@@ -3,7 +3,7 @@
 | Project                      | Generation Script    | Thingiverse Status   |
 |------------------------------|----------------------|----------------------|
 | agroglyphe                   | none                 | ok                   |
-| animal_d20                   | generate_profile.sh  | pas tous             |
+| animal_d20                   | generate_profile.sh  | auto                 |
 | animal_dice                  | *openscad-generate!* | pas tous             |
 | arrow                        | generate_profile.sh  | ok                   |
 | batteries_holder             | none                 | no                   |
@@ -34,7 +34,7 @@
 | sideImageExtrude             | generate_profile.sh  | no                   |
 | signetRing                   | generate_profile.sh  | ok                   |
 | star_wars/ahsoka_ball_map    | *openscad-generate*  | ok                   |
-| star_wars/crate              | *openscad-generate*  | ok                   |
+| star_wars/crate              | *openscad-generate*  | auto                 |
 | star_wars/cthulhu-lightsaber | *openscad-generate*  | no                   |
 | star_wars/darth_grogu        | *openscad-generate*  | not updated          |
 | star_wars/grogu_wall_art     | *openscad-generate*  | ok                   |

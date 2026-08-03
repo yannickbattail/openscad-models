@@ -1,0 +1,65 @@
+{
+    "fileFormatVersion": "1",
+    "parameterSets": {
+        "trois": {
+            "$fn": "100",
+            "base_form": "rectangle",
+            "base_height": "200",
+            "base_round": "20",
+            "base_thickness": "5",
+            "base_width": "120",
+            "lightning_init_rotation": "25",
+            "lightning_number": "3",
+            "lightning_spacing": "15",
+            "lightning_width": "4"
+        },
+        "quatre": {
+            "$fn": "100",
+            "base_form": "rectangle",
+            "base_height": "200",
+            "base_round": "20",
+            "base_thickness": "5",
+            "base_width": "120",
+            "lightning_init_rotation": "34",
+            "lightning_number": "4",
+            "lightning_spacing": "19",
+            "lightning_width": "4"
+        },
+        "cinq": {
+            "$fn": "100",
+            "base_form": "rectangle",
+            "base_height": "200",
+            "base_round": "20",
+            "base_thickness": "5",
+            "base_width": "120",
+            "lightning_init_rotation": "33",
+            "lightning_number": "5",
+            "lightning_spacing": "15",
+            "lightning_width": "4"
+        },
+        "dix": {
+            "$fn": "100",
+            "base_form": "rectangle",
+            "base_height": "200",
+            "base_round": "20",
+            "base_thickness": "5",
+            "base_width": "140",
+            "lightning_init_rotation": "51",
+            "lightning_number": "10",
+            "lightning_spacing": "10",
+            "lightning_width": "4"
+        },
+        "vingt": {
+            "$fn": "100",
+            "base_form": "rectangle",
+            "base_height": "200",
+            "base_round": "20",
+            "base_thickness": "5",
+            "base_width": "200",
+            "lightning_init_rotation": "90",
+            "lightning_number": "20",
+            "lightning_spacing": "9",
+            "lightning_width": "4"
+        }
+    }
+}

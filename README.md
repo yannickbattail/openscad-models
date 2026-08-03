@@ -40,6 +40,7 @@ Several models made with openSCAD.
 - [MarioWorld](MarioWorld/README.md)
 - [sideImageExtrude](sideImageExtrude/README.md)
 - [CD solar oven](CD_solar_oven/README.md)
+- [etoile et foudre](etoile_et_foudre/etoile_et_foudre.md)
 - [cube orné de nouilles](cubeOrnéDeNouilles/README.md)
 
 ## Libraries
@@ -57,6 +58,5 @@ Several models made with openSCAD.
 
 - [Pendantif agroglyphe (crop circle) de Sarraltroff](agroglyphe/README.md)
 - batteries_holder
-- etoile_et_foudre
 - fibo_flower
 - pokeball

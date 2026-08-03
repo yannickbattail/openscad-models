@@ -15,7 +15,7 @@
 | dice                         | generate_profile.sh  | pas tous             |
 | dragon_scale_pattern         | generate_profile.sh  | ok                   |
 | estourballe                  | generate_profile.sh  | toutes et support ok |
-| etoile_et_foudre             | none                 | ok                   |
+| etoile_et_foudre             | generate_profile.sh  | auto                 |
 | fibo_flower                  | manual               | *work in progress*   |
 | fox                          | generate_profile.sh  | ok                   |
 | ibex                         | generate_profile.sh  | ok                   |

@@ -26,26 +26,28 @@ if (part == "opinel") {
 } else if (part == "fundationAndVirole") {
   fundation_virole();
 } else if (part == "DEBUGall") {
-  fundation_virole(true);
+  intersection() {
+    opinel_saber();
+    fundation_virole(true);
+  }
 } else {
   opinel_saber();
-  fundation_virole();
+  fundation_virole(true);
 }
 
 module opinel_saber() {
   difference() {
-    scale(2.5)
-      opinel();
+    opinel();
     fundationHole();
   }
 }
 
 module opinel() {
-  // translate([-11.3, -11.55, -75]) // translate to virole
-  translate([-11.3, -11.55, -96.8])
-    rotate([90, 0, 90])
-      color("BurlyWood")
-        import("opinel.stl");
+  scale(2.5)
+    translate([-11.3, -11.55, -96.8])
+      rotate([90, 0, 90])
+        color("BurlyWood")
+          import("opinel.stl");
 }
 
 module fundation_virole(debug = false) {
@@ -80,6 +82,13 @@ module bladeHole() {
 }
 
 module virole(radius = 15.7, height = 52, thinkness = 6) {
+  difference() {
+    virole_base(radius = 15.7, height = 52, thinkness = 6);
+    translate([0,0,-53])
+      cylinder(r1=17, r2=15.6, h=53);
+  }
+}
+module virole_base(radius = 15.7, height = 52, thinkness = 6) {
   angleOpening = 20;
   di = 10;
   color("silver") {
@@ -101,13 +110,6 @@ module virole(radius = 15.7, height = 52, thinkness = 6) {
           }
         }
       }
-    }
-  }
-  color("DarkGray") {
-    difference() {
-      cylinder(h = thinkness, r = radius + thinkness);
-      translate([0, 0, -EPSI])
-        cylinder(h = thinkness + 2 * EPSI, d = 25);
     }
   }
   color("DarkGray") {

@@ -15,7 +15,7 @@
 | dice                         | generate_profile.sh  | pas tous             |
 | dragon_scale_pattern         | generate_profile.sh  | ok                   |
 | estourballe                  | generate_profile.sh  | toutes et support ok |
-| etoile_et_foudre             | generate_profile.sh  | auto                 |
+| etoile_et_foudre             | *openscad-generate*  | auto                 |
 | fibo_flower                  | manual               | *work in progress*   |
 | fox                          | generate_profile.sh  | ok                   |
 | ibex                         | generate_profile.sh  | ok                   |
@@ -40,8 +40,8 @@
 | star_wars/grogu_wall_art     | *openscad-generate*  | ok                   |
 | star_wars/holocron           | *openscad-generate*  | ok                   |
 | star_wars/Medical_emblem     | *openscad-generate*  | ok                   |
-| star_wars/opinel-lightsaber  | *openscad-generate*  | ok                   |
-| star_wars/saber_blocker      | *openscad-generate*  | ok                   |
+| star_wars/opinel-lightsaber  | *openscad-generate*  | auto                 |
+| star_wars/saber_blocker      | *openscad-generate*  | no                   |
 | star_wars/saber_on_belt      | *openscad-generate*  | no                   |
 | star_wars/selfie_saber       | *openscad-generate*  | no                   |
 | time_steps                   | generate_profile.sh  | no                   |

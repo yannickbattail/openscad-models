@@ -1,9 +1,12 @@
 // part to generate
 part = "holder"; // [all, holder, saber]
 
+// show blade when saber is shown
+show_blade=false;
+
 /* [Animation] */
 // resolution
-$fn = 50;
+$fn = 100;
 
 /* [Animation] */
 // rotating animation
@@ -18,12 +21,15 @@ $vpd = is_animated?1000:$vpd;
 if (part == "holder") {
     holder();
 } else if (part == "saber") {
-    saber_profile();
+    saber_profile(show_blade);
 } else {
-    saber_profile();
+    color("gold")
+      holder();
+    color("silver")
+      saber_profile(false);
 }
 
-module saber_profile() {
+module saber_profile(show_blade=false) {
     a = [
             [20, 0],
             [34.5, 8],
@@ -80,9 +86,7 @@ module saber_profile() {
             rotate([90, 0, 0])
                 cylinder(d = 10, h = 35);
 
-        // blade
-        translate([0, 0, 10])
-            #cylinder(d = 25.4, h = 1100);
+        //blade();
     }
 
     //battery charger
@@ -101,8 +105,26 @@ module saber_profile() {
             translate([0, 0, 16])
                 cylinder(d1 = 14, d2 = 10.5, h = 1.5);
         }
+  if (show_blade) {
+    blade();
+  }
+}
+module blade() {
+  translate([0, 0, 10])
+    color("red", 0.5)
+      cylinder(d = 25.4, h = 1100);
 }
 
 module holder() {
-    cube();
+  difference() {
+    translate([-20,-24 /*20*/,-11])
+      cube([40,20,310]);
+    scale([1.01,1.01,1])
+      saber_profile();
+    //battery charger
+    translate([0, 0, 178])
+      rotate([90, 0, 0]) {
+        cylinder(d = 11, h = 30);
+      }
+  }
 }

@@ -1,9 +1,6 @@
 // part to generate
 part = "holder"; // [all, holder, saber]
 
-// size of the model
-size = 50; // [10:5:100]
-
 /* [Animation] */
 // resolution
 $fn = 50;

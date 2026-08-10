@@ -39,6 +39,7 @@
 | star_wars/darth_grogu        | *openscad-generate*  | not updated          |
 | star_wars/grogu_wall_art     | *openscad-generate*  | ok                   |
 | star_wars/holocron           | *openscad-generate*  | ok                   |
+| star_wars/lightsaber_holder  | *openscad-generate*  | auto                 |
 | star_wars/Medical_emblem     | *openscad-generate*  | ok                   |
 | star_wars/opinel-lightsaber  | *openscad-generate*  | auto                 |
 | star_wars/saber_blocker      | *openscad-generate*  | no                   |

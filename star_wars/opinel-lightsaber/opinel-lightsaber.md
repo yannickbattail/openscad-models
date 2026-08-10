@@ -42,7 +42,7 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## Other interesting designs
 
-- [Cthulhu lightsaber](https://www.thingiverse.com/thing:7147024))
+- [Cthulhu lightsaber](https://www.thingiverse.com/thing:7147024)
 - [blooming sith lightsaber](https://www.thingiverse.com/thing:5437311)
 - [Lightsaber as selfie stick (customisable)](https://www.thingiverse.com/thing:6408914)
 

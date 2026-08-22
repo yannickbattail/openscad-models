@@ -6,8 +6,7 @@ Jewel heart: it comes in 2 parts that can be put together like a puzzle
 
 The heart shape is based on the hulled [VoxelHeart](https://www.thingiverse.com/thing:5635344)
 
-
-## UPDATE
+## Updates
 
 - v1: 1st design
 
@@ -44,16 +43,13 @@ Doc of [openscad-generate](https://github.com/yannickbattail/openscad-generate)
 
 ## Other interesting designs
 
-- EasiestHeart
-- heartJewel
-- VoxelHeart
+
+- [Voxel Heart full openscad](https://www.thingiverse.com/thing:5635344)
+- [Jewel heart pendant - puzzle piece](https://www.thingiverse.com/thing:6885816)
+- [Cat heart pendant - puzzle piece](https://www.thingiverse.com/thing:6909146)
 
 ## License
 
 [GPL](https://www.gnu.org/licenses/gpl-3.0.html)
 
 [CC BY](https://creativecommons.org/licenses/by/4.0/)
-
-## keywords
-
-jewelry, pendant, heart, puzzle, cat, openscad, customizable, customizer

@@ -9,7 +9,7 @@ scale_y = 0.7; // [0.5:0.01:2]
 scale_z = 1.7; // [0.5:0.01:2]
 
 // resolution
-$fn = 100;
+$fn = 200;
 
 /* [Animation] */
 // rotating animation

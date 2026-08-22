@@ -1,7 +1,5 @@
 #!/bin/bash
 
-mosaicLines=2
-mosaicColumns=2
 parallelJobs=2
 if command -v nproc >/dev/null 2>&1; then # check if the command nproc exists
   parallelJobs=$(nproc --ignore=2)
@@ -12,24 +10,24 @@ fi
 
 echo "use ${parallelJobs} parallel jobs"
 
-notify-success() {
-  "$@"
-  local status=$?
-  if command -v notify-send >/dev/null 2>&1; then
-    if [ $status -eq 0 ]; then
-      notify-send -u normal "openscad-generate" "Generation of EasiestHeart finished successfully."
-    else
-      notify-send -u critical "openscad-generate" "Generation of EasiestHeart FAILED with exit code $status."
-    fi
-  else
-    if [ $status -eq 0 ]; then
-      echo "[INFO] Generation of EasiestHeart finished successfully."
-    else
-      echo "[ERROR] Generation of EasiestHeart FAILED with exit code $status." >&2
-    fi
-  fi
-  return $status
-}
+npx openscad-generate@latest generate --parallelJobs $parallelJobs --mosaicFormat 2,1 --configFile EasiestHeart.yaml ./EasiestHeart.scad
+status=$?
 
-notify-success npx openscad-generate@latest generate --mosaicFormat ${mosaicColumns},${mosaicLines} --parallelJobs $parallelJobs --configFile EasiestHeart.yaml ./EasiestHeart.scad
-exit $?
+# Notify user about the result
+if command -v notify-send >/dev/null 2>&1; then
+  if [ $status -eq 0 ]; then
+    notify-send -u normal "openscad-generate" "Generation of EasiestHeart finished successfully."
+  else
+    notify-send -u critical "openscad-generate" "Generation of EasiestHeart FAILED with exit code $status."
+  fi
+else
+  # Fallback to stdout if notify-send isn't available
+  if [ $status -eq 0 ]; then
+    echo "[INFO] Generation of EasiestHeart finished successfully."
+  else
+    echo "[ERROR] Generation of EasiestHeart FAILED with exit code $status." >&2
+  fi
+fi
+
+exit $status
+

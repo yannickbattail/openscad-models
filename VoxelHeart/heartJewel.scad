@@ -29,12 +29,9 @@ $vpt = is_animated ? [0, 0, 0] : $vpt;
 $vpr = is_animated ? [60, 0, animation_rotation ? (365 * $t) : 45] : $vpr; // animation rotate around the object
 $vpd = is_animated ? 300 : $vpd;
 
-use <EasiestHeart.scad>
-;
-use <VoxelHeart.scad>
-;
-use <cat/cat.scad>
-;
+use <EasiestHeart.scad>;
+use <VoxelHeart.scad>;
+use <cat/cat.scad>;
 
 rotate([-90, 0, 0]) {
   if (part == "heartLeft") {
@@ -47,6 +44,7 @@ rotate([-90, 0, 0]) {
     heartRight();
   }
 }
+
 module baseHeart() {
   difference() {
     if (voxelHeart) {

@@ -1,7 +1,56 @@
-
 outputDir: ./gen
 embedThumbnailIn3mf: true
 embedSourcesIn3mf: true
+thingiverse:
+  thing_id: '5635344'
+  ### thing Name
+  name: 'Voxel Heart full openscad'
+  ### you login name in thingiverse
+  creator: 'XcinnaY'
+  ### print and construction instructions
+  instructions: ''
+  tags:
+    - heart
+    - hearts
+    - heart valentines day
+    - valentines day
+    - voxel
+    - voxel art
+    - voxelized
+    - OpenSCAD
+    - customizable
+    - customizer
+  ### Set the category of the thing. Uses full category name (eg. "3D Printer Parts")
+  category: 'Signs & Logos'
+  ### one of: cc, cc-sa, cc-nd, cc-nc-sa, cc-nc-nd, pd0, gpl, lgpl, bsd
+  license: 'gpl'
+  ### Toggle whether this thing is a work in progress.
+  is_wip: false
+  ### Toggle whether this thing is published.
+  is_published: true
+  is_customizer: true
+  ### An array of thing ids that this thing is derived from.
+  ancestors: []
+  ### Toggle whether this thing is a remix of another thing.
+  is_remix: false
+  images:
+    - ./gen/slideShow_VoxelHeart.webp
+    - ./gen/mosaic_VoxelHeart.jpg
+    - ./gen/VoxelHeart_VoxelHeart1_cube.png
+    - ./gen/VoxelHeart_VoxelHeart1_cube.webp
+    - ./gen/VoxelHeart_VoxelHeart1_sphere.png
+    - ./gen/VoxelHeart_VoxelHeart1_sphere.webp
+    - ./gen/VoxelHeart_VoxelHeart2_cube.png
+    - ./gen/VoxelHeart_VoxelHeart2_cube.webp
+    - ./gen/VoxelHeart_VoxelHeart1_hull.png
+    - ./gen/VoxelHeart_VoxelHeart1_hull.webp
+  files:
+    - ./VoxelHeart.scad
+    - ./VoxelHeart.json
+    - ./gen/VoxelHeart_VoxelHeart1_cube.3mf
+    - ./gen/VoxelHeart_VoxelHeart1_sphere.3mf
+    - ./gen/VoxelHeart_VoxelHeart2_cube.3mf
+    - ./gen/VoxelHeart_VoxelHeart1_hull.3mf
 outFormats:
   ### image
   - png
@@ -41,7 +90,7 @@ mosaicOptions:
     ### number of columns
     width: 2
     ### number of lines
-    height: 1
+    height: 2
 ### generate a slide show in webp or git (or null to not generate a slide show)
 generateSlideShow: webp
 ### delay in milliseconds between frames
@@ -118,9 +167,12 @@ openScadOptions:
     #### __GENERATION_DATE__: date of the generation
     #### __PARAMETERS__: values of the parameter set as a JSON string
     meta_data_title: '__BASE_FILE_NAME__ - __PARAMETER_SET__'
-    meta_data_description: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with OpenSCAD, generated at __GENERATION_DATE__ from "file __FILE_NAME__" with parameters: __PARAMETERS__'
+    meta_data_description: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with
+      OpenSCAD, generated at __GENERATION_DATE__ from "file __FILE_NAME__" with
+      parameters: __PARAMETERS__'
     meta_data_designer: me
-    meta_data_license_terms: 'CC BY https://creativecommons.org/licenses/by/4.0/ GPL https://www.gnu.org/licenses/gpl-3.0.html'
+    meta_data_license_terms: 'CC BY https://creativecommons.org/licenses/by/4.0/ GPL
+      https://www.gnu.org/licenses/gpl-3.0.html'
     meta_data_rating: ""
   optionPdf:
     paper_size: "a4"
@@ -135,17 +187,19 @@ openScadOptions:
     meta_data_title: '__BASE_FILE_NAME__ - __PARAMETER_SET__'
     meta_data_author: "me"
     # the variables are replaced by their value when generating the file
-    meta_data_subject: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with OpenSCAD, generated at __GENERATION_DATE__ from "file __FILE_NAME__" with parameters: __PARAMETERS__'
+    meta_data_subject: '__BASE_FILE_NAME__ - __PARAMETER_SET__ Made with OpenSCAD,
+      generated at __GENERATION_DATE__ from "file __FILE_NAME__" with
+      parameters: __PARAMETERS__'
     meta_data_keywords: "OpenSCAD, 2D model"
-    fill: "true"
-    fill_color: "#7F1617"
-    stroke: "false"
+    fill: "false"
+    fill_color: "black"
+    stroke: "true"
     stroke_color: "black"
     stroke_width: 0.35
   optionSvg:
-    fill: "true"
-    fill_color: "#7F1617"
-    stroke: "false"
+    fill: "false"
+    fill_color: "white"
+    stroke: "true"
     stroke_color: "black"
     stroke_width: 0.35
   experimentalFeatures:
@@ -159,5 +213,9 @@ openScadOptions:
     object_function: true
     ### enable roof()
     roof: true
+    ### enable discretization-by-error
+    discretization_by_error: false
+    ### enable vector-swizzle
+    vector_swizzle: true
     ### Enable the textmetrics() and fontmetrics() functions.
     textmetrics: true

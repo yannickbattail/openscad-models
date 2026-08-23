@@ -9,7 +9,7 @@
 | batteries_holder             | none                 | no                   |
 | BendingLib                   | generate_profile.sh  | no                   |
 | catTile                      | generate_profile.sh  | ok                   |
-| CD_solar_oven                | generate_profile.sh  | no                   |
+| CD_solar_oven                | generate_profile.sh  | auto                 |
 | coin                         | none                 | *work in progress*   |
 | cubeOrnéDeNouilles           | generate_profile.sh  | ok                   |
 | dice                         | generate_profile.sh  | pas tous             |
@@ -47,4 +47,4 @@
 | star_wars/selfie_saber       | *openscad-generate*  | no                   |
 | time_steps                   | generate_profile.sh  | no                   |
 | twist                        | generate_profile.sh  | ok                   |
-| VoxelHeart                   | *openscad-generate*  | ok                   |
+| VoxelHeart                   | *openscad-generate*  | auto                 |

@@ -6,13 +6,13 @@ number_of_column = 5; // [1:1:40]
 // positioning of the focus point
 focus_of_parabola = "middle"; // [middle, bottom_center, bottom_left]
 
+// distance of the focus point
+focus_distance = 1000; // [100:2000]
+
 // when part=support, it only show the support at row Y
 support_at_row = "1";
 // when part=support, it only show the support at column X
 support_at_column = "A";
-
-// distance of the focus point
-focus_distance = 1000; // [100:2000]
 
 // thickness of the base
 base_height = 2; // [1:10]
@@ -31,7 +31,7 @@ debug = true;
 animation_rotation = false;
 
 /* [hidden] */
-$fn = 100;
+$fn = 50;
 
 $vpt = animation_rotation ? [0, 0, 0] : [];
 $vpr = animation_rotation ? [70, 0, 365 * $t] : [];

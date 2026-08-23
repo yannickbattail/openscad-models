@@ -905,22 +905,6 @@
       "show_base": "false",
       "support_at_column": "E",
       "support_at_row": "16"
-    },
-    "New set 1": {
-      "$fn": "100",
-      "animation_rotation": "false",
-      "baseSide": "120",
-      "base_height": "2",
-      "debug": "true",
-      "focus_distance": "1000",
-      "focus_of_parabola": "middle",
-      "number_of_column": "4",
-      "number_of_rows": "11",
-      "part": "all",
-      "show_base": "true",
-      "support_at_column": "A",
-      "support_at_row": "1",
-      "support_height": "60"
     }
   }
 }

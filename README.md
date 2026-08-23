@@ -40,7 +40,7 @@ Several models made with openSCAD.
 - [Jewel cat heart pendant - puzzle piece](VoxelHeart/README.md)
 - [MarioWorld](MarioWorld/README.md)
 - [sideImageExtrude](sideImageExtrude/README.md)
-- [CD solar oven](CD_solar_oven/README.md)
+- [CD solar oven](CD_solar_oven/CD_solar_oven.md)
 - [etoile et foudre](etoile_et_foudre/etoile_et_foudre.md)
 - [cube orné de nouilles](cubeOrnéDeNouilles/README.md)
 
